@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: opt
+# --
+${1:object}.on('${2:short}', '${3:long}', "${4:description}")do|${5:v}|
+  $0
+end

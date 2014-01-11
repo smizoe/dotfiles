@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: rspec-before
+# --
+before($1)do
+  $0
+end
