@@ -8,9 +8,9 @@
 (defalias 'exit 'save-buffers-kill-emacs)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; elisp configuration (elisps that need installation);;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; elisp installer configuration ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; auto-install.el
 (add-to-list 'load-path "~/.emacs.d/elisp/auto-install/")
@@ -24,7 +24,8 @@
 ;; package manager
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 
@@ -124,16 +125,57 @@
 ;;;;;;;;;;;;;;;;;
 
 ;; (auto-install-batch "anything")
-(require 'anything-startup)
+(when (require 'anything-startup nil t)
+  (setq
+   anything-idle-delay 0.3
+   anything-input-idle-delay 0.2
+   anything-candidate-number-limit 100
+   anything-quick-update t
+   anything-enable-shortcuts 'alphabet
+   anything-su-or-sudo "sudo"
+   ))
 (global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
 ;; (install-elisp-from-emacswiki "color-moccur.el")
 ;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-moccur/trunk/anything-c-moccur.el")
-(require 'anything-c-moccur)
+(when (require 'anything-c-moccur nil t)
+  (setq
+   anything-c-moccur-anything-idle-delay 0.1
+   anything-c-moccur-highlight-info-line-flag t
+   anything-c-moccur-enable-auto-look-flag t
+   anything-c-moccur-enable-initial-pattern t
+   )
+  )
 (setq moccur-split-word t)
 (global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
 (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
 (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+
+
+;;;;;;;;;;;;;;
+;; org-mode ;;
+;;;;;;;;;;;;;;
+
+
+
+;; in installing org mode, you must use a 'fresh' emacs session
+;; that has no org mode feature turned on.
+;; (package-install 'org)
+;; (package-install 'org-plus-contrib)
+;; or
+;; (package-list-packages) 
+;; and install 'org
+
+(require 'org)
+;;(require 'ox-md)
+(require 'ox-odt)
+;;(add-to-list 'org-export-backends 'md)
+(setq org-use-fast-todo-selection t)
+(setq org-todo-keywords
+      '(
+        (sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(x)" "CANCEL(c)")
+        (sequence "APPT(a)" "|" "DONE(x)" "CANCEL(c)")
+        ))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; book mark mode ;;
@@ -392,3 +434,10 @@
             (load "dired-x")
             (global-set-key "\C-x\C-j" 'skk-mode)
             ))
+
+
+;;;;;;;;;
+;; egg ;;
+;;;;;;;;;
+;; (package-install 'egg)
+
