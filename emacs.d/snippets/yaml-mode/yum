@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : yum
+# --
+yum: name=$1 state=${2:$$(yas-choose-value `("present" "latest" "absent"))}
+$0

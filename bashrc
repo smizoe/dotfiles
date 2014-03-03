@@ -47,6 +47,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # alias ls='ls --color=auto'
 
+export CPATH=${CPATH}:~/APUE/include
+export LIBRARY_PATH=${LIBRARY_PATH}:~/APUE/lib
+
+####################
+## show git branch
 
 GIT_PS1_SHOWDIRTYSTATE=1
 PS1="\u@\h [\$(__git_ps1 \"(%s) \")\w]\\$ "
@@ -56,10 +61,12 @@ PS1="\u@\h [\$(__git_ps1 \"(%s) \")\w]\\$ "
 
 export PGDATA=/usr/local/var/postgres
 
-
+########################
+## hive and java
 
 export HIVE_HOME=/usr/local/Cellar/hive/0.12.0/libexec
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 #############################################
 ## settings for go installed with homebrew ##

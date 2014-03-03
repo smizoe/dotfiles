@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : serv
+# --
+service: name=$1 state=${2:$$(yas-choose-value `("started" "stopped" "restarted" "reloaded"))} enabled=${3:$$(yas-choose-value `("yes" "no"))}
+$0

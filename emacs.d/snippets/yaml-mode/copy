@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : copy
+# --
+copy: src=${1:{{item}}} dest=$2 backup=${3:$$(yas-choose-value `("no" "yes"))no}
+$0

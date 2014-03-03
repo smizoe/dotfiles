@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : items
+# --
+with_items:
+    - $1
+$0

@@ -33,6 +33,10 @@
 ;; personal configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; delete trailing before saving
+
+ (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; enable view-mode
 (setq view-read-only t)
 ;; (package-install 'viewer)
@@ -42,11 +46,16 @@
 (setq viewer-modeline-color-view "orange")
 (viewer-change-modeline-color-setup)
 
+;; make unnecessary trailing space visible
+(when (boundp 'show-trailing-whitespace)
+  (setq-default show-trailing-whitespace t))
+
 ;;; colour current line
 (global-hl-line-mode 1)
 
 ;;; the colour for the current line
-(set-face-background 'hl-line "darkolivegreen")
+;;(set-face-background 'hl-line "darkolivegreen")
+(set-face-background 'hl-line "hot pink")
 
 ;;; save history and enable it even after reboot of emacs
 (savehist-mode 1)
@@ -163,7 +172,7 @@
 ;; (package-install 'org)
 ;; (package-install 'org-plus-contrib)
 ;; or
-;; (package-list-packages) 
+;; (package-list-packages)
 ;; and install 'org
 
 (require 'org)
@@ -208,6 +217,8 @@
 (add-hook 'flycheck-mode-hook (lambda ()
                           (local-set-key (kbd "C-c C-p") 'flycheck-previous-error)))
 
+(add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'yaml-mode-hook 'flycheck-mode)
 
 ;; sequential command
 ;; (auto-install-batch "sequential-command")
@@ -277,12 +288,10 @@
 ;; yasnippet mode ;;
 ;;;;;;;;;;;;;;;;;;;;
 
-
-(add-to-list 'load-path
-             "~/.emacs.d/elpa/yasnippet-20131203.1520/")
+;; (package-install 'yasnippet)
 (require 'yasnippet)
 (yas-global-mode 1)
-(yas/load-directory "~/.emacs.d/mysnippets")
+;; (yas/load-directory "~/.emacs.d/mysnippets")
 
 
 ;;;;;;;;;;;;;;;;
@@ -304,7 +313,7 @@
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
 
 ;; from http://support.markedapp.com/kb/how-to-tips-and-tricks/marked-bonus-pack-scripts-commands-and-bundles
- 
+
 (defun markdown-preview-file ()
   "run Marked on the current file and revert the buffer"
   (interactive)
@@ -329,7 +338,6 @@
 ;; the following enables goflymake
 (add-to-list 'load-path "~/go/src/github.com/dougm/goflymake")
 (require 'go-flymake)
-(add-to-list 'load-path "~/go/src/github.com/dougm/goflymake")
 (require 'go-flycheck)
 
 (add-hook 'go-mode-hook (lambda ()
@@ -440,4 +448,3 @@
 ;; egg ;;
 ;;;;;;;;;
 ;; (package-install 'egg)
-

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : temp
+# --
+template: src=${1:{{item}}} dest=$2 owner=${3:root} group=${4:$3} mode=${5:0644}
+$0

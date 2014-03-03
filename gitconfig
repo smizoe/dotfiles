@@ -3,6 +3,7 @@
 	email = SET_ME_LOCALLY
 [core]
 	excludesfile = /Users/smizoe/.gitignore
+        ignorecase   = false
 
 [alias]
 	graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s' 

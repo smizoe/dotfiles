@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name : mkdir
+# --
+file: path=$1 owner=${2:root} group=${3:$2} mode=${4:0755} recurse=${5:$$(yas-choose-value `("no" "yes"))no} state=directory
+$0
