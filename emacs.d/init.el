@@ -45,6 +45,7 @@
 (setq viewer-modeline-color-unwritable "tomato")
 (setq viewer-modeline-color-view "orange")
 (viewer-change-modeline-color-setup)
+(add-hook 'find-file-hook 'view-mode)
 
 ;; make unnecessary trailing space visible
 (when (boundp 'show-trailing-whitespace)
@@ -129,36 +130,51 @@
 (setq-default indent-tabs-mode nil)
 
 
+;;;;;;;;;;
+;; helm ;;
+;;;;;;;;;;
+
+;; git clone https://github.com/emacs-helm/helm.git ~/.emacs.d/elisp/helm
+(add-to-list 'load-path "~/.emacs.d/elisp/helm")
+(require 'helm-config)
+;; (helm-mode 1)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "M-s") 'helm-occur)
+(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+(define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+
 ;;;;;;;;;;;;;;;;;
 ;; anything.el ;;
 ;;;;;;;;;;;;;;;;;
 
-;; (auto-install-batch "anything")
-(when (require 'anything-startup nil t)
-  (setq
-   anything-idle-delay 0.3
-   anything-input-idle-delay 0.2
-   anything-candidate-number-limit 100
-   anything-quick-update t
-   anything-enable-shortcuts 'alphabet
-   anything-su-or-sudo "sudo"
-   ))
-(global-set-key (kbd "M-y") 'anything-show-kill-ring)
+;; ;; (auto-install-batch "anything")
+;; (when (require 'anything-startup nil t)
+;;   (setq
+;;    anything-idle-delay 0.3
+;;    anything-input-idle-delay 0.2
+;;    anything-candidate-number-limit 100
+;;    anything-quick-update t
+;;    anything-enable-shortcuts 'alphabet
+;;    anything-su-or-sudo "sudo"
+;;    ))
+;; (global-set-key (kbd "M-y") 'anything-show-kill-ring)
 
-;; (install-elisp-from-emacswiki "color-moccur.el")
-;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-moccur/trunk/anything-c-moccur.el")
-(when (require 'anything-c-moccur nil t)
-  (setq
-   anything-c-moccur-anything-idle-delay 0.1
-   anything-c-moccur-highlight-info-line-flag t
-   anything-c-moccur-enable-auto-look-flag t
-   anything-c-moccur-enable-initial-pattern t
-   )
-  )
-(setq moccur-split-word t)
-(global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
-(define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
-(define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+;; ;; (install-elisp-from-emacswiki "color-moccur.el")
+;; ;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-moccur/trunk/anything-c-moccur.el")
+;; (when (require 'anything-c-moccur nil t)
+;;   (setq
+;;    anything-c-moccur-anything-idle-delay 0.3
+;;    anything-c-moccur-highlight-info-line-flag t
+;;    anything-c-moccur-enable-auto-look-flag t
+;;    anything-c-moccur-enable-initial-pattern t
+;;    )
+;;   )
+;; (setq moccur-split-word t)
+;; (global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
+;; (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
+;; (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
 
 
 ;;;;;;;;;;;;;;
@@ -234,7 +250,8 @@
 (key-chord-mode 1)
 
 ;;key-chrod settings
-(key-chord-define-global "xf" 'anything-for-files)
+;;(key-chord-define-global "xf" 'anything-for-files)
+(key-chord-define-global "xf" 'helm-for-files)
 (key-chord-define-global "kj" 'view-mode)
 
 ;; ess
@@ -289,10 +306,17 @@
 ;;;;;;;;;;;;;;;;;;;;
 
 ;; (package-install 'yasnippet)
+;; (install-elisp-from-emacswiki "yasnippet-config.el")
+;; I've made a modification to the yasnippet-config.el
+(add-to-list 'load-path "~/.emacs.d/elisp/yasnippet-config")
 (require 'yasnippet)
 (yas-global-mode 1)
-;; (yas/load-directory "~/.emacs.d/mysnippets")
 
+(require 'yasnippet-config)
+(define-sequential-command kill-ring-save-x
+  kill-ring-save yas/register-oneshot-snippet)
+(define-key esc-map "w" 'kill-ring-save-x) ; M-w
+(define-key global-map "\C-x\C-y" 'yas/expand-oneshot-snippet)
 
 ;;;;;;;;;;;;;;;;
 ;; recentf.el ;;
@@ -395,13 +419,15 @@
 ;; (auto-install-batch "auto-complete")
 (require 'auto-complete-config)
 (global-auto-complete-mode 1)
-
+(setq ac-dwim t)
+(ac-config-default)
 
 ;;;;;;;;;;;;
 ;; migemo ;;
 ;;;;;;;;;;;;
 
 ;; (package-install 'migemo)
+;;; you must install cmigemo independently of this elisp.
 (require 'migemo)
 (setq migemo-command "cmigemo")
 (setq migemo-options '("-q" "--emacs" "-i" "\a"))
@@ -409,7 +435,6 @@
 (setq migemo-coding-system 'utf-8-unix)
 (setq migemo-user-dictionary nil)
 (setq migemo-regex-dictionary nil)
-
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; open-junk-file ;;

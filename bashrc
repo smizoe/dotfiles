@@ -36,7 +36,7 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
-export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/APUE/bin:${PATH}
 
 
 export EDITOR=emacsclient
