@@ -12,7 +12,19 @@
 ;; elisp installer configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; package manager
+(require 'package)
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(setq package-archives '(;("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
+(package-initialize)
+
 ;; auto-install.el
+;; (package-install 'auto-install)
 (add-to-list 'load-path "~/.emacs.d/elisp/auto-install/")
 ;; add to load-path the directory where elisps installed by auto-install reside
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
@@ -20,13 +32,6 @@
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
-;; package manager
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -359,6 +364,8 @@
 ;;;;;;;;;;;;;
 
 ;; (package-install 'go-mode)
+;; after setting GOPATH and appending its lib directory, do the following:
+;; go get -u github.com/dougm/goflymake
 ;; the following enables goflymake
 (add-to-list 'load-path "~/go/src/github.com/dougm/goflymake")
 (require 'go-flymake)

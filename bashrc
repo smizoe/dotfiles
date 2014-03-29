@@ -1,5 +1,3 @@
-
-
 # System-wide .bashrc file for interactive bash(1) shells.
 if [ -z "$PS1" ]; then
    return
@@ -34,6 +32,10 @@ BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
 BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
 if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
+fi
+
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    . /usr/share/git/completion/git-prompt.sh
 fi
 
 export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/APUE/bin:${PATH}
