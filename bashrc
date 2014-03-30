@@ -29,7 +29,7 @@ fi
 # bash_completion
 BASH_COMPLETION=/usr/local/etc/bash_completion
 BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
-BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
+#BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
 if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
@@ -69,6 +69,12 @@ export PGDATA=/usr/local/var/postgres
 export HIVE_HOME=/usr/local/Cellar/hive/0.12.0/libexec
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+
+
+########################
+## setting for less
+
+LESS=-iN
 
 #############################################
 ## settings for go installed with homebrew ##
