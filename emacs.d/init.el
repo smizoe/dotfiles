@@ -51,6 +51,7 @@
 (setq viewer-modeline-color-view "orange")
 (viewer-change-modeline-color-setup)
 (add-hook 'find-file-hook 'view-mode)
+;;(setq find-file-hook nil)
 
 ;; make unnecessary trailing space visible
 (when (boundp 'show-trailing-whitespace)
@@ -134,6 +135,14 @@
 ;;; use multiple spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+;;;;;;;;;;;;
+;; ispell ;;
+;;;;;;;;;;;;
+;; install aspell beforehand!
+
+
+(setq ispell-program-name "aspell")
+(setq ispell-list-command "list")
 
 ;;;;;;;;;;
 ;; helm ;;
@@ -273,6 +282,10 @@
 
 (setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+(setq auto-mode-alist (cons '("\\.html?$" . yahtml-mode) auto-mode-alist))
+(autoload 'yahtml-mode "yahtml" "Yet Another HTML mode" t)
+(setq yahtml-www-browser "firefox")
 
 (add-hook 'skk-mode-hook
 	  (lambda ()
@@ -480,3 +493,42 @@
 ;; egg ;;
 ;;;;;;;;;
 ;; (package-install 'egg)
+
+
+
+;;;;;;;;;;;;;
+;; hipchat ;;
+;;;;;;;;;;;;;
+;; https://gist.github.com/puffnfresh/4002033
+;; https://gist.github.com/xorphitus/7093368
+;; (package-install 'jabber)
+
+(setq ssl-program-name "gnutls-cli"
+      ssl-program-arguments '("--insecure" "-p" service host)
+      ssl-certificate-verification-policy 1)
+
+(setq jabber-account-list '(("68439_480448@chat.hipchat.com")))
+(defvar hipchat-number "68439")
+(defvar hipchat-nickname "Sho Mizoe")
+
+(defun hipchat-join (room)
+  (interactive "sRoom name: ")
+  (jabber-groupchat-join
+   (jabber-read-account)
+   (concat hipchat-number "_" room "@conf.hipchat.com")
+   hipchat-nickname
+   t))
+
+;; Mention nicknames in a way that HipChat clients will pickup
+(defun hipchat-mention (nickname)
+  (interactive
+   (list (jabber-muc-read-nickname jabber-group "Nickname: ")))
+  (insert (concat "@\"" nickname "\" ")))
+
+;; 誰かがonline/offlineになった時にいちいちmini bufferに表示されて入力が潰されるのを防止
+(add-hook 'jabber-chat-mode-hook
+          '(lambda ()
+             (define-jabber-alert echo "Show a message in the echo area"
+               (lambda (msg)
+                 (unless (minibuffer-prompt)
+                   (message "%s" msg))))))

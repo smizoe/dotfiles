@@ -38,7 +38,7 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     . /usr/share/git/completion/git-prompt.sh
 fi
 
-export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${PATH}
 
 
 export EDITOR=emacsclient
@@ -47,7 +47,27 @@ export VISUAL=emacsclient
 ## setting for rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+########################
+## aliases
+########################
+
 # alias ls='ls --color=auto'
+
+function __mk_r_project () {
+    if [ $# -eq 0 ]; then
+        "Usage: $(basename $0) dirname[...]"
+    else
+        for dir in "$@"
+        do
+            for subdir in queries R data image
+            do
+                mkdir -p ${dir}/${subdir}
+            done
+        done
+    fi
+}
+
+alias mkRdir='__mk_r_project'
 
 export CPATH=${CPATH}:~/APUE/include
 export LIBRARY_PATH=${LIBRARY_PATH}:~/APUE/lib
@@ -74,7 +94,7 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 ########################
 ## setting for less
 
-LESS=-iN
+export LESS=-iR
 
 #############################################
 ## settings for go installed with homebrew ##
