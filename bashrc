@@ -63,6 +63,7 @@ function __mk_r_project () {
             do
                 mkdir -p ${dir}/${subdir}
             done
+            touch ${dir}/plan.org
         done
     fi
 }
@@ -106,3 +107,12 @@ export LESS=-iR
 # decided not to use homebrew
 export GOPATH=${HOME}/go
 export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin
+
+## python autoenv
+source /usr/local/opt/autoenv/activate.sh
+
+#####################
+# use MacVim as vim #
+#####################
+
+alias vim=/Applications/MacVim.app/Contents/MacOS/Vim

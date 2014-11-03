@@ -62,7 +62,7 @@
 
 ;;; the colour for the current line
 ;;(set-face-background 'hl-line "darkolivegreen")
-(set-face-background 'hl-line "hot pink")
+(set-face-background 'hl-line "green4")
 
 ;;; save history and enable it even after reboot of emacs
 (savehist-mode 1)
@@ -249,6 +249,7 @@
 
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'yaml-mode-hook 'flycheck-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 ;; sequential command
 ;; (auto-install-batch "sequential-command")
@@ -285,7 +286,7 @@
 
 (setq auto-mode-alist (cons '("\\.html?$" . yahtml-mode) auto-mode-alist))
 (autoload 'yahtml-mode "yahtml" "Yet Another HTML mode" t)
-(setq yahtml-www-browser "firefox")
+;; (setq yahtml-www-browser "firefox")
 
 (add-hook 'skk-mode-hook
 	  (lambda ()
@@ -295,6 +296,16 @@
 		  (define-key skk-j-mode-map "$" 'YaTeX-insert-dollar)
 		  ))
 	    ))
+
+;; autoinsert
+(require 'autoinsert)
+(add-hook 'find-file-hooks 'auto-insert)
+(setq auto-insert-directory "~/.emacs.d/templates")
+
+(setq auto-insert-alist
+      (append '(
+                ("\\.html" . "html/default.html")
+               ) auto-insert-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; gauche, or SICP ;;
@@ -532,3 +543,17 @@
                (lambda (msg)
                  (unless (minibuffer-prompt)
                    (message "%s" msg))))))
+
+;; python and venv
+;; (package-install 'pyvenv)
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+   "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+   "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
