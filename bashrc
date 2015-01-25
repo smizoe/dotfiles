@@ -70,6 +70,42 @@ function __mk_r_project () {
 
 alias mkRdir='__mk_r_project'
 
+
+function __mk_python_project () {
+  if [ $# -eq 0 ] ; then
+        "Usage: $(basename $0) dirname[...]"
+  else
+      for dir in "$@"
+      do
+            for subdir in ${dir} venv data
+            do
+                    mkdir -p ${dir}/${subdir}
+            done
+            pyvenv ${dir}/venv
+            echo -e "#! /usr/bin/env bash\nsource venv/bin/activate" > ${dir}/.env
+            cat <<EOF > venv/package_requirements.txt
+gnureadline==6.3.3
+ipython==2.3.1
+matplotlib==1.4.2
+nose==1.3.4
+numpy==1.9.1
+pandas==0.15.1
+patsy==0.3.0
+pyparsing==2.0.3
+python-dateutil==2.2
+pytz==2014.9
+scikit-learn==0.15.2
+scipy==0.14.0
+seaborn==0.5.0
+six==1.8.0
+statsmodels==0.6.0
+EOF
+      done
+  fi
+}
+
+alias mkPydir='__mk_python_project'
+
 export CPATH=${CPATH}:~/APUE/include
 export LIBRARY_PATH=${LIBRARY_PATH}:~/APUE/lib
 
