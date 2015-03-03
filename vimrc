@@ -19,6 +19,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
 
 call neobundle#end()
 
@@ -35,3 +37,6 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set smartindent
+let g:vimfiler_as_default_explorer=1
+autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/\t/ /ge
