@@ -21,6 +21,8 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'vim-scripts/Align'
+NeoBundle 'derekwyatt/vim-scala'
 
 call neobundle#end()
 
