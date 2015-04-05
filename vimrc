@@ -23,6 +23,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'tpope/vim-unimpaired'
 
 call neobundle#end()
 
@@ -44,3 +45,5 @@ let g:syntastic_always_populate_loc_list = 1
 autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/ /ge
 syntax on
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
