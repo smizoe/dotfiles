@@ -24,6 +24,10 @@ NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tyru/eskk.vim'
+" vimproc needs manual intervention;
+" cd path/to/vimproc.vim && make
+NeoBundle 'Shougo/vimproc.vim'
 
 call neobundle#end()
 
@@ -37,8 +41,8 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smartindent
 let g:vimfiler_as_default_explorer=1
 let g:syntastic_always_populate_loc_list = 1
@@ -50,3 +54,10 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " set search path for ctags
 set tags=tags,./tags
+
+" eskk dictionary setting
+" assumed that some skk server is listening to localhost:1178
+let g:eskk#server = {
+\   'host': 'localhost',
+\   'port': 1178,
+\}
