@@ -47,3 +47,6 @@ autocmd BufWritePre * :%s/\t/ /ge
 syntax on
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" set search path for ctags
+set tags=tags,./tags
