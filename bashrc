@@ -151,3 +151,8 @@ source /usr/local/opt/autoenv/activate.sh
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 export VISUAL=/Applications/MacVim.app/Contents/MacOS/Vim
+
+#export GTK_IM_MODULE=uim
+#export QT_IM_MODULE=uim
+#uim-xim &
+#export XMODIFIERS=@im=uim

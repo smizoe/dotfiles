@@ -1,5 +1,6 @@
 set nocompatible
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " install pathogen
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -28,12 +29,16 @@ NeoBundle 'tyru/eskk.vim'
 " vimproc needs manual intervention;
 " cd path/to/vimproc.vim && make
 NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'vim-scripts/Vim-R-plugin'
 
 call neobundle#end()
 
 
 filetype plugin indent on
 NeoBundleCheck
+
+runtime macros/matchit.vim
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
