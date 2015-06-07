@@ -15,10 +15,10 @@ if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
         # Identify the directory using a "file:" scheme URL,
         # including the host name to disambiguate local vs.
         # remote connections. Percent-escape spaces.
-	local SEARCH=' '
-	local REPLACE='%20'
-	local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-	printf '\e]7;%s\a' "$PWD_URL"
+        local SEARCH=' '
+        local REPLACE='%20'
+        local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+        printf '\e]7;%s\a' "$PWD_URL"
     }
     PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
 fi
@@ -40,9 +40,6 @@ fi
 
 export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${PATH}
 
-
-export EDITOR=emacsclient
-export VISUAL=emacsclient
 
 ## setting for rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -152,3 +149,5 @@ source /usr/local/opt/autoenv/activate.sh
 #####################
 
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+export VISUAL=/Applications/MacVim.app/Contents/MacOS/Vim
