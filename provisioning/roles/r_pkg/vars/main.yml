@@ -1,0 +1,13 @@
+---
+r_pkg__packages:
+  - ggplot2
+  - dplyr
+  - reshape2
+  - caret
+  - "data.table"
+  - GGally
+  - tabplot
+  - tidyr
+  - rmarkdown
+
+r_pkg__repo: http://cran.ism.ac.jp/

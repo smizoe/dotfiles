@@ -1,0 +1,14 @@
+---
+link_cfg__dotfiles:
+  - src: gitconfig
+  - src: gitignore
+    dest: ".config/git/ignore"
+  - src: tmux.conf
+  - src: vimrc
+  - src: xprofile
+  - src: bashrc
+  - src: Rprofile
+  - src: emacs.d
+  - src: aws
+
+link_cfg__home: "{{ lookup('env', 'HOME') }}"

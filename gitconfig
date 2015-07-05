@@ -1,11 +1,10 @@
 [user]
-	name = SET_ME_LOCALLY
-	email = SET_ME_LOCALLY
+ name = SET_ME_LOCALLY
+ email = SET_ME_LOCALLY
 [core]
-	excludesfile = /Users/smizoe/.gitignore
-        ignorecase   = false
+  ignorecase   = false
 
 [alias]
-	graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s' 
+ graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
 [init]
-	templatedir = ~/dotfiles/git_template
+ templatedir = ~/dotfiles/git_template

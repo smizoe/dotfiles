@@ -1,0 +1,26 @@
+---
+sys_pkg__common:
+    - ctags
+    - scala
+    - sbt
+    - ghc
+    - bash-completion
+    - gcc-multilib
+    - git
+    - tig
+    - r
+
+sys_pkg__arch:
+    - ibus
+    - ibus-skk
+    - vim
+    - intellij-idea-community-edition
+      # TODO enable AUR and use yaourt to install the following
+    - yaourt
+    - cmigemo-git
+    - haskell-hunit
+
+sys_pkg__mach:
+    - coreutils
+    - Caskroom/cask/intellij-idea-ce
+

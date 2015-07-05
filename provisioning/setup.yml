@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  sudo: no
+  roles:
+    - link_cfg
+    - sys_pkg
+    - r_pkg
+

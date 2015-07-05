@@ -1,0 +1,8 @@
+---
+
+- name: make directories for gitignore
+  file: path={{link_cfg__home}}/.config/git state=directory
+
+- name: make symlinks to config files
+  file: src={{link_cfg__home}}/dotfiles/{{item.src}} dest={{link_cfg__home}}/{{item.dest | default("." + item.src)}} state=link
+  with_items: link_cfg__dotfiles
