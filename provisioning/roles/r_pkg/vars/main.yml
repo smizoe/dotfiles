@@ -9,5 +9,8 @@ r_pkg__packages:
   - tabplot
   - tidyr
   - rmarkdown
+  - mice
+  - pROC
+  - randomForest
 
 r_pkg__repo: http://cran.ism.ac.jp/
