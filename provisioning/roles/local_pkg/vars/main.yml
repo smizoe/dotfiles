@@ -1,0 +1,20 @@
+---
+
+local_pkg__directories:
+  - dir: "{{home}}/.vim/autoload"
+    comment: pathogen
+  - dir: "{{home}}/.vim/bundle"
+    comment: pathogen
+
+
+local_pkg__git_clone:
+  - dest: "{{home}}/.vim/bundle/syntastic.git"
+    repo: https://github.com/scrooloose/syntastic.git
+
+local_pkg__free_form:
+  - cmd: "curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim"
+    creates: ~/.vim/autoload/pathogen.vim
+    comment: get pathogen
+  - cmd: "curl -LSs https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh"
+    creates: ~/.vim/bundle/neobundle.vim
+    comment: neobundle

@@ -1,0 +1,4 @@
+---
+
+- name: download SKK-JISYO.L
+  get_url: url=http://openlab.jp/skk/skk/dic/SKK-JISYO.L dest="{{lookup('env', 'HOME')}}/Library/Application Support/AquaSKK/SKK-JISYO.L"

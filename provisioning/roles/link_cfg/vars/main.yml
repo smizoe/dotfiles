@@ -7,8 +7,8 @@ link_cfg__dotfiles:
   - src: vimrc
   - src: xprofile
   - src: bashrc
+  - src: bash_profile
   - src: Rprofile
   - src: emacs.d
   - src: aws
 
-link_cfg__home: "{{ lookup('env', 'HOME') }}"

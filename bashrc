@@ -148,9 +148,10 @@ source /usr/local/opt/autoenv/activate.sh
 # use MacVim as vim #
 #####################
 
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-export VISUAL=/Applications/MacVim.app/Contents/MacOS/Vim
+systemName=$(uname -a| cut -d' ' -f1)
+alias vim="$(if [ "${systemName}" == "Darwin" ] ; then echo -n '/usr/local/bin/mvim -v' ; else echo -n /usr/bin/vim ; fi)"
+export EDITOR=vim
+export VISUAL=vim
 
 #export GTK_IM_MODULE=uim
 #export QT_IM_MODULE=uim

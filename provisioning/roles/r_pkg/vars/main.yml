@@ -1,5 +1,6 @@
 ---
 r_pkg__packages:
+  - Rcpp
   - ggplot2
   - dplyr
   - reshape2

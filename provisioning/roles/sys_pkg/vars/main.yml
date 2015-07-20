@@ -5,10 +5,11 @@ sys_pkg__common:
     - sbt
     - ghc
     - bash-completion
-    - gcc-multilib
+    - gcc
     - git
     - tig
     - r
+    - tmux
 
 sys_pkg__arch:
     - ibus
@@ -22,5 +23,19 @@ sys_pkg__arch:
 
 sys_pkg__mach:
     - coreutils
-    - Caskroom/cask/intellij-idea-ce
+    - brew-cask
+    - ricty
+    - ruby-build
+    - rbenv
+    - cmigemo
+    - autoenv
+sys_pkg__mach_with_cask:
+    - intellij-idea-ce
+    - aquaskk
+    - macvim
 
+sys_pkg__brew_tap:
+    - sanemat/font # ricty
+    - homebrew/versions
+    - phinze/cask # homebrew cask
+    - aereal/aereal_casks # aquaskk
