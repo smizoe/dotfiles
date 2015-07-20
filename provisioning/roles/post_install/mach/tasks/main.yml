@@ -2,3 +2,16 @@
 
 - name: download SKK-JISYO.L
   get_url: url=http://openlab.jp/skk/skk/dic/SKK-JISYO.L dest="{{lookup('env', 'HOME')}}/Library/Application Support/AquaSKK/SKK-JISYO.L"
+
+- name: enable Ricty font
+  copy: src=/usr/local/Cellar//ricty/3.2.4/share/fonts/{{item}} dest="{{home}}/Library/Fonts/{{item}}" force=yes
+  register: ricty_result
+  with_items:
+    - Ricty-Bold.ttf
+    - Ricty-Regular.ttf
+    - RictyDiscord-Bold.ttf
+    - RictyDiscord-Regular.ttf
+
+- name: force refresh font config
+  command: fc-cache -vf
+  when: ricty_result | changed

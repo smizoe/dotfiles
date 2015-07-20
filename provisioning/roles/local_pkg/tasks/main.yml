@@ -9,5 +9,7 @@
   with_items: local_pkg__git_clone
 
 - name: run scripts
-  shell: "stat {{item.creates}} || {{item.cmd}}"
+  shell: "stat {{item.creates}} || ({{item.cmd}} && echo 'installed')"
+  register: result
+  changed_when: "'installed' in result.stdout"
   with_items: local_pkg__free_form
