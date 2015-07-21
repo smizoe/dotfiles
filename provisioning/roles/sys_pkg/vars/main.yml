@@ -33,7 +33,8 @@ sys_pkg__mach:
     - python
 sys_pkg__mach_with_cask:
     - intellij-idea-ce
-    - aquaskk
+     #not working for now
+     #    - aquaskk
     - macvim
 
 sys_pkg__brew_tap:
