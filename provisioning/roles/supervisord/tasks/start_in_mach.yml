@@ -6,4 +6,5 @@
 - name: register supervisord as a daemon
   sudo: yes
   command: launchctl load /Library/LaunchDaemons/com.agendaless.supervisord.plist
+  changed_when: False
 

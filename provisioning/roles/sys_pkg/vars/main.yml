@@ -35,6 +35,8 @@ sys_pkg__mach_with_cask:
     - intellij-idea-ce
      #not working for now
      #    - aquaskk
+    - virtualbox
+    - vagrant
     - macvim
 
 sys_pkg__brew_tap:
