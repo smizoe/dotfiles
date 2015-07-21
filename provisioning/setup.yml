@@ -1,9 +1,8 @@
 ---
-
 - hosts: localhost
   sudo: no
-  vars:
-    home: "{{lookup('env', 'HOME')}}"
+  pre_tasks:
+    - include_vars: vars.yml
   roles:
     - link_cfg
     - sys_pkg
