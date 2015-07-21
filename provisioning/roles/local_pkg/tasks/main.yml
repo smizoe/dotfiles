@@ -15,6 +15,15 @@
 - name: install google-ime-skk using a system ruby
   gem: name=google-ime-skk state=present executable=/usr/bin/gem
 
+- name: get google-ime-skk gem path
+  command: gem which google-ime-skk
+  changed_when: False
+  register: google_ime_skk_path
+
+- name: make a symlink to google-ime-skk
+  file: src={{ (google_ime_skk_path.stdout | dirname |dirname )+ '/bin/google-ime-skk' }} dest=/usr/local/bin/google-ime-skk state=link
+
+
 - name: run scripts
   shell: "stat {{item.creates}} || ({{item.cmd}} && echo 'installed')"
   register: result

@@ -12,6 +12,7 @@
     - sys_pkg
     - r_pkg
     - local_pkg
+    - supervisord
     - role: post_install/mach
       sudo: yes
       when: ansible_os_family == 'Darwin'

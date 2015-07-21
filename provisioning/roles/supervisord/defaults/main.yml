@@ -1,0 +1,4 @@
+---
+supervisord__log_dir:  /var/log/supervisord
+supervisord__pid_dir:  /tmp
+supervisord__conf_dir: /usr/local/share/supervisor/conf.d
