@@ -20,6 +20,7 @@ sys_pkg__arch:
     - yaourt
     - cmigemo-git
     - haskell-hunit
+    - python2-pip
 
 sys_pkg__mach:
     - coreutils
@@ -29,6 +30,7 @@ sys_pkg__mach:
     - rbenv
     - cmigemo
     - autoenv
+    - python
 sys_pkg__mach_with_cask:
     - intellij-idea-ce
     - aquaskk

@@ -8,6 +8,10 @@
   git:  dest="{{item.dest}}" repo="{{item.repo}}" remote="{{item.remote | default('origin') }}"
   with_items: local_pkg__git_clone
 
+- name: install packages using pip
+  pip: name={{item}} state=present
+  with_items: local_pkg__pip
+
 - name: install google-ime-skk using a system ruby
   gem: name=google-ime-skk state=present executable=/usr/bin/gem
 
