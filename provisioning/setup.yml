@@ -2,6 +2,10 @@
 - hosts: localhost
   sudo: no
   pre_tasks:
+    - name: check if sudo password is correct
+      command: 'true'
+      sudo: yes
+      changed_when: False
     - include_vars: vars.yml
   roles:
     - link_cfg
