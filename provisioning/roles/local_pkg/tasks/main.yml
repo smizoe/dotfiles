@@ -8,6 +8,9 @@
   git:  dest="{{item.dest}}" repo="{{item.repo}}" remote="{{item.remote | default('origin') }}"
   with_items: local_pkg__git_clone
 
+- name: install google-ime-skk using a system ruby
+  gem: name=google-ime-skk state=present executable=/usr/bin/gem
+
 - name: run scripts
   shell: "stat {{item.creates}} || ({{item.cmd}} && echo 'installed')"
   register: result
