@@ -10,6 +10,7 @@ sys_pkg__common:
     - tig
     - r
     - tmux
+    - q
 
 sys_pkg__arch:
     - ibus
