@@ -13,5 +13,7 @@ r_pkg__packages:
   - mice
   - pROC
   - randomForest
+  - setwidth
+  - devtools
 
-r_pkg__repo: http://cran.ism.ac.jp/
+r_pkg__repo: http://cran.stat.ucla.edu/
