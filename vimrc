@@ -61,7 +61,11 @@ autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/ /ge
 syntax on
 
+" expands to 'dirname ${current_file}' with %%
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" enable omnicompletion
+set omnifunc=syntaxcomplete#Complete
 
 " set search path for ctags
 set tags=tags,./tags

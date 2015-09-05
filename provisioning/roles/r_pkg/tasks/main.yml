@@ -8,3 +8,16 @@
   failed_when: "r_result.rc != 0 or 'had non-zero exit status' in r_result.stderr"
   changed_when: "'Added' in r_result.stdout"
   with_items: r_pkg__packages
+
+- name: get R package sources
+  get_url: url="{{ item.url }}" dest="{{lookup('env','TMPDIR') | default('/tmp') }}{{item.url | basename}}"
+  with_items: r_pkg__src_packages
+  register: r_src_downloaded
+
+- name: install R packages from source
+  command: >
+    Rscript --slave --no-save --no-restore-history -e "if (! ('{{ item.item.name }}' %in% installed.packages()[,'Package'])) { install.packages(pkgs='{{ item.dest }}', type='source', repo=NULL); print('Added'); } else { print('Already installed'); }"
+  register: r_src_result
+  failed_when: "r_src_result.rc != 0 or 'had non-zero exit status' in r_src_result.stderr"
+  changed_when: "'Added' in r_src_result.stdout"
+  with_items: r_src_downloaded.results
