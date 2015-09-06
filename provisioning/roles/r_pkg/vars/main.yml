@@ -15,6 +15,7 @@ r_pkg__packages:
   - randomForest
   - setwidth
   - devtools
+  - magrittr
 
 r_pkg__src_packages:
   - name: colorout
