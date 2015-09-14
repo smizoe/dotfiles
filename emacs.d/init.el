@@ -17,7 +17,7 @@
 ;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(setq package-archives '(;("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
@@ -149,6 +149,7 @@
 ;;;;;;;;;;
 
 ;; git clone https://github.com/emacs-helm/helm.git ~/.emacs.d/elisp/helm
+;; (package-install 'helm)
 (add-to-list 'load-path "~/.emacs.d/elisp/helm")
 (require 'helm-config)
 ;; (helm-mode 1)
@@ -279,7 +280,7 @@
 
 (setq load-path
       (cons (expand-file-name
-             "~/.emacs.d/elisp/yatex1.77") load-path))
+             "~/.emacs.d/elisp/yatex") load-path))
 
 (setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
@@ -487,8 +488,8 @@
 ;;; and I haven't found a way to avoid it.
 ;; skk
 
-(add-to-list 'load-path "/usr/local/Cellar/emacs/24.3/share/emacs/site-lisp/skk")
-(require 'skk-autoloads)
+;;(add-to-list 'load-path "/usr/local/Cellar/emacs/24.3/share/emacs/site-lisp/skk")
+;;(require 'skk-autoloads)
 (global-set-key "\C-x\C-j" 'skk-mode)
 (global-set-key "\C-xj" 'skk-auto-fill-mode)
 (global-set-key "\C-xt" 'skk-tutorial)

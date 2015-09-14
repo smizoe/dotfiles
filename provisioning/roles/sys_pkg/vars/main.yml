@@ -11,6 +11,7 @@ sys_pkg__common:
     - r
     - tmux
     - q
+    - go
 
 sys_pkg__arch:
     - ibus
