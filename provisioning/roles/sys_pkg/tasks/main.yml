@@ -15,7 +15,7 @@
   with_items: sys_pkg__brew_tap
 
 - name: install packages on Mac OS X
-  homebrew: name={{item}} state=present
+  homebrew: name={{item}} install_options={{sys_pkg__brew_options[item] | default('')}} state=present
   when: ansible_os_family == 'Darwin'
   with_flattened:
     - sys_pkg__common

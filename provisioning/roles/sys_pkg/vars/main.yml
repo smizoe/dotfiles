@@ -12,11 +12,11 @@ sys_pkg__common:
     - tmux
     - q
     - go
+    - vim
 
 sys_pkg__arch:
     - ibus
     - ibus-skk
-    - vim
     - intellij-idea-community-edition
       # TODO enable AUR and use yaourt to install the following
     - yaourt
@@ -33,13 +33,15 @@ sys_pkg__mach:
     - cmigemo
     - autoenv
     - python
+
+sys_pkg__brew_options:
+    vim: with-client-server,with-lua,with-luajit
 sys_pkg__mach_with_cask:
     - intellij-idea-ce
      #not working for now
      #    - aquaskk
     - virtualbox
     - vagrant
-    - macvim
 
 sys_pkg__brew_tap:
     - sanemat/font # ricty

@@ -148,10 +148,23 @@ source /usr/local/opt/autoenv/activate.sh
 # use MacVim as vim #
 #####################
 
-systemName=$(uname -a| cut -d' ' -f1)
-alias vim="$(if [ "${systemName}" == "Darwin" ] ; then echo -n '/usr/local/bin/mvim -v' ; else echo -n /usr/bin/vim ; fi)"
+#systemName=$(uname -a| cut -d' ' -f1)
+#alias vim="$(if [ "${systemName}" == "Darwin" ] ; then echo -n '/usr/local/bin/mvim -v --servername VIM ' ; else echo -n /usr/bin/vim ; fi)"
+alias vim='/usr/local/bin/vim --servername VIM'
 export EDITOR=vim
 export VISUAL=vim
+
+## setting for vimcom
+## set TERM variable appropriately so that vim chooses correct coloring scheme
+if [ "$TERM" = "xterm" ] || [ "$TERM" = "xterm-256color" ]
+then
+    export TERM=xterm-256color
+    export HAS_256_COLORS=yes
+fi
+if [ "$TERM" = "screen" ] && [ "$HAS_256_COLORS" = "yes" ]
+then
+    export TERM=screen-256color
+fi
 
 #export GTK_IM_MODULE=uim
 #export QT_IM_MODULE=uim
