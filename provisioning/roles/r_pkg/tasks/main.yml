@@ -16,7 +16,7 @@
 
 - name: install R packages from source
   command: >
-    Rscript --slave --no-save --no-restore-history -e "if (! ('{{ item.item.name }}' %in% installed.packages()[,'Package'])) { install.packages(pkgs='{{ item.dest }}', type='source', repo=NULL); print('Added'); } else { print('Already installed'); }"
+    Rscript --slave --no-save --no-restore-history -e "if (! ('{{ item.item.name }}' %in% installed.packages()[,'Package'])) { install.packages(pkgs='{{ item.dest }}', type='source', repo=NULL{% if item.item.conf_args is defined %}, configure.args='{{item.item.conf_args}}'{% endif %}); print('Added');} else { print('Already installed'); }"
   register: r_src_result
   failed_when: "r_src_result.rc != 0 or 'had non-zero exit status' in r_src_result.stderr"
   changed_when: "'Added' in r_src_result.stdout"

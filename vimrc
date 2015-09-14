@@ -55,6 +55,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set smartindent
+set backspace=indent,eol,start
 let g:vimfiler_as_default_explorer=1
 let g:syntastic_always_populate_loc_list = 1
 autocmd BufWritePre * :%s/\s\+$//ge
