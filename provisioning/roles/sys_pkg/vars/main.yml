@@ -33,6 +33,7 @@ sys_pkg__mach:
     - cmigemo
     - autoenv
     - python
+    - gnu-time
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit

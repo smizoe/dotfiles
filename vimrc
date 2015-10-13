@@ -31,6 +31,9 @@ NeoBundle 'tyru/eskk.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/Vim-R-plugin'
+" vim-orgmode depends vim-speeddating
+NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'tpope/vim-speeddating'
 
 call neobundle#end()
 
@@ -77,3 +80,6 @@ let g:eskk#server = {
 \   'host': 'localhost',
 \   'port': 1178,
 \}
+
+" add neosnippet directory
+let g:neosnippet#snippets_directory = '~/dotfiles/neosnippet-snippets'

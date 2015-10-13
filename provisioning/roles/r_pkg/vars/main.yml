@@ -16,6 +16,7 @@ r_pkg__packages:
   - setwidth
   - devtools
   - magrittr
+  - VIM
 
 r_pkg__src_packages:
   - name: colorout
