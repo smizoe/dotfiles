@@ -1,4 +1,13 @@
 ---
+- name: make .R
+  file: path="{{home}}/.R" state=directory
+  sudo: no
+  when: ansible_os_family == 'Darwin'
+
+- name: use gcc installed by brew in compiling R libraries
+  copy: dest="{{home}}/.R/MakeVars" content="CC=gcc-5\nCXX=g++-5"
+  sudo: no
+  when: ansible_os_family == 'Darwin'
 
 # install R packages; the code was taken from here http://adamj.eu/tech/2014/07/19/installing-and-removing-r-packages-with-ansible/
 - name: install R packages

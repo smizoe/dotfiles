@@ -17,6 +17,12 @@ r_pkg__packages:
   - devtools
   - magrittr
   - VIM
+  - mvnmle
+    #  - depth # rgl is not available
+  - DMwR
+  - infotheo
+  - discretization
+  - C50
 
 r_pkg__src_packages:
   - name: colorout
