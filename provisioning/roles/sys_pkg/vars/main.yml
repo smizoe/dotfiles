@@ -13,6 +13,9 @@ sys_pkg__common:
     - q
     - go
     - vim
+    - gradle
+    - maven
+    - rust
 
 sys_pkg__arch:
     - ibus
