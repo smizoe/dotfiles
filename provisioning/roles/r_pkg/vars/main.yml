@@ -23,6 +23,12 @@ r_pkg__packages:
   - infotheo
   - discretization
   - C50
+  - e1071
+  - kernlab
+  - ROSE
+  - caretEnsemble
+  - gbm
+  - FeatureHashing
 
 r_pkg__src_packages:
   - name: colorout
