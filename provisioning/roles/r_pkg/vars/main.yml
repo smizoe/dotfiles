@@ -1,34 +1,36 @@
 ---
 r_pkg__packages:
-  - Rcpp
-  - ggplot2
-  - dplyr
-  - reshape2
-  - caret
-  - "data.table"
+  - C50
+  - DMwR
+  - FeatureHashing
   - GGally
-  - tabplot
-  - tidyr
-  - rmarkdown
+  - ROSE
+  - Rcpp
+  - VIM
+  - caret
+  - caretEnsemble
+  - data.table
+    #  - depth # rgl is not available
+  - devtools
+  - discretization
+  - dplyr
+  - e1071
+  - gbm
+  - ggplot2
+  - infotheo
+  - kernlab
+  - lubridate
+  - magrittr
   - mice
+  - mvnmle
   - pROC
   - randomForest
+  - readr
+  - reshape2
+  - rmarkdown
   - setwidth
-  - devtools
-  - magrittr
-  - VIM
-  - mvnmle
-    #  - depth # rgl is not available
-  - DMwR
-  - infotheo
-  - discretization
-  - C50
-  - e1071
-  - kernlab
-  - ROSE
-  - caretEnsemble
-  - gbm
-  - FeatureHashing
+  - tabplot
+  - tidyr
 
 r_pkg__src_packages:
   - name: colorout
