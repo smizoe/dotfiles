@@ -62,6 +62,16 @@ set shiftwidth=2
 set smartindent
 set backspace=indent,eol,start
 set number
+" set statusline (from learn vimscript the hard way ch. 17)
+set statusline=%f         " Path to the file
+set statusline+=\ %m\ %r  " modified and readonly flag
+set statusline+=%=        " Switch to the right side
+set statusline+=%y        " file type
+set statusline+=\ %l        " Current line
+set statusline+=/         " Separator
+set statusline+=%L        " Total lines
+
+
 let g:vimfiler_as_default_explorer=1
 let g:syntastic_always_populate_loc_list = 1
 augroup remove_tabs_and_trailing_spaces
