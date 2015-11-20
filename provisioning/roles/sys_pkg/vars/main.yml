@@ -16,6 +16,8 @@ sys_pkg__common:
     - gradle
     - maven
     - rust
+    - protobuf
+    - antlr
 
 sys_pkg__arch:
     - ibus
