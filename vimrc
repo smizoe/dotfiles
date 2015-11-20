@@ -1,6 +1,5 @@
 set nocompatible
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
 
 " install pathogen
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -36,9 +35,6 @@ NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'tpope/vim-speeddating'
 
 call neobundle#end()
-
-
-filetype plugin indent on
 NeoBundleCheck
 
 runtime macros/matchit.vim
