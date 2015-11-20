@@ -68,8 +68,11 @@ set backspace=indent,eol,start
 set number
 let g:vimfiler_as_default_explorer=1
 let g:syntastic_always_populate_loc_list = 1
-autocmd BufWritePre * :%s/\s\+$//ge
-autocmd BufWritePre * :%s/\t/ /ge
+augroup remove_tabs_and_trailing_spaces
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//ge
+  autocmd BufWritePre * :%s/\t/ /ge
+augroup END
 syntax on
 
 " expands to 'dirname ${current_file}' with %%
