@@ -61,6 +61,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 vnoremap <leader>r. :normal!.<cr>
 nnoremap <leader>w :match Error /\v[^\s]\s+$/<cr>
 nnoremap <leader>W :match<cr>
+nnoremap <leader>nh :nohlsearch<cr>
 
 set expandtab
 set tabstop=2
