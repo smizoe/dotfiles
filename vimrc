@@ -65,7 +65,7 @@ set smartindent
 set backspace=indent,eol,start
 set number
 " set statusline (from learn vimscript the hard way ch. 17)
-set statusline=%f         " Path to the file
+set statusline=%F         " Path to the file
 set statusline+=\ %m\ %r  " modified and readonly flag
 set statusline+=%=        " Switch to the right side
 set statusline+=%y        " file type
