@@ -57,6 +57,8 @@ cnoremap <Esc>f <S-Right>
 " edit .vimrc easily
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" dot command with region
+vnoremap <leader>r. :normal!.<cr>
 
 set expandtab
 set tabstop=2
