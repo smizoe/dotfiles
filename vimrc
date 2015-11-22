@@ -59,6 +59,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " dot command with region
 vnoremap <leader>r. :normal!.<cr>
+nnoremap <leader>w :match Error /\v[^\s]\s+$/<cr>
+nnoremap <leader>W :match<cr>
 
 set expandtab
 set tabstop=2
