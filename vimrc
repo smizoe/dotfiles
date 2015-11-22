@@ -12,6 +12,7 @@ set runtimepath+=~/.vim/bundle/neobundle.vim/
 " cd ~/.vim/bundle && \
 " git clone https://github.com/scrooloose/syntastic.git
 
+""" NeoBundle related settings
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -36,6 +37,7 @@ NeoBundle 'tpope/vim-speeddating'
 
 call neobundle#end()
 NeoBundleCheck
+""
 
 runtime macros/matchit.vim
 
@@ -96,6 +98,10 @@ let g:eskk#server = {
 \   'host': 'localhost',
 \   'port': 1178,
 \}
-
 " add neosnippet directory
 let g:neosnippet#snippets_directory = '~/dotfiles/neosnippet-snippets'
+
+" make triple "s or more into a fold
+" see http://vi.stackexchange.com/questions/3814/is-there-a-best-practice-to-fold-a-vimrc-file
+"" vim:fdm=expr:fdl=0
+"" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
