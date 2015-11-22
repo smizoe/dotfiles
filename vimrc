@@ -78,8 +78,13 @@ let g:vimfiler_as_default_explorer=1
 let g:syntastic_always_populate_loc_list = 1
 augroup remove_tabs_and_trailing_spaces
   autocmd!
-  autocmd BufWritePre * :%s/\s\+$//ge
-  autocmd BufWritePre * :%s/\t/ /ge
+  function! DeleteTabsAndTrailingSpaces()
+    %s/\s\+$//ge " remove trailing spaces
+    if expand('%:t') !~# ".*\\.tsv$"
+      %s/\t/ /ge " remove tabs only when the file is not tsv
+    endif
+  endfunction
+  autocmd BufWritePre * :call DeleteTabsAndTrailingSpaces()
 augroup END
 syntax on
 
