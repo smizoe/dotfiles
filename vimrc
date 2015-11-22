@@ -54,6 +54,8 @@ cnoremap <C-B> <Left>
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
+" set , to <leader>
+let mapleader = ","
 " edit .vimrc easily
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
