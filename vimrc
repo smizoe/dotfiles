@@ -66,6 +66,8 @@ set shiftwidth=2
 set smartindent
 set backspace=indent,eol,start
 set number
+set hlsearch incsearch
+
 """ set statusline (from learn vimscript the hard way ch. 17)
 set statusline=%F         " Path to the file
 set statusline+=\ %m\ %r  " modified and readonly flag
