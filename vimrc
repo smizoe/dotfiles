@@ -64,6 +64,8 @@ vnoremap <leader>r. :normal!.<cr>
 nnoremap <leader>w :match Error /\v[^\s]\s+$/<cr>
 nnoremap <leader>W :match<cr>
 nnoremap <leader>nh :nohlsearch<cr>
+nnoremap <leader>cn :cnext<cr>
+nnoremap <leader>cp :cprevious<cr>
 
 set expandtab
 set tabstop=2
