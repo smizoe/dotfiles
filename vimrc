@@ -66,6 +66,8 @@ nnoremap <leader>W :match<cr>
 nnoremap <leader>nh :nohlsearch<cr>
 nnoremap <leader>cn :cnext<cr>
 nnoremap <leader>cp :cprevious<cr>
+nnoremap <leader>P  :setlocal paste!<cr>
+nnoremap <leader>N  :setlocal number!<cr>
 
 set expandtab
 set tabstop=2
