@@ -1,5 +1,4 @@
 set nocompatible
-filetype plugin on
 
 " install pathogen
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -40,6 +39,9 @@ NeoBundleCheck
 ""
 
 runtime macros/matchit.vim
+syntax enable
+filetype plugin on
+filetype indent on
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -100,7 +102,6 @@ augroup remove_tabs_and_trailing_spaces
   endfunction
   autocmd BufWritePre * :call <SID>DeleteTabsAndTrailingSpaces()
 augroup END
-syntax on
 
 " expands to 'dirname ${current_file}' with %%
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
