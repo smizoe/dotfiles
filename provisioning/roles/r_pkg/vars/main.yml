@@ -39,7 +39,7 @@ r_pkg__src_packages:
   - name: colorout
     url: http://www.lepem.ufc.br/jaa/vimr/colorout_1.1-1.tar.gz
   - name: vimcom
-    url: http://www.lepem.ufc.br/jaa/vimr/vimcom_1.2-6.tar.gz
+    url: http://www.lepem.ufc.br/jaa/vimr/vimcom_1.2-7.tar.gz
     conf_args: --enable-clientserver
 
 r_pkg__repo: http://cran.stat.ucla.edu/
