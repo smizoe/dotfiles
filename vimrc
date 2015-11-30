@@ -102,6 +102,10 @@ augroup remove_tabs_and_trailing_spaces
   endfunction
   autocmd BufWritePre * :call <SID>DeleteTabsAndTrailingSpaces()
 augroup END
+augroup r_specific_conf
+  autocmd!
+  autocmd Filetype r,rout,rmd,rrst inoreabbrev pp %>%
+augroup END
 
 " expands to 'dirname ${current_file}' with %%
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
