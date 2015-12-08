@@ -106,6 +106,24 @@ augroup r_specific_conf
   autocmd!
   autocmd Filetype r,rout,rmd,rrst inoreabbrev pp %>%
 augroup END
+augroup org_specific_conf
+  autocmd!
+  autocmd Filetype org set tabstop=2 shiftwidth=2
+augroup END
+
+function! s:MkJunkFile(...)
+  let l:junk_dir = join([expand('~/junk'), strftime("%Y-%m")], "/")
+  if ! isdirectory(l:junk_dir)
+    call mkdir(l:junk_dir, "p")
+  endif
+  let l:junk_file = strftime("%Y-%m-%d_%H-%M-%S")
+  if a:0 > 0
+    let l:junk_file = join([l:junk_file, a:1], "_")
+  endif
+  let l:junk_file = l:junk_file . ".org"
+  execute 'edit ' . join([l:junk_dir, l:junk_file], "/")
+endfunction
+command! -nargs=? Memo call <SID>MkJunkFile(<args>)
 
 " expands to 'dirname ${current_file}' with %%
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
