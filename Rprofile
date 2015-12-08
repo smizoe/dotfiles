@@ -6,13 +6,13 @@ if(interactive()){
     library(vimcom)
 
     # load frequently used packages
-    library(dplyr)
-    library(ggplot2)
     library(data.table)
-    library(tidyr)
-    library(caret)
     library(readr)
+    library(caret)
+    library(ggplot2)
     library(reshape2)
+    library(tidyr)
+    library(dplyr)
 
     # Use the text based web browser w3m to navigate through R docs
     # in Linux Console after help.start():
