@@ -114,6 +114,17 @@ augroup org_specific_conf
   autocmd Filetype org set tabstop=2 shiftwidth=2
 augroup END
 
+augroup chdir_on_bufenter
+  autocmd!
+  function! s:ChdirToParentOfCurrentFile()
+    let l:parent = fnamemodify(resolve(expand("%:p")), ":h")
+    if l:parent !~ '^/tmp'
+      execute "silent! lchdir " . l:parent
+    endif
+  endfunction
+  autocmd BufEnter * :call <SID>ChdirToParentOfCurrentFile()
+augroup END
+
 function! s:MkJunkFile(...)
   let l:junk_dir = join([expand('~/junk'), strftime("%Y-%m")], "/")
   if ! isdirectory(l:junk_dir)
