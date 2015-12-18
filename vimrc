@@ -34,6 +34,9 @@ NeoBundle 'vim-scripts/Vim-R-plugin'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'tpope/vim-speeddating'
 
+" make friends with git
+NeoBundle 'tpope/vim-fugitive'
+
 call neobundle#end()
 NeoBundleCheck
 ""
