@@ -11,6 +11,7 @@
     - link_cfg
     - sys_pkg
     - r_pkg
+    - python_pkg
     - local_pkg
     - supervisord
     - role: post_install/mach

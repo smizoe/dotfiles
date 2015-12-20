@@ -1,0 +1,7 @@
+---
+- name: make a directory for virtualenv
+  file: path="{{home}}/venv" state=directory
+
+- name: install packages into a virtualenv
+  pip: name={{item}} state=present virtualenv="{{home}}/venv"
+  with_items: python_pkg__packages
