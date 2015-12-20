@@ -31,7 +31,6 @@ sys_pkg__arch:
 
 sys_pkg__mach:
     - coreutils
-    - brew-cask
     - ricty
     - ruby-build
     - rbenv
