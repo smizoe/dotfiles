@@ -6,6 +6,7 @@ if(interactive()){
     library(vimcom)
 
     # load frequently used packages
+    library(stats) # avoid masking dplyr::filter
     library(data.table)
     library(readr)
     library(caret)
