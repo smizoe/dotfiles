@@ -18,6 +18,15 @@
   changed_when: "'Added' in r_result.stdout"
   with_items: r_pkg__packages
 
+- name: install R packages using devtools
+  command: >
+    Rscript --slave --no-save --no-restore-history -e "if (! ('{{ item.name }}' %in% installed.packages()[,'Package'])) { library(devtools); devtools::install_github('{{ item.repo }}'); print('Added'); } else { print('Already installed'); }"
+  register: r_result
+  failed_when: "r_result.rc != 0 or 'had non-zero exit status' in r_result.stderr"
+  changed_when: "'Added' in r_result.stdout"
+  with_items: r_pkg__devtools_packages
+
+
 - name: get R package sources
   get_url: url="{{ item.url }}" dest="{{lookup('env','TMPDIR') | default('/tmp') }}{{item.url | basename}}"
   with_items: r_pkg__src_packages
