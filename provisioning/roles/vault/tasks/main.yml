@@ -1,0 +1,12 @@
+---
+- name: find encrypted files
+  find: paths="{{ role_path }}/files" recurse=yes
+  register: encrypted_files
+
+- name: make direcotries for the sensitive files
+  file: path="{{home}}/dotfiles/{{ item.path | relpath(role_path ~ '/files') | dirname}}" state=directory
+  with_items: encrypted_files.files
+
+- name: copy encrypted files
+  copy: content="{{lookup('file', item.path)}}" dest="{{home}}/dotfiles/{{item.path | relpath(role_path ~ '/files')}}"
+  with_items: encrypted_files.files

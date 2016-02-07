@@ -8,6 +8,7 @@
       changed_when: False
     - include_vars: vars.yml
   roles:
+    - vault
     - link_cfg
     - sys_pkg
     - r_pkg
