@@ -43,8 +43,9 @@ sys_pkg__mach:
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
 sys_pkg__mach_with_cask:
-    - intellij-idea-ce
-     #not working for now
+     # fails when installed. TODO: avoid the error
+     # - intellij-idea-ce
+     #not working for now. TODO: find out a way to install automatically
      #    - aquaskk
     - virtualbox
     - vagrant
@@ -53,5 +54,4 @@ sys_pkg__mach_with_cask:
 sys_pkg__brew_tap:
     - sanemat/font # ricty
     - homebrew/versions
-    - phinze/cask # homebrew cask
     - aereal/aereal_casks # aquaskk
