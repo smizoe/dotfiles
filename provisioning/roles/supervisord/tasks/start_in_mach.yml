@@ -1,10 +1,10 @@
 ---
 - name: prepare for starting supervisord as a daemon
   template: src=com.agendaless.supervisord.plist.j2 dest=/Library/LaunchDaemons/com.agendaless.supervisord.plist
-  sudo: yes
+  become: yes
 
 - name: register supervisord as a daemon
-  sudo: yes
+  become: yes
   command: launchctl load /Library/LaunchDaemons/com.agendaless.supervisord.plist
   changed_when: False
 

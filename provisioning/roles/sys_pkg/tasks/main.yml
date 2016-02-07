@@ -2,7 +2,7 @@
 
 - name: install packages on Archlinux
   pacman: name={{item}} state=present
-  sudo: yes
+  become: yes
   when: ansible_os_family == 'Archlinux'
   ignore_errors: yes
   with_flattened:

@@ -4,7 +4,7 @@
   pip: name=supervisor state=present
 
 - name: make directories
-  sudo: yes
+  become: yes
   file: path={{item}} state=directory mode=0755
   with_items:
     - "{{supervisord__conf_dir}}"
