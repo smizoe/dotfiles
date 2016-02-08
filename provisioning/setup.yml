@@ -9,12 +9,12 @@
     - include_vars: vars.yml
   roles:
     - vault
-    - link_cfg
     - sys_pkg
     - r_pkg
     - python_pkg
     - local_pkg
     - supervisord
+    - link_cfg
     - role: post_install/mach
       become: yes
       when: ansible_os_family == 'Darwin'
