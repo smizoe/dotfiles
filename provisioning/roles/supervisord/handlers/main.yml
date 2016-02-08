@@ -1,5 +1,5 @@
 ---
 
 - name: restart supervisord
-  shell: kill -HUP $(cat "{{supervisord__pid_file}}")
+  shell: kill -HUP $(cat "{{supervisord__pid_dir}}/supervisord.pid")
 

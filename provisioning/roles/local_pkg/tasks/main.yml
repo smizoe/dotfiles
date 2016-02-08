@@ -9,7 +9,7 @@
   with_items: local_pkg__git_clone
 
 - name: install packages using pip
-  pip: name={{item}} state=present
+  pip: name={{item}} state=present executable=pip2 extra_args='--user'
   with_items: local_pkg__pip
 
 - name: install google-ime-skk using a system ruby
@@ -21,6 +21,7 @@
   register: google_ime_skk_path
 
 - name: make a symlink to google-ime-skk
+  become: yes
   file: src={{ (google_ime_skk_path.stdout | dirname |dirname )+ '/bin/google-ime-skk' }} dest=/usr/local/bin/google-ime-skk state=link
 
 

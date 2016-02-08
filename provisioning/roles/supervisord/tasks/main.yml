@@ -1,16 +1,14 @@
 ---
 
 - name: install supervisord
-  pip: name=supervisor state=present
+  pip: name=supervisor state=present extra_args='--user' executable=pip2
 
 - name: make directories
-  become: yes
   file: path={{item}} state=directory mode=0755
   with_items:
     - "{{supervisord__conf_dir}}"
     - "{{supervisord__log_dir}}"
     - "{{supervisord__pid_dir}}"
-  ignore_errors: yes # to avoid an error on Mac OSX (/tmp is a link)
 
 - name: setup supervisord-managed applications
   template: src=conf.d/{{item}} dest={{supervisord__conf_dir}}/{{item}}
@@ -18,7 +16,7 @@
     - google-ime-skk.conf
 
 - name: put supervisord conf
-  template: src=etc/supervisord.conf.j2 dest=/usr/local/share/supervisord.conf
+  template: src=etc/supervisord.conf.j2 dest="{{supervisord__conf_dir}}/supervisord.conf"
   notify: restart supervisord
 
 - include: start_in_mach.yml
