@@ -9,6 +9,21 @@
   become: no
   when: ansible_os_family == 'Darwin'
 
+- name: get R version
+  shell: R --version | head -n1 | grep -E -o '[0-9]\.[0-9]'
+  register: r__version
+  changed_when: False
+
+- set_fact: r__user_lib="/usr/local/lib/R/{{r__version.stdout}}"
+
+- name: put Rprofile in dotfile
+  template: src=Rprofile.j2 dest="{{home}}/dotfiles/Rprofile"
+  become: no
+
+- name: make user R library directory
+  file: path="{{r__user_lib}}" state=directory mode=777
+  become: yes
+
 # install R packages; the code was taken from here http://adamj.eu/tech/2014/07/19/installing-and-removing-r-packages-with-ansible/
 - name: install R packages
   command: >
