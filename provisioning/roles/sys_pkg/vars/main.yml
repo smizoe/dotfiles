@@ -12,7 +12,6 @@ sys_pkg__common:
     - tmux
     - q
     - go
-    - vim
     - gradle
     - maven
     - rust
@@ -29,8 +28,10 @@ sys_pkg__arch:
     - cmigemo-git
     - haskell-hunit
     - python2-pip
+    - gvim
 
 sys_pkg__mach:
+    - vim
     - coreutils
     - ricty
     - ruby-build
