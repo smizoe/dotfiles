@@ -12,6 +12,7 @@
     - sys_pkg
     - r_pkg
     - python_pkg
+    - node_pkg
     - local_pkg
     - supervisord
     - link_cfg

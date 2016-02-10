@@ -29,8 +29,11 @@ sys_pkg__arch:
     - haskell-hunit
     - python2-pip
     - gvim
+    - nodejs
+    - npm
 
 sys_pkg__mach:
+    - node
     - vim
     - coreutils
     - ricty
