@@ -1,0 +1,13 @@
+---
+
+- name: setup a directory for blog
+  git:  dest="{{home}}/blog" repo=git@github.com:smizoe/smizoe.github.io-src.git
+  become: no
+
+- name: run npm install in the directory
+  command: npm install
+  args:
+    chdir: "{{home}}/blog"
+  register: post_install__blog_install
+  changed_when: (post_install__blog_install.stdout | length) != 0
+  become: no

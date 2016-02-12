@@ -16,6 +16,7 @@
     - local_pkg
     - supervisord
     - link_cfg
+    - post_install/common
     - role: post_install/mach
       become: yes
       when: ansible_os_family == 'Darwin'
