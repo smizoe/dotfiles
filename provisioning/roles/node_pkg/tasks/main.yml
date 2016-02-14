@@ -2,3 +2,4 @@
 - name: install packages globally
   npm:  name={{item}} global=yes
   with_items: npm__packages
+  become: "{{ 'no' if ansible_os_family == 'Darwin' else 'yes' }}"
