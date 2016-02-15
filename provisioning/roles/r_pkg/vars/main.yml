@@ -34,6 +34,7 @@ r_pkg__packages:
   - setwidth
   - tabplot
   - tidyr
+  - RSQLite
 
 r_pkg__devtools_packages:
   - repo: jalvesaq/vimcom
