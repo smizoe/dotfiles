@@ -99,7 +99,7 @@ augroup remove_tabs_and_trailing_spaces
   autocmd!
   function! s:DeleteTabsAndTrailingSpaces()
     %s/\s\+$//ge " remove trailing spaces
-    if expand('%:t') !~# ".*\\.tsv$"
+    if expand('%:t') !~# "\\.\\(snip\\|tsv\\)$"
       %s/\t/ /ge " remove tabs only when the file is not tsv
     endif
   endfunction
