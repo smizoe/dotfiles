@@ -1,4 +1,5 @@
 ---
+## put packages in alphabetical order
 r_pkg__packages:
   - C50
   - DMwR
@@ -31,10 +32,10 @@ r_pkg__packages:
   - readr
   - reshape2
   - rmarkdown
+  - RSQLite
   - setwidth
   - tabplot
   - tidyr
-  - RSQLite
 
 r_pkg__devtools_packages:
   - repo: jalvesaq/colorout
