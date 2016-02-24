@@ -43,6 +43,7 @@ sys_pkg__mach:
     - autoenv
     - python
     - gnu-time
+    - Caskroom/cask/anaconda
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
