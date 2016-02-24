@@ -118,14 +118,6 @@ PS1="\u@\h [\$(__git_ps1 \"(%s) \")\w]\\$ "
 export PGDATA=/usr/local/var/postgres
 
 ########################
-## hive and java
-
-export HIVE_HOME=/usr/local/Cellar/hive/0.12.0/libexec
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-
-
-########################
 ## setting for less
 
 export LESS=-iR
