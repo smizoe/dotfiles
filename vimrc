@@ -37,6 +37,9 @@ NeoBundle 'tpope/vim-speeddating'
 " make friends with git
 NeoBundle 'tpope/vim-fugitive'
 
+" gauche
+NeoBundle 'aharisu/vim_goshrepl'
+
 call neobundle#end()
 NeoBundleCheck
 ""
@@ -156,6 +159,9 @@ let g:eskk#server = {
 \}
 " add neosnippet directory
 let g:neosnippet#snippets_directory = '~/dotfiles/neosnippet-snippets'
+
+" vim_goshrepl
+vmap <CR> <Plug>(gosh_repl_send_block)
 
 " make triple "s or more into a fold
 " see http://vi.stackexchange.com/questions/3814/is-there-a-best-practice-to-fold-a-vimrc-file
