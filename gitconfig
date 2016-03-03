@@ -6,5 +6,7 @@
 
 [alias]
  graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
+ co    = checkout
+ am    = commit --amend
 [init]
  templatedir = ~/dotfiles/git_template
