@@ -165,3 +165,9 @@ fi
 
 alias clean_containers='docker rm $(docker ps -a --filter="dangling=true"| tail -n+2| awk "{print \$1}")'
 alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+2 |awk "{print \$3}")'
+
+# The next line updates PATH for the Google Cloud SDK.
+source ~/google-cloud-sdk/path.bash.inc
+
+# The next line enables shell command completion for gcloud.
+source ~/google-cloud-sdk/completion.bash.inc
