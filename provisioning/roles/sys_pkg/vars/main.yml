@@ -14,6 +14,7 @@ sys_pkg__common:
     - go
     - gradle
     - maven
+    - make
     - rust
     - protobuf
     - antlr
@@ -30,6 +31,7 @@ sys_pkg__arch:
     - haskell-hunit
     - python2-pip
     - gvim
+    - gcc-fortran
     - nodejs
     - npm
 

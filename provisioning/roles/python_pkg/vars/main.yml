@@ -1,3 +1,4 @@
 ---
 python_pkg__packages:
+  - virtualenv2
   - odo
