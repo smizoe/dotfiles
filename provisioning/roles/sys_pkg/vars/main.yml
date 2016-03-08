@@ -35,6 +35,7 @@ sys_pkg__arch:
     - gcc-fortran
     - nodejs
     - npm
+    - ruby # since there is no system ruby
 
 sys_pkg__mach:
     - node
