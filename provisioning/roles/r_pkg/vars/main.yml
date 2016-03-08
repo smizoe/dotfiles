@@ -18,6 +18,7 @@ r_pkg__packages:
   - devtools
   - discretization
   - dplyr
+  - doMC
   - e1071
   - gbm
   - ggplot2
