@@ -30,6 +30,7 @@ sys_pkg__arch:
     - cmigemo-git
     - haskell-hunit
     - python2-pip
+    - python2-virtualenv
     - gvim
     - gcc-fortran
     - nodejs
