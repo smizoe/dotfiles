@@ -24,11 +24,13 @@ r_pkg__packages:
   - ggplot2
   - infotheo
   - kernlab
+  - klaR
   - lubridate
   - magrittr
   - mice
   - mvnmle
   - pROC
+  - purrr
   - randomForest
   - readr
   - reshape2
@@ -37,6 +39,7 @@ r_pkg__packages:
   - setwidth
   - tabplot
   - tidyr
+  - xgboost
 
 r_pkg__devtools_packages:
   - repo: jalvesaq/colorout
