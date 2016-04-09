@@ -26,6 +26,9 @@ fi
 ###################################
 ## the followings are user-defined.
 
+## utility variables
+systemName="$(uname -a| cut -d' ' -f1)"
+
 # bash_completion
 BASH_COMPLETION=/usr/local/etc/bash_completion
 BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
@@ -48,7 +51,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 ## aliases
 ########################
 
-# alias ls='ls --color=auto'
+alias ls="$(if [ "${systemName}" = "Darwin" ] ; then echo -n 'ls -G' ; else echo -n 'ls --color=auto'; fi)"
 
 function __mk_r_project () {
     if [ $# -eq 0 ]; then
@@ -140,7 +143,6 @@ source /usr/local/opt/autoenv/activate.sh
 # use MacVim as vim #
 #####################
 
-systemName="$(uname -a| cut -d' ' -f1)"
 #alias vim="$(if [ "${systemName}" == "Darwin" ] ; then echo -n '/usr/local/bin/mvim -v --servername VIM ' ; else echo -n /usr/bin/vim ; fi)"
 alias vim="$(if [ "${systemName}" = "Darwin" ] ; then echo -n '/usr/local/bin/vim' ; else echo -n /usr/bin/vim; fi) --servername VIM"
 export EDITOR=vim
@@ -165,6 +167,10 @@ fi
 
 alias clean_containers='docker rm $(docker ps -a --filter="dangling=true"| tail -n+2| awk "{print \$1}")'
 alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+2 |awk "{print \$3}")'
+
+# grep for mvn/gradle project
+
+alias jgrep='grep --exclude-dir=.git --exclude-dir=build --exclude-dir=target --exclude-dir=.gradle --exclude-dir=.idea'
 
 # The next line updates PATH for the Google Cloud SDK.
 source ~/google-cloud-sdk/path.bash.inc
