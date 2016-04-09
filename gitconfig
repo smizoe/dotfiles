@@ -1,12 +1,16 @@
 [user]
- name = SET_ME_LOCALLY
- email = SET_ME_LOCALLY
+  name = SET_ME_LOCALLY
+  email = SET_ME_LOCALLY
 [core]
   ignorecase   = false
 
 [alias]
- graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
- co    = checkout
- am    = commit --amend
+  graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
+  co    = checkout
+  cam   = commit --amend
+  ap    = add -p
+  lp    = log -p
+  ln    = log --name-only
+  dc    = diff --cached
 [init]
  templatedir = ~/dotfiles/git_template
