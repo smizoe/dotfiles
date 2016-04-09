@@ -9,13 +9,11 @@ Setup steps:
 ```
 $ brew install ansible
 ```
-
 2. clone this repository under one's own home directory
 ```
 $ cd ~
 $ git clone git@github.com:smizoe/dotfiles.git
 ```
-
 3. run setup.sh in provisioning direcotry
 ```
 $ cd ~/dotfiles/provisioning
