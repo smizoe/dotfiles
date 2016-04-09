@@ -49,6 +49,7 @@ sys_pkg__mach:
     - python
     - gnu-time
     - Caskroom/cask/anaconda
+    - Caskroom/cask/visual-studio-code
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
