@@ -128,13 +128,14 @@ export LESS=-iR
 #############################################
 ## settings for go installed with homebrew ##
 #############################################
-# export GOROOT=`go env GOROOT`
-# export GOPATH=${HOME}/go
-# export PATH=$PATH:$GOROOT/bin
-
-# decided not to use homebrew
-export GOPATH=${HOME}/go
-export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin
+if [ "${systemName}" == "Darwin" ] ; then
+  export GOROOT=`go env GOROOT`
+  export GOPATH=${HOME}/go
+  export PATH=$PATH:$GOROOT/bin
+else
+  export GOPATH=${HOME}/go
+  export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin
+fi
 
 ## python autoenv
 source /usr/local/opt/autoenv/activate.sh
