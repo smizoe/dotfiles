@@ -41,7 +41,7 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     . /usr/share/git/completion/git-prompt.sh
 fi
 
-export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${HOME}/anaconda3/bin:${PATH}
 
 
 ## setting for rbenv
