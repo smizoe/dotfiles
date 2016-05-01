@@ -37,6 +37,8 @@ sys_pkg__arch:
     - npm
     - ruby # since there is no system ruby
 
+sys_pkg__arch_with_yaourt: []
+
 sys_pkg__mach:
     - node
     - vim
