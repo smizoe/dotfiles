@@ -7,7 +7,6 @@
 (global-set-key (kbd "C-x C-c") 'server-edit)
 (defalias 'exit 'save-buffers-kill-emacs)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elisp installer configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -19,7 +18,7 @@
 ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
@@ -290,13 +289,13 @@
 ;; (setq yahtml-www-browser "firefox")
 
 (add-hook 'skk-mode-hook
-	  (lambda ()
-	    (if (eq major-mode 'yatex-mode)
-		(progn
-		  (define-key skk-j-mode-map "\\" 'self-insert-command)
-		  (define-key skk-j-mode-map "$" 'YaTeX-insert-dollar)
-		  ))
-	    ))
+   (lambda ()
+     (if (eq major-mode 'yatex-mode)
+  (progn
+    (define-key skk-j-mode-map "\\" 'self-insert-command)
+    (define-key skk-j-mode-map "$" 'YaTeX-insert-dollar)
+    ))
+     ))
 
 ;; autoinsert
 (require 'autoinsert)
@@ -561,3 +560,7 @@
    "';'.join(module_completion('''%s'''))\n"
  python-shell-completion-string-code
    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+
+;; enable edit server for chrome extension
+(require 'edit-server)
+(edit-server-start)
