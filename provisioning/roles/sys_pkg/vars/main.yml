@@ -14,7 +14,6 @@ sys_pkg__common:
     - go
     - gradle
     - maven
-    - make
     - rust
     - protobuf
     - antlr
@@ -25,6 +24,7 @@ sys_pkg__arch:
     - ibus
     - ibus-skk
     - intellij-idea-community-edition
+    - make
       # TODO enable AUR and use yaourt to install the following
     - yaourt
     - cmigemo-git
@@ -48,8 +48,6 @@ sys_pkg__mach:
     - autoenv
     - python
     - gnu-time
-    - Caskroom/cask/anaconda
-    - Caskroom/cask/visual-studio-code
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
@@ -61,6 +59,8 @@ sys_pkg__mach_with_cask:
     - virtualbox
     - vagrant
     - dia
+    - anaconda
+    - visual-studio-code
 
 sys_pkg__brew_tap:
     - sanemat/font # ricty
