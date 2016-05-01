@@ -40,6 +40,9 @@ NeoBundle 'tpope/vim-fugitive'
 " gauche
 NeoBundle 'aharisu/vim_goshrepl'
 
+" rust
+NeoBundle 'rust-lang/rust.vim'
+
 call neobundle#end()
 NeoBundleCheck
 ""
@@ -162,6 +165,9 @@ let g:neosnippet#snippets_directory = '~/dotfiles/neosnippet-snippets'
 
 " vim_goshrepl
 vmap <CR> <Plug>(gosh_repl_send_block)
+
+" rust autofmt
+let g:rustfmt_autosave = 1
 
 " make triple "s or more into a fold
 " see http://vi.stackexchange.com/questions/3814/is-there-a-best-practice-to-fold-a-vimrc-file
