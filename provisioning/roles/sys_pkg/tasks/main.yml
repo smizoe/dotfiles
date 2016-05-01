@@ -27,6 +27,6 @@
   with_items: '{{sys_pkg__mach_with_cask}}'
 
 - name: install packages on arch linux with yaourt
-  shell: "yaourt -Qi {{item}} || yaourt -S {{item}}"
+  shell: "yaourt -Qi {{item}} || yaourt --noconfirm -S {{item}}"
   with_items: '{{sys_pkg__arch_with_yaourt}}'
   when: ansible_os_family == 'Archlinux'

@@ -5,16 +5,12 @@ sys_pkg__common:
     - sbt
     - ghc
     - bash-completion
-    - gcc
     - git
     - tig
     - r
     - tmux
-    - q
     - go
-    - gradle
     - maven
-    - rust
     - protobuf
     - antlr
     - binutils
@@ -37,7 +33,11 @@ sys_pkg__arch:
     - npm
     - ruby # since there is no system ruby
 
-sys_pkg__arch_with_yaourt: []
+sys_pkg__arch_with_yaourt:
+    - gcc-multilib
+    - gradle
+    - rust
+    - q
 
 sys_pkg__mach:
     - node
@@ -50,6 +50,10 @@ sys_pkg__mach:
     - autoenv
     - python
     - gnu-time
+    - gcc
+    - gradle
+    - rust
+    - q
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
