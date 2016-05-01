@@ -6,22 +6,22 @@
   when: ansible_os_family == 'Archlinux'
   ignore_errors: yes
   with_flattened:
-    - sys_pkg__common
-    - sys_pkg__arch
+    - '{{sys_pkg__common}}'
+    - '{{sys_pkg__arch}}'
 
 - name: tap required repositories
   homebrew_tap: tap={{item}} state=present
   when: ansible_os_family == 'Darwin'
-  with_items: sys_pkg__brew_tap
+  with_items: '{{sys_pkg__brew_tap}}'
 
 - name: install packages on Mac OS X
   homebrew: name={{item}} install_options={{sys_pkg__brew_options[item] | default('')}} state=present
   when: ansible_os_family == 'Darwin'
   with_flattened:
-    - sys_pkg__common
-    - sys_pkg__mach
+    - '{{sys_pkg__common}}'
+    - '{{sys_pkg__mach}}'
 
 - name: install packages on Mac OS X with homebrew-cask
   homebrew_cask: name={{item}} state=present
   when: ansible_os_family == 'Darwin'
-  with_items: sys_pkg__mach_with_cask
+  with_items: '{{sys_pkg__mach_with_cask}}'

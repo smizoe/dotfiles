@@ -4,4 +4,4 @@
 
 - name: install packages into a virtualenv
   pip: name={{item}} state=present virtualenv="{{home}}/venv" executable=pip2 extra_args='--user' virtualenv_command={{virtualenv_executable | default('virtualenv')}} virtualenv_site_packages=yes
-  with_items: python_pkg__packages
+  with_items: "{{python_pkg__packages}}"

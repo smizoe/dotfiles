@@ -31,7 +31,7 @@
   register: r_result
   failed_when: "r_result.rc != 0 or 'had non-zero exit status' in r_result.stderr"
   changed_when: "'Added' in r_result.stdout"
-  with_items: r_pkg__packages
+  with_items: '{{r_pkg__packages}}'
 
 - name: install R packages using devtools
   command: >
@@ -39,7 +39,7 @@
   register: r_result
   failed_when: "r_result.rc != 0 or 'had non-zero exit status' in r_result.stderr"
   changed_when: "'Added' in r_result.stdout"
-  with_items: r_pkg__devtools_packages
+  with_items: '{{r_pkg__devtools_packages}}'
 
 
 - name: get R package sources
@@ -53,4 +53,4 @@
   register: r_src_result
   failed_when: "r_src_result.rc != 0 or 'had non-zero exit status' in r_src_result.stderr"
   changed_when: "'Added' in r_src_result.stdout"
-  with_items: r_src_downloaded.results
+  with_items: '{{r_src_downloaded.results}}'

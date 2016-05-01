@@ -2,15 +2,15 @@
 
 - name: make directories
   file: path="{{item.dir}}" state=directory
-  with_items: local_pkg__directories
+  with_items: "{{local_pkg__directories}}"
 
 - name: perform required git clones
   git:  dest="{{item.dest}}" repo="{{item.repo}}" remote="{{item.remote | default('origin') }}"
-  with_items: local_pkg__git_clone
+  with_items: "{{local_pkg__git_clone}}"
 
 - name: install packages using pip
   pip: name={{item}} state=present executable=pip2 extra_args='--user'
-  with_items: local_pkg__pip
+  with_items: "{{local_pkg__pip}}"
 
 - name: install google-ime-skk using a system ruby
   gem: name=google-ime-skk state=present executable=/usr/bin/gem
@@ -29,4 +29,4 @@
   shell: "stat {{item.creates}} || ({{item.cmd}} && echo 'installed')"
   register: result
   changed_when: "'installed' in result.stdout"
-  with_items: local_pkg__free_form
+  with_items: "{{local_pkg__free_form}}"
