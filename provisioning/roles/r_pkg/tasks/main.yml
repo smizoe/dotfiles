@@ -44,7 +44,7 @@
 
 - name: get R package sources
   git: repo="{{ item.repo }}" dest="{{lookup('env','TMPDIR') | default('/tmp') }}{{item.repo | basename}}" version="{{item.tag_name}}"
-  with_items: r_pkg__src_packages
+  with_items: '{{r_pkg__src_packages}}'
   register: r_src_downloaded
 
 - name: install R packages from source
