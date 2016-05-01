@@ -44,11 +44,6 @@ r_pkg__packages:
 r_pkg__devtools_packages:
   - repo: jalvesaq/colorout
     name: colorout
-r_pkg__src_packages:
-  - repo: https://github.com/jalvesaq/VimCom.git
-    name: vimcom
-    conf_args: --enable-clientserver
-    tag_name: v1.2-7
-    version: 1.2.7
+r_pkg__src_packages: []
 
 r_pkg__repo: http://cran.stat.ucla.edu/

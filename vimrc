@@ -43,6 +43,9 @@ NeoBundle 'aharisu/vim_goshrepl'
 " rust
 NeoBundle 'rust-lang/rust.vim'
 
+" Nvim-R
+NeoBundle 'jalvesaq/Nvim-R'
+
 call neobundle#end()
 NeoBundleCheck
 ""
