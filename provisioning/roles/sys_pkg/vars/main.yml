@@ -39,6 +39,7 @@ sys_pkg__arch_with_yaourt:
     - gradle
     - rust
     - sshrc
+    - cargo
     - q
 
 sys_pkg__mach:
