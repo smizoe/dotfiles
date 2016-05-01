@@ -29,7 +29,6 @@ NeoBundle 'tyru/eskk.vim'
 " cd path/to/vimproc.vim && make
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-scripts/Vim-R-plugin'
 " vim-orgmode depends vim-speeddating
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'tpope/vim-speeddating'
