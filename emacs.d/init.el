@@ -483,12 +483,3 @@
             (load "dired-x")
             (global-set-key "\C-x\C-j" 'skk-mode)
             ))
-
-
-;;;;;;;;;
-;; egg ;;
-;;;;;;;;;
-;; (package-install 'egg)
-
-
-
