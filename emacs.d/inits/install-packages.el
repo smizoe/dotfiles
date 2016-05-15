@@ -39,3 +39,43 @@
   )
   "a list of elisps that should be installed using install-elisp-from-emacswiki")
 
+(defconst user-auto-install-dir
+          (concat (file-name-as-directory user-init-dir) "auto-install"))
+(message "user-aut-install-dir: %s" user-auto-install-dir)
+
+(when (not (every 'package-installed-p targets-package-install))
+  (message "%s" "refreshing package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  )
+;; install yet-to-be-installed packages
+(dolist (name targets-package-install)
+  (when (not (package-installed-p name))
+    (message "%s" (concat "start installing package: " (symbol-name name)))
+    (package-install name)
+    (message "%s" (concat "finished installing package: " (symbol-name name)))
+  )
+  )
+
+(dolist (name targets-auto-install-batch)
+  (let ((elisp-name (concat (symbol-name name) ".el")))
+    (cond
+      ((not (file-exists-p (concat (file-name-as-directory user-auto-install-dir) elisp-name)))
+        (message "%s" (concat "start installing elisp: " elisp-name))
+        (auto-install-batch (symbol-name name))
+        (message "%s" (concat "finished installing elisp: " elisp-name))
+      )
+      (t (message "skipped installation of %s since it already exists" elisp-name))
+    )))
+
+;; install elisps using install-elisp-from-emacswiki if they do not exist
+(dolist (name targets-install-elisp-from-emacswiki)
+  (let ((elisp-name (concat (symbol-name name) ".el")))
+    (cond
+      ((not (file-exists-p (concat (file-name-as-directory user-auto-install-dir) elisp-name)))
+        (message "%s" (concat "start installing elisp: " elisp-name))
+        (install-elisp-from-emacswiki elisp-name)
+        (message "%s" (concat "finished installing elisp: " elisp-name))
+      )
+      (t (message "skipped installation of %s since it already exists" elisp-name))
+      )))
