@@ -21,6 +21,7 @@
     auto-install
     bm
     emacs-server
+    helm
     goto-chg
     jabber
     open-junk-file
@@ -31,27 +32,13 @@
     pyvenv
     skk
     woman
+    yasnippet
     )
   "target file names (basename without el) to be loaded by load-user-file")
 
 (dolist (name user-file-load-targets 'dummy)
       (load-user-file (concat (symbol-name name) ".el")))
 
-;;;;;;;;;;
-;; helm ;;
-;;;;;;;;;;
-
-;; git clone https://github.com/emacs-helm/helm.git ~/.emacs.d/elisp/helm
-;; (package-install 'helm)
-(add-to-list 'load-path "~/.emacs.d/elisp/helm")
-(require 'helm-config)
-;; (helm-mode 1)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-s") 'helm-occur)
-(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
-(define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
 
 
 ;; flymake and flycheck
