@@ -13,14 +13,14 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file (concat user-init-dir "inits"))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; use emacs in server mode ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(server-start)
-(defun iconify-emacs-when-server-is-done ()
-  (unless server-clients (iconify-frame)))
-(global-set-key (kbd "C-x C-c") 'server-edit)
-(defalias 'exit 'save-buffers-kill-emacs)
+(defvar user-file-load-targets
+  '(
+    emacs-server
+    )
+  "target file names (basename without el) to be loaded by load-user-file")
+
+(dolist (name user-file-load-targets 'dummy)
+      (load-user-file (concat (symbol-name name) ".el")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elisp installer configuration ;;
