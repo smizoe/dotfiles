@@ -51,7 +51,7 @@
 
 ;; delete trailing before saving
 
- (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; enable view-mode
 (setq view-read-only t)
