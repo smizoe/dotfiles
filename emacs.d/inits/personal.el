@@ -6,16 +6,16 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; enable view-mode
-(setq view-read-only t)
-;; (package-install 'viewer)
-(require 'viewer)
-(viewer-stay-in-setup)
-(setq viewer-modeline-color-unwritable "tomato")
-(setq viewer-modeline-color-view "orange")
-(viewer-change-modeline-color-setup)
-(add-hook 'find-file-hook 'view-mode)
-;;(setq find-file-hook nil)
+;;;; enable view-mode
+;;(setq view-read-only t)
+;;;; (package-install 'viewer)
+;;(require 'viewer)
+;;(viewer-stay-in-setup)
+;;(setq viewer-modeline-color-unwritable "tomato")
+;;(setq viewer-modeline-color-view "orange")
+;;(viewer-change-modeline-color-setup)
+;;(add-hook 'find-file-hook 'view-mode)
+;;;;(setq find-file-hook nil)
 
 ;; make unnecessary trailing space visible
 (when (boundp 'show-trailing-whitespace)
@@ -140,7 +140,7 @@
 ;;key-chrod settings
 ;;(key-chord-define-global "xf" 'anything-for-files)
 (key-chord-define-global "xf" 'helm-for-files)
-(key-chord-define-global "kj" 'view-mode)
+;;(key-chord-define-global "kj" 'view-mode)
 
 ;; autoinsert
 (require 'autoinsert)

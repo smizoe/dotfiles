@@ -88,3 +88,7 @@
 ;; ess
 ;; (package-install 'ess)
 (require 'ess-site)
+
+;; evil
+(require 'evil)
+(evil-mode 1)

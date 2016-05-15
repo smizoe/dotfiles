@@ -8,6 +8,7 @@
     edit-server
     egg
     ess
+    evil
     flycheck
     flymake-cursor
     go-mode
