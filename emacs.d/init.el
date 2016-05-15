@@ -159,38 +159,6 @@
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
 (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
 
-;;;;;;;;;;;;;;;;;
-;; anything.el ;;
-;;;;;;;;;;;;;;;;;
-
-;; ;; (auto-install-batch "anything")
-;; (when (require 'anything-startup nil t)
-;;   (setq
-;;    anything-idle-delay 0.3
-;;    anything-input-idle-delay 0.2
-;;    anything-candidate-number-limit 100
-;;    anything-quick-update t
-;;    anything-enable-shortcuts 'alphabet
-;;    anything-su-or-sudo "sudo"
-;;    ))
-;; (global-set-key (kbd "M-y") 'anything-show-kill-ring)
-
-;; ;; (install-elisp-from-emacswiki "color-moccur.el")
-;; ;; (install-elisp "http://svn.coderepos.org/share/lang/elisp/anything-c-moccur/trunk/anything-c-moccur.el")
-;; (when (require 'anything-c-moccur nil t)
-;;   (setq
-;;    anything-c-moccur-anything-idle-delay 0.3
-;;    anything-c-moccur-highlight-info-line-flag t
-;;    anything-c-moccur-enable-auto-look-flag t
-;;    anything-c-moccur-enable-initial-pattern t
-;;    )
-;;   )
-;; (setq moccur-split-word t)
-;; (global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
-;; (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
-;; (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
-
-
 ;;;;;;;;;;;;;;
 ;; org-mode ;;
 ;;;;;;;;;;;;;;
