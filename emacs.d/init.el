@@ -20,6 +20,7 @@
     auto-install
     emacs-server
     jabber
+    open-junk-file
     pyvenv
     skk
     woman
@@ -430,11 +431,3 @@
 (setq migemo-coding-system 'utf-8-unix)
 (setq migemo-user-dictionary nil)
 (setq migemo-regex-dictionary nil)
-
-;;;;;;;;;;;;;;;;;;;;
-;; open-junk-file ;;
-;;;;;;;;;;;;;;;;;;;;
-
-;;(install-elisp-from-emacswiki "open-junk-file.el")
-(require 'open-junk-file)
-(setq open-junk-file-format "~/junk/%Y/%m-%d-%H%M%S.")
