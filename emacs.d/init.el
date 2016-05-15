@@ -502,8 +502,8 @@
       ssl-program-arguments '("--insecure" "-p" service host)
       ssl-certificate-verification-policy 1)
 
-(setq jabber-account-list '(("68439_480448@chat.hipchat.com")))
-(defvar hipchat-number "68439")
+(setq jabber-account-list '(("")))
+(defvar hipchat-number "")
 (defvar hipchat-nickname "Sho Mizoe")
 
 (defun hipchat-join (room)
