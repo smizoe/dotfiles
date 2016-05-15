@@ -23,6 +23,7 @@
     emacs-server
     helm
     goto-chg
+    flycheck-and-flymake
     jabber
     open-junk-file
     major
@@ -38,30 +39,6 @@
 
 (dolist (name user-file-load-targets 'dummy)
       (load-user-file (concat (symbol-name name) ".el")))
-
-
-
-;; flymake and flycheck
-;; (package-install 'flycheck)
-;; (package-install 'flymake-cursor)
-(require 'flymake)
-(require 'flycheck)
-(require 'flymake-cursor)
-(add-hook 'flymake-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-n") 'flymake-goto-next-error)))
-(add-hook 'flymake-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-p") 'flymake-goto-prev-error)))
-(add-hook 'flycheck-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-n") 'flycheck-next-error)))
-(add-hook 'flycheck-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-p") 'flycheck-previous-error)))
-
-(add-hook 'c-mode-hook 'flycheck-mode)
-(add-hook 'yaml-mode-hook 'flycheck-mode)
-(add-hook 'python-mode-hook 'flycheck-mode)
-
-
-
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet mode ;;
