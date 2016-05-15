@@ -16,6 +16,7 @@
 (defvar user-file-load-targets
   '(
     emacs-server
+    jabber
     pyvenv
     )
   "target file names (basename without el) to be loaded by load-user-file")
@@ -491,39 +492,3 @@
 
 
 
-;;;;;;;;;;;;;
-;; hipchat ;;
-;;;;;;;;;;;;;
-;; https://gist.github.com/puffnfresh/4002033
-;; https://gist.github.com/xorphitus/7093368
-;; (package-install 'jabber)
-
-(setq ssl-program-name "gnutls-cli"
-      ssl-program-arguments '("--insecure" "-p" service host)
-      ssl-certificate-verification-policy 1)
-
-(setq jabber-account-list '(("")))
-(defvar hipchat-number "")
-(defvar hipchat-nickname "Sho Mizoe")
-
-(defun hipchat-join (room)
-  (interactive "sRoom name: ")
-  (jabber-groupchat-join
-   (jabber-read-account)
-   (concat hipchat-number "_" room "@conf.hipchat.com")
-   hipchat-nickname
-   t))
-
-;; Mention nicknames in a way that HipChat clients will pickup
-(defun hipchat-mention (nickname)
-  (interactive
-   (list (jabber-muc-read-nickname jabber-group "Nickname: ")))
-  (insert (concat "@\"" nickname "\" ")))
-
-;; 誰かがonline/offlineになった時にいちいちmini bufferに表示されて入力が潰されるのを防止
-(add-hook 'jabber-chat-mode-hook
-          '(lambda ()
-             (define-jabber-alert echo "Show a message in the echo area"
-               (lambda (msg)
-                 (unless (minibuffer-prompt)
-                   (message "%s" msg))))))
