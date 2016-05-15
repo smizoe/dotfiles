@@ -13,8 +13,10 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file (concat user-init-dir "inits"))))
 
+;; we need to loading package.el first so that elpa directory is on load-path
 (defvar user-file-load-targets
   '(
+    package
     emacs-server
     jabber
     pyvenv
@@ -23,18 +25,6 @@
 
 (dolist (name user-file-load-targets 'dummy)
       (load-user-file (concat (symbol-name name) ".el")))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; elisp installer configuration ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; package manager
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa-stable" . "http://stable.melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
-(package-initialize)
 
 ;; auto-install.el
 ;; (package-install 'auto-install)
