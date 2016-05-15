@@ -20,6 +20,7 @@
     auto-complete
     auto-install
     emacs-server
+    goto-chg
     jabber
     open-junk-file
     migemo
@@ -397,14 +398,3 @@
 (global-set-key (kbd "<f5>") 'bm-previous)
 ;;(global-set-key (kbd "S-<f5>") 'bm-next)
 (global-set-key "\M-[25~" 'bm-next)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; goto-chg.el (move to recently edited position) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (install-elisp-from-emacswiki "goto-chg.el")
-(require 'goto-chg)
-(define-key global-map (kbd "<f8>") 'goto-last-change)
-;;(define-key global-map (kbd "S-<f8>") 'goto-last-change-reverse)
-(global-set-key "\M-[29~" 'goto-last-change-reverse)
