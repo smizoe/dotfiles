@@ -30,12 +30,10 @@
 
 (defvar targets-install-elisp-from-emacswiki
   '(
-    goto-chg.el
-    key-chord.el
-    open-junk-file.el
-    point-undo.el
-    recentf-ext.el
-    yasnippet-config.el
+    open-junk-file
+    point-undo
+    recentf-ext
+    yasnippet-config
   )
   "a list of elisps that should be installed using install-elisp-from-emacswiki")
 
