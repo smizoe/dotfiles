@@ -22,6 +22,7 @@
     jabber
     pyvenv
     skk
+    woman
     )
   "target file names (basename without el) to be loaded by load-user-file")
 
@@ -437,10 +438,3 @@
 ;;(install-elisp-from-emacswiki "open-junk-file.el")
 (require 'open-junk-file)
 (setq open-junk-file-format "~/junk/%Y/%m-%d-%H%M%S.")
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; woman (yet another man command) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq woman-manpath "~/.emacs.d/.wmncache.el")
