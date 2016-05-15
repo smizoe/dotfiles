@@ -25,6 +25,7 @@
     go-mode
     helm
     jabber
+    markdown-mode
     migemo
     org
     org-plus-contrib
