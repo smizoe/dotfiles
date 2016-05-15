@@ -16,6 +16,7 @@
 (defvar user-file-load-targets
   '(
     emacs-server
+    pyvenv
     )
   "target file names (basename without el) to be loaded by load-user-file")
 
@@ -526,20 +527,6 @@
                (lambda (msg)
                  (unless (minibuffer-prompt)
                    (message "%s" msg))))))
-
-;; python and venv
-;; (package-install 'pyvenv)
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 ;; enable edit server for chrome extension
 (require 'edit-server)
