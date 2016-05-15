@@ -17,6 +17,7 @@
 (defvar user-file-load-targets
   '(
     package
+    auto-complete
     auto-install
     emacs-server
     jabber
@@ -407,14 +408,3 @@
 (define-key global-map (kbd "<f8>") 'goto-last-change)
 ;;(define-key global-map (kbd "S-<f8>") 'goto-last-change-reverse)
 (global-set-key "\M-[29~" 'goto-last-change-reverse)
-
-
-;;;;;;;;;;;;;;;;;;;
-;; auto-complete ;;
-;;;;;;;;;;;;;;;;;;;
-
-;; (auto-install-batch "auto-complete")
-(require 'auto-complete-config)
-(global-auto-complete-mode 1)
-(setq ac-dwim t)
-(ac-config-default)
