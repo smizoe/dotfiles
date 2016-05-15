@@ -4,6 +4,7 @@
   '(
     auto-install
     auto-complete
+    bm
     edit-server
     egg
     ess
@@ -26,12 +27,6 @@
 (defvar targets-auto-install-batch
   '(sequential-command)
   "a list of elisps that should be installed using auto-install-batch")
-
-(defvar targets-install-elisp
-  '(
-    http://cvs.savannah.gnu.org/viewvc/*checkout*/bm/bm/bm.el
-  )
-  "a list of elisps that should be installed using install-elisp")
 
 (defvar targets-install-elisp-from-emacswiki
   '(
