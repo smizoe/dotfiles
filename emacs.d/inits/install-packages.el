@@ -11,7 +11,9 @@
     flycheck
     flymake-cursor
     go-mode
+    goto-chg
     helm
+    key-chord
     jabber
     markdown-mode
     migemo
