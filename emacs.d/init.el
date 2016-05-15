@@ -1,3 +1,4 @@
+(require 'cl)
 ;; settings to modularize settings
 ;; see http://stackoverflow.com/questions/2079095/how-to-modularize-an-emacs-configuration
 (defconst user-init-dir
