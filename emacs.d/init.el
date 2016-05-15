@@ -18,6 +18,8 @@
   '(
     package
     auto-install
+    install-packages
+    ;; package installation and setting up load-path finished
     auto-complete
     bm
     emacs-server
