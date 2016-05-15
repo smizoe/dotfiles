@@ -21,6 +21,7 @@
     emacs-server
     jabber
     pyvenv
+    skk
     )
   "target file names (basename without el) to be loaded by load-user-file")
 
@@ -443,23 +444,3 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq woman-manpath "~/.emacs.d/.wmncache.el")
-
-;;; put the following at the end of init.el,
-;;; since several key maps of skk is masked by the 'dired-x.el'
-;;; and I haven't found a way to avoid it.
-;; skk
-
-;;(add-to-list 'load-path "/usr/local/Cellar/emacs/24.3/share/emacs/site-lisp/skk")
-(require 'skk)
-(global-set-key "\C-x\C-j" 'skk-mode)
-(global-set-key "\C-xj" 'skk-auto-fill-mode)
-(global-set-key "\C-xt" 'skk-tutorial)
-
-(setq skk-server-portnum 1178)
-(setq skk-server-host "localhost")
-;;; dired-x occupies C-x C-j and the following takes the key back
-(add-hook 'dired-load-hook
-          (lambda ()
-            (load "dired-x")
-            (global-set-key "\C-x\C-j" 'skk-mode)
-            ))
