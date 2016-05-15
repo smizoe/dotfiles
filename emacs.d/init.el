@@ -470,7 +470,7 @@
 ;; skk
 
 ;;(add-to-list 'load-path "/usr/local/Cellar/emacs/24.3/share/emacs/site-lisp/skk")
-;;(require 'skk-autoloads)
+(require 'skk)
 (global-set-key "\C-x\C-j" 'skk-mode)
 (global-set-key "\C-xj" 'skk-auto-fill-mode)
 (global-set-key "\C-xt" 'skk-tutorial)
