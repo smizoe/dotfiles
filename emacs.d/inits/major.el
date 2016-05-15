@@ -1,3 +1,28 @@
+;;;;;;;;;;;;;;
+;; org-mode ;;
+;;;;;;;;;;;;;;
+
+
+
+;; in installing org mode, you must use a 'fresh' emacs session
+;; that has no org mode feature turned on.
+;; (package-install 'org)
+;; (package-install 'org-plus-contrib)
+;; or
+;; (package-list-packages)
+;; and install 'org
+
+(require 'org)
+;;(require 'ox-md)
+(require 'ox-odt)
+;;(add-to-list 'org-export-backends 'md)
+(setq org-use-fast-todo-selection t)
+(setq org-todo-keywords
+      '(
+        (sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(x)" "CANCEL(c)")
+        (sequence "APPT(a)" "|" "DONE(x)" "CANCEL(c)")
+        ))
+
 ;;;;;;;;;;;;;;;;;;;
 ;; markdown mode ;;
 ;;;;;;;;;;;;;;;;;;;
@@ -59,3 +84,7 @@
     (define-key skk-j-mode-map "$" 'YaTeX-insert-dollar)
     ))
      ))
+
+;; ess
+;; (package-install 'ess)
+(require 'ess-site)
