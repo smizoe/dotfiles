@@ -17,8 +17,8 @@
 (defvar user-file-load-targets
   '(
     package
-    auto-complete
     auto-install
+    auto-complete
     bm
     emacs-server
     helm
