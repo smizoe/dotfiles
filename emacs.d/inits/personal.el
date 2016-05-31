@@ -99,6 +99,9 @@
 ;;; use multiple spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+;;; add newline at the end of file if there is none
+(setq require-final-newline 'ask)
+
 ;;;;;;;;;;;;
 ;; ispell ;;
 ;;;;;;;;;;;;
