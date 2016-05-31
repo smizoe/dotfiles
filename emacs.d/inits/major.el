@@ -89,3 +89,23 @@
 ;; (package-install 'ess)
 (require 'ess-site)
 
+;; evil
+(require 'evil)
+(evil-mode 1)
+
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
+
+
+;; esc quits
+;; http://stackoverflow.com/questions/8483182/evil-mode-best-practice
+
+
+(define-key evil-normal-state-map "[b" 'next-buffer)
+(define-key evil-normal-state-map "]b" 'previous-buffer)
+
+;; commands that use 'leader' key (= comma)
+(define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))

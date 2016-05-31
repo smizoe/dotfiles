@@ -24,7 +24,6 @@
     auto-complete
     bm
     emacs-server
-    evil
     helm
     goto-chg
     flycheck-and-flymake
