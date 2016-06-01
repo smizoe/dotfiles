@@ -89,6 +89,12 @@
 ;; (package-install 'ess)
 (require 'ess-site)
 
+
+;; yaml-mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml" . yaml-mode))
+
 ;; evil
 (setq evil-search-module 'evil-search)
 (require 'evil)

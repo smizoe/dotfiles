@@ -35,6 +35,7 @@
 (defvar targets-install-elisp
   '(
     https://raw.githubusercontent.com/timcharper/evil-surround/master/evil-surround.el
+    https://raw.githubusercontent.com/yoshiki/yaml-mode/master/yaml-mode.el
     )
   "a list of elisp that should be installed using install-elisp")
 
