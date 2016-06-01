@@ -102,6 +102,8 @@
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
+(require 'evil-magit)
+
 (require 'evil-matchit)
 (global-evil-matchit-mode 1)
 
@@ -123,6 +125,9 @@
 (define-key evil-normal-state-map ",P" 'electric-indent-mode)
 (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
 (define-key evil-normal-state-map ",b" 'helm-buffers-list)
+
+;;;; magit
+(define-key evil-normal-state-map ",git" 'magit-status)
 
 ;;;;flycheck
 (define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))

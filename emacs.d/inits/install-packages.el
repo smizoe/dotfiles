@@ -6,9 +6,9 @@
     auto-complete
     bm
     edit-server
-    egg
     ess
     evil
+    evil-magit
     evil-matchit
     flycheck
     flymake-cursor
@@ -17,6 +17,7 @@
     helm
     key-chord
     jabber
+    magit
     markdown-mode
     migemo
     org
