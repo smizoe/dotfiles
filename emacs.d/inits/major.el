@@ -88,7 +88,18 @@
 ;; ess
 ;; (package-install 'ess)
 (require 'ess-site)
-
+(define-abbrev-table 'ess-mode-abbrev-table
+  '(
+    ("pp" "%>%" nil 0)
+  ))
+(dolist (hook '(ess-mode-hook inferior-ess-mode-hook))
+    (add-hook hook
+            (lambda ()
+                (make-local-variable 'local-abbrev-table)
+                (setq local-abbrev-table ess-mode-abbrev-table)
+                )
+            )
+    )
 
 ;; yaml-mode
 (require 'yaml-mode)
