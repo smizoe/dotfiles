@@ -4,14 +4,18 @@
 
 ;; (package-install 'yasnippet)
 ;; (install-elisp-from-emacswiki "yasnippet-config.el")
-;; I've made a modification to the yasnippet-config.el
-(add-to-list 'load-path "~/.emacs.d/elisp/yasnippet-config")
 (require 'yasnippet)
 (yas-global-mode 1)
-
 (require 'yasnippet-config)
-(define-sequential-command kill-ring-save-x
-  kill-ring-save yas/register-oneshot-snippet)
-(define-key esc-map "w" 'kill-ring-save-x) ; M-w
-(define-key global-map "\C-x\C-y" 'yas/expand-oneshot-snippet)
+(setq ac-use-menu-map t)
 
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "\C-k") 'yas-expand)
+
+(define-key yas-keymap [(tab)]       nil)
+(define-key yas-keymap (kbd "TAB")   nil)
+(define-key yas-keymap [(shift tab)] nil)
+(define-key yas-keymap [backtab]     nil)
+(define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
+(define-key yas-keymap (kbd "\C-m") 'yas-prev-field)

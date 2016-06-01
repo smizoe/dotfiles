@@ -122,6 +122,17 @@
 (define-key evil-normal-state-map ",N" 'linum-mode)
 (define-key evil-normal-state-map ",P" 'electric-indent-mode)
 (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
+(define-key evil-normal-state-map ",b" 'helm-buffers-list)
+
+;; enable auto-complete by CTRL-P and CTRL-N
+(define-key evil-insert-state-map "\C-p" 'ac-previous)
+(define-key evil-insert-state-map "\C-n" 'ac-next)
+
+;; see yasnippet for the following 3
+(define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
+(define-key evil-normal-state-map ",oe" 'yas-oneshot-snippet) ;; expand
+(define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
+(add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
 
 ;; set any custom variables for major modes
 (custom-set-variables
