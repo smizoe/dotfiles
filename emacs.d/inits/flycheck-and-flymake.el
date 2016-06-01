@@ -13,6 +13,4 @@
 (add-hook 'flycheck-mode-hook (lambda ()
                           (local-set-key (kbd "C-c C-p") 'flycheck-previous-error)))
 
-(add-hook 'c-mode-hook 'flycheck-mode)
-(add-hook 'yaml-mode-hook 'flycheck-mode)
-(add-hook 'python-mode-hook 'flycheck-mode)
+(global-flycheck-mode)
