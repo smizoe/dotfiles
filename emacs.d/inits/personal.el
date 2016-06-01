@@ -181,3 +181,9 @@
 (setq recentf-max-saved-items 500)
 (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 (require 'recentf-ext)
+
+;;;;;;;;;;;;;;;;;
+;; abbrev mode ;;
+;;;;;;;;;;;;;;;;;
+
+(setq-default abbrev-mode t)
