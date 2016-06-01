@@ -1,0 +1,24 @@
+snippet define
+alias def
+  (define ${1:name} ${0})
+
+snippet nil
+alias nl
+  (${0})
+
+snippet (nil
+alias (nl
+  ((${0})
+
+snippet ((nil
+alias ((nl
+  (((${0})
+
+snippet (((nil
+alias (((nl
+  ((((${0})
+
+snippet if
+  (if (${1})
+    ${2}
+    ${0})
