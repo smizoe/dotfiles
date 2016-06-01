@@ -114,6 +114,7 @@
 
 (define-key evil-normal-state-map "[b" 'next-buffer)
 (define-key evil-normal-state-map "]b" 'previous-buffer)
+(define-key evil-normal-state-map ",mx" 'helm-M-x)
 
 ;; commands that use 'leader' key (= comma)
 (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
