@@ -90,6 +90,7 @@
 (require 'ess-site)
 
 ;; evil
+(setq evil-search-module 'evil-search)
 (require 'evil)
 (evil-mode 1)
 
@@ -109,3 +110,10 @@
 
 ;; commands that use 'leader' key (= comma)
 (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
+;; edit vimrc = evil related config
+(define-key evil-normal-state-map ",ev" (concat ":e ~/.emacs.d/inits/major.el" (kbd "RET")))
+(define-key evil-normal-state-map ",sv" (lambda () (interactive) (load-user-file "major.el")))
+
+(define-key evil-normal-state-map ",N" 'linum-mode)
+(define-key evil-normal-state-map ",P" 'electric-indent-mode)
+(define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
