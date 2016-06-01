@@ -14,6 +14,13 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file (concat user-init-dir "inits"))))
 
+(defun simulate-key-press (key)
+    "Return a command that pretends KEY was presssed.
+KEY must be given in `kbd' notation."
+    `(lambda () (interactive)
+       (setq prefix-arg current-prefix-arg)
+            (setq unread-command-events (listify-key-sequence (read-kbd-macro ,key)))))
+
 ;; we need to loading package.el first so that elpa directory is on load-path
 (defvar user-file-load-targets
   '(

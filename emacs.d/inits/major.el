@@ -124,6 +124,8 @@
 (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
 (define-key evil-normal-state-map ",b" 'helm-buffers-list)
 
+;;;;flycheck
+(define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
 ;; enable auto-complete by CTRL-P and CTRL-N
 (define-key evil-insert-state-map "\C-p" 'ac-previous)
 (define-key evil-insert-state-map "\C-n" 'ac-next)
