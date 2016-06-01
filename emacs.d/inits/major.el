@@ -96,7 +96,6 @@
 (add-to-list 'auto-mode-alist '("\\.yaml" . yaml-mode))
 
 ;; evil
-(setq evil-search-module 'evil-search)
 (require 'evil)
 (evil-mode 1)
 
@@ -123,3 +122,9 @@
 (define-key evil-normal-state-map ",N" 'linum-mode)
 (define-key evil-normal-state-map ",P" 'electric-indent-mode)
 (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
+
+;; set any custom variables for major modes
+(custom-set-variables
+    '(evil-search-module 'evil-search)
+    '(evil-want-C-u-scroll t)
+    )
