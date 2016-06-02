@@ -25,6 +25,7 @@ r_pkg__packages:
   - infotheo
   - kernlab
   - klaR
+  - lintr
   - lubridate
   - magrittr
   - mice
