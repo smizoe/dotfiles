@@ -65,7 +65,8 @@ sys_pkg__mach_with_cask:
     - virtualbox
     - vagrant
     - dia
-    - anaconda
+    # avoid conflict by not installing anaconda
+    #- anaconda
     - visual-studio-code
 
 sys_pkg__brew_tap:
