@@ -172,6 +172,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
 (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
 
+
+;;; ess with evil
+(evil-define-key 'normal ess-mode-map
+  "\\l" 'ess-eval-line
+  )
+(evil-define-key 'visual ess-mode-map
+  "\\ss" 'ess-eval-region
+  )
+
 ;; set any custom variables for major modes
 (custom-set-variables
     '(evil-search-module 'evil-search)
