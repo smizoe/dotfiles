@@ -100,3 +100,5 @@
       )
       (t (message "skipped installation of %s since it already exists" elisp-name))
       )))
+
+(provide 'install-packages)

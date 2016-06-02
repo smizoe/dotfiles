@@ -189,3 +189,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; add ex commands
 (evil-ex-define-cmd "h[elp]" 'help)
+
+(provide 'setup-major)
+;;; setup-major.el ends here

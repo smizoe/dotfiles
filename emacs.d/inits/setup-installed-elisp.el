@@ -100,3 +100,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq woman-manpath "~/.emacs.d/.wmncache.el")
+
+(provide 'setup-installed-elisp)
