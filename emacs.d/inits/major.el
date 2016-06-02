@@ -177,3 +177,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     '(evil-search-module 'evil-search)
     '(evil-want-C-u-scroll t)
     )
+
+;; add ex commands
+(evil-ex-define-cmd "h[elp]" 'help)
