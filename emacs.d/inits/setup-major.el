@@ -176,6 +176,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;; ess with evil
 (evil-define-key 'normal ess-mode-map
   "\\l" 'ess-eval-line
+  "\\aa" 'ess-load-file
+  "\\ff" 'ess-eval-function
+  "\\pp" 'ess-eval-paragraph
   )
 (evil-define-key 'visual ess-mode-map
   "\\ss" 'ess-eval-region
