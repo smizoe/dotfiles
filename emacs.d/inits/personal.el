@@ -6,17 +6,6 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;;;; enable view-mode
-;;(setq view-read-only t)
-;;;; (package-install 'viewer)
-;;(require 'viewer)
-;;(viewer-stay-in-setup)
-;;(setq viewer-modeline-color-unwritable "tomato")
-;;(setq viewer-modeline-color-view "orange")
-;;(viewer-change-modeline-color-setup)
-;;(add-hook 'find-file-hook 'view-mode)
-;;;;(setq find-file-hook nil)
-
 ;; make unnecessary trailing space visible
 (when (boundp 'show-trailing-whitespace)
   (setq-default show-trailing-whitespace t))
