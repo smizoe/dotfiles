@@ -46,4 +46,42 @@
 (define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
 (define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
 
+;;;;;;;;;;;;;;;;;;;;;;;
+;; other minor modes ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; colour current line
+(global-hl-line-mode 1)
+
+;;; save history and enable it even after reboot of emacs
+(savehist-mode 1)
+
+;;; show corresponding parentheses
+(show-paren-mode 1)
+
+;;; show line number and column number
+(line-number-mode 1)
+(column-number-mode 1)
+
+;;; make the selected region visible
+(transient-mark-mode 1)
+
+
+;;; use multiple spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
+;; key-chord
+;; (install-elisp-from-emacswiki "key-chord.el")
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.04)
+(key-chord-mode 1)
+;;key-chrod settings
+(key-chord-define-global "xf" 'helm-for-files)
+
+;;;;;;;;;;;;;;;;;
+;; abbrev mode ;;
+;;;;;;;;;;;;;;;;;
+
+(setq-default abbrev-mode t)
+
 (provide 'setup-minor)
