@@ -6,37 +6,19 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;;;; enable view-mode
-;;(setq view-read-only t)
-;;;; (package-install 'viewer)
-;;(require 'viewer)
-;;(viewer-stay-in-setup)
-;;(setq viewer-modeline-color-unwritable "tomato")
-;;(setq viewer-modeline-color-view "orange")
-;;(viewer-change-modeline-color-setup)
-;;(add-hook 'find-file-hook 'view-mode)
-;;;;(setq find-file-hook nil)
-
 ;; make unnecessary trailing space visible
 (when (boundp 'show-trailing-whitespace)
   (setq-default show-trailing-whitespace t))
 
-;;; colour current line
-(global-hl-line-mode 1)
 
 ;;; the colour for the current line
 ;;(set-face-background 'hl-line "darkolivegreen")
 (set-face-background 'hl-line "green4")
 
-;;; save history and enable it even after reboot of emacs
-(savehist-mode 1)
 
 ;;; save the cursor position in each file
 (setq-default save-place t)
 (require 'saveplace)
-
-;;; show corresponding parentheses
-(show-paren-mode 1)
 
 ;;; use C-h as backspace(delete one char before cursor)
 
@@ -44,13 +26,6 @@
 
 ;;; display time in the mode line
 (display-time)
-
-;;; show line number and column number
-(line-number-mode 1)
-(column-number-mode 1)
-
-;;; make the selected region visible
-(transient-mark-mode 1)
 
 ;;; set a higher GC threshold
 (setq gc-cons-threshold (* 10 gc-cons-threshold))
@@ -96,8 +71,6 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-ignore-buffers-re "*[^*]+*")
 
-;;; use multiple spaces instead of tabs
-(setq-default indent-tabs-mode nil)
 
 ;;; add newline at the end of file if there is none
 (setq require-final-newline 'ask)
@@ -132,18 +105,6 @@
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
-
-
-;; key-chord
-;; (install-elisp-from-emacswiki "key-chord.el")
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.04)
-(key-chord-mode 1)
-
-;;key-chrod settings
-;;(key-chord-define-global "xf" 'anything-for-files)
-(key-chord-define-global "xf" 'helm-for-files)
-;;(key-chord-define-global "kj" 'view-mode)
 
 ;; autoinsert
 (require 'autoinsert)
@@ -182,8 +143,4 @@
 (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 (require 'recentf-ext)
 
-;;;;;;;;;;;;;;;;;
-;; abbrev mode ;;
-;;;;;;;;;;;;;;;;;
-
-(setq-default abbrev-mode t)
+(provide 'setup-personal-configurations)

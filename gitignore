@@ -44,5 +44,5 @@ Thumbs.db
 # generated from vault
 ########
 proxy.pac
-emacs.d/inits/jabber.el
+emacs.d/inits/setup-jabber.el
 emacs.d/templates/html/default.html

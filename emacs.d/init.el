@@ -24,29 +24,19 @@ KEY must be given in `kbd' notation."
 ;; we need to loading package.el first so that elpa directory is on load-path
 (defvar user-file-load-targets
   '(
-    package
-    auto-install
+    setup-package-management
     install-packages
-    ;; package installation and setting up load-path finished
-    auto-complete
-    bm
-    emacs-server
-    helm
-    goto-chg
-    flycheck-and-flymake
-    jabber
-    open-junk-file
-    major
-    migemo
-    personal
-    point-undo
-    pyvenv
-    skk
-    woman
-    yasnippet
+    setup-installed-elisp
+    setup-major
+    setup-minor
+    setup-personal-configurations
+    setup-jabber
     )
   "target file names (basename without el) to be loaded by load-user-file")
 
-(dolist (name user-file-load-targets 'dummy)
-      (load-user-file (concat (symbol-name name) ".el")))
+(let ((inits-dir (concat user-init-dir "inits")))
+  (add-to-list 'load-path inits-dir)
+  (dolist (name user-file-load-targets 'dummy)
+    (require name)
+    ))
 
