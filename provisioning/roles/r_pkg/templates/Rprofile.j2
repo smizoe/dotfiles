@@ -1,10 +1,5 @@
 .libPaths( c("{{r__user_lib}}", .libPaths()) )
 if(interactive()){
-    options(vimcom.verbose = 1)
-    # Load the libraries required by vim-r-plugin:
-    library(colorout)
-    library(setwidth)
-    library(vimcom)
 
     # load frequently used packages
     library(stats) # avoid masking dplyr::filter
