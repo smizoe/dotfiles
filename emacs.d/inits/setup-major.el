@@ -43,6 +43,11 @@
 (global-set-key "\C-cm" 'markdown-preview-file)
 
 
+;;;;;;;;;;;;;;;
+;; sql mode  ;;
+;;;;;;;;;;;;;;;
+;; use sql mode in hql
+(add-to-list 'auto-mode-alist '("\\.hql$" . sql-mode))
 
 ;;;;;;;;;;;;;;;
 ;; ruby mode ;;
