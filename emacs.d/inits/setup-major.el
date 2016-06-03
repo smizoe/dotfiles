@@ -186,6 +186,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; set any custom variables for major modes
 (custom-set-variables
+    '(evil-shift-width 2)
     '(evil-search-module 'evil-search)
     '(evil-want-C-u-scroll t)
     )

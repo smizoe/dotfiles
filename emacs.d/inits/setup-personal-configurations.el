@@ -6,6 +6,9 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; tab size is 2
+(setq-default tab-width 2)
+
 ;; make unnecessary trailing space visible
 (when (boundp 'show-trailing-whitespace)
   (setq-default show-trailing-whitespace t))
