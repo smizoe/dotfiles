@@ -23,6 +23,7 @@
 (global-auto-complete-mode t)
 (setq ac-dwim t)
 (ac-config-default)
+(add-to-list 'ac-modes 'sql-mode)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet mode ;;
