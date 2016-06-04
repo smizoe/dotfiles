@@ -15,6 +15,7 @@ sys_pkg__common:
     - antlr
     - binutils
     - gauche
+    - emacs
 
 sys_pkg__arch:
     - ibus
