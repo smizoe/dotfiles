@@ -144,7 +144,6 @@ source /usr/local/opt/autoenv/activate.sh
 # use MacVim as vim #
 #####################
 
-#alias vim="$(if [ "${systemName}" == "Darwin" ] ; then echo -n '/usr/local/bin/mvim -v --servername VIM ' ; else echo -n /usr/bin/vim ; fi)"
 alias vim="$(if [ "${systemName}" = "Darwin" ] ; then echo -n '/usr/local/bin/vim' ; else echo -n /usr/bin/vim; fi) --servername VIM"
 export EDITOR=vim
 export VISUAL=vim
