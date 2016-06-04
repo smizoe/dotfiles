@@ -17,6 +17,7 @@
     helm
     key-chord
     jabber
+    js2-mode
     magit
     markdown-mode
     migemo
