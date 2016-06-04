@@ -15,3 +15,10 @@
 - name: force refresh font config
   command: fc-cache -vf
   when: ricty_result | changed
+
+- name: put plist for emacs daemon
+  template: src=plist/gnu.emacs.daemon.plist.j2 dest=/Library/LaunchAgents/gnu.emacs.daemon.plist
+
+- name: enable emacs daemon
+  command: launchctl load -w /Library/LaunchAgents/gnu.emacs.daemon.plist
+  changed_when: False
