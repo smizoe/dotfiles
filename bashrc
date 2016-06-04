@@ -41,7 +41,7 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     . /usr/share/git/completion/git-prompt.sh
 fi
 
-export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:${HOME}/dotfiles/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/APUE/bin:${PATH}
 
 
 ## setting for rbenv
@@ -145,8 +145,8 @@ source /usr/local/opt/autoenv/activate.sh
 #####################
 
 alias vim="$(if [ "${systemName}" = "Darwin" ] ; then echo -n '/usr/local/bin/vim' ; else echo -n /usr/bin/vim; fi) --servername VIM"
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR="em"
+export VISUAL="em -a emacs"
 
 ## setting for vimcom
 ## set TERM variable appropriately so that vim chooses correct coloring scheme
