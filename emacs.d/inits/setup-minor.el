@@ -23,7 +23,7 @@
 (global-auto-complete-mode t)
 (setq ac-dwim t)
 (ac-config-default)
-(add-to-list 'ac-modes 'sql-mode)
+(setq ac-modes (list* 'sql-mode  'yaml-mode  ac-modes))
 (setq ac-disable-faces nil)
 
 ;;;;;;;;;;;;;;;;;;;;
