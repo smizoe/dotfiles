@@ -45,6 +45,12 @@
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+(if (string= system-type "darwin")
+  (custom-set-variables
+  '(irony-additional-clang-options
+          '("-I/Library/Developer/CommandLineTools/usr/include/c++/v1")))
+  ()
+  )
 (eval-after-load 'company
     '(add-to-list 'company-backends 'company-irony))
 (eval-after-load 'flycheck
