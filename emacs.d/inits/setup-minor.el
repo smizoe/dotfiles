@@ -14,17 +14,17 @@
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
 (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
 
-;;;;;;;;;;;;;;;;;;;
-;; auto-complete ;;
-;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;
+;; company-mode;;
+;;;;;;;;;;;;;;;;;
 
-;; (auto-install-batch "auto-complete")
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
-(setq ac-dwim t)
-(ac-config-default)
-(setq ac-modes (list* 'sql-mode  'yaml-mode  ac-modes))
-(setq ac-disable-faces nil)
+(add-hook 'after-init-hook 'global-company-mode)
+(custom-set-variables
+ '(company-selection-wrap-around t)
+)
+(define-key company-active-map [return] nil)
+(define-key company-active-map (kbd "RET") nil)
+(define-key company-active-map (kbd "SPC") 'company-complete-selection)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet mode ;;
@@ -35,7 +35,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 (require 'yasnippet-config)
-(setq ac-use-menu-map t)
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)

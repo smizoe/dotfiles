@@ -3,8 +3,8 @@
 (defvar targets-package-install
   '(
     auto-install
-    auto-complete
     bm
+    company
     edit-server
     ess
     evil

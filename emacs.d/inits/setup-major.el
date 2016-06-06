@@ -172,11 +172,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;;;flycheck
 (define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
 
-;;;;auto-complete
-;; enable auto-complete by CTRL-P and CTRL-N
-(define-key evil-insert-state-map "\C-p" 'ac-previous)
-(define-key evil-insert-state-map "\C-n" 'ac-next)
-
+;;;;company
+;; enable company by CTRL-P and CTRL-N
+(define-key evil-insert-state-map "\C-p" 'company-select-previous)
+(define-key evil-insert-state-map "\C-n" 'company-select-next)
 
 ;;;;yasnippet
 ;; see yasnippet for the following 3
