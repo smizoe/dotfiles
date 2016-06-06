@@ -52,6 +52,9 @@
 ;; other minor modes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
+;; electric-pair-mode
+(electric-pair-mode t)
+
 ;;; colour current line
 (global-hl-line-mode 1)
 
