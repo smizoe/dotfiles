@@ -18,13 +18,35 @@
 ;; company-mode;;
 ;;;;;;;;;;;;;;;;;
 
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook
+	  (lambda()
+	    (global-company-mode t)
+	    (define-key company-active-map [return] nil)
+	    (define-key company-active-map (kbd "RET") nil)
+	    (define-key company-active-map (kbd "SPC") 'company-complete-selection)
+	    ))
 (custom-set-variables
  '(company-selection-wrap-around t)
 )
-(define-key company-active-map [return] nil)
-(define-key company-active-map (kbd "RET") nil)
-(define-key company-active-map (kbd "SPC") 'company-complete-selection)
+
+;;;;;;;;;;;;;;;;
+;; irony mode ;;
+;;;;;;;;;;;;;;;;
+
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(eval-after-load 'company
+    '(add-to-list 'company-backends 'company-irony))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet mode ;;

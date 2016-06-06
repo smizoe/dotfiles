@@ -5,6 +5,7 @@
     auto-install
     bm
     company
+    company-irony
     edit-server
     ess
     evil
@@ -15,6 +16,7 @@
     go-mode
     goto-chg
     helm
+    irony
     key-chord
     jabber
     js2-mode
