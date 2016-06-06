@@ -54,11 +54,13 @@ sys_pkg__mach:
     - gnu-time
     - gcc
     - gradle
+    - llvm
     - rust
     - q
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
+    llvm: with-clang
 sys_pkg__mach_with_cask:
      # fails when installed. TODO: avoid the error
      # - intellij-idea-ce
