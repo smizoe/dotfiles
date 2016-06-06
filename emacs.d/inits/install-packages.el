@@ -12,6 +12,7 @@
     evil-magit
     evil-matchit
     flycheck
+    flycheck-irony
     flymake-cursor
     go-mode
     goto-chg
