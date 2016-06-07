@@ -27,6 +27,7 @@
 	    ))
 (custom-set-variables
  '(company-selection-wrap-around t)
+ '(company-idle-dellay 0)
 )
 
 
