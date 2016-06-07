@@ -48,7 +48,10 @@
 (if (string= system-type "darwin")
   (custom-set-variables
   '(irony-additional-clang-options
-          '("-I/Library/Developer/CommandLineTools/usr/include/c++/v1")))
+    '(
+      "-I/Library/Developer/CommandLineTools/usr/include/c++/v1"
+      "--std=c++11"
+      )))
   ()
   )
 (eval-after-load 'company
