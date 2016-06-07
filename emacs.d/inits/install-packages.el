@@ -6,6 +6,7 @@
     bm
     company
     company-irony
+    company-jedi
     edit-server
     ess
     evil
