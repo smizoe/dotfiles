@@ -6,6 +6,7 @@
     bm
     company
     company-irony
+    company-irony-c-headers
     company-jedi
     edit-server
     ess
