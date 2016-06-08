@@ -28,6 +28,8 @@
 (custom-set-variables
  '(company-selection-wrap-around t)
  '(company-idle-dellay 0)
+ '(company-dabbrev-downcase nil)
+ '(company-dabbrev-ignore-case nil)
 )
 
 
