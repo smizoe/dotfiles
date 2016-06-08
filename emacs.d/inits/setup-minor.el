@@ -36,7 +36,7 @@
 ;;;;;;;;;;;;;;;;;;
 
 (defun my-python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
+  (add-to-list 'company-backends '(company-jedi :with company-dabbrev)))
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
@@ -66,7 +66,7 @@
   ()
   )
 (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony))
+    '(add-to-list 'company-backends '(company-irony-c-headers company-irony :with company-dabbrev)))
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
