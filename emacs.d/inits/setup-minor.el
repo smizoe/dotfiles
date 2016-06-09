@@ -19,12 +19,13 @@
 ;;;;;;;;;;;;;;;;;
 
 (add-hook 'after-init-hook
-	  (lambda()
-	    (global-company-mode t)
-	    (define-key company-active-map [return] nil)
-	    (define-key company-active-map (kbd "RET") nil)
-	    (define-key company-active-map (kbd "SPC") 'company-complete-selection)
-	    ))
+  (lambda()
+    (global-company-mode t)
+    (define-key company-active-map [return] nil)
+    (define-key company-active-map (kbd "RET") nil)
+    (define-key company-active-map (kbd "SPC") 'company-complete-selection)
+    (define-key company-active-map [escape] 'company-abort)
+    ))
 (custom-set-variables
  '(company-selection-wrap-around t)
  '(company-idle-dellay 0)
