@@ -25,6 +25,7 @@
     (define-key company-active-map (kbd "RET") nil)
     (define-key company-active-map (kbd "SPC") 'company-complete-selection)
     (define-key company-active-map [escape] 'company-abort)
+    (define-key company-search-map [escape] 'company-search-abort)
     ))
 (custom-set-variables
  '(company-selection-wrap-around t)
@@ -32,7 +33,6 @@
  '(company-dabbrev-downcase nil)
  '(company-dabbrev-ignore-case nil)
 )
-
 
 ;;;;;;;;;;;;;;;;;;
 ;; company jedi ;;
