@@ -1,0 +1,22 @@
+tmuxrc() {
+    local TMUXDIR=/tmp/smizoe.tmux.svr
+    if ! [ -d $TMUXDIR ]; then
+        rm -rf $TMUXDIR
+        mkdir -p $TMUXDIR
+    fi
+    rm -rf $TMUXDIR/.sshrc.d
+    cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
+    ATTACH=""
+    if tmux -S "$TMUXDIR/tmuxserver" has-session ; then
+      ATTACH="attach"
+    fi
+    SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc exec /usr/bin/tmux -S $TMUXDIR/tmuxserver -f "${TMUXDIR}/.sshrc.d/tmux.conf" ${ATTACH}
+}
+
+if command -v tmux>/dev/null; then
+  if [ ! -z "$PS1" ]; then # unless shell not loaded interactively, run tmux
+    if [[ ! $TERM =~ screen ]] && [ -z $TMUX ] ; then
+      tmuxrc
+    fi
+  fi
+fi

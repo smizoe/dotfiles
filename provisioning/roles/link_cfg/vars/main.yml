@@ -11,4 +11,5 @@ link_cfg__dotfiles:
   - src: Rprofile
   - src: emacs.d
   - src: aws
-
+  - src: sshrc.d
+  - src: sshrc
