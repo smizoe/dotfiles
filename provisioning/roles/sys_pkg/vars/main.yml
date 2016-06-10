@@ -38,6 +38,7 @@ sys_pkg__arch_with_yaourt:
     - gcc-multilib
     - gradle
     - rust
+    - sshrc
     - q
 
 sys_pkg__mach:
@@ -56,6 +57,7 @@ sys_pkg__mach:
     - gradle
     - llvm
     - rust
+    - sshrc
     - q
 
 sys_pkg__brew_options:
