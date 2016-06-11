@@ -15,6 +15,44 @@
 (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
 
 ;;;;;;;;;;;;;;;;;
+;; artist-mode ;;
+;;;;;;;;;;;;;;;;;
+(require 'artist)
+
+(add-to-list 'auto-mode-alist '("\\.art$" . artist-mode))
+(define-key artist-mode-map [return] nil)
+(eval-after-load 'evil
+  '(progn
+    (evil-define-key 'motion artist-mode-map
+      "h" 'artist-backward-char
+      "j" 'artist-next-line
+      "k" 'artist-previous-line
+      "l" 'artist-forward-char
+      "\\\r" (lambda () (interactive) (artist-key-set-point t)) ;; draw
+      (kbd "RET") 'artist-key-set-point
+      "\\r" 'artist-select-op-rectangle
+      "\\c" 'artist-select-op-circle
+      "\\e" 'artist-select-op-ellipse
+      "\\s" 'artist-select-op-square
+      "\\p" 'artist-select-op-poly-line
+      "\\l" 'artist-select-op-line
+      )
+    (evil-define-key 'insert artist-mode-map
+      (kbd "DEL") (lambda () (interactive) (picture-backward-clear-column 1))
+      )
+    (evil-define-key 'normal artist-mode-map
+      "x" 'picture-clear-column
+      )
+    )
+  )
+(add-hook 'artist-mode-hook
+  (lambda ()
+    (setq-local evil-move-cursor-back nil)
+    )
+  )
+
+
+;;;;;;;;;;;;;;;;;
 ;; company-mode;;
 ;;;;;;;;;;;;;;;;;
 
