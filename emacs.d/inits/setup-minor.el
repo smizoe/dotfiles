@@ -80,6 +80,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
 
 
+;;;; yatex
+(evil-define-key 'normal YaTeX-mode-map
+  "\\" (simulate-key-press YaTeX-prefix))
+
 ;;; ess with evil
 (evil-define-key 'normal ess-mode-map
   "\\l" 'ess-eval-line
