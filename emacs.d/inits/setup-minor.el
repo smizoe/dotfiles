@@ -82,7 +82,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;;; yatex
 (evil-define-key 'normal YaTeX-mode-map
-  "\\" (simulate-key-press YaTeX-prefix))
+  "\\" (simulate-key-press YaTeX-prefix)
+  )
+(evil-define-key 'visual YaTeX-mode-map
+  "\\" (simulate-key-press YaTeX-prefix)
+  )
 
 ;;; ess with evil
 (evil-define-key 'normal ess-mode-map
