@@ -193,7 +193,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   '(irony-additional-clang-options
     '(
       "-I/Library/Developer/CommandLineTools/usr/include/c++/v1"
-      "--std=c++11"
+      "-std=c++11"
       )))
   ()
   )
