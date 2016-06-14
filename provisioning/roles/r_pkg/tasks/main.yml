@@ -5,7 +5,7 @@
   when: ansible_os_family == 'Darwin'
 
 - name: use gcc installed by brew in compiling R libraries
-  copy: dest="{{home}}/.R/MakeVars" content="CC=gcc-5\nCXX=g++-5"
+  copy: dest="{{home}}/.R/MakeVars" content="CC=gcc-6\nCXX=g++-6"
   become: no
   when: ansible_os_family == 'Darwin'
 
