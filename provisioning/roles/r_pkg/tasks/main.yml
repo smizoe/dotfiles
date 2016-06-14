@@ -14,7 +14,7 @@
   register: r__version
   changed_when: False
 
-- set_fact: r__user_lib="/usr/local/lib/R/{{r__version.stdout}}"
+- set_fact: r__user_lib="/usr/local/lib/R/{{r__version.stdout}}/site-library"
 
 - name: put Rprofile in dotfile
   template: src=Rprofile.j2 dest="{{home}}/dotfiles/Rprofile"
