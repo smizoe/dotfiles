@@ -25,7 +25,6 @@ KEY must be given in `kbd' notation."
 (defvar user-file-load-targets
   '(
     setup-package-management
-    install-packages
     setup-installed-elisp
     setup-major
     setup-minor
@@ -39,4 +38,3 @@ KEY must be given in `kbd' notation."
   (dolist (name user-file-load-targets 'dummy)
     (require name)
     ))
-
