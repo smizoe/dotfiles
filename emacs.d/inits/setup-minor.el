@@ -72,6 +72,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key evil-insert-state-map "\C-p" 'company-select-previous)
 (define-key evil-insert-state-map "\C-n" 'company-select-next)
 
+;;;; org
+(evil-define-key 'normal org-mode-map
+  (kbd "TAB") 'org-cycle
+  "\\cc" 'org-ctrl-c-ctrl-c
+  )
+
 ;;;;yasnippet
 ;; see yasnippet for the following 3
 (define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
