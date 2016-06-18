@@ -5,6 +5,7 @@
 (defvar targets-package-install
   '(
     auto-install
+    use-package
     bm
     company
     company-irony
