@@ -75,6 +75,9 @@
       "\\cc" 'org-ctrl-c-ctrl-c
       )
 
+    ;;;; skk
+    (define-key evil-insert-state-map "\C-j" 'skk-mode)
+
     ;;;;yasnippet
     ;; see yasnippet for the following 3
     (define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
