@@ -4,116 +4,129 @@
 
 ;; git clone https://github.com/emacs-helm/helm.git ~/.emacs.d/elisp/helm
 ;; (package-install 'helm)
-(add-to-list 'load-path "~/.emacs.d/elisp/helm")
-(require 'helm-config)
-;; (helm-mode 1)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-s") 'helm-occur)
-(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
-(define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+;;(add-to-list 'load-path "~/.emacs.d/elisp/helm")
+(use-package helm
+  :ensure t
+  :init (progn
+    (require 'helm-config)
+    ;; (helm-mode 1)
+    (global-set-key (kbd "C-x b") 'helm-buffers-list)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+    (global-set-key (kbd "M-s") 'helm-occur)
+    (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
+    (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+    )
+)
 
 ;; evil
-(require 'evil)
-(evil-mode 1)
+(use-package evil
+  :ensure t
+  :config  (progn
+    (evil-mode 1)
+    ;; esc quits
+    ;; http://stackoverflow.com/questions/8483182/evil-mode-best-practice
+    (defun minibuffer-keyboard-quit ()
+        "Abort recursive edit.
+    In Delete Selection mode, if the mark is active, just deactivate it;
+    then it takes a second \\[keyboard-quit] to abort the minibuffer."
+        (interactive)
+        (if (and delete-selection-mode transient-mark-mode mark-active)
+            (setq deactivate-mark  t)
+          (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+          (abort-recursive-edit)))
+    (define-key evil-normal-state-map [escape] 'keyboard-quit)
+    (define-key evil-visual-state-map [escape] 'keyboard-quit)
+    (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
-(require 'evil-surround)
-(global-evil-surround-mode 1)
+    (define-key evil-normal-state-map "[b" 'next-buffer)
+    (define-key evil-normal-state-map "]b" 'previous-buffer)
+    (define-key evil-normal-state-map ",mx" 'helm-M-x)
 
-(require 'evil-magit)
+    ;; commands that use 'leader' key (= comma)
+    (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
+    ;; edit vimrc = evil related config
+    (define-key evil-normal-state-map ",ev" (concat ":e ~/.emacs.d/inits/setup-major.el" (kbd "RET")))
+    (define-key evil-normal-state-map ",sv" (lambda () (interactive) (require 'setup-major)))
 
-(require 'evil-matchit)
-(global-evil-matchit-mode 1)
+    (define-key evil-normal-state-map ",N" 'linum-mode)
+    (define-key evil-normal-state-map ",P" 'electric-indent-mode)
+    (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
+    (define-key evil-normal-state-map ",b" 'helm-buffers-list)
 
+    ;;;; magit
+    (define-key evil-normal-state-map ",git" 'magit-status)
 
-;; esc quits
-;; http://stackoverflow.com/questions/8483182/evil-mode-best-practice
-(defun minibuffer-keyboard-quit ()
-    "Abort recursive edit.
-In Delete Selection mode, if the mark is active, just deactivate it;
-then it takes a second \\[keyboard-quit] to abort the minibuffer."
-    (interactive)
-    (if (and delete-selection-mode transient-mark-mode mark-active)
-        (setq deactivate-mark  t)
-      (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-      (abort-recursive-edit)))
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+    ;;;;flycheck
+    (define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
 
-(define-key evil-normal-state-map "[b" 'next-buffer)
-(define-key evil-normal-state-map "]b" 'previous-buffer)
-(define-key evil-normal-state-map ",mx" 'helm-M-x)
+    ;;;;company
+    ;; enable company by CTRL-P and CTRL-N
+    (define-key evil-insert-state-map "\C-p" 'company-select-previous)
+    (define-key evil-insert-state-map "\C-n" 'company-select-next)
 
-;; commands that use 'leader' key (= comma)
-(define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
-;; edit vimrc = evil related config
-(define-key evil-normal-state-map ",ev" (concat ":e ~/.emacs.d/inits/setup-major.el" (kbd "RET")))
-(define-key evil-normal-state-map ",sv" (lambda () (interactive) (require 'setup-major)))
+    ;;;; org
+    (evil-define-key 'normal org-mode-map
+      (kbd "TAB") 'org-cycle
+      "\\cc" 'org-ctrl-c-ctrl-c
+      )
 
-(define-key evil-normal-state-map ",N" 'linum-mode)
-(define-key evil-normal-state-map ",P" 'electric-indent-mode)
-(define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
-(define-key evil-normal-state-map ",b" 'helm-buffers-list)
-
-;;;; magit
-(define-key evil-normal-state-map ",git" 'magit-status)
-
-;;;;flycheck
-(define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
-
-;;;;company
-;; enable company by CTRL-P and CTRL-N
-(define-key evil-insert-state-map "\C-p" 'company-select-previous)
-(define-key evil-insert-state-map "\C-n" 'company-select-next)
-
-;;;; org
-(evil-define-key 'normal org-mode-map
-  (kbd "TAB") 'org-cycle
-  "\\cc" 'org-ctrl-c-ctrl-c
-  )
-
-;;;;yasnippet
-;; see yasnippet for the following 3
-(define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
-(define-key evil-normal-state-map ",oe" 'yas-oneshot-snippet) ;; expand
-(define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
-(add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
+    ;;;;yasnippet
+    ;; see yasnippet for the following 3
+    (define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
+    (define-key evil-normal-state-map ",oe" 'yas-oneshot-snippet) ;; expand
+    (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
+    (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
 
 
-;;;; yatex
-(evil-define-key 'normal YaTeX-mode-map
-  "\\" (simulate-key-press YaTeX-prefix)
-  )
-(evil-define-key 'visual YaTeX-mode-map
-  "\\" (simulate-key-press YaTeX-prefix)
-  )
+    ;;;; yatex
+    (evil-define-key 'normal YaTeX-mode-map
+      "\\" (simulate-key-press YaTeX-prefix)
+      )
+    (evil-define-key 'visual YaTeX-mode-map
+      "\\" (simulate-key-press YaTeX-prefix)
+      )
 
-;;; ess with evil
-(evil-define-key 'normal ess-mode-map
-  "\\l" 'ess-eval-line
-  "\\aa" 'ess-load-file
-  "\\ff" 'ess-eval-function
-  "\\pp" 'ess-eval-paragraph
-  )
-(evil-define-key 'visual ess-mode-map
-  "\\ss" 'ess-eval-region
-  )
+    ;;; ess with evil
+    (evil-define-key 'normal ess-mode-map
+      "\\l" 'ess-eval-line
+      "\\aa" 'ess-load-file
+      "\\ff" 'ess-eval-function
+      "\\pp" 'ess-eval-paragraph
+      )
+    (evil-define-key 'visual ess-mode-map
+      "\\ss" 'ess-eval-region
+      )
 
-;; set any custom variables for major modes
-(custom-set-variables
-    '(evil-shift-width 2)
-    '(evil-search-module 'evil-search)
-    '(evil-want-C-u-scroll t)
+    ;; set any custom variables for major modes
+    (custom-set-variables
+        '(evil-shift-width 2)
+        '(evil-search-module 'evil-search)
+        '(evil-want-C-u-scroll t)
+        )
+
+    ;; add ex commands
+    (evil-ex-define-cmd "h[elp]" 'help)
     )
+  )
 
-;; add ex commands
-(evil-ex-define-cmd "h[elp]" 'help)
+(use-package evil-surround
+  :ensure t
+  :init (global-evil-surround-mode 1)
+  )
+
+(use-package evil-magit)
+
+(use-package evil-matchit
+  :ensure t
+  :init (global-evil-matchit-mode 1)
+  )
+
+
 
 ;;;;;;;;;;;;;;;;;
 ;; artist-mode ;;
@@ -157,60 +170,90 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; company-mode;;
 ;;;;;;;;;;;;;;;;;
 
-(add-hook 'after-init-hook
-  (lambda()
-    (global-company-mode t)
-    (define-key company-active-map [return] nil)
-    (define-key company-active-map (kbd "RET") nil)
-    (define-key company-active-map (kbd "SPC") 'company-complete-selection)
-    (define-key company-active-map [escape] 'company-abort)
-    (define-key company-search-map [escape] 'company-search-abort)
-    ))
-(custom-set-variables
- '(company-selection-wrap-around t)
- '(company-idle-dellay 0)
- '(company-dabbrev-downcase nil)
- '(company-dabbrev-ignore-case nil)
-)
+(use-package company
+  :ensure t
+  :init (progn
+    (add-hook 'after-init-hook
+      (lambda()
+        (global-company-mode t)
+        (define-key company-active-map [return] nil)
+        (define-key company-active-map (kbd "RET") nil)
+        (define-key company-active-map (kbd "SPC") 'company-complete-selection)
+        (define-key company-active-map [escape] 'company-abort)
+        (define-key company-search-map [escape] 'company-search-abort)
+        ))
+    (custom-set-variables
+    '(company-selection-wrap-around t)
+    '(company-idle-dellay 0)
+    '(company-dabbrev-downcase nil)
+    '(company-dabbrev-ignore-case nil)
+    )
+    )
+  :pin melpa-stable
+  )
 
 ;;;;;;;;;;;;;;;;;;
 ;; company jedi ;;
 ;;;;;;;;;;;;;;;;;;
 
-(defun my-python-mode-hook ()
-  (add-to-list 'company-backends '(company-jedi :with company-dabbrev)))
+(use-package company-jedi
+  :ensure t
+  :config
+  (progn
+    (defun my-python-mode-hook ()
+      (add-to-list 'company-backends '(company-jedi :with company-dabbrev)))
 
-(add-hook 'python-mode-hook 'my-python-mode-hook)
+    (add-hook 'python-mode-hook 'my-python-mode-hook)
+    )
+  )
 
 ;;;;;;;;;;;;;;;;
 ;; irony mode ;;
 ;;;;;;;;;;;;;;;;
 
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
+(use-package irony
+  :init
+    (progn
+      (add-hook 'c++-mode-hook 'irony-mode)
+      (add-hook 'c-mode-hook 'irony-mode)
+      (add-hook 'objc-mode-hook 'irony-mode)
 
-(defun my-irony-mode-hook ()
-  (define-key irony-mode-map [remap completion-at-point]
-    'irony-completion-at-point-async)
-  (define-key irony-mode-map [remap complete-symbol]
-    'irony-completion-at-point-async))
-(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+      (defun my-irony-mode-hook ()
+        (define-key irony-mode-map [remap completion-at-point]
+          'irony-completion-at-point-async)
+        (define-key irony-mode-map [remap complete-symbol]
+          'irony-completion-at-point-async))
+      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-(if (string= system-type "darwin")
-  (custom-set-variables
-  '(irony-additional-clang-options
-    '(
-      "-I/Library/Developer/CommandLineTools/usr/include/c++/v1"
-      "-std=c++11"
-      )))
-  ()
+      (if (string= system-type "darwin")
+        (custom-set-variables
+        '(irony-additional-clang-options
+          '(
+            "-I/Library/Developer/CommandLineTools/usr/include/c++/v1"
+            "-std=c++11"
+            )))
+        ()
+        )
+      )
   )
-(eval-after-load 'company
-    '(add-to-list 'company-backends '(company-irony-c-headers company-irony :with company-dabbrev)))
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(use-package company-irony
+  :ensure t
+  )
+(use-package company-irony-c-headers
+  :ensure t
+  :init
+    (eval-after-load 'company
+        '(add-to-list 'company-backends '(company-irony-c-headers company-irony :with company-dabbrev)))
+  )
+
+(use-package flycheck-irony
+  :ensure t
+  :init
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet mode ;;
@@ -218,20 +261,25 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; (package-install 'yasnippet)
 ;; (install-elisp-from-emacswiki "yasnippet-config.el")
-(require 'yasnippet)
-(yas-global-mode 1)
-(require 'yasnippet-config)
+(use-package yasnippet
+  :ensure t
+  :config
+    (progn
+      (yas-global-mode 1)
+      (require 'yasnippet-config)
+      (define-key yas-minor-mode-map (kbd "<tab>") nil)
+      (define-key yas-minor-mode-map (kbd "TAB") nil)
+      (define-key yas-minor-mode-map (kbd "\C-k") 'yas-expand)
 
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "\C-k") 'yas-expand)
+      (define-key yas-keymap [(tab)]       nil)
+      (define-key yas-keymap (kbd "TAB")   nil)
+      (define-key yas-keymap [(shift tab)] nil)
+      (define-key yas-keymap [backtab]     nil)
+      (define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
+      (define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
+      )
+  )
 
-(define-key yas-keymap [(tab)]       nil)
-(define-key yas-keymap (kbd "TAB")   nil)
-(define-key yas-keymap [(shift tab)] nil)
-(define-key yas-keymap [backtab]     nil)
-(define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
-(define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; other minor modes ;;
@@ -262,11 +310,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; key-chord
 ;; (install-elisp-from-emacswiki "key-chord.el")
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.04)
-(key-chord-mode 1)
-;;key-chrod settings
-(key-chord-define-global "xf" 'helm-for-files)
+(use-package key-chord
+  :ensure t
+  :config
+  (progn
+    (setq key-chord-two-keys-delay 0.04)
+    (key-chord-mode 1)
+    ;;key-chrod settings
+    (key-chord-define-global "xf" 'helm-for-files)
+    )
+  )
 
 ;;;;;;;;;;;;;;;;;
 ;; abbrev mode ;;
@@ -278,18 +331,22 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; flymake and flycheck
 ;; (package-install 'flycheck)
 ;; (package-install 'flymake-cursor)
-(require 'flymake)
-(require 'flycheck)
-(require 'flymake-cursor)
-(add-hook 'flymake-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-n") 'flymake-goto-next-error)))
-(add-hook 'flymake-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-p") 'flymake-goto-prev-error)))
-(add-hook 'flycheck-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-n") 'flycheck-next-error)))
-(add-hook 'flycheck-mode-hook (lambda ()
-                          (local-set-key (kbd "C-c C-p") 'flycheck-previous-error)))
-
-(global-flycheck-mode)
+;; (require 'flymake)
+;; (add-hook 'flymake-mode-hook (lambda ()
+;;                           (local-set-key (kbd "C-c C-n") 'flymake-goto-next-error)))
+;; (add-hook 'flymake-mode-hook (lambda ()
+;;                           (local-set-key (kbd "C-c C-p") 'flymake-goto-prev-error)))
+;; (require 'flymake-cursor)
+(use-package flycheck
+  :ensure t
+  :config
+  (progn
+    (add-hook 'flycheck-mode-hook (lambda ()
+                              (local-set-key (kbd "C-c C-n") 'flycheck-next-error)))
+    (add-hook 'flycheck-mode-hook (lambda ()
+                              (local-set-key (kbd "C-c C-p") 'flycheck-previous-error)))
+    (global-flycheck-mode)
+    )
+)
 
 (provide 'setup-minor)

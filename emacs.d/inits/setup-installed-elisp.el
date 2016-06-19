@@ -3,17 +3,25 @@
 ;;;;;;;;;;;
 
 ;; (install-elisp "http://cvs.savannah.gnu.org/viewvc/*checkout*/bm/bm/bm.el")
-(setq-default bm-buffer-persistence nil)
-(setq bm-restore-repository-on-load t)
-(require 'bm)
-(add-hook 'find-file-hooks 'bm-buffer-restore)
-(add-hook 'kill-buffer-hook 'bm-buffer-save)
-(add-hook 'after-save-hook 'bm-buffer-save)
-(add-hook 'after-revert-hook 'bm-buffer-restore)
-(global-set-key (kbd "M-SPC") 'bm-toggle)
-(global-set-key (kbd "<f5>") 'bm-previous)
-;;(global-set-key (kbd "S-<f5>") 'bm-next)
-(global-set-key "\M-[25~" 'bm-next)
+(use-package bm
+  :ensure t
+  :init
+  (progn
+    (setq-default bm-buffer-persistence nil)
+    (setq bm-restore-repository-on-load t)
+    )
+  :config
+  (progn
+    (add-hook 'find-file-hooks 'bm-buffer-restore)
+    (add-hook 'kill-buffer-hook 'bm-buffer-save)
+    (add-hook 'after-save-hook 'bm-buffer-save)
+    (add-hook 'after-revert-hook 'bm-buffer-restore)
+    (global-set-key (kbd "M-SPC") 'bm-toggle)
+    (global-set-key (kbd "<f5>") 'bm-previous)
+    ;;(global-set-key (kbd "S-<f5>") 'bm-next)
+    (global-set-key "\M-[25~" 'bm-next)
+    )
+  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; use emacs in server mode ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -44,59 +52,81 @@
 ;; the following is (shift f7) on mac (at least for now)
 (define-key global-map "\M-[28~" 'point-redo)
 ;; skk
-(require 'skk)
-(global-set-key "\C-x\C-j" 'skk-mode)
-(global-set-key "\C-xj" 'skk-auto-fill-mode)
-(global-set-key "\C-xt" 'skk-tutorial)
+(use-package ddskk
+  :ensure t
+  :config
+  (progn
+    (global-set-key "\C-x\C-j" 'skk-mode)
+    (global-set-key "\C-xj" 'skk-auto-fill-mode)
+    (global-set-key "\C-xt" 'skk-tutorial)
 
-(setq skk-server-portnum 1178)
-(setq skk-server-host "localhost")
-;;; dired-x occupies C-x C-j and the following takes the key back
-(add-hook 'dired-load-hook
-          (lambda ()
-            (load "dired-x")
-            (global-set-key "\C-x\C-j" 'skk-mode)
-            ))
+    (setq skk-server-portnum 1178)
+    (setq skk-server-host "localhost")
+    ;;; dired-x occupies C-x C-j and the following takes the key back
+    (add-hook 'dired-load-hook
+              (lambda ()
+                (load "dired-x")
+                (global-set-key "\C-x\C-j" 'skk-mode)
+                ))
+    )
+  )
+
 ;; enable edit server for chrome extension
-(require 'edit-server)
-(edit-server-start)
+(use-package edit-server
+  :ensure t
+  :config (edit-server-start)
+  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; goto-chg.el (move to recently edited position) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (install-elisp-from-emacswiki "goto-chg.el")
-(require 'goto-chg)
-(define-key global-map (kbd "<f8>") 'goto-last-change)
-;;(define-key global-map (kbd "S-<f8>") 'goto-last-change-reverse)
-(global-set-key "\M-[29~" 'goto-last-change-reverse)
+(use-package goto-chg
+  :ensure t
+  :config
+  (progn
+    (define-key global-map (kbd "<f8>") 'goto-last-change)
+    ;;(define-key global-map (kbd "S-<f8>") 'goto-last-change-reverse)
+    (global-set-key "\M-[29~" 'goto-last-change-reverse)
+    )
+  )
 ;;;;;;;;;;;;
 ;; migemo ;;
 ;;;;;;;;;;;;
 
 ;; (package-install 'migemo)
 ;;; you must install cmigemo independently of this elisp.
-(require 'migemo)
-(setq migemo-command "cmigemo")
-(setq migemo-options '("-q" "--emacs" "-i" "\a"))
-(setq migemo-dictionary "/usr/local/Cellar/cmigemo/20110227/share/migemo/utf-8/migemo-dict")
-(setq migemo-coding-system 'utf-8-unix)
-(setq migemo-user-dictionary nil)
-(setq migemo-regex-dictionary nil)
-(migemo-init)
+(use-package migemo
+  :ensure t
+  :config
+  (progn
+    (setq migemo-command "cmigemo")
+    (setq migemo-options '("-q" "--emacs" "-i" "\a"))
+    (setq migemo-dictionary "/usr/local/Cellar/cmigemo/20110227/share/migemo/utf-8/migemo-dict")
+    (setq migemo-coding-system 'utf-8-unix)
+    (setq migemo-user-dictionary nil)
+    (setq migemo-regex-dictionary nil)
+    (migemo-init)
+    )
+  )
 
 ;; python and venv
 ;; (package-install 'pyvenv)
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+(use-package pyvenv
+  :ensure t
+  :config
+    (setq
+    python-shell-interpreter "ipython"
+    python-shell-interpreter-args ""
+    python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+    python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+    python-shell-completion-setup-code
+      "from IPython.core.completerlib import module_completion"
+    python-shell-completion-module-string-code
+      "';'.join(module_completion('''%s'''))\n"
+    python-shell-completion-string-code
+      "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+    )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; woman (yet another man command) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

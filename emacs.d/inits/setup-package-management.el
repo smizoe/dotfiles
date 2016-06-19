@@ -1,3 +1,12 @@
+;; package manager
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
+(package-initialize)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elisp installer configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -6,35 +15,6 @@
   '(
     auto-install
     use-package
-    bm
-    company
-    company-irony
-    company-irony-c-headers
-    company-jedi
-    edit-server
-    ess
-    evil
-    evil-magit
-    evil-matchit
-    flycheck
-    flycheck-irony
-    flymake-cursor
-    go-mode
-    goto-chg
-    helm
-    irony
-    key-chord
-    jabber
-    js2-mode
-    magit
-    markdown-mode
-    migemo
-    org
-    org-plus-contrib
-    pyvenv
-    viewer
-    yasnippet
-    yatex
   )
   "a list of packages that should be installed using package-install")
 
@@ -44,8 +24,6 @@
 
 (defvar targets-install-elisp
   '(
-    https://raw.githubusercontent.com/timcharper/evil-surround/master/evil-surround.el
-    https://raw.githubusercontent.com/yoshiki/yaml-mode/master/yaml-mode.el
     )
   "a list of elisp that should be installed using install-elisp")
 
@@ -76,14 +54,6 @@
   )
   )
 
-;; package manager
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("melpa-stable" . "http://stable.melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
-(package-initialize)
 
 ;; auto-install.el
 ;; (package-install 'auto-install)
