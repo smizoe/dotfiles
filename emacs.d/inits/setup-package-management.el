@@ -22,11 +22,6 @@
   '(sequential-command)
   "a list of elisps that should be installed using auto-install-batch")
 
-(defvar targets-install-elisp
-  '(
-    )
-  "a list of elisp that should be installed using install-elisp")
-
 (defvar targets-install-elisp-from-emacswiki
   '(
     open-junk-file
@@ -75,17 +70,6 @@
       )
       (t (message "skipped installation of %s since it already exists" elisp-name))
     )))
-
-(dolist (name targets-install-elisp)
-  (let ((elisp-name (concat (file-name-nondirectory (symbol-name name)))))
-    (cond
-      ((not (file-exists-p (concat (file-name-as-directory user-auto-install-dir) elisp-name)))
-       (message "%s" (concat "start installing elisp: " elisp-name))
-       (install-elisp (symbol-name name))
-       (message "%s" (concat "finished installing elisp: " elisp-name))
-       )
-      (t (message "skipped installation of %s since it already exists" elisp-name))
-      )))
 
 ;; install elisps using install-elisp-from-emacswiki if they do not exist
 (dolist (name targets-install-elisp-from-emacswiki)
