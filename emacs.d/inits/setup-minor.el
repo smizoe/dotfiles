@@ -212,6 +212,15 @@
     )
   )
 
+;;;;;;;;;;;;;;;;;;;
+;; company-shell ;;
+;;;;;;;;;;;;;;;;;;;
+
+(use-package company-shell
+  :ensure t
+  :config (add-to-list 'company-backends '(company-shell :with company-dabbrev))
+  )
+
 ;;;;;;;;;;;;;;;;
 ;; irony mode ;;
 ;;;;;;;;;;;;;;;;
