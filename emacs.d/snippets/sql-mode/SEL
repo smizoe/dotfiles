@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: sql-select-query
+# expand-env: ((yas-indent-line 'fiexed))
+# --
+SELECT
+  $0
+FROM
+  $1
+WHERE
+  $2
