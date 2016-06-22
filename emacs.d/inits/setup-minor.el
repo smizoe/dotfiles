@@ -100,9 +100,16 @@
       "\\aa" 'ess-load-file
       "\\ff" 'ess-eval-function
       "\\pp" 'ess-eval-paragraph
+      "\\rh" 'ess-help
       )
     (evil-define-key 'visual ess-mode-map
       "\\ss" 'ess-eval-region
+      )
+    (evil-define-key 'normal ess-help-mode-map
+      "q" 'ess-help-quit
+      )
+    (evil-define-key 'normal inferior-ess-mode-map
+      ",b" 'helm-buffers-list
       )
 
     ;; set any custom variables for major modes
