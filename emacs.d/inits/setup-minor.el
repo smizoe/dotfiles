@@ -101,6 +101,7 @@
       "\\ff" 'ess-eval-function
       "\\pp" 'ess-eval-paragraph
       "\\rh" 'ess-help
+      "\\rf" 'R
       )
     (evil-define-key 'visual ess-mode-map
       "\\ss" 'ess-eval-region
