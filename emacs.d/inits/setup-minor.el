@@ -94,6 +94,14 @@
       "\\" (simulate-key-press YaTeX-prefix)
       )
 
+    ;; yahtml
+    (evil-define-key 'normal yahtml-mode-map
+      "\\" (simulate-key-press yahtml-prefix)
+      )
+    (evil-define-key 'visual yahtml-mode-map
+      "\\" (simulate-key-press yahtml-prefix)
+      )
+
     ;;; ess with evil
     (evil-define-key 'normal ess-mode-map
       "\\l" 'ess-eval-line
