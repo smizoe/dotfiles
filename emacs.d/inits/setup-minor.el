@@ -367,4 +367,14 @@
   :config (global-flycheck-mode)
 )
 
+;;;;;;;;;;;;
+;; ensime ;;
+;;;;;;;;;;;;
+
+(use-package ensime
+  :ensure t
+  :commands ensime ensime-mode
+  :init (add-hook 'scala-mode-hook 'ensime-mode)
+  )
+
 (provide 'setup-minor)
