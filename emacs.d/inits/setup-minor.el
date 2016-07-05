@@ -373,8 +373,7 @@
 
 (use-package ensime
   :ensure t
-  :commands ensime ensime-mode
-  :init (add-hook 'scala-mode-hook 'ensime-mode)
+  :pin melpa-stable
   )
 
 (provide 'setup-minor)
