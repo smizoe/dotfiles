@@ -33,7 +33,7 @@
 
 (defconst user-auto-install-dir
           (concat (file-name-as-directory user-init-dir) "auto-install"))
-(message "user-aut-install-dir: %s" user-auto-install-dir)
+(message "user-auto-install-dir: %s" user-auto-install-dir)
 
 (when (not (every 'package-installed-p targets-package-install))
   (message "%s" "refreshing package database...")
