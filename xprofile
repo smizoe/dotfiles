@@ -10,3 +10,4 @@ ibus-daemon -drx
 #export XMODIFIERS=@im=uim
 #uim-xim &
 #uim-toolbar-gtk3-systray &
+xmodmap ~/.Xmodmap

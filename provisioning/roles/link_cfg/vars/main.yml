@@ -13,3 +13,4 @@ link_cfg__dotfiles:
   - src: aws
   - src: sshrc.d
   - src: sshrc
+  - src: Xmodmap
