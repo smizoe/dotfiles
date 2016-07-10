@@ -156,8 +156,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.art$" . artist-mode))
 (define-key artist-mode-map [return] nil)
-(eval-after-load 'evil
-  '(progn
+(with-eval-after-load 'evil
+  (progn
     (evil-define-key 'motion artist-mode-map
       "h" 'artist-backward-char
       "j" 'artist-next-line
@@ -274,15 +274,15 @@
 (use-package company-irony-c-headers
   :ensure t
   :init
-    (eval-after-load 'company
-        '(add-to-list 'company-backends '(company-irony-c-headers company-irony :with company-dabbrev)))
+    (with-eval-after-load 'company
+        (add-to-list 'company-backends '(company-irony-c-headers company-irony :with company-dabbrev)))
   )
 
 (use-package flycheck-irony
   :ensure t
   :init
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+    (with-eval-after-load 'flycheck
+      (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
   )
 
 ;;;;;;;;;;;;;;;;;;;;
