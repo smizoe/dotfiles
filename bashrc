@@ -145,6 +145,7 @@ source /usr/local/opt/autoenv/activate.sh
 #####################
 
 alias vim="$(if [ "${systemName}" = "Darwin" ] ; then echo -n '/usr/local/bin/vim' ; else echo -n /usr/bin/vim; fi) --servername VIM"
+alias ed="em -nw"
 export EDITOR="em"
 export VISUAL="em -a emacs"
 
