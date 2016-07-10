@@ -365,6 +365,7 @@
 (use-package flycheck
   :ensure t
   :config (global-flycheck-mode)
+  :pin melpa-stable
 )
 
 ;;;;;;;;;;;;
