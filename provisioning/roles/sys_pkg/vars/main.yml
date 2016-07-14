@@ -34,6 +34,11 @@ sys_pkg__arch:
     - nodejs
     - npm
     - ruby # since there is no system ruby
+    ## required after installation of OS
+    - netctl
+    - wpa_supplicant
+    - dialog
+    - openssh
 
 sys_pkg__arch_with_yaourt:
     - chromium-widevine
