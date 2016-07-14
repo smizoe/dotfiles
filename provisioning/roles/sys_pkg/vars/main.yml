@@ -18,6 +18,7 @@ sys_pkg__common:
     - emacs
 
 sys_pkg__arch:
+    - chromium
     - ibus
     - ibus-skk
     - intellij-idea-community-edition
@@ -35,6 +36,7 @@ sys_pkg__arch:
     - ruby # since there is no system ruby
 
 sys_pkg__arch_with_yaourt:
+    - chromium-widevine
     - gcc-multilib
     - gradle
     - rust
