@@ -178,3 +178,8 @@ source ~/google-cloud-sdk/path.bash.inc
 
 # The next line enables shell command completion for gcloud.
 source ~/google-cloud-sdk/completion.bash.inc
+
+if [ "${systemName}" != "Darwin" ] ; then
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
+fi
