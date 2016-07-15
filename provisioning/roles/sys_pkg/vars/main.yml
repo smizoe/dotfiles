@@ -25,7 +25,6 @@ sys_pkg__arch:
     - make
       # TODO enable AUR and use yaourt to install the following
     - yaourt
-    - cmigemo-git
     - haskell-hunit
     - python2-pip
     - python2-virtualenv
@@ -58,12 +57,14 @@ sys_pkg__arch:
 
 sys_pkg__arch_with_yaourt:
     - chromium-widevine
+    - cmigemo-git
     - gcc-multilib
     - gradle
     - rust
     - sshrc
     - cargo
     - q
+    - ttf-ricty
 
 sys_pkg__mach:
     - node
