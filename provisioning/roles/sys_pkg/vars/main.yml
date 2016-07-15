@@ -34,6 +34,7 @@ sys_pkg__arch:
     - nodejs
     - npm
     - ruby # since there is no system ruby
+    - yakuake
     ## required after installation of OS
     - plasma
     - synaptics
