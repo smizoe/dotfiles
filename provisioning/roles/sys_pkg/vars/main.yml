@@ -38,10 +38,11 @@ sys_pkg__arch:
     - plasma
     - synaptics
     - nvidia
-    - nvidia-libgl
     - nvidia-utils
     - lib32-nvidia-libgl
     - lib32-nvidia-utils
+    - bumblebee
+    - xf86-video-intel
     - mesa
     - xorg-server
     - xorg-server-utils
