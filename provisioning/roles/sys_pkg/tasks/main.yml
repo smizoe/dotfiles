@@ -4,7 +4,6 @@
   pacman: name={{item}} state=present
   become: yes
   when: ansible_os_family == 'Archlinux'
-  ignore_errors: yes
   with_flattened:
     - '{{sys_pkg__common}}'
     - '{{sys_pkg__arch}}'
