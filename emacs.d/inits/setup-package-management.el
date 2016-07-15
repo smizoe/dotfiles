@@ -18,15 +18,13 @@
   )
   "a list of packages that should be installed using package-install")
 
-(defvar targets-auto-install-batch
-  '(sequential-command)
-  "a list of elisps that should be installed using auto-install-batch")
-
 (defvar targets-install-elisp-from-emacswiki
   '(
     open-junk-file
     point-undo
     recentf-ext
+    sequential-command
+    sequential-command-config
     yasnippet-config
   )
   "a list of elisps that should be installed using install-elisp-from-emacswiki")
@@ -59,17 +57,8 @@
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
-(dolist (name targets-auto-install-batch)
-  (let ((elisp-name (concat (symbol-name name) ".el")))
-    (cond
-      ((not (file-exists-p (concat (file-name-as-directory user-auto-install-dir) elisp-name)))
-        (message "%s" (concat "start installing elisp: " elisp-name))
-        (auto-install-batch (symbol-name name))
-        (message "%s" (concat "finished installing elisp: " elisp-name))
-      )
-      (t (message "skipped installation of %s since it already exists" elisp-name))
-    )))
+(custom-set-variables
+  '(auto-install-emacswiki-base-url "https://www.emacswiki.org/emacs/download/"))
 
 ;; install elisps using install-elisp-from-emacswiki if they do not exist
 (dolist (name targets-install-elisp-from-emacswiki)
