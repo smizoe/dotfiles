@@ -32,6 +32,7 @@ sys_pkg__arch:
     - python2-virtualenv
     - gvim
     - gcc-fortran
+    - mupdf
     - nodejs
     - npm
     - ruby # since there is no system ruby
