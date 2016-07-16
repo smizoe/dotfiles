@@ -33,6 +33,7 @@ sys_pkg__arch:
     - nodejs
     - npm
     - ruby # since there is no system ruby
+    - texlive-most
     - yakuake
     ## required after installation of OS
     - plasma
