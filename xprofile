@@ -1,7 +1,7 @@
 export XMODIFIERS="@im=ibus"
 export GTK_IM_MODULE="ibus"
 export QT_IM_MODULE="ibus"
-export GTK_IM_MODULE_FILE=/etc/gtk-2.0/gtk.immodules
+export GTK_IM_MODULE_FILE=/usr/lib/gtk-2.0/2.10.0/immodules.cache
 ibus-daemon -drx
 #OOO_FORCE_DESKTOP=kde4
 
