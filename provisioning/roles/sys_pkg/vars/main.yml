@@ -37,6 +37,7 @@ sys_pkg__arch:
     - ruby # since there is no system ruby
     - skk-jisyo
     - texlive-most
+    - texlive-langjapanese
     - yakuake
     ## required after installation of OS
     - plasma
