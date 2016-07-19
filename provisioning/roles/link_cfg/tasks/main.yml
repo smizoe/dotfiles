@@ -1,7 +1,10 @@
 ---
 
-- name: make directories for gitignore
-  file: path={{home}}/.config/git state=directory
+- name: make directories for config files
+  file: path={{home}}/.config/{{item}} state=directory
+  with_items:
+    - git
+    - pulse
 
 - name: make symlinks to config files
   file: src={{home}}/dotfiles/{{item.src}} dest={{home}}/{{item.dest | default("." + item.src)}} state=link

@@ -14,3 +14,5 @@ link_cfg__dotfiles:
   - src: sshrc.d
   - src: sshrc
   - src: Xmodmap
+  - src: pulse/default.pa
+    dest: ".config/pulse/default.pa"
