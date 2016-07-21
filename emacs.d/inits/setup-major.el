@@ -124,6 +124,20 @@
       )
   )
 
+;; web-mode
+
+(use-package web-mode
+  :init
+  (progn
+    (cl-loop for pattern in
+             '("\\.html?$" "\\.j2$" "\\.erb$" "\\.css$")
+             do (add-to-list 'auto-mode-alist `(,(symbol-value 'pattern) . web-mode))
+             )
+    )
+  :pin melpa-stable
+  :ensure t
+  )
+
 ;; yatex
 
 (use-package yatex
