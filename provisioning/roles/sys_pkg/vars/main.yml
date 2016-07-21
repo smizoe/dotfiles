@@ -56,6 +56,7 @@ sys_pkg__arch:
     - xorg-twm
     - xorg-xclock
     - xterm
+    - ttf-symbola
     - netctl
     - wpa_supplicant
     - dialog
@@ -64,6 +65,8 @@ sys_pkg__arch:
 sys_pkg__arch_with_yaourt:
     - chromium-widevine
     - cmigemo-git
+    - coursera-dl
+    - emojione-color-font
     - gcc-multilib
     - gradle
     - rust
@@ -71,6 +74,8 @@ sys_pkg__arch_with_yaourt:
     - cargo
     - q
     - ttf-ricty
+    - virtual-box
+    - virtualbox-host-modules-arch
 
 sys_pkg__mach:
     - node
