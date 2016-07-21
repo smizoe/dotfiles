@@ -117,6 +117,7 @@
 (setq auto-insert-alist
       (append '(
                 ("\\.html" . "html/default.html")
+                ("\\.tex" . "tex/default.tex")
                ) auto-insert-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;
