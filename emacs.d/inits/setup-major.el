@@ -133,10 +133,6 @@
     (setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
     (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
-    (setq auto-mode-alist (cons '("\\.html?$" . yahtml-mode) auto-mode-alist))
-    (autoload 'yahtml-mode "yahtml" "Yet Another HTML mode" t)
-    ;; (setq yahtml-www-browser "firefox")
-
     (add-hook 'skk-mode-hook
       (lambda ()
         (if (eq major-mode 'yatex-mode)
@@ -147,6 +143,7 @@
         ))
     )
   )
+
 
 ;; ess
 ;; (package-install 'ess)
