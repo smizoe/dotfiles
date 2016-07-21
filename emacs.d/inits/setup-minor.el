@@ -113,6 +113,10 @@
       "\\" (simulate-key-press yahtml-prefix)
       )
 
+    ;;; emmet
+    (evil-define-key 'insert emmet-mode-keymap
+      "\C-m" 'emmet-expand-line
+      )
     ;;; ess with evil
     (evil-define-key 'normal ess-mode-map
       "\\l" 'ess-eval-line
