@@ -1,4 +1,12 @@
 ;;;;;;;;;;;;;;
+;; css-mode ;;
+;;;;;;;;;;;;;;
+
+(custom-set-variables
+ '(css-indent-offset 2)
+ )
+
+;;;;;;;;;;;;;;
 ;; org-mode ;;
 ;;;;;;;;;;;;;;
 
