@@ -116,7 +116,7 @@
 
     ;;; emmet
     (evil-define-key 'insert emmet-mode-keymap
-      "\C-m" 'emmet-expand-line
+      "\C-e" 'emmet-expand-line
       )
     ;;; ess with evil
     (evil-define-key 'normal ess-mode-map
