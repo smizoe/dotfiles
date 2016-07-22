@@ -21,6 +21,23 @@ KEY must be given in `kbd' notation."
        (setq prefix-arg current-prefix-arg)
             (setq unread-command-events (listify-key-sequence (read-kbd-macro ,key)))))
 
+;; function that is required to run emacs when no network is available
+(defun package-required-setup ()
+  (progn
+         (require 'package)
+         (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                                  ("marmalade" . "http://marmalade-repo.org/packages/")
+                                  ("melpa-stable" . "https://stable.melpa.org/packages/")
+                                  ("melpa" . "https://melpa.org/packages/")
+                                  ("org" . "http://orgmode.org/elpa/")))
+         (package-initialize)
+         (add-to-list 'load-path "~/.emacs.d/auto-install/")
+         )
+  )
+
+;; and call it since this is necessary :)
+(package-required-setup)
+
 ;; we need to loading package.el first so that elpa directory is on load-path
 (defvar user-file-load-targets
   '(
@@ -42,18 +59,11 @@ KEY must be given in `kbd' notation."
     ()
     )
  ;; no network connection; setup load-path and proceed without installing packages
-  (t (progn
-       (message "skipping package install since there seems to be no network connection")
-       (setq user-file-load-targets (delete 'setup-package-management user-file-load-targets))
-       (require 'package)
-       (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                                ("marmalade" . "http://marmalade-repo.org/packages/")
-                                ("melpa-stable" . "https://stable.melpa.org/packages/")
-                                ("melpa" . "https://melpa.org/packages/")
-                                ("org" . "http://orgmode.org/elpa/")))
-       (package-initialize)
-       (add-to-list 'load-path "~/.emacs.d/auto-install/")
-       )
+  (t
+    (progn
+      (message "skipping package install since there seems to be no network connection")
+      (setq user-file-load-targets (delete 'setup-package-management user-file-load-targets))
+      )
     )
   )
 
