@@ -33,6 +33,30 @@ KEY must be given in `kbd' notation."
     )
   "target file names (basename without el) to be loaded by load-user-file")
 
+(cond
+ ((remove-if (lambda (i)
+               (or (string-match-p "\\(vboxnet\\|docker\\).*" i)
+                   (member 'loopback (nth 4 (network-interface-info i)))))
+                          (mapcar 'car (network-interface-list)))
+;; network connection exists. do nothing
+    ()
+    )
+ ;; no network connection; setup load-path and proceed without installing packages
+  (t (progn
+       (message "skipping package install since there seems to be no network connection")
+       (setq user-file-load-targets (delete 'setup-package-management user-file-load-targets))
+       (require 'package)
+       (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                                ("marmalade" . "http://marmalade-repo.org/packages/")
+                                ("melpa-stable" . "https://stable.melpa.org/packages/")
+                                ("melpa" . "https://melpa.org/packages/")
+                                ("org" . "http://orgmode.org/elpa/")))
+       (package-initialize)
+       (add-to-list 'load-path "~/.emacs.d/auto-install/")
+       )
+    )
+  )
+
 (let ((inits-dir (concat user-init-dir "inits")))
   (add-to-list 'load-path inits-dir)
   (dolist (name user-file-load-targets 'dummy)
