@@ -91,6 +91,8 @@ sys_pkg__mach:
     - gnu-time
     - gcc
     - gradle
+    ## to install igraph in R
+    - libxml2
     - llvm
     - rust
     - sshrc
@@ -99,6 +101,8 @@ sys_pkg__mach:
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
     llvm: with-clang
+sys_pkg__brew_state:
+    libxml2: linked
 sys_pkg__mach_with_cask:
      # fails when installed. TODO: avoid the error
      # - intellij-idea-ce
