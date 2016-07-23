@@ -34,23 +34,28 @@
 ;;;;;;;;;;;;;;;;;;;;
 ;; open-junk-file ;;
 ;;;;;;;;;;;;;;;;;;;;
+(use-package open-junk-file
+ :ensure t
+ :init (setq open-junk-file-format "~/junk/%Y-%m/%Y-%m-%d_%H-%M-%S_")
+ )
 
-;;(install-elisp-from-emacswiki "open-junk-file.el")
-(require 'open-junk-file)
-(setq open-junk-file-format "~/junk/%Y-%m/%Y-%m-%d_%H-%M-%S_")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; point-undo (move back and forth to the previous or next position that the cursor existed) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;; (install-elisp-from-emacswiki "point-undo.el")
-
-(require 'point-undo)
-(define-key global-map [f7] 'point-undo)
+(use-package point-undo
+  :ensure t
+  :init
+  (progn
+    (define-key global-map [f7] 'point-undo)
+    ;; the following is (shift f7) on mac (at least for now)
+    (define-key global-map "\M-[28~" 'point-redo)
+    )
+  )
 ;;(define-key global-map (kbd "S-<f7>") 'point-redo)
 
-;; the following is (shift f7) on mac (at least for now)
-(define-key global-map "\M-[28~" 'point-redo)
 ;; skk
 (use-package ddskk
   :ensure t
@@ -112,6 +117,30 @@
     python-shell-completion-string-code
       "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
     )
+
+
+;;;;;;;;;;;;;;;;
+;; recentf.el ;;
+;;;;;;;;;;;;;;;;
+
+(use-package recentf-ext
+  :ensure t
+  :init
+  (progn
+    (setq recentf-max-saved-items 500)
+    (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
+    )
+  )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; sequential command ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package sequential-command
+  :ensure t
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; woman (yet another man command) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

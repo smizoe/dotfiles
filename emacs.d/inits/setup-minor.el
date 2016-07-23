@@ -306,13 +306,11 @@
 ;;;;;;;;;;;;;;;;;;;;
 
 ;; (package-install 'yasnippet)
-;; (install-elisp-from-emacswiki "yasnippet-config.el")
 (use-package yasnippet
   :ensure t
   :config
     (progn
       (yas-global-mode 1)
-      (require 'yasnippet-config)
       (define-key yas-minor-mode-map (kbd "<tab>") nil)
       (define-key yas-minor-mode-map (kbd "TAB") nil)
       (define-key yas-minor-mode-map (kbd "\C-k") 'yas-expand)

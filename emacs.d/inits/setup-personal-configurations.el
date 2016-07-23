@@ -103,12 +103,6 @@
 (require 'wdired)
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
-;; sequential command
-;; (auto-install-batch "sequential-command")
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
-
-
 ;; autoinsert
 (require 'autoinsert)
 (add-hook 'find-file-hooks 'auto-insert)
@@ -136,15 +130,4 @@
 
 (define-key global-map
     "\C-cS" 'scheme-other-window)
-
-;;;;;;;;;;;;;;;;
-;; recentf.el ;;
-;;;;;;;;;;;;;;;;
-
-;; (install-elisp-from-emacswiki "recentf-ext.el")
-
-(setq recentf-max-saved-items 500)
-(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
-(require 'recentf-ext)
-
 (provide 'setup-personal-configurations)
