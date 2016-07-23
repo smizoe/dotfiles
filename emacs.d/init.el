@@ -25,6 +25,7 @@ KEY must be given in `kbd' notation."
 (defun package-required-setup ()
   (progn
          (require 'package)
+         ;; required by use-package; repository specified by :pin must be present
          (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                                   ("marmalade" . "http://marmalade-repo.org/packages/")
                                   ("melpa-stable" . "https://stable.melpa.org/packages/")
