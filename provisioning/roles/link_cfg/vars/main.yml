@@ -9,7 +9,6 @@ link_cfg__dotfiles:
   - src: bashrc
   - src: bash_profile
   - src: emacs.d
-  - src: aws
   - src: sshrc.d
   - src: sshrc
   - src: Xmodmap
