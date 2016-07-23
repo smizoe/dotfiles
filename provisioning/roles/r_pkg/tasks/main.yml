@@ -20,6 +20,10 @@
   template: src=Rprofile.j2 dest="{{home}}/dotfiles/Rprofile"
   become: no
 
+- name: link Rprofile
+  file: src="{{home}}/dotfiles/Rprofile" dest="{{home}}/.Rprofile" state=link
+  become: no
+
 - name: make user R library directory
   file: path="{{r__user_lib}}" state=directory mode=777
   become: yes

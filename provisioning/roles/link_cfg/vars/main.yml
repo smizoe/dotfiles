@@ -8,7 +8,6 @@ link_cfg__dotfiles:
   - src: xprofile
   - src: bashrc
   - src: bash_profile
-  - src: Rprofile
   - src: emacs.d
   - src: aws
   - src: sshrc.d
