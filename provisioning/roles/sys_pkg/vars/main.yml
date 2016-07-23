@@ -114,4 +114,5 @@ sys_pkg__mach_with_cask:
 sys_pkg__brew_tap:
     - sanemat/font # ricty
     - homebrew/versions
+    - homebrew/science
     - aereal/aereal_casks # aquaskk
