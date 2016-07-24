@@ -12,6 +12,7 @@
   ln    = log --name-only
   d     = diff
   dc    = diff --cached
+  u     = pull --ff-only
 [init]
   templatedir = ~/dotfiles/git_template
 [multiuser]
