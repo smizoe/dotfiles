@@ -10,9 +10,9 @@ set -eu
 if [ "${GIT_DIR}" = "$(pwd)" ] ; then
 ## bare repository
 ## see https://git-scm.com/docs/githooks/2.9.2
-    GIT_CFG_PATH="$(readlink -f .)/config"
+    GIT_CFG_PATH="$(pwd)/config"
 else
-    GIT_CFG_PATH="$(readlink -f .)/.git/config"
+    GIT_CFG_PATH="$(pwd)/.git/config"
 fi
 
 function check_if_merged(){
