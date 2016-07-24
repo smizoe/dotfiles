@@ -16,7 +16,7 @@
   gem: name=google-ime-skk state=present executable=/usr/bin/gem
 
 - name: get google-ime-skk gem path
-  command: gem which google-ime-skk
+  command: /usr/bin/gem which google-ime-skk
   changed_when: False
   register: google_ime_skk_path
 
