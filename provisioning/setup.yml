@@ -12,9 +12,9 @@
     - sys_pkg
     - link_cfg
     - r_pkg
-    - python_pkg
     - node_pkg
     - local_pkg
+    - python_pkg
     - supervisord
     - post_install/common
     - role: post_install/mach
