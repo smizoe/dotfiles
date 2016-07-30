@@ -171,7 +171,7 @@ alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+
 
 # grep for mvn/gradle project
 
-alias jgrep='grep --exclude-dir=.git --exclude-dir=build --exclude-dir=target --exclude-dir=.gradle --exclude-dir=.idea'
+alias jgrep='grep -I --exclude-dir=.git --exclude-dir=build --exclude-dir=target --exclude-dir=.gradle --exclude-dir=.idea'
 
 # The next line updates PATH for the Google Cloud SDK.
 source ~/google-cloud-sdk/path.bash.inc
