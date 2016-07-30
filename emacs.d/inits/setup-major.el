@@ -124,6 +124,15 @@
       )
   )
 
+;;;;;;;;;;;;;;;;;
+;; groovy-mode ;;
+;;;;;;;;;;;;;;;;;
+
+(use-package groovy-mode
+  :ensure t
+  :pin melpa-stable
+)
+
 ;; web-mode
 
 (use-package web-mode
