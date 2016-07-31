@@ -64,6 +64,7 @@ sys_pkg__arch:
     - openssh
 
 sys_pkg__arch_with_yaourt:
+    - 1pass-hg
     - chromium-widevine
     - cmigemo-git
     - coursera-dl
