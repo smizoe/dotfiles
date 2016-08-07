@@ -1,0 +1,13 @@
+chrome_ext__extensions:
+  # 1Password
+  - aomjjhallfgjeglblehebfpbcfeobpgk
+  # cookies.txt
+  - njabckikapfpffapmjgojcnbfjonfjfg
+  # JSONView
+  - chklaanhfefbnpoihckbnefhakgolnmc
+  # Vimium
+  - dbepggeogbaibhgnhhndojpepiihcmeb
+
+chrome_ext__install_json_dir:
+  Darwin: "{{home}}/Library/Application Support/Google/Chrome/External Extensions"
+  Archlinux: "/usr/share/google-chrome-extensions"

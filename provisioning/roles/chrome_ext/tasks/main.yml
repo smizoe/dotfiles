@@ -1,0 +1,13 @@
+---
+- name: make a directory to put json files
+  file: path="{{chrome_ext__install_json_dir[ansible_os_family]}}" state=directory
+
+- name: install chrome extensions
+  copy:
+    dest: "{{chrome_ext__install_json_dir[ansible_os_family]}}/{{item}}.json"
+    mode: 0644
+    content: |
+      {
+        "external_update_url": "https://clients2.google.com/service/update2/crx"
+      }
+  with_items: "{{chrome_ext__extensions}}"

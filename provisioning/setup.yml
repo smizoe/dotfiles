@@ -16,6 +16,7 @@
     - local_pkg
     - python_pkg
     - supervisord
+    - chrome_ext
     - post_install/common
     - role: post_install/mach
       become: yes
