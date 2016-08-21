@@ -309,12 +309,18 @@
 ;; (package-install 'yasnippet)
 (use-package yasnippet
   :ensure t
+  :init
+    (add-hook 'yas-minor-mode-hook
+      (lambda ()
+        (yas-activate-extra-mode 'fundamental-mode)))
   :config
     (progn
       (yas-global-mode 1)
+      (add-to-list 'yas-key-syntaxes "<_")
+      (add-to-list 'yas-key-syntaxes "<.")
       (define-key yas-minor-mode-map (kbd "<tab>") nil)
       (define-key yas-minor-mode-map (kbd "TAB") nil)
-      (define-key yas-minor-mode-map (kbd "\C-k") 'yas-expand)
+      (define-key yas-minor-mode-map (kbd "\C-k") 'yas/expand)
 
       (define-key yas-keymap [(tab)]       nil)
       (define-key yas-keymap (kbd "TAB")   nil)
