@@ -2,6 +2,25 @@
 ;; personal configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; functions used in global snippet
+(defun get-shebang-executable ()
+  (let ((env-cmd "#!/usr/bin/env"))
+    (cond
+      ((stringp (buffer-file-name))
+        (let ((file-ext (file-name-extension (buffer-file-name))))
+          (cond
+            ((string= file-ext "py") (concatenate 'string env-cmd " python"))
+            ((string= file-ext "rb") (concatenate 'string env-cmd " ruby"))
+            ((string= file-ext "sh") (concatenate 'string env-cmd " bash"))
+            (t env-cmd)
+            )
+          )
+        )
+      (t env-cmd)
+      )
+    )
+  )
+
 ;; delete trailing before saving
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
