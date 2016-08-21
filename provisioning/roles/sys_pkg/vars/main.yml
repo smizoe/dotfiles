@@ -22,6 +22,7 @@ sys_pkg__arch:
     - aspell-en
     - chromium
     - docker
+    - dropbox
     - ibus
     - ibus-skk
     - intellij-idea-community-edition
