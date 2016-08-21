@@ -8,6 +8,8 @@
          user-init-directory)
         (t "~/.emacs.d/")))
 
+(setq tramp-ssh-controlmaster-options
+            "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
 (defun load-user-file (file)
   (interactive "f")
