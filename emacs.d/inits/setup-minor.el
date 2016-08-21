@@ -320,6 +320,7 @@
       (add-to-list 'yas-key-syntaxes "<.")
       (define-key yas-minor-mode-map (kbd "<tab>") nil)
       (define-key yas-minor-mode-map (kbd "TAB") nil)
+      ;; yas-expand doesn't expand '#!' snippet somehow. use yas/expand
       (define-key yas-minor-mode-map (kbd "\C-k") 'yas/expand)
 
       (define-key yas-keymap [(tab)]       nil)
