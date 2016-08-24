@@ -20,6 +20,9 @@ sys_pkg__common:
 sys_pkg__arch:
     - aspell
     - aspell-en
+    - avr-binutils
+    - avr-gcc
+    - avr-libc
     - chromium
     - docker
     - dropbox
