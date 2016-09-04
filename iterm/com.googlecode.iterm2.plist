@@ -132,7 +132,7 @@
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iterm</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 448}</string>
+	<string>{712, 459}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -158,10 +158,19 @@
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>-1011 261 606 456 -1280 122 1280 777 </string>
+	<string>269 418 606 456 0 0 1440 877 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>-1015 543 620 392 -1440 180 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 325 570 452 0 0 1280 777 </string>
+	<string>0 0 1920 1080 0 0 1920 1057 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>870 100 570 452 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1353,16 +1362,12 @@
 			<string>/Users/smizoe</string>
 		</dict>
 	</array>
-	<key>NoSyncConfirmBeta</key>
-	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>020E92D2-DD20-4D16-B626-6B172D7E9F3B</string>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
-	<true/>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
-	<integer>0</integer>
+	<string>85804578-0200-4371-9EFD-DC05AC3C84EF</string>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>487209457.23678398</real>
+	<real>490933001.52521598</real>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PointerActions</key>
@@ -1402,17 +1407,27 @@
 	<string>/Users/smizoe/dotfiles/iterm</string>
 	<key>Print In Black And White</key>
 	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final.xml?shard=74</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=28</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
+	<key>SULastCheckTime</key>
+	<date>2016-08-30T15:40:12Z</date>
+	<key>SUSendProfileInfo</key>
+	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.36507411858974359</real>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findIgnoreCase_iTerm</key>
+	<true/>
+	<key>findRegex_iTerm</key>
+	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.1</string>
+	<string>3.0.7</string>
 </dict>
 </plist>
