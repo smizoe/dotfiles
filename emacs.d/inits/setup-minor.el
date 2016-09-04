@@ -60,6 +60,11 @@
     (define-key evil-normal-state-map "]b" 'previous-buffer)
     (define-key evil-normal-state-map ",mx" 'helm-M-x)
 
+    ;; bm.el
+    (define-key evil-normal-state-map ",mm" 'bm-toggle)
+    (define-key evil-normal-state-map ",mn" 'bm-next)
+    (define-key evil-normal-state-map ",mp" 'bm-previous)
+
     ;; commands that use 'leader' key (= comma)
     (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
     ;; edit vimrc = evil related config
