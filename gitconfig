@@ -7,12 +7,14 @@
   graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
   co    = checkout
   cam   = commit --amend
+  cm    = commit -m
   ap    = add -p
   lp    = log -p
   ln    = log --name-only
   d     = diff
   dc    = diff --cached
   u     = pull --ff-only
+  s     = status
 [init]
   templatedir = ~/dotfiles/git_template
 [multiuser]
