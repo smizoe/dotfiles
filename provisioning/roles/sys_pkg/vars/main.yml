@@ -16,6 +16,7 @@ sys_pkg__common:
     - binutils
     - gauche
     - emacs
+    - jq
 
 sys_pkg__arch:
     - aspell
