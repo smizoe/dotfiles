@@ -81,7 +81,7 @@ sys_pkg__arch_with_yaourt:
     - rbenv
     - q
     - ttf-ricty
-    - virtual-box
+    - virtualbox
     - virtualbox-host-modules-arch
 
 sys_pkg__mach:
