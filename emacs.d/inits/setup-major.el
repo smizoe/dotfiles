@@ -44,7 +44,12 @@
 
 (use-package js2-mode
   :ensure t
-  :config (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+  :config
+  (progn
+      (add-to-list 'auto-mode-alist '("\\.js$" . js2-jsx-mode))
+      (setq js2-strict-missing-semi-warning nil)
+      (setq js2-missing-semi-one-line-override t)
+    )
   )
 
 ;;;;;;;;;;;;;;;;
