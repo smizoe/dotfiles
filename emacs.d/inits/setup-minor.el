@@ -326,8 +326,16 @@
   :config
     (progn
       (yas-global-mode 1)
-      (add-to-list 'yas-key-syntaxes "<_")
-      (add-to-list 'yas-key-syntaxes "<.")
+      (cl-loop for hook-name in '(ruby-mode-hook sh-mode-hook python-mode-hook) do
+        (add-hook hook-name (lambda ()
+                              (progn
+                                (make-local-variable 'yas-key-sytaxes)
+                                (add-to-list 'yas-key-syntaxes "<_")
+                                (add-to-list 'yas-key-syntaxes "<.")
+                                )
+                              )
+          )
+        )
       (define-key yas-minor-mode-map (kbd "<tab>") nil)
       (define-key yas-minor-mode-map (kbd "TAB") nil)
       ;; yas-expand doesn't expand '#!' snippet somehow. use yas/expand
