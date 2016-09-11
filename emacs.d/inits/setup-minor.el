@@ -33,6 +33,11 @@
                  (emmet-mode)
                  (setq-local emmet-expand-jsx-className? t)
                  )))
+    (with-eval-after-load 'evil
+      (evil-define-key 'insert emmet-mode-keymap
+        "\C-e" 'emmet-expand-line
+        )
+      )
     )
  )
 
@@ -65,10 +70,6 @@
     (define-key evil-normal-state-map "]b" 'previous-buffer)
     (define-key evil-normal-state-map ",mx" 'helm-M-x)
 
-    ;; bm.el
-    (define-key evil-normal-state-map ",mm" 'bm-toggle)
-    (define-key evil-normal-state-map ",mn" 'bm-next)
-    (define-key evil-normal-state-map ",mp" 'bm-previous)
 
     ;; commands that use 'leader' key (= comma)
     (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
@@ -81,72 +82,8 @@
     (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
     (define-key evil-normal-state-map ",b" 'helm-buffers-list)
 
-    ;;;; magit
-    (define-key evil-normal-state-map ",git" 'magit-status)
-
-    ;;;;flycheck
-    (define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
-
-    ;;;;company
-    ;; enable company by CTRL-P and CTRL-N
-    (define-key evil-insert-state-map "\C-p" 'company-select-previous)
-    (define-key evil-insert-state-map "\C-n" 'company-select-next)
-
-    ;;;; org
-    (evil-define-key 'normal org-mode-map
-      (kbd "TAB") 'org-cycle
-      "\\cc" 'org-ctrl-c-ctrl-c
-      )
-
     ;;;; skk
     (define-key evil-insert-state-map "\C-j" 'skk-mode)
-
-    ;;;;yasnippet
-    ;; see yasnippet for the following 3
-    (define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
-    (define-key evil-normal-state-map ",oe" 'yas-oneshot-snippet) ;; expand
-    (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
-    (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
-
-
-    ;;;; yatex
-    (evil-define-key 'normal YaTeX-mode-map
-      "\\" (simulate-key-press YaTeX-prefix)
-      )
-    (evil-define-key 'visual YaTeX-mode-map
-      "\\" (simulate-key-press YaTeX-prefix)
-      )
-
-    ;; yahtml
-    (evil-define-key 'normal yahtml-mode-map
-      "\\" (simulate-key-press yahtml-prefix)
-      )
-    (evil-define-key 'visual yahtml-mode-map
-      "\\" (simulate-key-press yahtml-prefix)
-      )
-
-    ;;; emmet
-    (evil-define-key 'insert emmet-mode-keymap
-      "\C-e" 'emmet-expand-line
-      )
-    ;;; ess with evil
-    (evil-define-key 'normal ess-mode-map
-      "\\l" 'ess-eval-line
-      "\\aa" 'ess-load-file
-      "\\ff" 'ess-eval-function
-      "\\pp" 'ess-eval-paragraph
-      "\\rh" 'ess-help
-      "\\rf" 'R
-      )
-    (evil-define-key 'visual ess-mode-map
-      "\\ss" 'ess-eval-region
-      )
-    (evil-define-key 'normal ess-help-mode-map
-      "q" 'ess-help-quit
-      )
-    (evil-define-key 'normal inferior-ess-mode-map
-      ",b" 'helm-buffers-list
-      )
 
     ;; set any custom variables for major modes
     (custom-set-variables
@@ -236,6 +173,12 @@
     '(company-dabbrev-downcase nil)
     '(company-dabbrev-ignore-case nil)
     )
+    (with-eval-after-load 'evil
+      (progn
+        (define-key evil-insert-state-map "\C-p" 'company-select-previous)
+        (define-key evil-insert-state-map "\C-n" 'company-select-next)
+        )
+      )
     )
   :pin melpa-stable
   )
@@ -347,6 +290,14 @@
       (define-key yas-keymap [backtab]     nil)
       (define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
       (define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
+      (with-eval-after-load 'evil
+        (progn
+          (define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
+          (define-key evil-normal-state-map ",oe" 'yas-oneshot-snippet) ;; expand
+          (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
+          (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
+          )
+        )
       )
   )
 
@@ -404,9 +355,16 @@
 
 (use-package flycheck
   :ensure t
-  :config (global-flycheck-mode)
+  :config
+  (progn
+    (global-flycheck-mode)
+
+    (with-eval-after-load 'evil
+      (define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
+      )
+    )
   :pin melpa-stable
-)
+  )
 
 ;;;;;;;;;;;;
 ;; ensime ;;

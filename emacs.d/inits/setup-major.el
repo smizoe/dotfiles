@@ -34,6 +34,12 @@
             (sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(x)" "CANCEL(c)")
             (sequence "APPT(a)" "|" "DONE(x)" "CANCEL(c)")
             ))
+    (with-eval-after-load 'evil
+      (evil-define-key 'normal org-mode-map
+        (kbd "TAB") 'org-cycle
+        "\\cc" 'org-ctrl-c-ctrl-c
+        )
+      )
     )
   )
 
@@ -58,6 +64,10 @@
 
 (use-package magit
   :ensure t
+  :config
+  (with-eval-after-load 'evil
+    (define-key evil-normal-state-map ",git" 'magit-status)
+    )
   )
 
 ;;;;;;;;;;;;;;;;;;;
@@ -169,6 +179,25 @@
         (define-key skk-j-mode-map "$" 'YaTeX-insert-dollar)
         ))
         ))
+    (with-eval-after-load 'evil
+      (progn
+        ;;;; yatex
+        (evil-define-key 'normal YaTeX-mode-map
+          "\\" (simulate-key-press YaTeX-prefix)
+          )
+        (evil-define-key 'visual YaTeX-mode-map
+          "\\" (simulate-key-press YaTeX-prefix)
+          )
+
+        ;; yahtml
+        (evil-define-key 'normal yahtml-mode-map
+          "\\" (simulate-key-press yahtml-prefix)
+          )
+        (evil-define-key 'visual yahtml-mode-map
+          "\\" (simulate-key-press yahtml-prefix)
+          )
+        )
+      )
     )
   )
 
@@ -192,6 +221,28 @@
                     )
                 )
         )
+    (with-eval-after-load 'evil
+      (progn
+        ;;; ess with evil
+        (evil-define-key 'normal ess-mode-map
+          "\\l" 'ess-eval-line
+          "\\aa" 'ess-load-file
+          "\\ff" 'ess-eval-function
+          "\\pp" 'ess-eval-paragraph
+          "\\rh" 'ess-help
+          "\\rf" 'R
+          )
+        (evil-define-key 'visual ess-mode-map
+          "\\ss" 'ess-eval-region
+          )
+        (evil-define-key 'normal ess-help-mode-map
+          "q" 'ess-help-quit
+          )
+        (evil-define-key 'normal inferior-ess-mode-map
+          ",b" 'helm-buffers-list
+          )
+        )
+      )
     )
   )
 

@@ -16,6 +16,13 @@
     (add-hook 'kill-buffer-hook 'bm-buffer-save)
     (add-hook 'after-save-hook 'bm-buffer-save)
     (add-hook 'after-revert-hook 'bm-buffer-restore)
+    (with-eval-after-load 'evil
+      (progn
+        (define-key evil-normal-state-map ",mm" 'bm-toggle)
+        (define-key evil-normal-state-map ",mn" 'bm-next)
+        (define-key evil-normal-state-map ",mp" 'bm-previous)
+        )
+      )
     )
   )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
