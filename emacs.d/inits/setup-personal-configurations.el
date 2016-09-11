@@ -149,4 +149,63 @@
 
 (define-key global-map
     "\C-cS" 'scheme-other-window)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; toggle major mode ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+(defgroup toggle-major-mode nil
+  "group for toggle-major-mode functionality"
+  :group 'local
+  )
+
+(defcustom toggle-major-mode-alist nil
+  "Alist of file name patterns to a list of modes; we toggle major modes based on this association in toggle-major-mode"
+  :type 'alist
+  :group 'toggle-major-mode
+  )
+
+(defun buffer-mode (&optional buffer-or-string)
+  "Returns the major mode associated with a buffer."
+  (progn
+    (if (not buffer-or-string)
+        (setq buffer-or-string (current-buffer))
+      )
+    (with-current-buffer buffer-or-string
+          major-mode))
+  )
+
+(defun toggle-major-mode ()
+  (interactive)
+  (let* ((name buffer-file-name)
+         (current-mode (buffer-mode))
+         (mode-list (assoc-default name toggle-major-mode-alist 'string-match-p))
+         mode index
+         )
+    (if mode-list
+        (progn
+          (setq index (cl-position current-mode mode-list))
+          (setq mode (nth (mod (+ index 1) (cl-list-length mode-list)) mode-list))
+          (funcall mode)
+          )
+      (message "No entry matched for file name %s" name)
+      )
+    )
+  )
+
+(custom-set-variables
+ '(toggle-major-mode-alist
+   '(
+     ("\\.js$" . (web-mode js2-jsx-mode))
+     )
+   )
+ )
+
+(with-eval-after-load 'evil
+  (progn
+    (define-key evil-normal-state-map ",tm" 'toggle-major-mode)
+    )
+  )
+
 (provide 'setup-personal-configurations)
