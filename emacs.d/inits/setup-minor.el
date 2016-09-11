@@ -73,8 +73,8 @@
     ;; commands that use 'leader' key (= comma)
     (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
     ;; edit vimrc = evil related config
-    (define-key evil-normal-state-map ",ev" (concat ":e ~/.emacs.d/inits/setup-major.el" (kbd "RET")))
-    (define-key evil-normal-state-map ",sv" (lambda () (interactive) (require 'setup-major)))
+    (define-key evil-normal-state-map ",ev" (concat ":e ~/.emacs.d/inits/setup-minor.el" (kbd "RET")))
+    (define-key evil-normal-state-map ",sv" (lambda () (interactive) (require 'setup-minor)))
 
     (define-key evil-normal-state-map ",N" 'linum-mode)
     (define-key evil-normal-state-map ",P" 'electric-indent-mode)
