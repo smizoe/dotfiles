@@ -24,8 +24,8 @@
 ;;(require 'ox-md)
 ;;(require 'ox-odt)
 ;;(add-to-list 'org-export-backends 'md)
-(use-package org-plus-contrib
-  :ensure t
+(use-package org
+  :ensure org-plus-contrib
   :config
   (progn
     (setq org-use-fast-todo-selection t)
