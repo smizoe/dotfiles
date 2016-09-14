@@ -53,6 +53,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 alias ls="$(if [ "${systemName}" = "Darwin" ] ; then echo -n 'ls -G' ; else echo -n 'ls --color=auto'; fi)"
 alias g='git'
+alias npm-exec='PATH=$(npm bin):$PATH'
 
 function __mk_r_project () {
     if [ $# -eq 0 ]; then
