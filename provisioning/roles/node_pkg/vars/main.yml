@@ -2,3 +2,4 @@
 npm__packages:
   - browser-sync
   - hexo-cli
+  - jsonlint
