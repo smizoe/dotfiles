@@ -44,6 +44,27 @@
   )
 
 
+;;;;;;;;;;;;;;;
+;; json mode ;;
+;;;;;;;;;;;;;;;
+
+(use-package json-mode
+  :ensure t
+  :config
+  (progn
+    (setq json-reformat:indent-width 2)
+    (with-eval-after-load 'evil
+      (evil-define-key 'normal json-mode-map
+        "\\rf" 'json-mode-beautify
+        "\\p" 'json-mode-show-path
+        )
+      (evil-define-key 'visual json-mode-map
+        "\\rf" 'json-mode-beautify
+        )
+      )
+    )
+  )
+
 ;;;;;;;;;;;;;;
 ;; js2 mode ;;
 ;;;;;;;;;;;;;;
