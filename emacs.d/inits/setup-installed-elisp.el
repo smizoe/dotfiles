@@ -85,6 +85,36 @@
     (global-set-key "\M-[29~" 'goto-last-change-reverse)
     )
   )
+
+;;;;;;;;;;;;;
+;; helm-ag ;;
+;;;;;;;;;;;;;
+
+(use-package helm-ag
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key
+      "sr" 'helm-do-ag-project-root
+      "sf" 'helm-do-ag-this-file
+      )
+    )
+  )
+
+;;;;;;;;;;;;;;;;
+;; helm-gtags ;;
+;;;;;;;;;;;;;;;;
+
+(use-package helm-gtags
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key
+      "g" (simulate-key-press helm-gtags-prefix-key)
+      )
+    )
+  )
+
 ;;;;;;;;;;;;
 ;; migemo ;;
 ;;;;;;;;;;;;
