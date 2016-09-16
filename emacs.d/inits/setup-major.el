@@ -88,12 +88,6 @@
 
 (use-package magit
   :ensure t
-  :config
-  (with-eval-after-load 'evil
-    (evil-leader/set-key
-     "git" 'magit-status
-     )
-    )
   )
 
 ;;;;;;;;;;;;;;;;;;;
