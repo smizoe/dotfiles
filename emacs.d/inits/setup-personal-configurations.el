@@ -204,7 +204,8 @@
 
 (with-eval-after-load 'evil
   (progn
-    (define-key evil-normal-state-map ",tm" 'toggle-major-mode)
+    (evil-leader/set-key
+     "tm" 'toggle-major-mode)
     )
   )
 

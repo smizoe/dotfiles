@@ -44,7 +44,7 @@
 
 ;; evil
 (use-package evil
-  :ensure t
+  :ensure  evil-leader
   :config  (progn
     (evil-mode 1)
     ;; esc quits
@@ -68,20 +68,6 @@
 
     (define-key evil-normal-state-map "[b" 'next-buffer)
     (define-key evil-normal-state-map "]b" 'previous-buffer)
-    (define-key evil-normal-state-map ",mx" 'helm-M-x)
-
-
-    ;; commands that use 'leader' key (= comma)
-    (define-key evil-visual-state-map ",r." (concat ":normal." (kbd "RET")))
-    ;; edit vimrc = evil related config
-    (define-key evil-normal-state-map ",ev" (concat ":e ~/.emacs.d/inits/setup-minor.el" (kbd "RET")))
-    (define-key evil-normal-state-map ",sv" (lambda () (interactive) (require 'setup-minor)))
-
-    (define-key evil-normal-state-map ",N" 'linum-mode)
-    (define-key evil-normal-state-map ",P" 'electric-indent-mode)
-    (define-key evil-normal-state-map ",nh" 'evil-ex-nohighlight)
-    (define-key evil-normal-state-map ",b" 'helm-buffers-list)
-
     ;;;; skk
     (define-key evil-insert-state-map "\C-j" 'skk-mode)
 
@@ -94,6 +80,25 @@
 
     ;; add ex commands
     (evil-ex-define-cmd "h[elp]" 'help)
+    )
+  )
+
+(use-package evil-leader
+  :ensure t
+  :config
+  (progn
+    (global-evil-leader-mode)
+    (evil-leader/set-leader ",")
+    (evil-leader/set-key
+    "mx" 'helm-M-x
+    "r." (concat ":normal." (kbd "RET"))
+    "ev" (concat ":e ~/.emacs.d/inits/setup-minor.el" (kbd "RET"))
+    "sv" (lambda () (interactive) (require 'setup-minor))
+    "N" 'linum-mode
+    "P" 'electric-indent-mode
+    "nh" 'evil-ex-nohighlight
+    "b" 'helm-buffers-list
+     )
     )
   )
 
@@ -292,8 +297,10 @@
       (define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
       (with-eval-after-load 'evil
         (progn
-          (define-key evil-visual-state-map ",os" 'yas-oneshot-snippet) ;; register
-          (define-key evil-normal-state-map ",oe" 'yas-oneshot-snippet) ;; expand
+          (evil-leader/set-key
+            "os" 'yas-oneshot-snippet ;; register
+            "oe" 'yas-oneshot-snippet ;; expand
+            )
           (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
           (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
           )
@@ -360,7 +367,9 @@
     (global-flycheck-mode)
 
     (with-eval-after-load 'evil
-      (define-key evil-normal-state-map ",c" (simulate-key-press "C-c !"))
+      (evil-leader/set-key
+       "c" (simulate-key-press "C-c !")
+       )
       )
     )
   :pin melpa-stable

@@ -90,7 +90,9 @@
   :ensure t
   :config
   (with-eval-after-load 'evil
-    (define-key evil-normal-state-map ",git" 'magit-status)
+    (evil-leader/set-key
+     "git" 'magit-status
+     )
     )
   )
 
@@ -262,8 +264,8 @@
         (evil-define-key 'normal ess-help-mode-map
           "q" 'ess-help-quit
           )
-        (evil-define-key 'normal inferior-ess-mode-map
-          ",b" 'helm-buffers-list
+        (evil-leader/set-key-for-mode 'inferior-ess-mode-map
+          "b" 'helm-buffers-list
           )
         )
       )
