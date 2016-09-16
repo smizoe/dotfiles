@@ -107,13 +107,21 @@
 
 (use-package helm-gtags
   :ensure t
+  :init
+  (custom-set-variables
+    '(helm-gtags-suggested-key-mapping t)
+    )
   :config
   (progn
-    (cl-loop for tgt-mode in '(emacs-lisp-mode c++-mode-hook js2-mode-hook java-mode-hook) do
+    (cl-loop for tgt-mode in '(emacs-lisp-mode-hook c++-mode-hook js2-mode-hook java-mode-hook) do
       (add-hook tgt-mode 'helm-gtags-mode)
       )
-    (evil-leader/set-key
-      "g" (simulate-key-press helm-gtags-prefix-key)
+    (with-eval-after-load 'evil-leader
+      (progn
+        (evil-leader/set-key
+          "g" (simulate-key-press helm-gtags-prefix-key)
+          )
+        )
       )
     )
   )
