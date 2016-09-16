@@ -4,6 +4,7 @@ sys_pkg__common:
     - scala
     - sbt
     - ghc
+    - global
     - bash-completion
     - git
     - tig
@@ -17,6 +18,7 @@ sys_pkg__common:
     - gauche
     - emacs
     - jq
+    - the_silver_searcher
 
 sys_pkg__arch:
     - aspell
