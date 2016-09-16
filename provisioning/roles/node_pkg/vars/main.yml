@@ -1,5 +1,6 @@
 ---
 npm__packages:
   - browser-sync
+  - babel-cli
   - hexo-cli
   - jsonlint
