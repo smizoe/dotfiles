@@ -368,7 +368,7 @@
 
     (with-eval-after-load 'evil
       (evil-leader/set-key
-       "c" (simulate-key-press "C-c !")
+       "c" (simulate-key-press flycheck-keymap-prefix)
        )
       )
     )
