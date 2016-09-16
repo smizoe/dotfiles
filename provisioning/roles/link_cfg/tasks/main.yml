@@ -9,3 +9,6 @@
 - name: make symlinks to config files
   file: src={{home}}/dotfiles/{{item.src}} dest={{home}}/{{item.dest | default("." + item.src)}} state=link
   with_items: '{{link_cfg__dotfiles}}'
+
+- name: make .ctags file
+  assemble: src="{{home}}/dotfiles/ctags" dest="{{home}}/.ctags"
