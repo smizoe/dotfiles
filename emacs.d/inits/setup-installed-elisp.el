@@ -109,11 +109,58 @@
   :ensure t
   :config
   (progn
+    (cl-loop for tgt-mode in '(emacs-lisp-mode c++-mode-hook js2-mode-hook java-mode-hook)
+      (add-hook tgt-mode 'helm-gtags-mode)
+      )
     (evil-leader/set-key
       "g" (simulate-key-press helm-gtags-prefix-key)
       )
     )
   )
+
+(defun gtags-root-dir ()
+  "Returns GTAGS root directory or nil if doesn't exist."
+  (with-temp-buffer
+    (if (zerop (call-process "global" nil t nil "-pr"))
+        (buffer-substring (point-min) (1- (point-max)))
+      nil)))
+
+(defun gtags-update ()
+  "Make GTAGS incremental update"
+  (call-process "global" nil nil nil "-u"))
+
+(defun gtags-update-single(filename)
+  "Update Gtags database for changes in a single file"
+  (interactive)
+  (start-process "update-gtags" "update-gtags" "bash" "-c" (concat "cd " (gtags-root-dir) " ; gtags --single-update " filename )))
+
+(defun gtags-update-current-file()
+  (interactive)
+  (defvar filename)
+  (setq filename (replace-regexp-in-string (gtags-root-dir) "." (buffer-file-name (current-buffer))))
+  (gtags-update-single filename)
+  (message "Gtags updated for %s" filename))
+
+(defun gtags-update-hook()
+  "Update GTAGS file incrementally upon saving a file"
+  (when (gtags-root-dir)
+    (gtags-update-current-file)))
+
+(defun gtags-setup ()
+  (interactive)
+  (if (gtags-root-dir)
+      (message "gtags-root-dir exists: %s" (gtags-root-dir))
+    (let ((project-root (helm-ag--project-root)))
+      (if (y-or-n-p (format "Would you like to run gtags from %s?" project-root))
+          (let ((proc-name (format "setup-gtags: %s" project-root)))
+            (start-process proc-name proc-name "bash" "-c" (concat "cd " project-root "; gtags --gtagslabel ctags"))
+            )
+          )
+      )
+    )
+  )
+
+(add-hook 'after-save-hook #'gtags-update-hook)
 
 ;;;;;;;;;;;;
 ;; migemo ;;
