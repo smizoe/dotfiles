@@ -4,7 +4,6 @@ sys_pkg__common:
     - scala
     - sbt
     - ghc
-    - global
     - bash-completion
     - git
     - tig
@@ -29,6 +28,7 @@ sys_pkg__arch:
     - chromium
     - docker
     - dropbox
+    - global
     - ibus
     - ibus-skk
     - intellij-idea-community-edition
@@ -92,6 +92,7 @@ sys_pkg__mach:
     - vim
     - coreutils
     - cmake
+    - global
     - ricty
     - ruby-build
     - rbenv
@@ -111,6 +112,7 @@ sys_pkg__mach:
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
     llvm: with-clang
+    global: with-ctags
 sys_pkg__brew_state:
     libxml2: linked
 sys_pkg__mach_with_cask:
