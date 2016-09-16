@@ -109,7 +109,7 @@
   :ensure t
   :config
   (progn
-    (cl-loop for tgt-mode in '(emacs-lisp-mode c++-mode-hook js2-mode-hook java-mode-hook)
+    (cl-loop for tgt-mode in '(emacs-lisp-mode c++-mode-hook js2-mode-hook java-mode-hook) do
       (add-hook tgt-mode 'helm-gtags-mode)
       )
     (evil-leader/set-key
