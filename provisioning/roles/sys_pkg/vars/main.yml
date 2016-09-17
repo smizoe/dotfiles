@@ -28,7 +28,6 @@ sys_pkg__arch:
     - chromium
     - docker
     - dropbox
-    - global
     - ibus
     - ibus-skk
     - intellij-idea-community-edition
@@ -77,6 +76,7 @@ sys_pkg__arch_with_yaourt:
     - coursera-dl
     - emojione-color-font
     - gcc-multilib
+    - global
     - gradle
     - rust
     - sshrc
