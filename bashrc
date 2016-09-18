@@ -181,7 +181,9 @@ source ~/google-cloud-sdk/path.bash.inc
 # The next line enables shell command completion for gcloud.
 source ~/google-cloud-sdk/completion.bash.inc
 
+## enable several settings in arch linux
 if [ "${systemName}" != "Darwin" ] ; then
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
+  export GTAGSCONF=/usr/share/gtags/gtags.conf
 fi
