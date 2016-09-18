@@ -171,9 +171,9 @@ fi
 alias clean_containers='docker rm $(docker ps -a --filter="status=exited"| tail -n+2| awk "{print \$1}")'
 alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+2 |awk "{print \$3}")'
 
-# grep for mvn/gradle project
+# ag for java project
 
-alias jgrep='grep -I --exclude-dir=.git --exclude-dir=build --exclude-dir=target --exclude-dir=.gradle --exclude-dir=.idea'
+alias jg='ag --ignore=build --ignore=target'
 
 # The next line updates PATH for the Google Cloud SDK.
 source ~/google-cloud-sdk/path.bash.inc
