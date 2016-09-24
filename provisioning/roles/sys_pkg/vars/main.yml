@@ -75,6 +75,7 @@ sys_pkg__arch_with_yaourt:
     - cmigemo-git
     - coursera-dl
     - emojione-color-font
+    - flashplugin
     - gcc-multilib
     - global
     - gradle
