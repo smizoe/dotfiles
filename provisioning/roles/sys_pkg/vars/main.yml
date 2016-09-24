@@ -74,6 +74,7 @@ sys_pkg__arch_with_yaourt:
     - chromium-widevine
     - cmigemo-git
     - coursera-dl
+    - dfu-programmer
     - emojione-color-font
     - flashplugin
     - gcc-multilib
