@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ft
+# mode: snippet
+# --
+/*: $1*/$0
