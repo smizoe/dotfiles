@@ -71,10 +71,13 @@ sys_pkg__arch:
 
 sys_pkg__arch_with_yaourt:
     - 1pass-hg
+    - arm-none-eabi-gcc
+    - arm-none-eabi-newlib
     - chromium-widevine
     - cmigemo-git
     - coursera-dl
     - dfu-programmer
+    - dfu-util
     - emojione-color-font
     - flashplugin
     - gcc-multilib
