@@ -260,6 +260,13 @@
       (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
   )
 
+;;;;;;;;;;;;;;;;;;;
+;; flyspell mode ;;
+;;;;;;;;;;;;;;;;;;;
+(cl-loop for hook-name in '(org-mode-hook adoc-mode-hook yatex-mode-hook) do
+         (add-hook hook-name (lambda () (flyspell-mode 1)))
+         )
+
 ;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet mode ;;
 ;;;;;;;;;;;;;;;;;;;;
