@@ -87,6 +87,7 @@ sys_pkg__arch_with_yaourt:
     - sshrc
     - cargo
     - rbenv
+    - pepper-flash
     - q
     - ttf-ricty
     - virtualbox
