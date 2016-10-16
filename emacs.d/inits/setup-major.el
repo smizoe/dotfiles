@@ -289,6 +289,14 @@
       '(synonyms-cache-file "~/.emacs.d/synonyms/mthesaur.txt.cache")
       )
     )
+  :config
+  (progn
+    (with-eval-after-load 'evil
+      (evil-leader/set-key
+        "ss" 'synonyms
+        )
+      )
+    )
  )
 
 ;; yaml-mode
