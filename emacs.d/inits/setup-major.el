@@ -276,6 +276,21 @@
     )
   )
 
+;;;;;;;;;;;;;;;;;;;
+;; synonyms mode ;;
+;;;;;;;;;;;;;;;;;;;
+(use-package synonyms
+  :ensure t
+  :pin melpa
+  :init
+  (progn
+    (custom-set-variables
+      '(synonyms-file "~/.emacs.d/synonyms/mthesaur.txt")
+      '(synonyms-cache-file "~/.emacs.d/synonyms/mthesaur.txt.cache")
+      )
+    )
+ )
+
 ;; yaml-mode
 (use-package yaml-mode
   :ensure t
