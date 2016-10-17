@@ -1,6 +1,3 @@
-[user]
-  name = SET_ME_LOCALLY
-  email = SET_ME_LOCALLY
 [core]
   ignorecase   = false
 [alias]
@@ -9,6 +6,7 @@
   cam   = commit --amend
   cm    = commit -m
   ap    = add -p
+  l     = log
   lp    = log -p
   ln    = log --name-only
   d     = diff
