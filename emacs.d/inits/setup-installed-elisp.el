@@ -71,6 +71,22 @@
   :ensure t
   :config (edit-server-start)
   )
+
+
+;;;;;;;;;;;;;;;;;;
+;; evil-numbers ;;
+;;;;;;;;;;;;;;;;;;
+(use-package evil-numbers
+  :ensure t
+  :config
+  (with-eval-after-load 'evil
+    (progn
+      (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+      (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+      )
+    )
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; goto-chg.el (move to recently edited position) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
