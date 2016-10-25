@@ -92,6 +92,7 @@ sys_pkg__arch_with_yaourt:
     - ttf-ricty
     - virtualbox
     - virtualbox-host-modules-arch
+    - yarn
 
 sys_pkg__mach:
     - node
@@ -114,6 +115,7 @@ sys_pkg__mach:
     - rust
     - sshrc
     - q
+    - yarn
 
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
