@@ -41,8 +41,12 @@ function get_tmux_id {
     local tmux_sessions
     local sessions_str
     tmux_sessions=($(tmux ls|cut -d : -f1))
-    sessions_str="$(join_by $'\n' ${tmux_sessions[@]})"
-    local msg="$(cat <<EOF
+    if [ -z "${tmux_sessions}" ] ; then
+        # use the default id, since there is no session
+        session_id=0
+    else
+        sessions_str="$(join_by $'\n' ${tmux_sessions[@]})"
+        local msg="$(cat <<EOF
 The following tmux sessions are available:
 ${sessions_str}
 Please select one of them (default: ${tmux_sessions[0]})
@@ -51,9 +55,10 @@ or enter a non-existing name to create a new session with the name.
 name?:
 EOF
 )"
-    echo -e "${msg}" >&2
-    read session_id
-    test -z "${session_id}" && session_id="${tmux_sessions[0]}"
+        echo -e "${msg}" >&2
+        read session_id
+        test -z "${session_id}" && session_id="${tmux_sessions[0]}"
+    fi
     echo "${session_id}"
 }
 
@@ -63,9 +68,8 @@ if which tmux >/dev/null 2>&1; then
     if [ -z "$TMUX" ] ; then
         # check if we would like to run bash without tmux
         if ! ask_run_without_tmux ; then
-            ID="$(get_tmux_id)"
             # start a new session or attach to an existing session
-            exec tmux new-session -A -s "${ID}"
+            exec tmux new-session -A -s "$(get_tmux_id)"
         fi
     fi
 fi
