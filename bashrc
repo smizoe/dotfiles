@@ -18,6 +18,24 @@ function array_contains {
     return 1
 }
 
+## this succeeds if user runs bash without tmux
+function ask_run_without_tmux {
+    local y_or_n
+    echo "Do you want to run bash without tmux? (y or n)" >&2
+    read y_or_n
+    while [ "${y_or_n}" != "y" -a "${y_or_n}" != "n" ]
+    do
+        echo "Please answer with y or n." >&2
+        read y_or_n
+    done
+
+    if [ "${y_or_n}" = "y" ] ; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 function get_tmux_id {
     local session_id
     local tmux_sessions
@@ -41,10 +59,14 @@ EOF
 
 # TMUX
 if which tmux >/dev/null 2>&1; then
-    #if not inside a tmux session, start a new session or attach to an existing session
+    #if not inside a tmux session
     if [ -z "$TMUX" ] ; then
-      ID="$(get_tmux_id)"
-      exec tmux new-session -A -s "${ID}"
+        # check if we would like to run bash without tmux
+        if ! ask_run_without_tmux ; then
+            ID="$(get_tmux_id)"
+            # start a new session or attach to an existing session
+            exec tmux new-session -A -s "${ID}"
+        fi
     fi
 fi
 
