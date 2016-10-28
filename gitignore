@@ -42,6 +42,9 @@ Thumbs.db
 *~
 *.pyc
 emacs.d/elpa
+GPATH
+GTAGS
+GRTAGS
 
 # generated from vault
 ########
