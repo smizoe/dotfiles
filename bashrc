@@ -231,11 +231,6 @@ then
     export TERM=screen-256color
 fi
 
-#export GTK_IM_MODULE=uim
-#export QT_IM_MODULE=uim
-#uim-xim &
-#export XMODIFIERS=@im=uim
-
 alias clean_containers='docker rm $(docker ps -a --filter="status=exited"| tail -n+2| awk "{print \$1}")'
 alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+2 |awk "{print \$3}")'
 
