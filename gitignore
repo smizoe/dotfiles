@@ -41,6 +41,7 @@ Thumbs.db
 ######################
 *~
 *.pyc
+emacs.d/elpa
 
 # generated from vault
 ########
