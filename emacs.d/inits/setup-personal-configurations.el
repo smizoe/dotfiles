@@ -205,7 +205,9 @@
 (with-eval-after-load 'evil
   (progn
     (evil-leader/set-key
-     "tm" 'toggle-major-mode)
+      "tm" 'toggle-major-mode
+      "|" 'align-regexp
+      )
     )
   )
 
