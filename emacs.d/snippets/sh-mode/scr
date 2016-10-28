@@ -2,5 +2,5 @@
 # key: scr
 # name: script-path
 # --
-DIR="$(cd "$(dirname "\${BASH_SOURCE[0]}")" && pwd)"
+${1:DIR}="$(cd "$(dirname "$(realpath "\${BASH_SOURCE[0]}")")" && pwd)"
 $0
