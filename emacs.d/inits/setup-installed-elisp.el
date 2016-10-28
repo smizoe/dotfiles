@@ -186,6 +186,19 @@
 
 (add-hook 'after-save-hook #'gtags-update-hook)
 
+;;;;;;;;;;;;;;;;;;;;;
+;; helm-projectile ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (with-eval-after-load 'projectile
+    (helm-projectile-on)
+    )
+  :pin melpa-stable
+  )
+
 ;;;;;;;;;;;;
 ;; migemo ;;
 ;;;;;;;;;;;;

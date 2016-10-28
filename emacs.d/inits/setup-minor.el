@@ -391,4 +391,14 @@
   :pin melpa-stable
   )
 
+;;;;;;;;;;;;;;;;
+;; projectile ;;
+;;;;;;;;;;;;;;;;
+
+(use-package projectile
+  :ensure t
+  :config (projectile-mode)
+  :pin melpa-stable
+  )
+
 (provide 'setup-minor)
