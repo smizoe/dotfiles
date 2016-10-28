@@ -219,18 +219,6 @@ alias ed="em -nw"
 export EDITOR="em -nw"
 export VISUAL="em -a emacs"
 
-## setting for vimcom
-## set TERM variable appropriately so that vim chooses correct coloring scheme
-if [ "$TERM" = "xterm" ] || [ "$TERM" = "xterm-256color" ]
-then
-    export TERM=xterm-256color
-    export HAS_256_COLORS=yes
-fi
-if [ "$TERM" = "screen" ] && [ "$HAS_256_COLORS" = "yes" ]
-then
-    export TERM=screen-256color
-fi
-
 alias clean_containers='docker rm $(docker ps -a --filter="status=exited"| tail -n+2| awk "{print \$1}")'
 alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+2 |awk "{print \$3}")'
 
