@@ -10,9 +10,9 @@ function array_contains {
 }
 
 ## this succeeds if user runs bash without tmux
-function ask_run_without_tmux {
+function ask_run_with_tmux {
     local y_or_n
-    echo "Do you want to run bash without tmux? (y or n)" >&2
+    echo "Do you want to run bash with tmux? (y or n)" >&2
     read y_or_n
     while [ "${y_or_n}" != "y" -a "${y_or_n}" != "n" ]
     do
