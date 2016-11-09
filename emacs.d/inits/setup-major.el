@@ -16,6 +16,31 @@
  '(css-indent-offset 2)
  )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ein (emacs ipython notebook) ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package ein
+  :ensure t
+  :pin melpa-stable
+  :config
+  (progn
+    (with-eval-after-load 'evil
+      (evil-define-key 'normal ein:notebook-mode-map
+        "\\j" 'ein:worksheet-goto-next-input
+        "\\k" 'ein:worksheet-goto-prev-input
+        "\\w" 'ein:notebook-save-notebook-command
+        "\\b" 'ein:worksheet-insert-cell-below
+        "\\a" 'ein:worksheet-insert-cell-above
+        "\\d" 'ein:worksheet-delete-cell
+        (kbd "<f5>") 'ein:worksheet-execute-all-cell
+        (kbd "RET" ) 'ein:worksheet-execute-cell
+        (kbd "SPC") 'ein:worksheet-execute-cell-and-goto-next
+        )
+      )
+    )
+  )
+
 ;;;;;;;;;;;;;;
 ;; org-mode ;;
 ;;;;;;;;;;;;;;

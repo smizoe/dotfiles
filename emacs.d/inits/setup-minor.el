@@ -68,6 +68,11 @@
 
     (define-key evil-normal-state-map "[b" 'next-buffer)
     (define-key evil-normal-state-map "]b" 'previous-buffer)
+
+    ;;;; remove RET and SPC from motion state keymap to use them for the other purpose
+    (define-key evil-motion-state-map (kbd "RET") nil)
+    (define-key evil-motion-state-map (kbd "SPC") nil)
+
     ;;;; skk
     (define-key evil-insert-state-map "\C-j" 'skk-mode)
 
