@@ -17,6 +17,7 @@ sys_pkg__common:
     - gauche
     - emacs
     - jq
+    - ripgrep
     - the_silver_searcher
 
 sys_pkg__arch:

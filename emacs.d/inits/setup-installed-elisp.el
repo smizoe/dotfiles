@@ -108,6 +108,10 @@
 
 (use-package helm-ag
   :ensure t
+  :init
+  (custom-set-variables
+    '(helm-ag-base-command "rg --vimgrep --no-heading")
+    )
   :config
   (progn
     (evil-leader/set-key
