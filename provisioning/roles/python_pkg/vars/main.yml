@@ -1,3 +1,6 @@
 ---
 python_pkg__packages:
+  - ipython
   - odo
+  - pandas
+  - xlsx2csv
