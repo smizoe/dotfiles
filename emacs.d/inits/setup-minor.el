@@ -103,6 +103,7 @@
     "P" 'electric-indent-mode
     "nh" 'evil-ex-nohighlight
     "b" 'helm-buffers-list
+    "y" (concat ":w !pbcopy" (kbd "RET"))
      )
     )
   )
