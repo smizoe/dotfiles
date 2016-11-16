@@ -155,7 +155,7 @@
 
 (defun gtags-update ()
   "Make GTAGS incremental update"
-  (call-process "global" nil nil nil "-u"))
+  (call-process "global" nil nil nil "-u" "--gtagslabel" "ctags"))
 
 (defun gtags-update-single(filename)
   "Update Gtags database for changes in a single file"
