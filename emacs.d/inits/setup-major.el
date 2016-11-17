@@ -301,6 +301,19 @@
     )
   )
 
+;;;;;;;;;;;;;;;
+;; rust-mode ;;
+;;;;;;;;;;;;;;;
+
+(use-package rust-mode
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+   )
+  :ensure t
+  :pin melpa-stable
+  )
+
 ;;;;;;;;;;;;;;;;;;;
 ;; synonyms mode ;;
 ;;;;;;;;;;;;;;;;;;;
