@@ -181,7 +181,7 @@
     (let ((project-root (helm-ag--project-root)))
       (if (y-or-n-p (format "Would you like to run gtags from %s?" project-root))
           (let ((proc-name (format "setup-gtags: %s" project-root)))
-            (start-process proc-name proc-name "bash" "-c" (concat "cd " project-root "; gtags --gtagslabel ctags"))
+            (start-process proc-name proc-name "bash" "-c" (concat "cd " project-root "; gtags --gtagslabel pygments"))
             )
           )
       )

@@ -119,7 +119,7 @@ sys_pkg__mach:
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
     llvm: with-clang
-    global: with-ctags
+    global: with-ctags,with-pygments
 sys_pkg__brew_state:
     libxml2: linked
 sys_pkg__mach_with_cask:
