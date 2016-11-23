@@ -13,6 +13,7 @@
   dc    = diff --cached
   u     = pull --ff-only
   s     = status
+  wt    = worktree
 [init]
   templatedir = ~/dotfiles/git_template
 [multiuser]
