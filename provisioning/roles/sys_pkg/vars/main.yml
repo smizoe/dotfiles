@@ -38,6 +38,7 @@ sys_pkg__arch:
     - haskell-hunit
     - python2-pip
     - python2-virtualenv
+    - python-pygments
     - gvim
     - gcc-fortran
     - mupdf
@@ -82,6 +83,7 @@ sys_pkg__arch_with_yaourt:
     - gcc-multilib
     - global
     - gradle
+    - jdk
     - rust
     - sshrc
     - cargo
