@@ -136,13 +136,6 @@
     (cl-loop for tgt-mode in '(emacs-lisp-mode-hook c++-mode-hook js2-mode-hook java-mode-hook) do
       (add-hook tgt-mode 'helm-gtags-mode)
       )
-    (with-eval-after-load 'evil-leader
-      (progn
-        (evil-leader/set-key
-          "g" (simulate-key-press helm-gtags-prefix-key)
-          )
-        )
-      )
     )
   )
 

@@ -21,6 +21,74 @@
     )
   )
 
+;; jump functions for source code reading
+(defcustom mode-to-code-jump-function-name-alist
+  '(
+    (rust-mode
+      (def . racer-find-definition)
+      (pop . pop-tag-mark)
+      )
+    (ensime-mode
+      (def . ensime-edit-definition)
+      (ref . ensime-helm-search)
+      (pop . ensime-pop-find-definition-stack)
+      )
+    )
+  "
+a nested alist which:
+  - 1st layer: maps a major mode name to another alist
+  - 2nd layer: maps a type of code jump (jump to definition, reference, pop the stack)
+               to a function for that functionality
+  "
+  :type '(alist
+          :value-type (alist :value-type function))
+  :group 'local
+  )
+
+(defun code-jump-dwim (code-jump-type)
+  "Perform a code jump of type CODE-JUMP-TYPE."
+  (defvar default-jump-fn-name
+    '(
+      (def . helm-gtags-find-tag)
+      (ref . helm-gtags-find-rtag)
+      (pop . helm-gtags-pop-stack)
+      )
+    "default code jump functions."
+    )
+  (let* ((current-mode (buffer-mode))
+         (jump-fn-alist (cdr (assoc code-jump-type mode-to-code-jump-function-name-alist)))
+         (jump-fn-name (cdr (assoc code-jump-type jump-fn-alist)))
+        )
+    (if (not jump-fn-name)
+        (setq jump-fn-name (cdr (assoc code-jump-type default-jump-fn-name)))
+        )
+    (call-interactively jump-fn-name)
+    )
+  )
+
+(defun code-jump-to-def ()
+  (interactive)
+  (code-jump-dwim 'def)
+ )
+
+(defun code-jump-to-ref ()
+  (interactive)
+  (code-jump-dwim 'ref)
+ )
+
+(defun code-jump-pop ()
+  (interactive)
+  (code-jump-dwim 'pop)
+ )
+
+(with-eval-after-load 'evil-leader
+  (evil-leader/set-key
+    "gt" 'code-jump-to-def
+    "gr" 'code-jump-to-ref
+    "gp" 'code-jump-pop
+    )
+  )
+
 ;; delete trailing before saving
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
