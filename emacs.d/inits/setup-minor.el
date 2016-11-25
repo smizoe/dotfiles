@@ -9,6 +9,9 @@
   :ensure t
   :init (progn
     (require 'helm-config)
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "TAB") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z") 'helm-select-action)
     (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
     (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
     )
