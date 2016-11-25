@@ -97,8 +97,8 @@
     (evil-leader/set-key
     "mx" 'helm-M-x
     "r." (concat ":normal." (kbd "RET"))
-    "ev" (concat ":e ~/.emacs.d/inits/setup-minor.el" (kbd "RET"))
-    "sv" (lambda () (interactive) (require 'setup-minor))
+    "rf" 'helm-for-files
+    "ef" 'helm-find-files
     "N" 'linum-mode
     "P" 'electric-indent-mode
     "nh" 'evil-ex-nohighlight
@@ -348,19 +348,6 @@
 
 ;;; use multiple spaces instead of tabs
 (setq-default indent-tabs-mode nil)
-
-;; key-chord
-;; (install-elisp-from-emacswiki "key-chord.el")
-(use-package key-chord
-  :ensure t
-  :config
-  (progn
-    (setq key-chord-two-keys-delay 0.04)
-    (key-chord-mode 1)
-    ;;key-chrod settings
-    (key-chord-define-global "xf" 'helm-for-files)
-    )
-  )
 
 ;;;;;;;;;;;;;;;;;
 ;; abbrev mode ;;
