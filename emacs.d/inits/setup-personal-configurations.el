@@ -44,13 +44,13 @@
 ;; jump functions for source code reading
 (defcustom mode-to-code-jump-function-name-alist
   '(
-    (rust-mode
+    (racer-mode
       (def . racer-find-definition)
       (pop . pop-tag-mark)
       )
     (ensime-mode
       (def . ensime-edit-definition)
-      (ref . ensime-helm-search)
+      (ref . ensime-show-uses-of-symbol-at-point)
       (pop . ensime-pop-find-definition-stack)
       )
     )
@@ -75,8 +75,8 @@ a nested alist which:
       )
     "default code jump functions."
     )
-  (let* ((current-mode (buffer-mode))
-         (jump-fn-alist (cdr (assoc code-jump-type mode-to-code-jump-function-name-alist)))
+  (let* ((target-mode (find-if (lambda (mode) (assq mode mode-to-code-jump-function-name-alist)) (get-active-minor-modes)))
+         (jump-fn-alist (cdr (assoc target-mode mode-to-code-jump-function-name-alist)))
          (jump-fn-name (cdr (assoc code-jump-type jump-fn-alist)))
         )
     (if (not jump-fn-name)
