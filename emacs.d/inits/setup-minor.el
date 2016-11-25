@@ -9,11 +9,6 @@
   :ensure t
   :init (progn
     (require 'helm-config)
-    ;; (helm-mode 1)
-    (global-set-key (kbd "C-x b") 'helm-buffers-list)
-    (global-set-key (kbd "M-x") 'helm-M-x)
-    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-    (global-set-key (kbd "M-s") 'helm-occur)
     (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
     (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
     )
