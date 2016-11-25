@@ -2,6 +2,26 @@
 ;; personal configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun get-active-minor-modes (&optional buffer-or-string)
+  "Return a list of minor mode names active in BUFFER-OR-STRING"
+  (interactive)
+  (progn
+    (if (not buffer-or-string)
+        (setq buffer-or-string (current-buffer))
+      )
+    ;;; see doc string of 'describe-mode for the following conditions
+    (let ((mode-is-active-fn
+           (lambda (mode)
+             (let ((fmode (or (get mode :minor-mode-function) mode)))
+               (and (boundp mode) (symbol-value mode) (fboundp fmode))
+              )
+             )))
+      (with-current-buffer buffer-or-string
+        (remove-if-not mode-is-active-fn minor-mode-list))
+      )
+    )
+  )
+
 ;; functions used in global snippet
 (defun get-shebang-executable ()
   (let ((env-cmd "#!/usr/bin/env"))
