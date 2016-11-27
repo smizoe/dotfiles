@@ -134,7 +134,7 @@
 (defun gtags-update ()
   "Make GTAGS incremental update"
   (interactive)
-  (call-process "global" nil nil nil "-u" "--gtagslabel" "pygments"))
+  (start-process "global" nil nil nil "-u" "--gtagslabel" "pygments"))
 
 (defun gtags-update-single(filename)
   "Update Gtags database for changes in a single file"
