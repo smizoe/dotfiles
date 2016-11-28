@@ -208,7 +208,7 @@
     (add-hook 'python-mode-hook
               (lambda ()
                 (set (make-local-variable 'company-backends)
-                     '((company-jedi :with company-dabbrev))
+                     (cons '(company-jedi :with company-dabbrev) company-backends)
                   )
                 )
       )
@@ -221,7 +221,12 @@
 
 (use-package company-shell
   :ensure t
-  :config (add-to-list 'company-backends '(company-shell :with company-dabbrev))
+  :config
+  (add-hook 'shell-mode-hook
+            (lambda ()
+              (set (make-local-variable 'company-backends) (cons '(company-shell company-capf :with company-dabbrev) company-backends))
+              )
+    )
   )
 
 ;;;;;;;;;;;;;;;;
@@ -262,7 +267,14 @@
   :ensure t
   :init
     (with-eval-after-load 'company
-        (add-to-list 'company-backends '(company-irony-c-headers company-irony :with company-dabbrev)))
+      (cl-loop for hook-name in '(c-mode-hook c++-mode-hook objc-mode-hook) do
+        (add-hook hook-name
+                  (lambda ()
+                    (set (make-local-variable 'company-backends) (cons '(company-irony-c-headers company-irony :with company-dabbrev) company-backends))
+                    )
+                  )
+        )
+      )
   )
 
 (use-package flycheck-irony
