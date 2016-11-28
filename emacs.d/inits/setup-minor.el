@@ -200,10 +200,18 @@
   :ensure t
   :config
   (progn
-    (defun my-python-mode-hook ()
-      (add-to-list 'company-backends '(company-jedi :with company-dabbrev)))
-
-    (add-hook 'python-mode-hook 'my-python-mode-hook)
+    (custom-set-variables
+     '(python-environment-virtualenv
+       (list
+        (shell-command-to-string "{ which virtualenv 2>/dev/null || which virtualenv2 ; } | tr -d '\n'")
+        "--system-site-packages" "--quiet")))
+    (add-hook 'python-mode-hook
+              (lambda ()
+                (set (make-local-variable 'company-backends)
+                     '((company-jedi :with company-dabbrev))
+                  )
+                )
+      )
     )
   )
 
