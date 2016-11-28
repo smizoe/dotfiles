@@ -17,3 +17,6 @@
   templatedir = ~/dotfiles/git_template
 [multiuser]
   confdir = ~/dotfiles/git_user_configs
+[user]
+  name = 'Sho Mizoe'
+  email = 'sho.mizoe@gmail.com'
