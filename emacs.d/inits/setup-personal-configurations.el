@@ -47,11 +47,13 @@
     (racer-mode
       (def . racer-find-definition)
       (pop . pop-tag-mark)
+      (doc . racer-describe)
       )
     (ensime-mode
       (def . ensime-edit-definition)
       (ref . ensime-show-uses-of-symbol-at-point)
       (pop . ensime-pop-find-definition-stack)
+      (doc . ensime-inspector-browse-doc)
       )
     )
   "
@@ -67,11 +69,16 @@ a nested alist which:
 
 (defun code-jump-dwim (code-jump-type)
   "Perform a code jump of type CODE-JUMP-TYPE."
+  (defun code-jump-dwim/unimplemented ()
+    (interactive)
+    (message "doc jump is unimplemented for helm-gtags")
+    )
   (defvar default-jump-fn-name
     '(
       (def . helm-gtags-find-tag)
       (ref . helm-gtags-find-rtag)
       (pop . helm-gtags-pop-stack)
+      (doc . code-jump-dwim/unimplemented)
       )
     "default code jump functions."
     )
@@ -87,25 +94,35 @@ a nested alist which:
   )
 
 (defun code-jump-to-def ()
+  "Call CODE-JUMP-DWIM with symbol 'def."
   (interactive)
   (code-jump-dwim 'def)
  )
 
 (defun code-jump-to-ref ()
+  "Call CODE-JUMP-DWIM with symbol 'ref."
   (interactive)
   (code-jump-dwim 'ref)
  )
 
 (defun code-jump-pop ()
+  "Call CODE-JUMP-DWIM with symbol 'pop."
   (interactive)
   (code-jump-dwim 'pop)
  )
+
+(defun code-jump-doc ()
+  "Call CODE-JUMP-DWIM with symbol 'doc."
+  (interactive)
+  (code-jump-dwim 'doc)
+  )
 
 (with-eval-after-load 'evil-leader
   (evil-leader/set-key
     "gt" 'code-jump-to-def
     "gr" 'code-jump-to-ref
     "gp" 'code-jump-pop
+    "gd" 'code-jump-doc
     )
   )
 
