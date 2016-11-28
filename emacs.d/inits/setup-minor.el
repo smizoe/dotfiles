@@ -424,6 +424,11 @@
     (add-hook 'racer-mode-hook #'company-mode)
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook
+              (lambda ()
+                (set (make-local-variable 'company-backends) (cons '(company-capf company-dabbrev) company-backends))
+                )
+              )
    )
   :pin melpa-stable
   )
