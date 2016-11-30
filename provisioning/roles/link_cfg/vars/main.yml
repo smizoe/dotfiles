@@ -14,3 +14,4 @@ link_cfg__dotfiles:
   - src: Xmodmap
   - src: pulse/default.pa
     dest: ".config/pulse/default.pa"
+  - src: gradle
