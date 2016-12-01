@@ -135,6 +135,7 @@ sys_pkg__mach_with_cask:
     # avoid conflict by not installing anaconda
     #- anaconda
     - visual-studio-code
+    - pdftotext
 
 sys_pkg__brew_tap:
     - sanemat/font # ricty
