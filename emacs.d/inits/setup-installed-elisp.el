@@ -258,6 +258,12 @@
 ;; woman (yet another man command) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq woman-cache-filename (expand-file-name "~/.emacs.d/.wmncache.el")
+(setq woman-cache-filename (expand-file-name "~/.emacs.d/.wmncache.el"))
+(with-eval-after-load 'evil-leader
+  (evil-leader/set-key
+    "man" 'woman
+    )
+  )
+
 
 (provide 'setup-installed-elisp)
