@@ -258,6 +258,6 @@
 ;; woman (yet another man command) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq woman-manpath "~/.emacs.d/.wmncache.el")
+(setq woman-cache-filename (expand-file-name "~/.emacs.d/.wmncache.el")
 
 (provide 'setup-installed-elisp)
