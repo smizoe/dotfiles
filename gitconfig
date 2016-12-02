@@ -12,6 +12,7 @@
   d     = diff
   dc    = diff --cached
   u     = pull --ff-only
+  ras   = rebase --autostash
   s     = status
   wt    = worktree
 [init]
