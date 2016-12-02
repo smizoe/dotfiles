@@ -402,7 +402,7 @@
   :pin melpa-stable
   :config
   (progn
-    (cl-loop for hook-name in '(scala-mode-hook java-mode-hook) do
+    (cl-loop for hook-name in '(scala-mode-hook) do
              (add-hook hook-name
                        (lambda ()
                          (progn
