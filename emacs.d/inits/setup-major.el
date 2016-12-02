@@ -16,6 +16,48 @@
  '(css-indent-offset 2)
  )
 
+;;;;;;;;;;;;;;;;;;;;;
+;; dockerfile-mode ;;
+;;;;;;;;;;;;;;;;;;;;;
+(use-package dockerfile-mode
+  :ensure t
+  :config
+  (progn
+    (add-hook 'dockerfile-mode-hook
+              (lambda ()
+                (progn
+                  (add-to-list 'auto-mode-alist '("Dockerfile$" . dockerfile-mode))
+                  (define-abbrev-table 'dockerfile-mode-abbrev-table
+                    '(
+                      ("from" "FROM")
+                      ("maintainer" "MAINTAINER")
+                      ("run" "RUN")
+                      ("cmd" "CMD")
+                      ("label" "LABEL")
+                      ("expose" "EXPOSE")
+                      ("env" "ENV")
+                      ("add" "ADD")
+                      ("copy" "COPY")
+                      ("entrypoint" "ENTRYPOINT")
+                      ("volume" "VOLUME")
+                      ("user" "USER")
+                      ("workdir" "WORKDIR")
+                      ("arg" "ARG")
+                      ("onbuild" "ONBUILD")
+                      ("stopsignal" "STOPSIGNAL")
+                      ("arg" "ARG")
+                      ("healthcheck" "HEALTHCHECK")
+                      ("shell" "SHELL")
+                      )
+                    "Capitalize instructoins automatically"
+                    :regexp "^\\(?:ONBUILD[[:space:]]+\\)?\\([a-zA-Z]+\\)"
+                    )
+                  )
+                )
+      )
+    )
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ein (emacs ipython notebook) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
