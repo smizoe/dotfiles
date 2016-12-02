@@ -400,6 +400,21 @@
 (use-package ensime
   :ensure t
   :pin melpa-stable
+  :config
+  (progn
+    (cl-loop for hook-name in '(scala-mode-hook java-mode-hook) do
+             (add-hook hook-name
+                       (lambda ()
+                         (progn
+                           (if (ensime-config-find-file buffer-file-name)
+                               (ensime)
+                             (message "ensime did not start since we can't find .ensime file for this file.")
+                             )
+                           )
+                         )
+                       )
+      )
+    )
   )
 
 ;;;;;;;;;;;;;;;;
