@@ -126,6 +126,30 @@ a nested alist which:
     )
   )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; camel to snake and snake to camel ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun camel-to-snake (camel)
+  (interactive)
+  (let ((case-fold-search nil))
+    (replace-regexp-in-string "[a-z0-9][A-Z]"
+                              (lambda (mtch)
+                                (let ((mtch-list (mapcar 'char-to-string(string-to-list mtch))))
+                                  (concat (car mtch-list) "_" (downcase (cadr mtch-list)))
+                                  )
+                                )
+                              camel)
+    )
+  )
+
+(defun snake-to-camel (snake)
+  (interactive)
+  (let ((words (split-string snake "_")))
+    (concat (car words) (mapconcat 'capitalize (cdr words) ""))
+    )
+  )
+
 ;; delete trailing before saving
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
