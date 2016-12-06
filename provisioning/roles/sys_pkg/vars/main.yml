@@ -136,6 +136,7 @@ sys_pkg__mach_with_cask:
     #- anaconda
     - visual-studio-code
     - pdftotext
+    - tabula
 
 sys_pkg__brew_tap:
     - sanemat/font # ricty
