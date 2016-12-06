@@ -171,6 +171,30 @@ a nested alist which:
     )
   )
 
+(defun toggle-camel-or-snake-case (str)
+  (if (string-match-p (regexp-quote "_") str)
+      (snake-to-camel str)
+    (camel-to-snake str)
+      )
+  )
+
+(with-eval-after-load 'evil-leader
+  (evil-leader/set-key
+    "tc" (lambda ()
+           (interactive)
+           (let* (
+                 (start-and-end (bounds-of-thing-at-point 'symbol))
+                 (start (car start-and-end))
+                 (end (cdr start-and-end))
+                 (target (buffer-substring start end))
+                 )
+             (delete-region start end)
+             (insert (toggle-camel-or-snake-case target))
+             )
+           )
+    )
+  )
+
 ;; delete trailing before saving
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
