@@ -131,20 +131,41 @@ a nested alist which:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun camel-to-snake (camel)
-  (interactive)
-  (let ((case-fold-search nil))
+  (let* (
+         (case-fold-search nil)
+         (case-replace nil)
+         ;; convert FOOBar => fooBar
+         (head-downcased
+          (replace-regexp-in-string "^[A-Z]*[A-Z]"
+                                    (lambda (mtch)
+                                      (save-match-data
+                                        (if (eq (length mtch) 1)
+                                            (downcase mtch)
+                                          (concat
+                                          (downcase (substring mtch 0 (- (length mtch) 1)))
+                                          (substring mtch (- (length mtch) 1) (length mtch))
+                                          )
+                                          )
+                                        )
+                                      )
+                                    camel
+                                    t ;; FIXEDCASE
+                                    )
+          )
+         )
     (replace-regexp-in-string "[a-z0-9][A-Z]"
                               (lambda (mtch)
-                                (let ((mtch-list (mapcar 'char-to-string(string-to-list mtch))))
-                                  (concat (car mtch-list) "_" (downcase (cadr mtch-list)))
+                                (save-match-data
+                                  (let ((mtch-list (mapcar 'char-to-string(string-to-list mtch))))
+                                    (concat (car mtch-list) "_" (downcase (cadr mtch-list)))
+                                    )
                                   )
                                 )
-                              camel)
+                              head-downcased)
     )
   )
 
 (defun snake-to-camel (snake)
-  (interactive)
   (let ((words (split-string snake "_")))
     (concat (car words) (mapconcat 'capitalize (cdr words) ""))
     )
