@@ -95,6 +95,7 @@
     (evil-leader/set-key
     "mx" 'helm-M-x
     "r." (concat ":normal." (kbd "RET"))
+    "r@" (concat ":normal@q" (kbd "RET"))
     "rf" 'helm-for-files
     "ef" 'helm-find-files
     "N" 'linum-mode
