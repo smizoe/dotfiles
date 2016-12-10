@@ -11,6 +11,7 @@ link_cfg__dotfiles:
   - src: emacs.d
   - src: sshrc.d
   - src: sshrc
+  - src: textlintrc
   - src: Xmodmap
   - src: pulse/default.pa
     dest: ".config/pulse/default.pa"

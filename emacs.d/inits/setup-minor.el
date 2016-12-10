@@ -288,7 +288,7 @@
 ;;;;;;;;;;;;;;;;;;;
 ;; flyspell mode ;;
 ;;;;;;;;;;;;;;;;;;;
-(cl-loop for hook-name in '(org-mode-hook adoc-mode-hook yatex-mode-hook) do
+(cl-loop for hook-name in '(org-mode-hook adoc-mode-hook markdown-mode-hook yatex-mode-hook) do
          (add-hook hook-name (lambda () (flyspell-mode 1)))
          )
 
@@ -384,7 +384,19 @@
   :config
   (progn
     (global-flycheck-mode)
-
+    (flycheck-define-checker textlint
+      "A linter for prose"
+      :command ("textlint" "--format" "unix" "--rule" "alex" "--rule" "write-good" source-inplace)
+      :error-patterns
+      ((warning line-start (file-name) ":" line ":" column ": "
+                (id (one-or-more (not (any " "))))
+                (message (one-or-more not-newline)
+                         (zero-or-more "\n" (any " ") (one-or-more not-newline))
+                         )
+                line-end))
+      :modes (text-mode adoc-mode markdown-mode)
+     )
+    (add-to-list 'flycheck-checkers 'textlint)
     (with-eval-after-load 'evil
       (evil-leader/set-key
        "c" (simulate-key-press flycheck-keymap-prefix)

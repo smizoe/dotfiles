@@ -4,3 +4,7 @@ npm__packages:
   - babel-cli
   - hexo-cli
   - jsonlint
+  - textlint
+  - textlint-rule-write-good
+  - textlint-rule-alex
+  - textlint-plugin-asciidoc-loose
