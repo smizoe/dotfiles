@@ -94,6 +94,7 @@ sys_pkg__arch_with_yaourt:
     - virtualbox
     - virtualbox-host-modules-arch
     - yarn
+    - peco
 
 sys_pkg__mach:
     - node
@@ -115,6 +116,7 @@ sys_pkg__mach:
     - llvm
     - rust
     - sshrc
+    - peco
     - q
     - yarn
 
