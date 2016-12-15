@@ -71,7 +71,12 @@ KEY must be given in `kbd' notation."
   )
 
 (let ((inits-dir (concat user-init-dir "inits")))
+  ;; enable overwriting custom setting from within each configuration file.
+  (setq custom-file (concat inits-dir "/emacs-custom.el"))
+  (load custom-file)
   (add-to-list 'load-path inits-dir)
   (dolist (name user-file-load-targets 'dummy)
     (require name)
     ))
+(provide 'init)
+;;; init.el ends here
