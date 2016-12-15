@@ -95,7 +95,7 @@
   :ensure t
   :init
   (custom-set-variables
-    '(helm-ag-base-command "rg --vimgrep --no-heading")
+    '(helm-ag-base-command "rg --vimgrep --no-heading --with-filename")
     )
   :config
   (progn
