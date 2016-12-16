@@ -17,6 +17,8 @@ alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+
 
 alias jg='ag --ignore=build --ignore=target'
 
+# warp
+alias wp='cd "$(find / -type d 2> /dev/null | peco)"'
 
 ## enable several settings in arch linux
 if [ "${SYSTEM_NAME}" != "Darwin" ] ; then
