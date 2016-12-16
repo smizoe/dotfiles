@@ -68,3 +68,15 @@ function peco_select_history () {
     READLINE_LINE="$(echo "${selected}" | awk '{$1 = ""; print $0}')"
     return 0
 }
+
+function select_cd_directory () {
+     2> /dev/null find -E / \( -not -regex "/(projects.*|Users/?[^.]*|home)?" -and -prune \) -o \( -regex ".*/(node_modules|build|vendor|\.git|\.gradle|\.idea|Library).*" -and -prune \) -o -type d | peco --query "${*}"
+}
+
+
+function wp () {
+    local target="$(select_cd_directory "$@")"
+    if [ "$?" -eq 0 ] ; then
+        cd "${target}"
+    fi
+}
