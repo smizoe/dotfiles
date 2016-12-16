@@ -52,3 +52,19 @@ EOF
     fi
     echo "${session_id}"
 }
+
+
+## select bash history based on the given argument
+## this is intended to be used with 'bind -x' bash builtin.
+function peco_select_history () {
+    history -n
+    local tac
+    if which tac &> /dev/null ; then
+        tac="tac"
+    else
+        tac="tail -f"
+    fi
+    local selected="$(history | ${tac} | peco --query "${1}" )"
+    READLINE_LINE="$(echo "${selected}" | awk '{$1 = ""; print $0}')"
+    return 0
+}

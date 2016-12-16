@@ -56,7 +56,7 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
 fi
 
 
-for fname in environments constants aliases
+for fname in environments constants aliases keybinds
 do
     . "${BASHRC_REALPATH}/bashrc_fragments/${fname}.sh"
 done

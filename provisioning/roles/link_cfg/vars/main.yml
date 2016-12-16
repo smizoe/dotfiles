@@ -16,3 +16,5 @@ link_cfg__dotfiles:
   - src: pulse/default.pa
     dest: ".config/pulse/default.pa"
   - src: gradle
+  - src: peco
+    dest: ".config/peco"
