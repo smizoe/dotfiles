@@ -62,7 +62,7 @@ function peco_select_history () {
     if which tac &> /dev/null ; then
         tac="tac"
     else
-        tac="tail -f"
+        tac="tail -r"
     fi
     local selected="$(history | ${tac} | peco --query "${1}" )"
     READLINE_LINE="$(echo "${selected}" | awk '{$1 = ""; print $0}')"
