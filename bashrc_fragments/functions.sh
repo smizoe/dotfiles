@@ -70,7 +70,7 @@ function peco_select_history () {
 }
 
 function select_cd_directory () {
-     2> /dev/null find -E / \( -not -regex "/(projects.*|Users/?[^.]*|home)?" -and -prune \) -o \( -regex ".*/(node_modules|build|vendor|\.git|\.gradle|\.idea|Library).*" -and -prune \) -o -type d | peco --query "${*}"
+     2> /dev/null find -E / \( -not -regex "/(projects.*|Users/?[^.]*|home)?" -and -prune \) -o \( -regex ".*/(node_modules|build|vendor|\.git|\.gradle|\.idea|Library).*" -and -prune \) -o \( -type d -and -print \) | peco --query "${*}"
 }
 
 
