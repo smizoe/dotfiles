@@ -26,6 +26,7 @@ sys_pkg__arch:
     - avr-binutils
     - avr-gcc
     - avr-libc
+    - bash ## /bin/bash is too old; don't forget to add /usr/local/bin/bash to /etc/shells and run 'chsh -s /usr/local/bin/bash'
     - chromium
     - docker
     - dropbox
