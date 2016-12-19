@@ -1,6 +1,7 @@
 {
-    "Keymap": {
-      "C-g": "peco.Cancel",
-      "C-c": "peco.SelectNone"
-    }
+  "Keymap": {
+    "C-g": "peco.Cancel",
+    "C-c": "peco.SelectNone",
+    "C-l": "peco.RefreshScreen"
+  }
 }
