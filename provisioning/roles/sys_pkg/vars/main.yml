@@ -102,6 +102,7 @@ sys_pkg__mach:
     - vim
     - coreutils
     - cmake
+    - findutils
     - global
     - ricty
     - ruby-build
