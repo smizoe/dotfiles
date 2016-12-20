@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+from __future__ import print_function
+import sys
+import re
+import fileinput
+from argparse import ArgumentParser
+
+def parse_args(argv):
+    parser = ArgumentParser(description="transposes files or inputs from stdin. Note that we need an abundunt amount of memory to transpose a large input.")
+    parser.add_argument("-d", "--delimiter", help="specifies the delimiter of the input files(s). You may specify a regex. default: tab character", default='\t')
+    parser.add_argument("-j", "--joiner", help="specifies the delimiter of the output. defaults to a tab character.", default="\t")
+    parser.add_argument("files", type=str, nargs="*", help="files to transpose. If none is specified, reads from stdin.", default=[])
+    return vars(parser.parse_args(argv))
+
+def main(argv):
+    args = parse_args(argv)
+    files = args['files']
+    delimiter = args['delimiter']
+    joiner = args['joiner']
+
+    pattern = re.compile(delimiter)
+    two_dim_table = []
+    for line in fileinput.input(files):
+        two_dim_table.append(pattern.split(line.rstrip('\n')))
+    if len(two_dim_table) == 0:
+        pass
+    elif len(two_dim_table) == 1:
+        for elem in two_dim_table[0]:
+            sys.stdout.write(elem+'\n')
+    else:
+        possible_number_of_fields = set(map(len, two_dim_table))
+        assert len(possible_number_of_fields) == 1, "the number of elements in rows differs: {}".format(', '.join(map(str, possible_number_of_fields)))
+        sys.stdout.write('\n'.join(map(lambda tuple: joiner.join(tuple), zip(*two_dim_table))))
+
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
