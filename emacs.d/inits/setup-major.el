@@ -75,6 +75,14 @@
         "\\b" 'ein:worksheet-insert-cell-below
         "\\a" 'ein:worksheet-insert-cell-above
         "\\d" 'ein:worksheet-delete-cell
+        (concat "\\s" (kbd "RET")) (lambda ()
+                                     (interactive)
+                                     (let* ((cell (ein:worksheet-get-current-cell :cell-p #'ein:codecell-p))
+                                            (code (ein:cell-get-text cell))
+                                           )
+                                       (python-shell-send-string code)
+                                       )
+                                     )
         (kbd "<f5>") 'ein:worksheet-execute-all-cell
         (kbd "RET" ) 'ein:worksheet-execute-cell
         (kbd "SPC") 'ein:worksheet-execute-cell-and-goto-next
