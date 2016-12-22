@@ -206,12 +206,14 @@
        (list
         (shell-command-to-string "{ which virtualenv 2>/dev/null || which virtualenv2 ; } | tr -d '\n'")
         "--system-site-packages" "--quiet")))
-    (add-hook 'python-mode-hook
-              (lambda ()
-                (set (make-local-variable 'company-backends)
-                     (cons '(company-jedi :with company-dabbrev) company-backends)
+    (cl-loop for hook-name in '(python-mode-hook ein:notebook-mode-hook) do
+      (add-hook hook-name
+                (lambda ()
+                  (set (make-local-variable 'company-backends)
+                      (cons '(company-jedi :with company-dabbrev) company-backends)
+                    )
                   )
-                )
+        )
       )
     )
   )
