@@ -352,6 +352,46 @@
     )
   )
 
+;;;;;;;;;;;;;;;;;
+;; python-mode ;;
+;;;;;;;;;;;;;;;;;
+
+(with-eval-after-load 'evil
+  (progn
+    ;;; python-mode/ with evil
+    (evil-define-key 'normal python-mode-map
+      "\\l" (lambda (send-main)
+              (interactive "P")
+              (save-excursion
+                (end-of-line)
+                (let ((end (point)))
+                  (beginning-of-line)
+                  (python-shell-send-region (point) end send-main)
+                  )
+                )
+              )
+      "\\aa" 'python-shell-send-file
+      "\\ff" 'python-shell-send-defun
+      "\\pp" (lambda (send-main)
+               (interactive "P")
+               (save-excursion
+                 (forward-paragraph)
+                 (let ((end (point)))
+                   (backward-paragraph)
+                   (python-shell-send-region (point) end send-main)
+                   )
+                 )
+               )
+      "\\ph" 'python-eldoc-at-point
+      "\\pf" 'run-python
+      "\\gp" 'python-shell-switch-to-shell
+      )
+    (evil-define-key 'visual python-mode-map
+      "\\ss" 'python-shell-send-region
+      )
+    )
+  )
+
 ;;;;;;;;;;;;;;;
 ;; rust-mode ;;
 ;;;;;;;;;;;;;;;
