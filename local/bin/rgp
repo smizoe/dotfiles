@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+export PANE_FILE="/tmp/peco-glimpse-$$.pane"
+
+function on_exit() {
+    local pane_id="$(cat "${PANE_FILE}")"
+    if tmux list-pane | grep -q "${pane_id}" ; then
+        tmux kill-pane -t "${pane_id}"
+    fi
+}
+trap on_exit EXIT
+
+rg --vimgrep "${@}" | peco
