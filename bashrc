@@ -22,7 +22,6 @@ if which tmux >/dev/null 2>&1; then
     fi
 fi
 
-PS1='\h:\W \u\$ '
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
 # Tell the terminal about the working directory at each prompt.
