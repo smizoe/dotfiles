@@ -32,10 +32,14 @@ function peco_glimpse_fn() {
     local line="$1"
     local path="$(echo "${line}" | awk -F ':' '{print $1}' )"
     local lineno="$(echo "${line}" | awk -F ':' '{print $2}' )"
-    tmux split-window -v -l 20 "less +${lineno:-1} -w -j 10 '${path}'"
-    tmux display -p '#{pane_id}' > "${pane_file}"
+    if [ -f "${path}" ] ; then
+        tmux split-window -v -l 20 "less +${lineno:-1} -w -j 10 '${path}'"
+        tmux display -p '#{pane_id}' > "${pane_file}"
+        tmux last-pane
+    else
+        echo "no such file: ${path}" >&2
+    fi
     exec {pane_file_fd}>&-
-    tmux last-pane
     return 0
 }
 
