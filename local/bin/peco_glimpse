@@ -14,7 +14,10 @@ function peco_glimpse_fn() {
     # close a pane if exists
     if [ -f "${pane_file}" ] ; then
         local pane_id="$(cat "${pane_file}")"
-        if tmux list-pane | grep -q "${pane_id}" ; then
+        if [[ -z "${pane_id}" ]] ; then
+           echo "the pane file exists but nothing is in it." >&2
+           return 0
+        elif tmux list-pane | grep -q "${pane_id}" ; then
             tmux killp -t "${pane_id}"
         fi
     fi
