@@ -1,51 +1,6 @@
 #!/usr/bin/env bash
 
-## given a line from a result of vimgrep, get a glimpse of the file around the line.
-## or if just a path (without colon in it) is given, open it for preview
-## returns 0 if success, otherwise 1
-function peco_glimpse_fn() {
-    if [ -z "${TMUX:-}" ] ; then
-        echo "peco-glimpse must run within tmux" >&2
-        return 1
-    fi
-
-    local pane_file="${PANE_FILE:-${TMPDIR:-/tmp}/peco-glimpse-${PPID}.pane}"
-
-    # close a pane if exists
-    if [ -f "${pane_file}" ] ; then
-        local pane_id="$(cat "${pane_file}")"
-        if [[ -z "${pane_id}" ]] ; then
-           echo "the pane file exists but nothing is in it." >&2
-           return 0
-        elif tmux list-pane | grep -q "${pane_id}" ; then
-            tmux killp -t "${pane_id}"
-        fi
-    fi
-
-    # split a new pane and preview
-    local pane_file_fd
-    exec {pane_file_fd}>"${pane_file}"
-    flock -n "${pane_file_fd}"
-    if [ $? -ne "0" ] ; then
-        echo "failed to get flock: ${pane_file}" >&2
-        exec {pane_file_fd}>&-
-        exit 1
-    fi
-
-    local line="$1"
-    local path="$(echo "${line}" | awk -F ':' '{print $1}' )"
-    local lineno="$(echo "${line}" | awk -F ':' '{print $2}' )"
-    if [ -f "${path}" ] ; then
-        tmux split-window -v -l 20 "less +${lineno:-1} -w -j 10 '${path}'"
-        tmux display -p '#{pane_id}' > "${pane_file}"
-        tmux last-pane
-    else
-        echo "no such file: ${path}" >&2
-    fi
-    exec {pane_file_fd}>&-
-    return 0
-}
-
+## this is just a reference for peco_glimpse_fn so that we can exec it
 if [ $0 = "${BASH_SOURCE[0]}" ] ; then
     peco_glimpse_fn "$@"
 fi

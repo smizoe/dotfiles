@@ -2,13 +2,7 @@
 
 export PANE_FILE="/tmp/peco-glimpse-$$.pane"
 
-function on_exit() {
-    local pane_id="$([[ -f "${PANE_FILE}" ]] && cat "${PANE_FILE}")"
-    if [[ (-n "${pane_id}") && -n "$( tmux list-pane | grep "${pane_id}")" ]] ; then
-        tmux kill-pane -t "${pane_id}"
-    fi
-}
-trap on_exit EXIT
+trap "kill_pane_from_pane_file '${PANE_FILE}'" EXIT
 
 SELECTED="$(rg --vimgrep "${@}" | peco)"
 if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
