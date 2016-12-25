@@ -10,4 +10,8 @@ function on_exit() {
 }
 trap on_exit EXIT
 
-rg --vimgrep "${@}" | peco
+SELECTED="$(rg --vimgrep "${@}" | peco)"
+if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
+    on_exit
+    exec ${EDITOR} $(echo "${SELECTED}" | awk -F ':' '{print $1}' | sort | uniq)
+fi
