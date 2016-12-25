@@ -3,8 +3,8 @@
 export PANE_FILE="/tmp/peco-glimpse-$$.pane"
 
 function on_exit() {
-    local pane_id="$(cat "${PANE_FILE}")"
-    if tmux list-pane | grep -q "${pane_id}" ; then
+    local pane_id="$([[ -f "${PANE_FILE}" ]] && cat "${PANE_FILE}")"
+    if [[ (-n "${pane_id}") && -n "$( tmux list-pane | grep "${pane_id}")" ]] ; then
         tmux kill-pane -t "${pane_id}"
     fi
 }
