@@ -1,4 +1,5 @@
 {
+  "StickySelection": true,
   "Keymap": {
     "C-g": "peco.Cancel",
     "C-c": "peco.SelectNone",
