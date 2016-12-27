@@ -103,6 +103,7 @@ sys_pkg__mach:
     - coreutils
     - cmake
     - findutils
+    - flock
     - global
     - ricty
     - ruby-build
@@ -147,3 +148,4 @@ sys_pkg__brew_tap:
     - homebrew/versions
     - homebrew/science
     - aereal/aereal_casks # aquaskk
+    - discoteq/discoteq # flock
