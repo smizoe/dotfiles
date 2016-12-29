@@ -2,10 +2,12 @@
 
 export PANE_FILE="/tmp/peco-glimpse-$$.pane"
 
-trap "kill_pane_from_pane_file '${PANE_FILE}'" EXIT
+EXIT_HANDLER="kill_pane_from_pane_file '${PANE_FILE}'"
+trap "${EXIT_HANDLER}" EXIT
 
 SELECTED="$(rg --vimgrep "${@}" | peco)"
 if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
-    on_exit
-    exec ${EDITOR} $(echo "${SELECTED}" | awk -F ':' '{print $1}' | sort | uniq)
+    ${EXIT_HANDLER}
+    FILES="$(echo "${SELECTED}" | awk -F ':' '{print "+" $2 ":" $3 " " $1}')"
+    exec ${EDITOR} ${FILES}
 fi
