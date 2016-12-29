@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>UserName</key>
+    <string>smizoe</string>
     <key>KeepAlive</key>
     <dict>
         <key>SuccessfulExit</key>
@@ -11,7 +13,7 @@
     <string>com.agendaless.supervisord</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/supervisord</string>
+        <string>{{home}}/.local/bin/supervisord</string>
         <string>-n</string>
         <string>-c</string>
         <string>{{supervisord__conf_dir}}/supervisord.conf</string>
