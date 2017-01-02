@@ -95,13 +95,14 @@
   :ensure t
   :init
   (custom-set-variables
-    '(helm-ag-base-command "rg --color never --no-heading")
+    '(helm-ag-base-command "rg --vimgrep --color never --no-heading")
     )
   :config
   (progn
     (evil-leader/set-key
       "sr" 'helm-do-ag-project-root
       "sf" 'helm-do-ag-this-file
+      "sb" 'helm-do-ag-buffers
       )
     )
   )
