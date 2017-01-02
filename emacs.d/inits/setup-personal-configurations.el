@@ -67,9 +67,9 @@ a nested alist which:
   :group 'local
   )
 
-(defun code-jump-dwim (code-jump-type)
+(defun code-jump-entry-fn (code-jump-type)
   "Perform a code jump of type CODE-JUMP-TYPE."
-  (defun code-jump-dwim/unimplemented ()
+  (defun code-jump-entry-fn/unimplemented ()
     (interactive)
     (message "doc jump is unimplemented for helm-gtags")
     )
@@ -78,7 +78,7 @@ a nested alist which:
       (def . helm-gtags-find-tag)
       (ref . helm-gtags-find-rtag)
       (pop . helm-gtags-pop-stack)
-      (doc . code-jump-dwim/unimplemented)
+      (doc . code-jump-entry-fn/unimplemented)
       )
     "default code jump functions."
     )
@@ -94,27 +94,27 @@ a nested alist which:
   )
 
 (defun code-jump-to-def ()
-  "Call CODE-JUMP-DWIM with symbol 'def."
+  "Call CODE-JUMP-ENTRY-FN with symbol 'def."
   (interactive)
-  (code-jump-dwim 'def)
+  (code-jump-entry-fn 'def)
  )
 
 (defun code-jump-to-ref ()
-  "Call CODE-JUMP-DWIM with symbol 'ref."
+  "Call CODE-JUMP-ENTRY-FN with symbol 'ref."
   (interactive)
-  (code-jump-dwim 'ref)
+  (code-jump-entry-fn 'ref)
  )
 
 (defun code-jump-pop ()
-  "Call CODE-JUMP-DWIM with symbol 'pop."
+  "Call CODE-JUMP-ENTRY-FN with symbol 'pop."
   (interactive)
-  (code-jump-dwim 'pop)
+  (code-jump-entry-fn 'pop)
  )
 
 (defun code-jump-doc ()
-  "Call CODE-JUMP-DWIM with symbol 'doc."
+  "Call CODE-JUMP-ENTRY-FN with symbol 'doc."
   (interactive)
-  (code-jump-dwim 'doc)
+  (code-jump-entry-fn 'doc)
   )
 
 (with-eval-after-load 'evil-leader
