@@ -89,13 +89,14 @@ sys_pkg__arch_with_yaourt:
     - sshrc
     - cargo
     - rbenv
+    - peco
     - pepper-flash
     - q
     - ttf-ricty
     - virtualbox
     - virtualbox-host-modules-arch
     - yarn
-    - peco
+    - zeal
 
 sys_pkg__mach:
     - node
