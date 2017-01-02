@@ -7,18 +7,22 @@
       become: yes
       changed_when: False
     - include_vars: vars.yml
+      tags: always
   roles:
-    - vault
-    - sys_pkg
-    - link_cfg
-    - r_pkg
-    - node_pkg
-    - local_pkg
-    - python_pkg
-    - supervisord
+    - { role: vault,       tags : [ 'vault' ] }
+    - { role: sys_pkg,     tags : ['sys_pkg'] }
+    - { role: link_cfg,    tags : ['link_cfg'] }
+    - { role: r_pkg,       tags : ['r_pkg'] }
+    - { role: node_pkg,    tags : ['node_pkg'] }
+    - { role: local_pkg,   tags : ['local_pkg'] }
+    - { role: python_pkg,  tags : ['python_pkg'] }
+    - { role: supervisord, tags : ['supervisord'] }
     - role: chrome_ext
       become: "{{ansible_os_family != 'Darwin'}}"
-    - post_install/common
+      tags: [ 'chrome_ext' ]
+    - role: post_install/common
+      tags: [ 'post_install' ]
     - role: post_install/mach
       become: yes
       when: ansible_os_family == 'Darwin'
+      tags: [ 'post_install' ]
