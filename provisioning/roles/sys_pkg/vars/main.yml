@@ -19,6 +19,7 @@ sys_pkg__common:
     - jq
     - ripgrep
     - the_silver_searcher
+    - w3m
 
 sys_pkg__arch:
     - aspell

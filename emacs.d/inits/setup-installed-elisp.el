@@ -107,6 +107,83 @@
     )
   )
 
+;;;;;;;;;;;;;;;
+;; helm-dash ;;
+;;;;;;;;;;;;;;;
+
+(use-package helm-dash
+  :ensure t
+
+  :config
+  (progn
+    (with-eval-after-load 'w3m
+      (progn
+        (custom-set-variables
+        '(helm-dash-docsets-path "~/.local/share/Zeal/Zeal/docsets")
+        '(helm-dash-browser-func 'w3m-browse-url)
+        )
+        ;; TODO: somehow rename installed directories (e.g., if we install Ruby_2, this makes Ruby.docset directory instead of Ruby_2.docset directory)
+        (let* ((installed-docsets
+                (mapcar 'intern
+                        (append
+                          (helm-dash-installed-docsets)
+                          (mapcar
+                            (lambda (str)
+                              (replace-regexp-in-string " " "_" str)
+                              )
+                            (helm-dash-installed-docsets)
+                            )
+                          )
+                  )
+                )
+                (install-targets (set-difference
+                                  '(R Bootstrap_4 Ruby_2 Python_2 Python_3 React Redis Rust Pandas
+                                    SQLAlchemy SQLite SciPy NumPy Java_SE8 Markdown JavaScript)
+                                  installed-docsets
+                                  ))
+                (install-targets-from-user (set-difference
+                                        '(scikit-learn)
+                                        installed-docsets
+                                        ))
+                )
+            (cl-loop for target in install-targets do
+              (helm-dash-async-install-docset (symbol-name target))
+              )
+            (cl-loop for target in install-targets-from-user do
+              (helm-dash-install-user-docset (symbol-name target))
+              )
+          )
+        (let ((hook-name-docsets-alist
+              '(
+                (ruby-mode-hook . ("Ruby_2"))
+                (ess-mode-hook . ("R"))
+                (python-mode-hook . ("Python 2" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
+                (ein:notebook-mode-hook . ("Python 2" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
+                (js2-mode-hook . ("JavaScript"))
+                )))
+              (cl-loop for pair in hook-name-docsets-alist do
+                      (let (
+                            (hook-name (car pair))
+                            (docsets (cdr pair))
+                            )
+                        (add-hook hook-name
+                                  `(lambda ()
+                                    (setq-local helm-dash-docsets ',docsets)
+                                    )
+                                  )
+                        )
+                      )
+            )
+        )
+      )
+    )
+  (with-eval-after-load 'evil-leader
+    (evil-leader/set-key
+      "ld" 'helm-dash-at-point ;;lookup doc
+      )
+    )
+  )
+
 ;;;;;;;;;;;;;;;;
 ;; helm-gtags ;;
 ;;;;;;;;;;;;;;;;
@@ -253,6 +330,18 @@
 
 (use-package sequential-command
   :ensure t
+  )
+
+;;;;;;;;;;;;;;;
+;; emacs-w3m ;;
+;;;;;;;;;;;;;;;
+
+(use-package w3m
+  :ensure t
+  :init
+  (custom-set-variables
+   '(w3m-use-cookies t)
+   )
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
