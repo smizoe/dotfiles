@@ -118,9 +118,12 @@
   (progn
     (with-eval-after-load 'w3m
       (progn
-        (custom-set-variables
-        '(helm-dash-docsets-path "~/.local/share/Zeal/Zeal/docsets")
-        '(helm-dash-browser-func 'w3m-browse-url)
+        (let ((docsets-path "~/.local/share/Zeal/Zeal/docsets"))
+          (mkdir docsets-path t)
+          (custom-set-variables
+          '(helm-dash-docsets-path docsets-path)
+          '(helm-dash-browser-func 'w3m-browse-url)
+          )
         )
         ;; TODO: somehow rename installed directories (e.g., if we install Ruby_2, this makes Ruby.docset directory instead of Ruby_2.docset directory)
         (let* ((installed-docsets
