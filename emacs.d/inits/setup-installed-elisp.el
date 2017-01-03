@@ -345,6 +345,18 @@
   (custom-set-variables
    '(w3m-use-cookies t)
    )
+  :config
+  (let ((keymap-alist
+         `(
+            (,(kbd "C-u") . w3m-scroll-down)
+            (,(kbd "C-d") . w3m-scroll-up)
+            )
+          )
+        )
+    (cl-loop for pair in keymap-alist do
+             (define-key w3m-mode-map (car pair) (cdr pair))
+             )
+    )
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
