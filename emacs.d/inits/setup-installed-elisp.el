@@ -350,12 +350,20 @@
          `(
             (,(kbd "C-u") . w3m-scroll-down)
             (,(kbd "C-d") . w3m-scroll-up)
+            ("/" . evil-ex-search-forward)
+            ("?" . evil-ex-search-backward)
+            ("n" . evil-ex-search-next)
             )
           )
         )
     (cl-loop for pair in keymap-alist do
              (define-key w3m-mode-map (car pair) (cdr pair))
              )
+    (with-eval-after-load 'evil-leader
+      (evil-leader/set-key
+        "sw" 'w3m-search
+        )
+      )
     )
   )
 
