@@ -161,7 +161,7 @@
                 (ruby-mode-hook . ("Ruby_2"))
                 (ess-mode-hook . ("R"))
                 (python-mode-hook . ("Python 2" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
-                (ein:notebook-mode-hook . ("Python 2" "Pandas" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
+                (ein:notebook-mode-hook . ("R" "Python 2" "Pandas" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
                 (js2-mode-hook . ("JavaScript" "React"))
                 )))
               (cl-loop for pair in hook-name-docsets-alist do
