@@ -101,9 +101,12 @@ function kill_pane_from_pane_file() {
            echo "the pane file exists but nothing is in it." >&2
            return 0
         elif tmux list-pane | grep -q "${pane_id}" ; then
-            tmux killp -t "${pane_id}"
+           tmux killp -t "${pane_id}"
+           return 0
         fi
+        echo "file ${pane_file} exists but the pane not found" >&2
     fi
+    echo "regular file ${pane_file} does not exist" >&2
 }
 
 ## given a line from a result of vimgrep as the 1st argument, get a glimpse of the file around the line.

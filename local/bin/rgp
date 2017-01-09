@@ -2,7 +2,7 @@
 
 export PANE_FILE="/tmp/peco-glimpse-$$.pane"
 
-EXIT_HANDLER="kill_pane_from_pane_file '${PANE_FILE}'"
+EXIT_HANDLER="kill_pane_from_pane_file ${PANE_FILE}"
 trap "${EXIT_HANDLER}" EXIT
 
 SELECTED="$(rg --vimgrep "${@}" | peco)"
