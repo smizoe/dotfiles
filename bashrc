@@ -24,6 +24,11 @@ fi
 
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
+
+## make terminal sane after a command
+PROMPT_COMMAND="$PROMPT_COMMAND
+stty sane"
+
 # Tell the terminal about the working directory at each prompt.
 if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
