@@ -367,6 +367,15 @@
     )
   )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ess-smart-underscore ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package ess-smart-underscore
+  :ensure t
+  :pin melpa-stable
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; woman (yet another man command) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
