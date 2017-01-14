@@ -76,6 +76,8 @@
         "\\a" 'ein:worksheet-insert-cell-above
         "\\d" 'ein:worksheet-delete-cell
         "\\c" 'ein:worksheet-clear-output
+        "\\z" 'ein:notebook-kernel-interrupt-command
+        "\\o" 'ein:console-open
         (concat "\\s" (kbd "RET")) (lambda ()
                                      (interactive)
                                      (run-python)
