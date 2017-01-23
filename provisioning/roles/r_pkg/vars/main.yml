@@ -23,6 +23,7 @@ r_pkg__packages:
   - e1071
   - gbm
   - ggplot2
+  - gridExtra
   - infotheo
   - kernlab
   - klaR
