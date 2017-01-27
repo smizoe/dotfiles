@@ -113,6 +113,7 @@ sys_pkg__mach:
     - cmigemo
     - autoenv
     - python
+    - poppler
     - gnu-time
     - gcc
     - gradle
@@ -142,7 +143,6 @@ sys_pkg__mach_with_cask:
     # avoid conflict by not installing anaconda
     #- anaconda
     - visual-studio-code
-    - pdftotext
     - tabula
 
 sys_pkg__brew_tap:
