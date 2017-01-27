@@ -81,6 +81,15 @@ function select_cd_directory () {
     2> /dev/null "${find}"  /* -regextype posix-extended \( -not -regex "/(projects|Users|home)/?[^.]*" -and -prune \) -o \( -regex ".*/(node_modules|build|vendor|\.git|\.gradle|\.idea|Library).*" -and -prune \) -o \( -type d -and -print \) | peco --query "${*}"
 }
 
+function tms () {
+    local buffer_name="$(tmux list-buffer | peco | awk -F ':' '{print $1}')"
+    tmux save-buffer -b "${buffer_name}" -
+}
+
+function tml () {
+    local buffer_name="${1:-$(date +'%s')}"
+    tmux load-buffer -b "${buffer_name}" -
+}
 
 function wp () {
     local target="$(select_cd_directory "$@")"
