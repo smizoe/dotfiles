@@ -9,6 +9,7 @@ link_cfg__dotfiles:
   - src: bashrc
   - src: bash_profile
   - src: emacs.d
+  - src: ideavimrc
   - src: sshrc.d
   - src: sshrc
   - src: textlintrc
