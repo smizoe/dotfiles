@@ -82,8 +82,10 @@ function select_cd_directory () {
 }
 
 function tms () {
-    local buffer_name="$(tmux list-buffer | peco | awk -F ':' '{print $1}')"
-    tmux save-buffer -b "${buffer_name}" -
+    local buffer_name="$(</dev/null tmux lsb | peco | awk -F ':' '{print $1}')"
+    if [ -n "${buffer_name}" ] ; then
+        tmux save-buffer -b "${buffer_name}" -
+    fi
 }
 
 function tml () {
