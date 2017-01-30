@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tp
+# mode: snippet
+# --
+export const $1 = '$1'
+$0

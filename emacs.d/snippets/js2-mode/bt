@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bt
+# mode: snippet
+# --
+bind(this$0)
