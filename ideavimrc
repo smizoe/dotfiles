@@ -1,2 +1,11 @@
 set surround
 source ~/.vimrc
+unmap gd
+nnoremap <Leader>gt :action GotoDeclaration<CR>
+nnoremap <Leader>gr :action GotoDeclaration<CR>
+nnoremap <Leader>gi :action GotoImplementation<CR>
+nnoremap <Leader>cn :action GotoNextError<CR>
+nnoremap <Leader>cp :action GotoPreviousError<CR>
+nnoremap <Leader>bt :action ReformatCode<CR>
+nnoremap [b :action PreviousTab<CR>
+nnoremap ]b :action NextTab<CR>
