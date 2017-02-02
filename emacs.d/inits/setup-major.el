@@ -432,6 +432,9 @@
     )
  )
 
+;; nxml-mode
+(add-to-list 'auto-mode-alist '("\\.pmml" . nxml-mode))
+
 ;; yaml-mode
 (use-package yaml-mode
   :ensure t
