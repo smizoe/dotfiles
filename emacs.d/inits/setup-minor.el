@@ -398,7 +398,22 @@
                 line-end))
       :modes (text-mode adoc-mode markdown-mode)
      )
+    (flycheck-define-checker pmml-lint
+      "A linter for pmml v4.3"
+      :command ("xmllint" "--schema" "http://dmg.org/pmml/v4-3/pmml-4-3.xsd" "--noout" "-")
+      :standard-input t
+      :error-patterns
+      ((error line-start "-:" line ": " (message) line-end))
+      :modes (xml-mode nxml-mode)
+      )
     (add-to-list 'flycheck-checkers 'textlint)
+    (add-to-list 'flycheck-checkers 'pmml-lint)
+    (add-hook 'nxml-mode-hook (lambda ()
+                                (if (string-suffix-p ".pmml" (buffer-file-name))
+                                    (setq flycheck-checker 'pmml-lint)
+                                    )
+                                )
+              )
     (with-eval-after-load 'evil
       (evil-leader/set-key
        "c" (simulate-key-press flycheck-keymap-prefix)
