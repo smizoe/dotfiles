@@ -20,6 +20,7 @@ sys_pkg__common:
     - ripgrep
     - the_silver_searcher
     - w3m
+    - ngrep
 
 sys_pkg__arch:
     - aspell
