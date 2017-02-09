@@ -346,19 +346,11 @@
    '(w3m-use-cookies t)
    )
   :config
-  (let ((keymap-alist
-         `(
-            (,(kbd "C-u") . w3m-scroll-down)
-            (,(kbd "C-d") . w3m-scroll-up)
-            ("/" . evil-ex-search-forward)
-            ("?" . evil-ex-search-backward)
-            ("n" . evil-ex-search-next)
-            )
-          )
-        )
-    (cl-loop for pair in keymap-alist do
-             (define-key w3m-mode-map (car pair) (cdr pair))
-             )
+  (progn
+    (add-hook 'w3m-mode-hook (lambda ()
+                              (evil-normal-state)
+                              )
+              )
     (with-eval-after-load 'evil-leader
       (evil-leader/set-key
         "sw" 'w3m-search
