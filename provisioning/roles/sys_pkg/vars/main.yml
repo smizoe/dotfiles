@@ -141,6 +141,7 @@ sys_pkg__mach_with_cask:
     - virtualbox
     - vagrant
     - dia
+    - font-fira-code
     # avoid conflict by not installing anaconda
     #- anaconda
     - visual-studio-code
@@ -152,3 +153,4 @@ sys_pkg__brew_tap:
     - homebrew/science
     - aereal/aereal_casks # aquaskk
     - discoteq/discoteq # flock
+    - caskroom/fonts # fira code
