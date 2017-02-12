@@ -141,7 +141,7 @@
                 )
                 (install-targets (set-difference
                                   '(R Bootstrap_4 Ruby_2 Python_2 Python_3 React Redis Rust Pandas
-                                    SQLAlchemy SQLite SciPy NumPy Java_SE8 Markdown JavaScript)
+                                    SQLAlchemy SQLite SciPy NumPy Java_SE8 Markdown JavaScript Ansible)
                                   installed-docsets
                                   ))
                 (install-targets-from-user (set-difference
@@ -163,6 +163,7 @@
                 (python-mode-hook . ("Python 2" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
                 (ein:notebook-mode-hook . ("R" "Python 2" "Pandas" "SciPy" "NumPy" "scikit-learn" "SQLAlchemy"))
                 (js2-mode-hook . ("JavaScript" "React"))
+                (yaml-mode-hook . ("Ansible"))
                 )))
               (cl-loop for pair in hook-name-docsets-alist do
                       (let (
