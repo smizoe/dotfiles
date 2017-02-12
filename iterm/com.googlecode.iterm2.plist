@@ -127,6 +127,8 @@
 	<integer>24</integer>
 	<key>HotkeyModifiers</key>
 	<integer>262401</integer>
+	<key>IRMemory</key>
+	<integer>4</integer>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
@@ -166,11 +168,15 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>269 418 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>-1015 543 620 392 -1440 180 1440 877 </string>
+	<string>630 498 620 392 0 0 1920 1057 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>269 139 606 456 0 0 1920 1057 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>162 153 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1080 0 0 1920 1057 </string>
+	<string>120 425 570 452 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>870 100 570 452 0 0 1440 877 </string>
+	<string>1350 142 570 452 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -710,7 +716,7 @@
 			<key>Rows</key>
 			<integer>25</integer>
 			<key>Screen</key>
-			<integer>-1</integer>
+			<integer>2</integer>
 			<key>Scrollback Lines</key>
 			<integer>1000</integer>
 			<key>Selected Text Color</key>
@@ -737,8 +743,10 @@
 			<string></string>
 			<key>Silence Bell</key>
 			<false/>
+			<key>Space</key>
+			<integer>0</integer>
 			<key>Sync Title</key>
-			<false/>
+			<true/>
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
@@ -1295,7 +1303,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 12</string>
+			<string>Ricty-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1305,7 +1313,7 @@
 			<key>Rows</key>
 			<integer>200</integer>
 			<key>Screen</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Scrollback Lines</key>
 			<integer>1000</integer>
 			<key>Selected Text Color</key>
@@ -1362,6 +1370,8 @@
 			<string>/Users/smizoe</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>85804578-0200-4371-9EFD-DC05AC3C84EF</string>
 	<key>NoSyncPermissionToShowTip</key>
@@ -1416,8 +1426,10 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-08-30T15:40:12Z</date>
+	<date>2017-02-11T01:35:09Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>ShowFullScreenTabBar</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.36507411858974359</real>
@@ -1428,6 +1440,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.7</string>
+	<string>3.0.13</string>
 </dict>
 </plist>
