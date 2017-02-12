@@ -1,5 +1,6 @@
 ---
 sys_pkg__common:
+    - ffmpeg
     - ctags
     - scala
     - sbt
@@ -21,6 +22,7 @@ sys_pkg__common:
     - the_silver_searcher
     - w3m
     - ngrep
+    - unp
 
 sys_pkg__arch:
     - aspell
