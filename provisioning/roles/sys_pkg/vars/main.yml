@@ -87,6 +87,7 @@ sys_pkg__arch_with_yaourt:
     - global
     - gradle
     - jdk
+    - otf-fira-code
     - rust
     - sshrc
     - cargo
