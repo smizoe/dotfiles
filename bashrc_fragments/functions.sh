@@ -1,3 +1,15 @@
+function color_from_status {
+    local color
+    if [ "$1" = "0" ] ; then
+        color="${COLOR_GREEN}"
+    elif [ "$1" = "1" ] ; then
+        color="${COLOR_YELLOW}"
+    else
+        color="${COLOR_RED}"
+    fi
+    echo -e "${color}"
+}
+
 function join_by { local IFS="$1"; shift; echo "$*"; }
 
 function array_contains {

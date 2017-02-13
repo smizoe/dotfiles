@@ -77,7 +77,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 ## show git branch
 
 GIT_PS1_SHOWDIRTYSTATE=1
-PS1="\u@\h [\$(__git_ps1 \"(%s) \")\w]\\$ "
+PS1="\$(color_from_status \$?)\u@\h${COLOR_NC} [\$(__git_ps1 \"(%s) \")\w]\\$ "
 
 
 ## python autoenv
