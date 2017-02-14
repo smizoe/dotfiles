@@ -9,5 +9,7 @@ SELECTED="$(</dev/null rg --vimgrep "${@}" | peco)"
 if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
     ${EXIT_HANDLER}
     FILES="$(echo "${SELECTED}" | awk -F ':' '{print "+" $2 ":" $3 " " $1}')"
-    exec ${EDITOR} ${FILES}
+    CMD="${EDITOR} ${FILES}"
+    echo -n "${CMD}" | tmux loadb -b "rgp $* $(date +%s)" -
+    exec ${CMD}
 fi
