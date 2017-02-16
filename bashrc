@@ -25,6 +25,9 @@ fi
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
 
+## stop using ctrl-s/ctrl-q as a control flow key so that we can use 'bind -x "\C-s": some command'
+stty -ixon -ixoff
+
 ## make terminal sane after a command
 SAVE_TERM="$(stty -g)"
 PROMPT_COMMAND="$PROMPT_COMMAND
