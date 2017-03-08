@@ -2,21 +2,6 @@
   "StickySelection": true,
   "Keymap": {
     "C-g": "peco.Cancel",
-    "C-c": "peco.SelectNone",
-    "Tab": "vimgrep.Glimpse"
-  },
-  "Action": {
-    "vimgrep.Glimpse": [
-      "peco.SelectNone",
-      "peco.ExecuteCommand.PecoGlimpse",
-      "peco.SelectNone"
-    ]
-  },
-  "Command": [
-    {
-      "Name": "PecoGlimpse",
-      "Args": ["peco_glimpse", "$LINE"],
-      "Spawn": true
-    }
-  ]
+    "C-c": "peco.SelectNone"
+  }
 }
