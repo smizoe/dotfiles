@@ -43,6 +43,7 @@ r_pkg__packages:
   - tabplot
   - tidyr
   - xgboost
+  - zoo
 
 r_pkg__devtools_packages:
   - repo: jalvesaq/colorout
