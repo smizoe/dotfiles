@@ -85,6 +85,7 @@ sys_pkg__arch_with_yaourt:
     - dfu-util
     - emojione-color-font
     - flashplugin
+    - fzf
     - gcc-multilib
     - global
     - gradle
@@ -110,6 +111,7 @@ sys_pkg__mach:
     - cmake
     - findutils
     - flock
+    - fzf
     - global
     - ricty
     - ruby-build
