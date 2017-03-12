@@ -369,6 +369,23 @@
   :pin melpa-stable
   )
 
+
+;;;;;;;;;;;;;;
+;; polymode ;;
+;;;;;;;;;;;;;;
+
+(use-package polymode
+  :ensure t
+  :pin melpa-stable
+  :config
+  (progn
+    (require 'poly-R)
+    (require 'poly-markdown)
+    (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+    )
+  )
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; woman (yet another man command) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
