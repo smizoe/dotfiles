@@ -92,3 +92,5 @@ source ~/google-cloud-sdk/path.bash.inc
 
 # The next line enables shell command completion for gcloud.
 source ~/google-cloud-sdk/completion.bash.inc
+
+__git_complete g __git_main
