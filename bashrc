@@ -55,13 +55,14 @@ fi
 BASH_COMPLETION=/usr/local/etc/bash_completion
 BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
 #BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
-if [ -f /usr/local/etc/bash_completion ]; then
-    . /usr/local/etc/bash_completion
-fi
 
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-    . /usr/share/git/completion/git-prompt.sh
-fi
+BASH_COMPLETION_FILES=(/usr/local/etc/bash_completion /usr/share/git/completion/git-prompt.sh /usr/share/git/completion/git-completion.bash)
+for file in ${BASH_COMPLETION_FILES[@]}
+do
+    if [ -f "${file}" ]; then
+        . "${file}"
+    fi
+done
 
 
 for fname in environments constants aliases keybinds
