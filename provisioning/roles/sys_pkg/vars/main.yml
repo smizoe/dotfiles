@@ -78,6 +78,7 @@ sys_pkg__arch_with_yaourt:
     - 1pass-hg
     - arm-none-eabi-gcc
     - arm-none-eabi-newlib
+    - atool
     - chromium-widevine
     - cmigemo-git
     - coursera-dl
@@ -105,6 +106,7 @@ sys_pkg__arch_with_yaourt:
     - zeal
 
 sys_pkg__mach:
+    - atool
     - node
     - vim
     - coreutils
