@@ -55,7 +55,10 @@ sys_pkg__arch:
     - texlive-langjapanese
     - yakuake
     ## required after installation of OS
-    - plasma
+    - lightdm
+    - lightdm-gtk-greeter
+    - xmonad
+    - xmonad-contrib
     - synaptics
     - nvidia
     - nvidia-utils
