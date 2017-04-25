@@ -55,10 +55,6 @@ sys_pkg__arch:
     - texlive-langjapanese
     - yakuake
     ## required after installation of OS
-    - lightdm
-    - lightdm-gtk-greeter
-    - xmonad
-    - xmonad-contrib
     - synaptics
     - nvidia
     - nvidia-utils
@@ -94,6 +90,8 @@ sys_pkg__arch_with_yaourt:
     - global
     - gradle
     - jdk
+    - lightdm
+    - lightdm-gtk-greeter
     - otf-fira-code
     - rust
     - sshrc
@@ -105,6 +103,8 @@ sys_pkg__arch_with_yaourt:
     - ttf-ricty
     - virtualbox
     - virtualbox-host-modules-arch
+    - xmonad
+    - xmonad-contrib
     - yarn
     - zeal
 
