@@ -76,7 +76,7 @@ function peco_select_history () {
     else
         tac="tail -r"
     fi
-    local selected="$(history | ${tac} | peco --query "${1}" )"
+    local selected="$(history | ${tac} | fzf --reverse --query "${1}" )"
     if [ -n "${selected}" ] ; then
         READLINE_LINE="$(echo "${selected}" | awk '{$1 = ""; print $0}')"
     fi
@@ -90,11 +90,11 @@ function select_cd_directory () {
     else
         find=find
     fi
-    2> /dev/null "${find}"  /* -regextype posix-extended \( -not -regex "/(projects|Users|home)/?[^.]*" -and -prune \) -o \( -regex ".*/(node_modules|build|vendor|\.git|\.gradle|\.idea|Library).*" -and -prune \) -o \( -type d -and -print \) | peco --query "${*}"
+    2> /dev/null "${find}"  /* -regextype posix-extended \( -not -regex "/(projects|Users|home)/?[^.]*" -and -prune \) -o \( -regex ".*/(node_modules|build|vendor|\.git|\.gradle|\.idea|Library).*" -and -prune \) -o \( -type d -and -print \) | fzf --reverse --query "${*}"
 }
 
 function tms () {
-    local buffer_name="$(</dev/null tmux lsb | peco | awk -F ':' '{print $1}')"
+    local buffer_name="$(</dev/null tmux lsb | fzf --reverse | awk -F ':' '{print $1}')"
     if [ -n "${buffer_name}" ] ; then
         tmux save-buffer -b "${buffer_name}" -
     fi
