@@ -156,6 +156,7 @@
               (helm-dash-install-user-docset (symbol-name target))
               )
           )
+        (setq helm-dash-common-docsets (helm-dash-installed-docsets))
         (let ((hook-name-docsets-alist
               '(
                 (ruby-mode-hook . ("Ruby_2"))
