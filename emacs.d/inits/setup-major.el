@@ -73,7 +73,17 @@
         "\\k" 'ein:worksheet-goto-prev-input
         "\\w" 'ein:notebook-save-notebook-command
         "\\b" 'ein:worksheet-insert-cell-below
+        "\\B" (lambda ()
+                (interactive)
+                (setq current-prefix-arg t)
+                (call-interactively 'ein:worksheet-insert-cell-below)
+                )
         "\\a" 'ein:worksheet-insert-cell-above
+        "\\A" (lambda ()
+                (interactive)
+                (setq current-prefix-arg t)
+                (call-interactively 'ein:worksheet-insert-cell-above)
+                )
         "\\d" 'ein:worksheet-delete-cell
         "\\c" 'ein:worksheet-clear-output
         "\\z" 'ein:notebook-kernel-interrupt-command
