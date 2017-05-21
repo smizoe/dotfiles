@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+import sys
+from argparse import ArgumentParser
+import os
+from os import path
+from subprocess import check_output
+
+def make_arg_parser():
+    parser = ArgumentParser(description="""test a script that contains a solution to a problem of a programming contest.
+    This feeds test cases one by one into the script being tested. We assume that the input of each test case is stored in a file,
+    and that the expected output is also stored in a file which has the same name as the input file.
+    """)
+    parser.add_argument('--test-dir', '-d', default=path.realpath(os.getcwd()),
+                        help="""specifies the directory that contains test cases.
+                        We assume that there are directories named 'input' and 'output'
+                        and that they contain test cases.
+                        """)
+    cwd = path.realpath(os.getcwd())
+    dirname = path.basename(cwd)
+    files = [fname for fname in os.listdir(cwd) if path.isfile(path.join(cwd, fname)) and fname.startswith(dirname) and not fname.endswith("~")]
+    default_script = None if len(files) == 0 else path.join(cwd, files[0])
+    parser.add_argument('--script', '-s', default=default_script, help="the name of the script to test. by default, we try to use a script that is named after the current working directory.")
+    parser.add_argument('--compare-float', '-f', action='store_true', help="if specified, we compare output values after converting it to double.")
+    parser.add_argument('--reltol', '-r', type=float, default=1e-8, help="relative tolerance used to check equality when we specify -f option.")
+    return parser
+
+def get_test_file_names(input_dir):
+    return [fname for fname in os.listdir(input_dir)
+            if path.isfile(path.join(input_dir, fname)) and not fname.endswith("~")]
+
+def main(opts):
+    test_dir = opts.get("test_dir")
+    script  = opts.get("script")
+    use_double = opts.get("compare_float")
+    reltol = opts.get("reltol")
+
+    input_dir = path.join(test_dir, "input")
+    output_dir = path.join(test_dir, "output")
+    raised = False
+    for fname in get_test_file_names(input_dir):
+        with open(path.join(input_dir, fname)) as input_file, open(path.join(output_dir, fname)) as output_file:
+            actual = check_output([script], stdin=input_file).decode("utf-8").strip()
+            expected = output_file.read()
+            try:
+                if use_double:
+                    compare_double(actual, expected, reltol)
+                else:
+                    compare_str(actual, expected)
+                print("test succeeded for file {}.".format(fname))
+            except RuntimeError as e:
+                print("test failed for file {}. the cause was:".format(fname))
+                print(e.args[0])
+                raised = True
+    if not raised:
+        print("ok")
+    else:
+        print("not ok")
+        sys.exit(1)
+
+def compare_str(actual, expected):
+    if actual.strip() != expected.strip():
+        raise RuntimeError("the output differs.\nexpected: {}\nactual:{}\n".format(expected.strip(), actual.strip()))
+
+def compare_double(actual, expected, reltol):
+    actual_list = actual.strip().split()
+    expected_list = expected.strip().split()
+    if len(actual_list) != len(expected_list):
+        raise RuntimeError("# of output elements differs: actual => {}, expected => {}".format(len(actual_list), len(expected_list)))
+    pairs = zip(map(float, actual_list), map(float, expected_list))
+    for indx, pair in enumerate(pairs):
+        if abs(pair[0] - pair[1]) > pair[1] * reltol:
+            raise RuntimeError("the output differs at line {}.\nexpected: {}\nactual: {}\n".format(indx + 1, pair[1], pair[0]))
+
+if __name__ == '__main__':
+    parser = make_arg_parser()
+    main(vars(parser.parse_args(sys.argv[1:])))
