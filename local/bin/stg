@@ -1,0 +1,86 @@
+#!/usr/bin/env ruby
+require 'erb'
+require 'optparse'
+
+def parse_option()
+  default = {
+    template: File.join(Dir.getwd(), "template"),
+    num_case: 10,
+    prefix: "stress",
+    input_dir: File.join(Dir.getwd(), "input"),
+    output_dir: File.join(Dir.getwd(), "output"),
+    script: File.join(Dir.getwd(), "naive")
+  }
+  OptionParser.new do|opts|
+    opts.banner = "Usage: #{$0} [options]"
+    opts.on("-n", "--number-of-cases NUMBER", Integer, "sets the number of test cases to generate.")do|num|
+      default[:num_case] = num
+    end
+
+    opts.on("-p", "--prefix PREFIX", "sets to PREFIX the prefix to be used as output") do |prefix|
+      default[:prefix] = prefix
+    end
+
+    opts.on("-s", "--script SCRIPT", "uses SCRIPT to create a solution (= expected output) to each test case.") do |script|
+      default[:script] = script
+    end
+    opts.on("-t", "--template TEMPLATE", "uses TEMPLATE to create stress test cases.") do |tmpl|
+      default[:template] = tmpl
+    end
+
+    opts.on_tail("-h", "--help", "show this message.")do
+      puts opts
+      exit
+    end
+  end.parse!
+  if not Dir.exists?(default[:input_dir])
+    raise "test case input directory #{default[:input_dir]} does not exist."
+  elsif not Dir.exists?(default[:output_dir])
+    raise "test case output directory #{default[:output_dir]} does not exist."
+  elsif not File.exists?(default[:script])
+    raise "the specified reference solution #{default[:script]} does not exist."
+  elsif not File.exists?(default[:template])
+    raise "the specified template #{default[:template]} does not exist."
+  end
+  default
+end
+
+def convert_template_to_erb(path)
+  File.open(path) do |file|
+    result = file.readline().chomp().split().map do |range_with_name|
+      name, range = range_with_name.split(":", 2)
+      "<%= #{name} = Random::DEFAULT.rand(#{range})%>"
+    end.join(" ") + "\n"
+    file.each_line do |line|
+      result += "<%= " + line.chomp() + " %>" + "\n"
+    end
+    result
+  end
+end
+
+def main(opts)
+  input_dir = opts[:input_dir]
+  output_dir = opts[:output_dir]
+  script = opts[:script]
+  prefix = opts[:prefix]
+  tmpl = ERB.new(convert_template_to_erb(opts[:template]))
+  for case_no in 1..opts[:num_case] do
+    new_case = tmpl.result(binding)
+    File.open(File.join(input_dir, prefix + case_no.to_s),"w"){|f| f.write(new_case)}
+    File.open(File.join(output_dir, prefix + case_no.to_s),"w")do|f|
+      IO.popen([script], "r+")do |process|
+        process.write(new_case)
+        process.close_write
+        f.write(process.read)
+        process.close
+        status = $?.to_i
+        raise "script #{script} exit with #{status}" if status != 0
+      end
+    end
+  end
+end
+
+if __FILE__ == $0
+  opts = parse_option()
+  main(opts)
+end
