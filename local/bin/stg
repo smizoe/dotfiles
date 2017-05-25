@@ -9,7 +9,8 @@ def parse_option()
     prefix: "stress",
     input_dir: File.join(Dir.getwd(), "input"),
     output_dir: File.join(Dir.getwd(), "output"),
-    script: File.join(Dir.getwd(), "naive")
+    script: File.join(Dir.getwd(), "naive"),
+    ignore_firstline: false
   }
   OptionParser.new do|opts|
     opts.banner = "Usage: #{$0} [options]"
@@ -27,6 +28,12 @@ def parse_option()
     opts.on("-t", "--template TEMPLATE", "uses TEMPLATE to create stress test cases.") do |tmpl|
       default[:template] = tmpl
     end
+
+    opts.on("-i", "--ignore-firstline",
+            "skip writing the first line of the template (but the binding is performed and the values are available from the next line on.)") do|v|
+        default[:ignore_firstline] = v
+    end
+
 
     opts.on_tail("-h", "--help", "show this message.")do
       puts opts
@@ -49,7 +56,7 @@ def convert_template_to_erb(path)
   File.open(path) do |file|
     result = file.readline().chomp().split().map do |range_with_name|
       name, range = range_with_name.split(":", 2)
-      "<%= #{name} = Random::DEFAULT.rand(#{range})%>"
+      "<%= #{name} = rand(#{range})%>"
     end.join(" ") + "\n"
     file.each_line do |line|
       result += "<%= " + line.chomp() + " %>" + "\n"
@@ -66,6 +73,10 @@ def main(opts)
   tmpl = ERB.new(convert_template_to_erb(opts[:template]))
   for case_no in 1..opts[:num_case] do
     new_case = tmpl.result(binding)
+    if opts[:ignore_firstline]
+      new_case = new_case.lines[1..-1].join
+    end
+
     File.open(File.join(input_dir, prefix + case_no.to_s),"w"){|f| f.write(new_case)}
     File.open(File.join(output_dir, prefix + case_no.to_s),"w")do|f|
       IO.popen([script], "r+")do |process|
