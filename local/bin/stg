@@ -14,6 +14,37 @@ def parse_option()
   }
   OptionParser.new do|opts|
     opts.banner = "Usage: #{$0} [options]"
+    opts.separator ""
+    opts.separator "This command creates stress test cases from a template."
+    opts.separator ""
+    opts.separator "Typically you run the following command:"
+    opts.separator "    $ #{$0} -s path/to/your_solution"
+    opts.separator "after creating the following directory/file structure:"
+    opts.separator "    your_project_name--- input --- test_case1"
+    opts.separator "                      |        |"
+    opts.separator "                      |        |- test_case2"
+    opts.separator "                      |"
+    opts.separator "                      |- output --- test_case1"
+    opts.separator "                      |          |"
+    opts.separator "                      |          |- test_case2"
+    opts.separator "                      |- your_solution (executable)"
+    opts.separator "                      |- template"
+    opts.separator ""
+    opts.separator "The Format of Template"
+    opts.separator ""
+    opts.separator "The format of the template is as follows:"
+    opts.separator ""
+    opts.separator "  - the 1st line contains space separated elements in the form of 'variable_name:range'."
+    opts.separator "    so if we would like to create test cases with 1 <= n <= 100 and 1 <= k <= 10000, we would write in the first line:"
+    opts.separator "      n:1..100 k:1..(10**5)"
+    opts.separator ""
+    opts.separator "  - from the 2nd line on, we may write an arbitrary ruby expression using the variables defined in the first line."
+    opts.separator "    so if we would like to generate a space-separated sequence of random numbers ranging from 1 to k, of length n, then we would write:"
+    opts.separator "      n.times.map{rand(1..k)}"
+    opts.separator "    These expressions are evaluated by erb."
+    opts.separator ""
+
+
     opts.on("-n", "--number-of-cases NUMBER", Integer, "sets the number of test cases to generate.")do|num|
       default[:num_case] = num
     end
