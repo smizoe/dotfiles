@@ -70,13 +70,7 @@ EOF
 ## this is intended to be used with 'bind -x' bash builtin.
 function peco_select_history () {
     history -n
-    local tac
-    if which tac &> /dev/null ; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    local selected="$(history | ${tac} | fzf --reverse --query "${1}" )"
+    local selected="$(history | fzf +s --reverse --tac --query "${1}" )"
     if [ -n "${selected}" ] ; then
         READLINE_LINE="$(echo "${selected}" | awk '{$1 = ""; print $0}')"
     fi
