@@ -23,6 +23,7 @@ sys_pkg__common:
     - w3m
     - ngrep
     - unp
+    - socat
 
 sys_pkg__arch:
     - aspell
