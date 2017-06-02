@@ -24,6 +24,7 @@ sys_pkg__common:
     - ngrep
     - unp
     - socat
+    - source-highlight
 
 sys_pkg__arch:
     - aspell
@@ -47,6 +48,7 @@ sys_pkg__arch:
     - python-pygments
     - gvim
     - gcc-fortran
+    - lesspipe
     - mupdf
     - nodejs
     - npm
@@ -129,6 +131,7 @@ sys_pkg__mach:
     - gnu-time
     - gcc
     - gradle
+    - lesspipe
     ## to install igraph in R
     - libxml2
     - llvm

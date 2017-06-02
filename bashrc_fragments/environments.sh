@@ -11,6 +11,7 @@ export PGDATA=/usr/local/var/postgres
 ## setting for less
 
 export LESS=-iR
+export LESSOPEN="| src-hilite-lesspipe.sh %s"
 
 #############################################
 ## settings for go installed with homebrew ##
