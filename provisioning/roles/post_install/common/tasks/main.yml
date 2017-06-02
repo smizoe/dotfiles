@@ -12,5 +12,12 @@
   changed_when: (post_install__blog_install.stdout | length) != 0
   become: no
 
+- name: find lesspipe.sh
+  shell: which lesspipe.sh
+  register: post_install__lesspipe_loc
+  changed_when: False
+  become: no
+
 - name: link to lesspipe.sh with name lesspipe to run lesspipe.sh from src-highlight-lesspipe.sh
-  file: src=/usr/bin/lesspipe.sh dest="{{home}}/dotfiles/local/bin/lesspipe" state=link
+  file: src="{{post_install__lesspipe_loc.stdout}}" dest="{{home}}/dotfiles/local/bin/lesspipe" state=link
+  become: no
