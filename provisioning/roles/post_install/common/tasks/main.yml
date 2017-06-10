@@ -21,3 +21,6 @@
 - name: link to lesspipe.sh with name lesspipe to run lesspipe.sh from src-highlight-lesspipe.sh
   file: src="{{post_install__lesspipe_loc.stdout}}" dest="{{home}}/dotfiles/local/bin/lesspipe" state=link
   become: no
+
+- name: setup a directory for bash logs
+  file: path="{{home}}/logs/bash" state=directory recurse=yes
