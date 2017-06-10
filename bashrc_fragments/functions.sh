@@ -167,4 +167,19 @@ function peco_glimpse_fn() {
     return 0
 }
 
+function log_bash_cmd() {
+    local pipe_status="${PIPESTATUS[*]}"
+    local last_status=$?
+    local last_cmd="$(history 1 | awk '{$1=""; print $0}')"
+    echo -n "unix_timestamp:$(date +%s)
+PWD:${PWD}
+OLDPWD:${OLDPWD}
+PIPESTATUS:${pipe_status}
+EXIT_STATUS:${last_status}
+CMD:${last_cmd}" | tr "\n" "\t" >> "$1"
+    echo >> "$1"
+    return ${last_status}
+}
+
+
 export -f peco_glimpse_fn kill_pane_from_pane_file

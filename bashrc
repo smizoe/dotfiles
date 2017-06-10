@@ -30,8 +30,9 @@ stty -ixon -ixoff
 
 ## make terminal sane after a command
 SAVE_TERM="$(stty -g)"
-PROMPT_COMMAND="$PROMPT_COMMAND
-stty ${SAVE_TERM}"
+PROMPT_COMMAND="log_bash_cmd '${HOME}/logs/bash/$(hostname)_$(date -u +'%Y-%m-%d').log'
+stty ${SAVE_TERM}
+$PROMPT_COMMAND"
 
 # Tell the terminal about the working directory at each prompt.
 if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
