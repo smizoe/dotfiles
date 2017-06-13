@@ -102,6 +102,7 @@ sys_pkg__arch_with_yaourt:
     - rbenv
     - peco
     - pepper-flash
+    - pv
     - q
     - ttf-ricty
     - virtualbox
@@ -135,6 +136,7 @@ sys_pkg__mach:
     ## to install igraph in R
     - libxml2
     - llvm
+    - pv
     - rust
     - sshrc
     - peco
