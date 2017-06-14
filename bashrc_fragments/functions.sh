@@ -167,19 +167,32 @@ function peco_glimpse_fn() {
     return 0
 }
 
+function print_tmux_info() {
+    if [ -n "${TMUX}" ] ; then
+      tmux display-message -p "tmux_host:#H
+tmux_pane_id:#D
+tmux_pane_index:#P
+tmux_pane_title:#T
+tmux_session_name:#S
+tmux_window_flags:#F
+tmux_window_index:#I
+tmux_window_name:#W"
+    fi
+}
+
 function log_bash_cmd() {
     local pipe_status="${PIPESTATUS[*]}"
-    local last_status=$?
     local last_cmd="$(history 1 | awk '{$1=""; print $0}')"
     echo -n "unix_timestamp:$(date +%s)
 PWD:${PWD}
 OLDPWD:${OLDPWD}
 PIPESTATUS:${pipe_status}
-EXIT_STATUS:${last_status}
+$(print_tmux_info)
+tmux_socket:${TMUX}
 CMD:${last_cmd}" | tr "\n" "\t" >> "$1"
     echo >> "$1"
     return ${last_status}
 }
 
 
-export -f peco_glimpse_fn kill_pane_from_pane_file
+export -f peco_glimpse_fn kill_pane_from_pane_file print_tmux_info
