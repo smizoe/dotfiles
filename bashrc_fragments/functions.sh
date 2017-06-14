@@ -180,19 +180,30 @@ tmux_window_name:#W"
     fi
 }
 
+## see https://stackoverflow.com/questions/1862510/how-can-the-last-commands-wall-time-be-put-in-the-bash-prompt#answer-1862762
+function timer_start() {
+  _timer=${_timer:-$SECONDS}
+}
+
+function timer_stop() {
+  timer_show=$(($SECONDS - $_timer))
+  unset timer
+}
+
 function log_bash_cmd() {
     local pipe_status="${PIPESTATUS[*]}"
     local last_cmd="$(history 1 | awk '{$1=""; print $0}')"
+    timer_stop
     echo -n "unix_timestamp:$(date +%s)
 PWD:${PWD}
 OLDPWD:${OLDPWD}
 PIPESTATUS:${pipe_status}
 $(print_tmux_info)
 tmux_socket:${TMUX}
+last_command_elapsed_time:${timer_show}
 CMD:${last_cmd}" | tr "\n" "\t" >> "$1"
     echo >> "$1"
     return ${last_status}
 }
-
 
 export -f peco_glimpse_fn kill_pane_from_pane_file print_tmux_info
