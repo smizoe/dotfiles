@@ -10,7 +10,8 @@ def parse_option()
     input_dir: File.join(Dir.getwd(), "input"),
     output_dir: File.join(Dir.getwd(), "output"),
     script: File.join(Dir.getwd(), "naive"),
-    ignore_firstline: false
+    ignore_firstline: false,
+    reverse: false
   }
   OptionParser.new do|opts|
     opts.banner = "Usage: #{$0} [options]"
@@ -65,12 +66,16 @@ def parse_option()
         default[:ignore_firstline] = v
     end
 
+    opts.on("-r", "--reverse", "use the template as that for the output, and generate the corresponding input by feeding it to the script.")do |v|
+      default[:reverse] = v
+    end
 
     opts.on_tail("-h", "--help", "show this message.")do
       puts opts
       exit
     end
   end.parse!
+
   if not Dir.exists?(default[:input_dir])
     raise "test case input directory #{default[:input_dir]} does not exist."
   elsif not Dir.exists?(default[:output_dir])
@@ -79,6 +84,12 @@ def parse_option()
     raise "the specified reference solution #{default[:script]} does not exist."
   elsif not File.exists?(default[:template])
     raise "the specified template #{default[:template]} does not exist."
+  end
+
+  if default[:reverse]
+    tmp = default[:input_dir]
+    default[:input_dir] = default[:output_dir]
+    default[:output_dir] = tmp
   end
   default
 end
