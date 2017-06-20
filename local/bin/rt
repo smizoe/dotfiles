@@ -23,6 +23,7 @@ def make_arg_parser():
     parser.add_argument('--compare-float', '-f', action='store_true', help="if specified, we compare output values after converting it to double.")
     parser.add_argument('--reltol', '-r', type=float, default=1e-8, help="relative tolerance used to check equality when we specify -f option.")
     parser.add_argument('--ff', action='store_true', help='fail fast; stop execution at the first failed example.')
+    parser.add_argument('--sort', action='store_true', help='sort lines before comparing outputs.')
     return parser
 
 def get_test_file_names(input_dir):
@@ -35,6 +36,7 @@ def main(opts):
     use_double = opts.get("compare_float")
     reltol = opts.get("reltol")
     fail_fast = opts.get("ff")
+    needs_sort = opts.get("sort")
 
     input_dir = path.join(test_dir, "input")
     output_dir = path.join(test_dir, "output")
@@ -43,6 +45,9 @@ def main(opts):
         with open(path.join(input_dir, fname)) as input_file, open(path.join(output_dir, fname)) as output_file:
             actual = check_output([script], stdin=input_file).decode("utf-8").strip()
             expected = output_file.read()
+            if needs_sort:
+                actual = "\n".join(sorted(actual.split("\n")))
+                expected = "\n".join(sorted(expected.split("\n")))
             try:
                 if use_double:
                     compare_double(actual, expected, reltol)
