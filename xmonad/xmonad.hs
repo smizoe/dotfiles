@@ -4,12 +4,14 @@ import XMonad.Actions.CycleWS
 import XMonad.Actions.SwapWorkspaces(swapTo)
 import XMonad.Util.EZConfig(additionalKeys)
 import Graphics.X11.ExtraTypes.XF86
+import XMonad.Hooks.SetWMName
 
 baseConfig = desktopConfig
 
 main = xmonad $ baseConfig
   { terminal = "yakuake"
     , modMask = mod4Mask
+    , startupHook = setWMName "LG3D"
   } `additionalKeys`
   [
     ((mod4Mask, xK_bracketleft), moveTo Prev NonEmptyWS)
