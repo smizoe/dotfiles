@@ -12,7 +12,7 @@
   ln    = log --name-only
   d     = diff
   dc    = diff --cached
-  u     = pull --ff-only
+  u     = pull --rebase --autostash
   ras   = rebase --autostash
   s     = status
   wt    = worktree
