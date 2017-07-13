@@ -84,6 +84,7 @@ sys_pkg__arch_with_yaourt:
     - chromium-widevine
     - cmigemo-git
     - coursera-dl
+    - dasht
     - dfu-programmer
     - dfu-util
     - emojione-color-font
@@ -118,6 +119,7 @@ sys_pkg__mach:
     - vim
     - coreutils
     - cmake
+    - dasht
     - findutils
     - flock
     - fzf
@@ -147,6 +149,7 @@ sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
     llvm: with-clang
     global: with-ctags,with-pygments
+    dasht: ignore-dependencies
 sys_pkg__brew_state:
     libxml2: linked
 sys_pkg__mach_with_cask:
