@@ -29,3 +29,6 @@ fi
 
 export EDITOR="em -nw"
 export VISUAL="em -a emacs"
+
+## dasht
+export DASHT_DOCSETS_DIR=~/.local/share/Zeal/Zeal/docsets

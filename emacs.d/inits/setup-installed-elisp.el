@@ -118,7 +118,13 @@
   (progn
     (with-eval-after-load 'w3m
       (progn
-        (let ((docsets-path "~/.local/share/Zeal/Zeal/docsets"))
+        (let* (
+               (dasht-docsets-dir (getenv "DASHT_DOCSETS_DIR"))
+               (docsets-path (cond
+                              ((or (null dasht-docsets-dir) (= (length dasht-docsets-dir) 0)) "~/.local/share/Zeal/Zeal/docsets")
+                              (t dasht-docsets-dir)
+                              ))
+               )
           (mkdir docsets-path t)
           (custom-set-variables
           '(helm-dash-docsets-path docsets-path)
