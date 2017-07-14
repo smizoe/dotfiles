@@ -10,6 +10,9 @@ if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
     ${EXIT_HANDLER}
     FILES="$(echo "${SELECTED}" | awk -F ':' '{print "+" $2 ":" $3 " " $1}')"
     CMD="${EDITOR} ${FILES}"
-    echo -n "${CMD}" | tmux loadb -b "rgp $* $(date +%s)" -
+    HISTFILE="${HISTFILE:-"${HOME}/.bash_history"}"
+    set -o history
+    history -s "${CMD}"
+    history -a
     exec ${CMD}
 fi
