@@ -14,6 +14,7 @@
   template: src=conf.d/{{item}} dest={{supervisord__conf_dir}}/{{item}}
   with_items:
     - google-ime-skk.conf
+    - dasht-server.conf
 
 - name: put supervisord conf
   template: src=etc/supervisord.conf.j2 dest="{{supervisord__conf_dir}}/supervisord.conf"
