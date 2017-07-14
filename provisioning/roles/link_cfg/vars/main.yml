@@ -20,3 +20,4 @@ link_cfg__dotfiles:
   - src: gradle
   - src: peco
     dest: ".config/peco"
+  - src: elinks
