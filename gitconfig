@@ -2,6 +2,7 @@
   ignorecase   = false
 [alias]
   graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
+  b     = branch
   bl    = branch --list
   co    = checkout
   cam   = commit --amend
