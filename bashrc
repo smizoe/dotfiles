@@ -90,10 +90,10 @@ PS1="\[\$(color_from_status \$?)\]\u@\h\[${COLOR_NC}\] [\$(__git_ps1 \"(%s) \")\
 source /usr/local/opt/autoenv/activate.sh
 
 
+__git_complete g __git_main
+
 # The next line updates PATH for the Google Cloud SDK.
-source ~/google-cloud-sdk/path.bash.inc
+if [ -f "${HOME}/dotfiles/google-cloud-sdk/path.bash.inc" ]; then source "${HOME}/dotfiles/google-cloud-sdk/path.bash.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-source ~/google-cloud-sdk/completion.bash.inc
-
-__git_complete g __git_main
+if [ -f "${HOME}/dotfiles/google-cloud-sdk/completion.bash.inc" ]; then source "${HOME}/dotfiles/google-cloud-sdk/completion.bash.inc"; fi
