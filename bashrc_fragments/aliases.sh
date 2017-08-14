@@ -17,6 +17,8 @@ alias clean_images='docker rmi $(docker images --filter="dangling=true"|tail -n+
 
 alias jg='ag --ignore=build --ignore=target'
 
+alias record='ffmpeg -r 30 -f avfoundation -i "1:0" -framerate 30 -af "highpass=f=200, lowpass=f=3000"'
+
 ## enable several settings in arch linux
 if [ "${SYSTEM_NAME}" != "Darwin" ] ; then
   alias pbcopy='xsel --clipboard --input'
