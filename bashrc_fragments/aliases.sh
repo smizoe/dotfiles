@@ -19,6 +19,8 @@ alias jg='ag --ignore=build --ignore=target'
 
 alias record='ffmpeg -r 30 -f avfoundation -i "1:0" -framerate 30 -af "highpass=f=200, lowpass=f=3000"'
 
+alias csv2tsv='awk -v FPAT="([^,]*)|(\"[^\"]*\")" '"'BEGIN{ OFS=\"\t\"}{ for(i = 1; i <= NF; i++) { if (substr(\$i, 1, 1) == \"\\\"\") { len = length(\$i); \$i = substr(\$i, 2, len-2) } else {\$i = \$i} } ; print }'"
+
 ## enable several settings in arch linux
 if [ "${SYSTEM_NAME}" != "Darwin" ] ; then
   alias pbcopy='xsel --clipboard --input'
