@@ -55,6 +55,12 @@
       (pop . ensime-pop-find-definition-stack)
       (doc . ensime-inspector-browse-doc)
       )
+    (meghanada-mode
+     (def . meghanada-jump-declaration)
+     (ref . meghanada-reference)
+     (pop . meghanada-back-jump)
+     (doc . meghanada-typeinfo)
+     )
     )
   "
 a nested alist which:

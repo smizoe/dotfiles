@@ -447,6 +447,24 @@
     )
   )
 
+;;;;;;;;;;;;;;;
+;; meghanada ;;
+;;;;;;;;;;;;;;;
+
+(use-package meghanada
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'java-mode-hook
+            (lambda ()
+              ;; meghanada-mode on
+              (meghanada-mode t)
+              ;; use code format
+              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)
+              )
+            )
+ )
+
 ;;;;;;;;;;;;;;;;
 ;; projectile ;;
 ;;;;;;;;;;;;;;;;
