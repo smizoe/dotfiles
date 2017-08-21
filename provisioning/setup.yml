@@ -20,9 +20,10 @@
     - role: chrome_ext
       become: "{{ansible_os_family != 'Darwin'}}"
       tags: [ 'chrome_ext' ]
-    - role: post_install/common
-      tags: [ 'post_install' ]
-    - role: post_install/mach
+    - role: post_install/Darwin
       become: yes
-      when: ansible_os_family == 'Darwin'
       tags: [ 'post_install' ]
+      when: ansible_os_family == 'Darwin'
+    - role: post_install/Archlinux
+      tags: [ 'post_install' ]
+      when: ansible_os_family != 'Darwin'

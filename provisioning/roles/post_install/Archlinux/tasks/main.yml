@@ -1,0 +1,13 @@
+---
+
+- name: include common role
+  include_role: name=post_install/common
+
+- name: make directories for user-specific systemd unit files
+  file: path="{{home}}/.config/systemd/user" state=directory recurse=yes
+
+- name: create a systemd unit for emacs
+  template: src=emacs.service.j2 dest="{{home}}/.config/systemd/user/emacs.service"
+
+- name: enable emacs server on startup
+  systemd: name=emacs user=yes enabled=yes state=started
