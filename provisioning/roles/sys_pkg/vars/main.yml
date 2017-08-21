@@ -128,7 +128,6 @@ sys_pkg__mach:
     - ruby-build
     - rbenv
     - cmigemo
-    - autoenv
     - python
     - poppler
     - gnu-time

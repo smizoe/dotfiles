@@ -85,11 +85,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 GIT_PS1_SHOWDIRTYSTATE=1
 PS1="\[\$(color_from_status \$?)\]\u@\h\[${COLOR_NC}\] [\$(__git_ps1 \"(%s) \")\w]\\$ "
 
-
-## python autoenv
-source /usr/local/opt/autoenv/activate.sh
-
-
 __git_complete g __git_main
 
 # The next line updates PATH for the Google Cloud SDK.
