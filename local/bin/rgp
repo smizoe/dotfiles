@@ -12,7 +12,7 @@ if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
     CMD="${EDITOR} ${FILES}"
     HISTFILE="${HISTFILE:-"${HOME}/.bash_history"}"
     set -o history
-    history -s "${CMD}"
-    history -a
+    builtin history -s "${CMD}"
+    builtin history -a
     exec ${CMD}
 fi
