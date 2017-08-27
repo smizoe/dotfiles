@@ -53,11 +53,6 @@ fi
 ## the followings are user-defined.
 
 
-# bash_completion
-BASH_COMPLETION=/usr/local/etc/bash_completion
-BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
-#BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
-
 BASH_COMPLETION_FILES=(/usr/local/etc/bash_completion /usr/share/git/completion/git-prompt.sh /usr/share/git/completion/git-completion.bash)
 for file in ${BASH_COMPLETION_FILES[@]}
 do
