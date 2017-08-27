@@ -69,8 +69,8 @@ EOF
 ## select bash history based on the given argument
 ## this is intended to be used with 'bind -x' bash builtin.
 function peco_select_history () {
-    history -n
-    local selected="$(history | fzf +s --reverse --tac --query "${1}" )"
+    builtin history -n
+    local selected="$(builtin history | fzf +s --reverse --tac --query "${1}" )"
     if [ -n "${selected}" ] ; then
         READLINE_LINE="$(echo "${selected}" | awk '{$1 = ""; print $0}')"
     fi
@@ -192,7 +192,7 @@ function timer_stop() {
 
 function log_bash_cmd() {
     local pipe_status="${PIPESTATUS[*]}"
-    local last_cmd="$(history 1 | awk '{$1=""; print $0}')"
+    local last_cmd="$(builtin history 1 | awk '{$1=""; print $0}')"
     timer_stop
     echo -n "unix_timestamp:$(date +%s)
 PWD:${PWD}

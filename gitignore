@@ -45,6 +45,7 @@ emacs.d/elpa
 GPATH
 GTAGS
 GRTAGS
+.python-version
 
 # generated from vault
 ########
