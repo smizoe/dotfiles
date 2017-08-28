@@ -8,6 +8,7 @@ fi
 
 BASHRC_REALPATH="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" && pwd)"
 
+. "${BASHRC_REALPATH}/bashrc_fragments/constants.sh"
 . "${BASHRC_REALPATH}/bashrc_fragments/functions.sh"
 
 # TMUX
@@ -22,69 +23,9 @@ if which tmux >/dev/null 2>&1; then
     fi
 fi
 
-# Make bash check its window size after a process completes
-shopt -s checkwinsize
+initialize
 
-## stop using ctrl-s/ctrl-q as a control flow key so that we can use 'bind -x "\C-s": some command'
-stty -ixon -ixoff
-
-## make terminal sane after a command
-SAVE_TERM="$(stty -g)"
-trap 'timer_start' DEBUG
-PROMPT_COMMAND="log_bash_cmd \"${HOME}/logs/bash/$(hostname)_\$(date -u +'%Y-%m-%d').log\"
-stty ${SAVE_TERM}
-$PROMPT_COMMAND"
-
-# Tell the terminal about the working directory at each prompt.
-if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
-    update_terminal_cwd() {
-        # Identify the directory using a "file:" scheme URL,
-        # including the host name to disambiguate local vs.
-        # remote connections. Percent-escape spaces.
-        local SEARCH=' '
-        local REPLACE='%20'
-        local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-        printf '\e]7;%s\a' "$PWD_URL"
-    }
-    PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
-fi
-
-###################################
-## the followings are user-defined.
-
-
-BASH_COMPLETION_FILES=(/usr/local/etc/bash_completion /usr/share/git/completion/git-prompt.sh /usr/share/git/completion/git-completion.bash)
-for file in ${BASH_COMPLETION_FILES[@]}
-do
-    if [ -f "${file}" ]; then
-        . "${file}"
-    fi
-done
-
-
-for fname in environments constants aliases keybinds
+for fname in environments aliases keybinds
 do
     . "${BASHRC_REALPATH}/bashrc_fragments/${fname}.sh"
 done
-
-
-
-## setting for rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null ; then eval "$(pyenv init -)"; fi
-
-
-
-####################
-## show git branch
-
-GIT_PS1_SHOWDIRTYSTATE=1
-PS1="\[\$(color_from_status \$?)\]\u@\h\[${COLOR_NC}\] [\$(__git_ps1 \"(%s) \")\w]\\$ "
-
-__git_complete g __git_main
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "${HOME}/dotfiles/google-cloud-sdk/path.bash.inc" ]; then source "${HOME}/dotfiles/google-cloud-sdk/path.bash.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "${HOME}/dotfiles/google-cloud-sdk/completion.bash.inc" ]; then source "${HOME}/dotfiles/google-cloud-sdk/completion.bash.inc"; fi
