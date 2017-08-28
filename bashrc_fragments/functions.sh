@@ -265,7 +265,7 @@ PIPESTATUS:${pipe_status}
 $(print_tmux_info)
 tmux_socket:${TMUX}
 last_command_elapsed_time:${timer_show}
-CMD:${last_cmd}" | tr "\n" "\t" >> "$1"
+CMD:${last_cmd}" | tr "\n" "\t" | ltsv2json >> "$1"
     echo >> "$1"
 }
 
