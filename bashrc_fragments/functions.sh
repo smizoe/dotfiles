@@ -270,7 +270,7 @@ CMD:${last_cmd}" | tr "\n" "\t" >> "$1"
 }
 
 function ltsv2json() {
-  cat "${@:-/dev/stdin}"| ruby -rjson -nlpe '$_ = JSON.generate($_.split("\t").map{|elem| elem.split(":",2) }.inject({}){|acc, pair| acc[pair[0]] = pair[1]; acc})'
+  cat "${@:-/dev/stdin}"| ruby -rjson -npe '$_ = JSON.generate($_.chomp.split("\t").map{|elem| elem.split(":",2) }.inject({}){|acc, pair| acc[pair[0]] = pair[1]; acc})'
 }
 
 export -f peco_glimpse_fn kill_pane_from_pane_file print_tmux_info
