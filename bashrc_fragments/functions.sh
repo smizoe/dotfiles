@@ -12,7 +12,11 @@ function initialize() {
         trap 'timer_start' DEBUG
         PROMPT_COMMAND="log_bash_cmd \"${HOME}/logs/bash/$(hostname)_\$(date -u +'%Y-%m-%d').log\"
         stty ${SAVE_TERM}
-        $PROMPT_COMMAND"
+        $PROMPT_COMMAND
+        history -a
+        history -c
+        history -r
+        "
 
         # Tell the terminal about the working directory at each prompt.
         if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
