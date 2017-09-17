@@ -4,6 +4,7 @@ from argparse import ArgumentParser
 import os
 from os import path
 from subprocess import check_output
+from signal import alarm, signal, SIGALRM
 
 def make_arg_parser():
     parser = ArgumentParser(description="""test a script that contains a solution to a problem of a programming contest.
@@ -24,11 +25,24 @@ def make_arg_parser():
     parser.add_argument('--reltol', '-r', type=float, default=1e-8, help="relative tolerance used to check equality when we specify -f option.")
     parser.add_argument('--ff', action='store_true', help='fail fast; stop execution at the first failed example.')
     parser.add_argument('--sort', action='store_true', help='sort lines before comparing outputs.')
+    parser.add_argument('--timeout', type=int, help='measure time and fail if the script does not return within this time (seconds).')
     return parser
 
 def get_test_file_names(input_dir):
     return [fname for fname in os.listdir(input_dir)
             if path.isfile(path.join(input_dir, fname)) and not fname.endswith("~")]
+
+def run_with_timeout(cmd, input_file, timeout):
+    if timeout:
+        def handler(signum, frame):
+            raise RuntimeError("running test on {} timed out ({} seconds)".format(input_file.name, timeout))
+
+        signal(SIGALRM, handler)
+        alarm(timeout)
+    result = check_output(cmd, stdin=input_file).decode("utf-8").strip()
+    if timeout:
+        alarm(0)
+    return result
 
 def main(opts):
     test_dir = opts.get("test_dir")
@@ -37,22 +51,25 @@ def main(opts):
     reltol = opts.get("reltol")
     fail_fast = opts.get("ff")
     needs_sort = opts.get("sort")
+    timeout = opts.get("timeout")
 
     input_dir = path.join(test_dir, "input")
     output_dir = path.join(test_dir, "output")
     raised = False
     for fname in get_test_file_names(input_dir):
         with open(path.join(input_dir, fname)) as input_file, open(path.join(output_dir, fname)) as output_file:
-            actual = check_output([script], stdin=input_file).decode("utf-8").strip()
-            expected = output_file.read()
-            if needs_sort:
-                actual = "\n".join(sorted(actual.split("\n")))
-                expected = "\n".join(sorted(expected.split("\n")))
             try:
+                actual = run_with_timeout([script], input_file, timeout)
+                expected = output_file.read()
+                if needs_sort:
+                    actual = "\n".join(sorted(actual.split("\n")))
+                    expected = "\n".join(sorted(expected.split("\n")))
+
                 if use_double:
                     compare_double(actual, expected, reltol)
                 else:
                     compare_str(actual, expected)
+
                 print("test succeeded for file {}.".format(fname))
             except RuntimeError as e:
                 print("test failed for file {}. the cause was:".format(fname))
