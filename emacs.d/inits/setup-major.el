@@ -67,6 +67,7 @@
   :pin melpa-stable
   :config
   (progn
+    (add-hook 'ein:notebook-mode-hook (lambda () (setq-local before-save-hook nil)))
     (with-eval-after-load 'evil
       (evil-define-key 'normal ein:notebook-mode-map
         "\\j" 'ein:worksheet-goto-next-input
