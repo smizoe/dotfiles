@@ -399,7 +399,7 @@
                )
       "\\ph" 'python-eldoc-at-point
       "\\pf" 'run-python
-      "\\gp" 'python-shell-switch-to-shell
+      "\\ss" 'python-shell-switch-to-shell
       )
     (evil-define-key 'visual python-mode-map
       "\\ss" 'python-shell-send-region
