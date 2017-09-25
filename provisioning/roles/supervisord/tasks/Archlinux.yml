@@ -1,0 +1,6 @@
+---
+- name: prepare for starting supervisord as a daemon
+  template: src=supervisord.service.j2 dest="{{home}}/.config/systemd/user/supervisord.service"
+
+- name: enable supervisord on startup
+  systemd: name=supervisord user=yes enabled=yes state=started

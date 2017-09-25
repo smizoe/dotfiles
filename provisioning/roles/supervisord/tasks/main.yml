@@ -20,5 +20,8 @@
   template: src=etc/supervisord.conf.j2 dest="{{supervisord__conf_dir}}/supervisord.conf"
   notify: restart supervisord
 
-- include: start_in_mach.yml
+- include_tasks: Darwin.yml
   when: ansible_os_family == 'Darwin'
+
+- include_tasks: Archlinux.yml
+  when: ansible_os_family != 'Darwin'
