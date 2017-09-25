@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart={{home}}/.local/bin/supervisord -n -c {{supervisord__conf_dir}}/supervisord.conf
+ExecStart={{home}}/.local/bin/supervisord -c {{supervisord__conf_dir}}/supervisord.conf
 ExecStop={{home}}/.local/bin/supervisorctl $OPTIONS shutdown
 ExecReload={{home}}/.local/bin/supervisorctl -c {{supervisord__conf_dir}}/supervisord.conf $OPTIONS reload
 KillMode=process

@@ -24,6 +24,12 @@
   become: yes
   file: src={{ (google_ime_skk_path.stdout | dirname |dirname )+ '/bin/google-ime-skk' }} dest=/usr/local/bin/google-ime-skk state=link
 
+- name: make google-ime-skk script portable
+  lineinfile:
+    path: "{{ (google_ime_skk_path.stdout | dirname |dirname )+ '/bin/google-ime-skk' }}"
+    regexp: "^#!/usr/bin/env"
+    line: "#!/usr/bin/env RUBYOPT='-Ku' ruby"
+    state: present
 
 - name: run scripts
   shell: "stat {{item.creates}} || ({{item.cmd}} && echo 'installed')"

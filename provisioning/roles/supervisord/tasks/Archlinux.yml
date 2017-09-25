@@ -1,4 +1,8 @@
 ---
+- name: create a symlink for dasht-server
+  file: src=/usr/bin/dasht-server dest=/usr/local/bin/dasht-server state=link
+  become: yes
+
 - name: prepare for starting supervisord as a daemon
   template: src=supervisord.service.j2 dest="{{home}}/.config/systemd/user/supervisord.service"
 
