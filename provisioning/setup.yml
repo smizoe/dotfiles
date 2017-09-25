@@ -9,6 +9,16 @@
     - include_vars: vars.yml
       tags: always
   roles:
+    ## TODO: use with_first_found for OS-dependent tasks
+    ## see: https://ansible-tips-and-tricks.readthedocs.io/en/latest/os-dependent-tasks/variables/
+    ## Note also that we have to wait for https://github.com/ansible/ansible/issues/30600 to be solved
+    - role: pre_install/Darwin
+      become: yes
+      tags: [ 'pre_install' ]
+      when: ansible_os_family == 'Darwin'
+    - role: pre_install/Archlinux
+      tags: [ 'pre_install' ]
+      when: ansible_os_family != 'Darwin'
     - { role: vault,       tags : [ 'vault' ] }
     - { role: sys_pkg,     tags : ['sys_pkg'] }
     - { role: link_cfg,    tags : ['link_cfg'] }

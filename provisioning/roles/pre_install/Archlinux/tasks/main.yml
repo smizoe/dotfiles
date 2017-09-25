@@ -1,0 +1,3 @@
+---
+- name: make directories for user-specific systemd unit files
+  file: path="{{home}}/.config/systemd/user" state=directory recurse=yes
