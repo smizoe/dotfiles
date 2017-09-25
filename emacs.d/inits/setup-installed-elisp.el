@@ -30,10 +30,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; use emacs in server mode ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(server-start)
-(defun iconify-emacs-when-server-is-done ()
-  (unless server-clients (iconify-frame)))
-(global-set-key (kbd "C-x C-c") 'server-edit)
 (defalias 'exit 'save-buffers-kill-emacs)
 
 ;;;;;;;;;;;;;;;;;;;;
@@ -48,18 +44,6 @@
 ;; point-undo (move back and forth to the previous or next position that the cursor existed) ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;; (install-elisp-from-emacswiki "point-undo.el")
-(use-package point-undo
-  :ensure t
-  :init
-  (progn
-    (define-key global-map [f7] 'point-undo)
-    ;; the following is (shift f7) on mac (at least for now)
-    (define-key global-map "\M-[28~" 'point-redo)
-    )
-  )
-;;(define-key global-map (kbd "S-<f7>") 'point-redo)
 
 ;; skk
 (use-package ddskk
