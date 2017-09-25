@@ -7,7 +7,6 @@
     name: "{{item}}"
     state: present
     virtualenv: "{{home}}/venv"
-    extra_args: '--user'
     virtualenv_command: /usr/bin/python3 -m venv
     virtualenv_site_packages: yes
   with_items: "{{python_pkg__packages}}"
