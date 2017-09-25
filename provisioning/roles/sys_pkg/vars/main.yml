@@ -87,6 +87,7 @@ sys_pkg__arch_with_yaourt:
     - dasht
     - dfu-programmer
     - dfu-util
+    - elinks
     - emojione-color-font
     - flashplugin
     - fzf
@@ -120,6 +121,7 @@ sys_pkg__mach:
     - coreutils
     - cmake
     - dasht
+    - elinks
     - findutils
     - flock
     - fzf
