@@ -309,7 +309,7 @@
               (lambda ()
                 (let* (
                        (default-venv (concat (file-name-as-directory (getenv "HOME")) "venv"))
-                       (tgt-venv (or projectile-project-root default-venv))
+                       (tgt-venv (or (projectile-project-root) default-venv))
                        )
                   (pyvenv-activate tgt-venv)
                   )
