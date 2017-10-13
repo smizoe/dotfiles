@@ -60,7 +60,7 @@ function initialize() {
 
         ## setting for rbenv
         if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-        if which pyenv > /dev/null ; then eval "$(pyenv init -)"; fi
+        #if which pyenv > /dev/null ; then eval "$(pyenv init -)"; fi
 
         MY_INITIALIZED=DONE
     fi
