@@ -29,3 +29,7 @@ for fname in environments aliases keybinds
 do
     . "${BASHRC_REALPATH}/bashrc_fragments/${fname}.sh"
 done
+
+if [ -f ~/.others.sh ] ; then
+    source ~/.others.sh
+fi
