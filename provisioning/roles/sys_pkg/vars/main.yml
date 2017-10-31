@@ -98,7 +98,7 @@ sys_pkg__arch_with_yaourt:
     - lightdm
     - lightdm-gtk-greeter
     - otf-fira-code
-    - rust
+    - rustup
     - sshrc
     - cargo
     - rbenv
@@ -140,7 +140,7 @@ sys_pkg__mach:
     - libxml2
     - llvm
     - pv
-    - rust
+    - rustup
     - sshrc
     - peco
     - q
