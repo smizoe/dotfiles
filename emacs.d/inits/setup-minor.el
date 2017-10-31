@@ -484,7 +484,6 @@
   :ensure t
   :init
   (progn
-    (setq racer-rust-src-path "~/.emacs.d/rustc/src/")
     (add-hook 'racer-mode-hook #'company-mode)
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
