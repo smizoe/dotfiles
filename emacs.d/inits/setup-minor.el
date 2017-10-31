@@ -424,6 +424,15 @@
   :pin melpa-stable
   )
 
+(use-package flycheck-rust
+  :config
+  (progn
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+    )
+  :ensure t
+  :pin melpa
+  )
+
 ;;;;;;;;;;;;
 ;; ensime ;;
 ;;;;;;;;;;;;
