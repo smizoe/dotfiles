@@ -149,7 +149,7 @@ sys_pkg__mach:
 sys_pkg__brew_options:
     vim: with-client-server,with-lua,with-luajit
     llvm: with-clang
-    global: with-ctags,with-pygments
+    global: with-ctags,with-pygments,with-sqlite3
     dasht: ignore-dependencies
 sys_pkg__brew_state:
     libxml2: linked
