@@ -245,18 +245,6 @@
 
 (use-package go-mode
   :ensure t
-  :init
-    (add-hook 'go-mode-hook
-      (lambda ()
-        (progn
-          (add-to-list 'load-path "~/go/src/github.com/dougm/goflymake")
-          (require 'go-flymake)
-          (require 'go-flycheck)
-          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
-          (local-set-key (kbd "C-c i") 'go-goto-imports)
-          )
-        )
-      )
   )
 
 ;;;;;;;;;;;;;;;;;
