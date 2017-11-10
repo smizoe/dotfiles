@@ -431,6 +431,17 @@
     )
  )
 
+
+;;;;;;;;;;;;;;;;;;;;
+;; terraform-mode ;;
+;;;;;;;;;;;;;;;;;;;;
+
+(use-package terraform-mode
+  :ensure t
+  :pin melpa
+  )
+
+
 ;; nxml-mode
 (add-to-list 'auto-mode-alist '("\\.pmml" . nxml-mode))
 
