@@ -134,10 +134,38 @@
             (sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(x)" "CANCEL(c)")
             (sequence "APPT(a)" "|" "DONE(x)" "CANCEL(c)")
             ))
+    (cl-loop for type in '(md) do
+      (add-to-list 'org-export-backends type)
+      )
+    (require 'ox-md)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (C . t)
+       (R . t)
+       (python . t)
+       (ruby . t)
+       (shell . t)
+       )
+     )
     (with-eval-after-load 'evil
       (evil-define-key 'normal org-mode-map
         (kbd "TAB") 'org-cycle
-        "\\cc" 'org-ctrl-c-ctrl-c
+        "\\cb" #'org-babel-execute-buffer
+        "\\cB" (lambda ()
+                  (interactive)
+                  (let ((org-confirm-babel-evaluate nil))
+                    (org-babel-execute-buffer)
+                    )
+                  )
+        "\\ce" #'org-export-dispatch
+        "\\cE" (lambda ()
+                  (interactive)
+                  (let ((org-confirm-babel-evaluate nil))
+                    (org-export-dispatch)
+                    )
+                  )
+        "\\cc" #'org-ctrl-c-ctrl-c
         )
       )
     )
