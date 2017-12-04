@@ -166,6 +166,7 @@
                     )
                   )
         "\\cc" #'org-ctrl-c-ctrl-c
+        "\\c'" #'org-edit-special
         )
       )
     )
