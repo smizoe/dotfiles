@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: babel src-block
+# --
+#+BEGIN_SRC ${1:$$(yas-choose-value (mapcar #'first org-babel-load-languages))} $2
+$0
+#+END_SRC
