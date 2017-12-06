@@ -25,6 +25,7 @@ sys_pkg__common:
     - unp
     - socat
     - source-highlight
+    - htop
 
 sys_pkg__arch:
     - aspell
