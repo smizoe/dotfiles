@@ -79,6 +79,7 @@
         '(evil-shift-width 2)
         '(evil-search-module 'evil-search)
         '(evil-want-C-u-scroll t)
+        '(evil-ex-visual-char-range t)
         )
 
     ;; add ex commands
