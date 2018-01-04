@@ -25,5 +25,6 @@ alias csv2tsv='awk -v FPAT="([^,]*)|(\"[^\"]*\")" '"'BEGIN{ OFS=\"\t\"}{ for(i =
 if [ "${SYSTEM_NAME}" != "Darwin" ] ; then
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
+  alias open="xdg-open"
   export GTAGSCONF=/usr/share/gtags/gtags.conf
 fi
