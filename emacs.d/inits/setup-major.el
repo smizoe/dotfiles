@@ -146,6 +146,7 @@
        (python . t)
        (ruby . t)
        (shell . t)
+       (sql . t)
        )
      )
     (with-eval-after-load 'evil
