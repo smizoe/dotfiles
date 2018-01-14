@@ -34,7 +34,6 @@ sys_pkg__arch:
     - avr-gcc
     - avr-libc
     - bash ## /bin/bash is too old; don't forget to add /usr/local/bin/bash to /etc/shells and run 'chsh -s /usr/local/bin/bash'
-    - chromium
     - docker
     - dropbox
     - ibus
@@ -82,7 +81,6 @@ sys_pkg__arch_with_yaourt:
     - arm-none-eabi-gcc
     - arm-none-eabi-newlib
     - atool
-    - chromium-widevine
     - cmigemo-git
     - coursera-dl
     - dasht
@@ -107,6 +105,9 @@ sys_pkg__arch_with_yaourt:
     - pepper-flash
     - pv
     - q
+     # snapd is for installing the brave browser
+     # see https://snapcraft.io/ for how to install/enable it
+    - snapd
     - ttf-ricty
     - virtualbox
     - virtualbox-host-modules-arch
