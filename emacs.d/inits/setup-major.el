@@ -126,6 +126,7 @@
 ;;(add-to-list 'org-export-backends 'md)
 (use-package org
   :ensure org-plus-contrib
+  :ensure htmlize
   :config
   (progn
     (setq org-use-fast-todo-selection t)
@@ -168,6 +169,8 @@
                   )
         "\\cc" #'org-ctrl-c-ctrl-c
         "\\c'" #'org-edit-special
+        "\\j"  #'org-next-block
+        "\\k"  #'org-previous-block
         )
       )
     )
