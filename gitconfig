@@ -10,7 +10,7 @@
   ap    = add -p
   l     = log
   lp    = log -p
-  ln    = log --name-only
+  ln    = log --name-status
   d     = diff
   dc    = diff --cached
   u     = pull --rebase --autostash
