@@ -135,7 +135,7 @@
             (sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(x)" "CANCEL(c)")
             (sequence "APPT(a)" "|" "DONE(x)" "CANCEL(c)")
             ))
-    (cl-loop for type in '(md) do
+    (cl-loop for type in '(md confluence) do
       (add-to-list 'org-export-backends type)
       )
     (require 'ox-md)
