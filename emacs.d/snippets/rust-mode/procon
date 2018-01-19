@@ -1,0 +1,202 @@
+# -*- mode: snippet -*-
+# name: rust-programming-contest
+# --
+use procon::*;
+use std::io;
+fn main() {
+    try_main().unwrap();
+}
+
+fn try_main() -> Result<(), Box<std::error::Error>> {
+    let stdin = io::stdin();
+    let mut sc = Scanner::new(stdin.lock());
+    $0
+    Ok(())
+}
+
+mod procon {
+    use std::io;
+    use std::cmp::Ordering;
+    /// Scanner is taken from https://github.com/EbTech/rust-algorithms
+    pub struct Scanner<B> {
+        reader: B,
+        buffer: Vec<String>,
+    }
+
+    impl<B: io::BufRead> Scanner<B> {
+        pub fn new(reader: B) -> Self {
+            Self {
+                reader,
+                buffer: Vec::new(),
+            }
+        }
+
+        pub fn next<T: ::std::str::FromStr>(&mut self) -> T
+            where
+            T::Err: ::std::fmt::Debug,
+        {
+            if let Some(front) = self.buffer.pop() {
+                front.parse::<T>().expect(&front)
+            } else {
+                let mut input = String::new();
+                self.reader.read_line(&mut input).expect("Line not read");
+                self.buffer = input.split_whitespace().rev().map(String::from).collect();
+                self.next()
+            }
+        }
+    }
+
+
+    /// trait for implementing functions to get lower/upper bounds (implementation is based on the rust std library)
+    /// the functions return OK(indx) if self[indx] is the element we queried.
+    /// e.g., in lower_bound_by, f(self[indx]) returns Ordering::Equal if the function returned Ok(indx).
+    /// Further, if all the elements are less than the queried value, lower_bound/upper_bound must return Err(self.len()).
+    /// Similarly, all the elements are greater than the queried value, they must return Err(0).
+    pub trait CmpSearch {
+        type Item;
+
+        fn find_bound_by<'a, F>(&'a self, f: F, is_lower: bool) -> Result<usize, usize>
+            where F: FnMut(&'a Self::Item) -> Ordering;
+
+        fn find_bound_by_key<'a, B, F>(&'a self, b: &B, f: F, is_lower: bool) -> Result<usize, usize>
+            where F: FnMut(&'a Self::Item) -> B,
+                  B: Ord;
+
+        /// returns Result<usize, usize> which contains the lowest index indx that satisfies the following condition,
+        /// assuming that self is already sorted:
+        /// 1. self[i] < x if i < indx
+        /// 2. self[i] >= x if i >= indx
+        /// 3. self.insert(indx, x) keeps the sorted order.
+        /// The return value is Ok(indx) if there is an index that satisfies x.cmp(self[indx]) == Ordering::Equal.
+        /// Otherwise the return value is Err(indx).
+        ///
+        fn lower_bound(&self, x: &Self::Item) -> Result<usize, usize>
+            where Self::Item: Ord {
+            self.find_bound_by(|elem| { elem.cmp(x) }, true)
+        }
+
+
+        /// returns Result<usize, usize> which contains the highest index indx that satisfies the following condition,
+        /// assuming that self is already sorted:
+        /// 1. self[i] <= x if i <= indx
+        /// 2. self[i] > x if i > indx
+        /// 3. self.insert(indx, x) keeps the sorted order.
+        /// The return value is Ok(indx) if there is an index that satisfies x.cmp(self[indx]) == Ordering::Equal.
+        /// Otherwise the return value is Err(indx).
+        ///
+        fn upper_bound(&self, x: &Self::Item) -> Result<usize, usize>
+            where Self::Item: Ord {
+            self.find_bound_by(|elem| { elem.cmp(x) }, false)
+        }
+    }
+
+    impl<T> CmpSearch for [T] {
+        type Item = T;
+
+        /// loop invariants (if is_lower = true):
+        /// 1. f(self[lb]) == Less, assuming that lb >= 0
+        /// 2. f(self[ub]) == Greater or Equal, assuming that gb < self.len()
+        /// 3. lb < ub; in particular, lb != ub
+        ///
+        /// after the loop:
+        /// 1. if ub < self.len(), ub is a valid index in the slice
+        /// 2. if lb == -1, ub == 0 and:
+        ///   2-1. f(self[0]) == Equal then the return value is Ok(0)
+        ///   2-2. f(self[0]) == Greater then the return value is Err(0)
+        /// 3. if ub == self.len(), lb == self.len() - 1 and the return value is Err(self.len())
+        ///
+        /// a similar set of conditions holds if is_lower = false.
+        ///
+        fn find_bound_by<'a, F>(&'a self, mut f: F, is_lower: bool) -> Result<usize, usize>
+            where F: FnMut(&'a Self::Item) -> Ordering {
+            let mut lb: isize = -1;
+            let mut ub: isize = self.len() as isize;
+            let mut step = (ub - lb) / 2;
+            while step > 0 {
+                let m = (lb + step) as usize;
+                match f(&self[m]) {
+                    Ordering::Less => {
+                        lb = m as isize;
+                    },
+                    Ordering::Greater => {
+                        ub = m as isize;
+                    },
+                    Ordering::Equal => {
+                        if is_lower {
+                            ub = m as isize;
+                        } else {
+                            lb = m as isize;
+                        }
+                    }
+                }
+                step = (ub - lb) / 2
+            }
+
+            if is_lower {
+                if ub as usize == self.len() {
+                    Err(self.len())
+                } else {
+                    let ub = ub as usize;
+                    match f(&self[ub]) {
+                        Ordering::Equal => {
+                            Ok(ub)
+                        },
+                        _ => {
+                            Err(ub)
+                        }
+                    }
+                }
+            } else {
+                if lb == -1 {
+                    Err(0)
+                } else {
+                    let lb = lb as usize;
+                    match f(&self[lb]) {
+                        Ordering::Equal => {
+                            Ok(lb)
+                        },
+                        _ => {
+                            Err(lb+1)
+                        }
+                    }
+                }
+            }
+        }
+
+        fn find_bound_by_key<'a, B, F>(&'a self, b: &B, mut f: F, is_lower: bool) -> Result<usize, usize>
+            where F: FnMut(&'a Self::Item) -> B,
+                  B: Ord {
+            self.find_bound_by(|elem|{ f(elem).cmp(b) }, is_lower)
+        }
+
+
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::procon::*;
+
+    #[test]
+    fn test_find_bound_by() {
+        let s = [0, 2, 2, 2, 4];
+        // lower bound
+        let seek = 2;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), true), Ok(1));
+        let seek = 1;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), true), Err(1));
+        let seek = -1;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), true), Err(0));
+        let seek = 5;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), true), Err(5));
+        // upper bound
+        let seek = 2;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), false), Ok(3));
+        let seek = 1;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), false), Err(1));
+        let seek = 5;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), false), Err(5));
+        let seek = -1;
+        assert_eq!(s.find_bound_by(|probe| probe.cmp(&seek), false), Err(0));
+    }
+}
