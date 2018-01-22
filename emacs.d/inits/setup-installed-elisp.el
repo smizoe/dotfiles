@@ -293,17 +293,17 @@
   :config
   (progn
     (setq
-      python-shell-interpreter "ipython"
-      python-shell-interpreter-args "--simple-prompt -i"
-      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-      python-shell-completion-setup-code
-        "from IPython.core.completerlib import module_completion"
-      python-shell-completion-module-string-code
-        "';'.join(module_completion('''%s'''))\n"
-      python-shell-completion-string-code
-      "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"
-      )
+     python-shell-interpreter "ipython"
+     python-shell-interpreter-args "--simple-prompt -i"
+     python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+     python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+     python-shell-completion-setup-code
+     "from IPython.core.completerlib import module_completion"
+     python-shell-completion-module-string-code
+     "';'.join(module_completion('''%s'''))\n"
+     python-shell-completion-string-code
+     "';'.join(get_ipython().Completer.all_completions('''%s'''))\n"
+     )
     (defun find-pipenv-venv-at (directory)
       "Find out a virtual environment that is associated with DIRECTORY.
 If pipenv finds one, returns the path to the virtual environment.
@@ -314,15 +314,15 @@ If DIRECTORY is nil or it cannot, return nil."
                ;; since pipenv uses VIRTUAL_ENV env. variable if it exists and pyvenv sets it
                (process-environment initial-environment)
                (candidate
-               (replace-regexp-in-string "\n\\'" ""
-                                         (shell-command-to-string
-                                          (concat
-                                           "cd " directory
-                                           " && pipenv --venv 2>/dev/null"
+                (replace-regexp-in-string "\n\\'" ""
+                                          (shell-command-to-string
+                                           (concat
+                                            "cd " directory
+                                            " && pipenv --venv 2>/dev/null"
+                                            )
                                            )
                                           )
-                                         )
-               ))
+                ))
           (unless (string-empty-p candidate)
             candidate
             )
@@ -342,8 +342,8 @@ If DIRECTORY is nil or it cannot, return nil."
                 )
               )
              (pipenv-projectile-root (when (projectile-project-p)
-                                         (find-pipenv-venv-at (projectile-project-root))
-                                         ))
+                                       (find-pipenv-venv-at (projectile-project-root))
+                                       ))
              (target-venv (or pipenv-file-dir pipenv-projectile-root default-venv))
              )
         (message "using the virtual environment at %s" target-venv)
