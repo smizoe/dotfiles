@@ -351,7 +351,12 @@ If DIRECTORY is nil or it cannot, return nil."
         )
       )
     (defun advice-pyvenv-pipenv-venv (& rest r)
+      "set enviroment variables so as to use a virtual environment associated with the current buffer.
+Currently no value from argument R is used."
       (let ((target-venv-dir (find-pipenv-venv-for (current-buffer))))
+        ;; in python-mode, python-shell-buffer-name is used to determine the buffer name of the python inferior process.
+        ;; Since function find-pipenv-venv-for (usually) returns the same venv if two files/buffers come from the same project,
+        ;; files from the same project share the same python process/environment
         (setq-local python-shell-buffer-name (concat "Python@" target-venv-dir))
         (pyvenv-activate target-venv-dir)
         )
