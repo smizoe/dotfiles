@@ -310,7 +310,7 @@
                 (pyvenv-mode t)
                 (let* (
                        (default-venv (concat (file-name-as-directory (getenv "HOME")) "venv"))
-                       (pipenv-venv-found (shell-command-to-string "pipenv --venv 2>/dev/null"))
+                       (pipenv-venv-found (replace-regexp-in-string "\n\\'" "" (shell-command-to-string "pipenv --venv 2>/dev/null")))
                        (pipenv-venv (if (eq pipenv-venv-found "") nil pipenv-venv-found))
                        (tgt-venv (or pipenv-venv (projectile-project-root) default-venv))
                        )
