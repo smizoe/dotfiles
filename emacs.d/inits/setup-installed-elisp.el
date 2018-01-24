@@ -354,7 +354,7 @@ If DIRECTORY is nil or it cannot, return nil."
     (defun advice-pyvenv-pipenv-venv (&rest r)
       "set enviroment variables so as to use a virtual environment associated with the current buffer.
 Currently no value from argument R is used."
-      (let (
+      (let* (
             (target-venv-dir (find-pipenv-venv-for (current-buffer)))
             (bufname (concat "Python@" target-venv-dir))
             )
