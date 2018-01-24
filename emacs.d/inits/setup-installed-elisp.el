@@ -293,7 +293,7 @@
   :config
   (progn
     (setq
-     org-babel-python-command "ipython --simple-prompt -i --no-color-info"
+     org-babel-python-command "ipython --simple-prompt -i --colors=NoColor"
      python-shell-interpreter "ipython"
      python-shell-interpreter-args "--simple-prompt -i"
      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
