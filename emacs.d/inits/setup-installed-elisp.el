@@ -361,6 +361,8 @@ Currently no value from argument R is used."
         ;; in python-mode, python-shell-buffer-name is used to determine the buffer name of the python inferior process.
         ;; Since function find-pipenv-venv-for (usually) returns the same venv if two files/buffers come from the same project,
         ;; files from the same project share the same python process/environment
+        ;; in org-babel, we need to set the session name to python-shell-buffer-name
+        ;; e.g., we need to have '#+PROPERTY: header-args:python :session (concat "Python@" (find-pipenv-venv-for (current-buffer)))'
         (setq-local python-shell-buffer-name bufname)
         (pyvenv-activate target-venv-dir)
         )
