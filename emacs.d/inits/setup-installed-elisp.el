@@ -367,6 +367,44 @@ Currently no value from argument R is used."
         (pyvenv-activate target-venv-dir)
         )
       )
+    (defun advice-pipenv-venv (fun &rest r)
+      "set enviroment variables so as to use a virtual environment associated with the current buffer,
+then call FUN with R. This function is supposed to be passed to advice-add with :around argument."
+      (let* (
+            (target-venv-dir (find-pipenv-venv-for (current-buffer)))
+            (venv-bin-dir (concat (file-name-as-directory target-venv-dir) "bin"))
+            (bufname (concat "Python@" target-venv-dir))
+            (old-path (getenv "PATH"))
+            (old-virtualenv (getenv "VIRTUAL_ENV"))
+            (old-pythonhome (getenv "PYTHONHOME"))
+            (exec-path (append `(,venv-bin-dir) exec-path))
+            )
+        ;; in python-mode, python-shell-buffer-name is used to determine the buffer name of the python inferior process.
+        ;; Since function find-pipenv-venv-for (usually) returns the same venv if two files/buffers come from the same project,
+        ;; files from the same project share the same python process/environment
+        ;; in org-babel, we need to set the session name to python-shell-buffer-name
+        ;; e.g., we need to have '#+PROPERTY: header-args:python :session (concat "Python@" (find-pipenv-venv-for (current-buffer)))'
+        (unwind-protect
+            (progn
+              (setq-local python-shell-buffer-name bufname)
+              (message "using the virtual environment at %s" target-venv-dir)
+
+              (setenv "VIRTUAL_ENV" target-venv-dir)
+              (setenv "PATH" (mapconcat 'identity `(,venv-bin-dir ,old-path) ":"))
+              (setenv "PYTHONHOME" nil)
+              (message "PATH is %s" (getenv "PATH"))
+
+              (apply fun r)
+              )
+          (progn
+            (setenv "PATH" old-path)
+            (setenv "VIRTUAL_ENV" old-virtualenv)
+            (setenv "PYTHONHOME" old-pythonhome)
+            )
+          )
+
+        )
+      )
     (cl-loop for tgt-fun in `(,#'run-python) do
              (unless (advice-function-member-p #'advice-pyvenv-pipenv-venv tgt-fun)
                (advice-add tgt-fun :before #'advice-pyvenv-pipenv-venv)
