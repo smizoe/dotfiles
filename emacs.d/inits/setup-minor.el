@@ -344,6 +344,10 @@
       )
   )
 
+(use-package yasnippet-snippets
+  :ensure t
+  :requires yasnippet
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; other minor modes ;;
