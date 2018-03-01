@@ -93,6 +93,7 @@ sys_pkg__arch_with_yaourt:
     - gcc-multilib
     - global
     - gradle
+    - hub
     - jdk
     - lightdm
     - lightdm-gtk-greeter
