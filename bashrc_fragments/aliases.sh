@@ -3,7 +3,7 @@
 ########################
 
 alias ls="$(if [ "${SYSTEM_NAME}" = "Darwin" ] ; then echo -n 'ls -G' ; else echo -n 'ls --color=auto'; fi)"
-alias g='git'
+alias g='hub'
 alias npm-exec='PATH=$(npm bin):$PATH'
 
 
