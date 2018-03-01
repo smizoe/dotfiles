@@ -498,6 +498,14 @@
   :ensure t
   :init
   (progn
+    (let* (
+           (rustc-sysroot (shell-command-to-string "rustc --print sysroot | tr -d '\n'"))
+           (my-src-path (mapconcat 'identity `(,rustc-sysroot "lib/rustlib/src/rust/src") "/"))
+           )
+      (custom-set-variables
+       `(racer-rust-src-path ,my-src-path)
+       )
+      )
     (add-hook 'racer-mode-hook #'company-mode)
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
