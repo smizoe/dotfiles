@@ -138,6 +138,7 @@ sys_pkg__mach:
     - gnu-time
     - gcc
     - gradle
+    - hub
     - lesspipe
     ## to install igraph in R
     - libxml2
