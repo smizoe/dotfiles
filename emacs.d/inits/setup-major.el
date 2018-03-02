@@ -489,5 +489,9 @@
     )
   )
 
+(use-package wsd-mode
+  :ensure t
+  )
+
 (provide 'setup-major)
 ;;; setup-major.el ends here
