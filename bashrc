@@ -14,7 +14,7 @@ BASHRC_REALPATH="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" && pwd)"
 # TMUX
 if which tmux >/dev/null 2>&1; then
     #if not inside a tmux session
-    if [ -z "$TMUX" ] ; then
+    if [ -z "$TMUX" -a -z "$INSIDE_EMACS" ] ; then
         # check if we would like to run bash with tmux
         if ask_run_with_tmux ; then
             # start a new session or attach to an existing session
