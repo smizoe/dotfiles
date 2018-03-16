@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/usr/local/sbin:$(python3 -c "import site; print(site.USER_BASE)")/bin:${HOME}/dotfiles/local/bin:${HOME}/.cargo/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/APUE/bin:${PATH}"
+export PATH="${PATH}:/usr/local/bin:/usr/local/sbin:$(python3 -c "import site; print(site.USER_BASE)")/bin:${HOME}/dotfiles/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/.cargo/bin"
 
 export CPATH=${CPATH}:~/APUE/include
 export LIBRARY_PATH=${LIBRARY_PATH}:~/APUE/lib
