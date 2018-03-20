@@ -171,10 +171,10 @@
             )
         )
       )
-    )
-  (with-eval-after-load 'evil-leader
-    (evil-leader/set-key
-      "ld" 'helm-dash-at-point ;;lookup doc
+    (with-eval-after-load 'evil-leader
+      (evil-leader/set-key
+        "ld" 'helm-dash-at-point ;;lookup doc
+        )
       )
     )
   )
