@@ -7,5 +7,6 @@ nnoremap <Leader>gi :action GotoImplementation<CR>
 nnoremap <Leader>cn :action GotoNextError<CR>
 nnoremap <Leader>cp :action GotoPreviousError<CR>
 nnoremap <Leader>bt :action ReformatCode<CR>
+nnoremap <Leader>oi :action OptimizeImports<CR>
 nnoremap [b :action PreviousTab<CR>
 nnoremap ]b :action NextTab<CR>
