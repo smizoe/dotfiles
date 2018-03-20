@@ -111,8 +111,8 @@
                )
           (mkdir docsets-path t)
           (custom-set-variables
-          '(helm-dash-docsets-path docsets-path)
-          '(helm-dash-browser-func 'w3m-browse-url)
+          `(helm-dash-docsets-path ,docsets-path)
+          `(helm-dash-browser-func ,(symbol-function 'w3m-browse-url))
           )
         )
         ;; TODO: somehow rename installed directories (e.g., if we install Ruby_2, this makes Ruby.docset directory instead of Ruby_2.docset directory)
