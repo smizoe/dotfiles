@@ -28,3 +28,10 @@ if [ "${SYSTEM_NAME}" != "Darwin" ] ; then
   alias open="xdg-open"
   export GTAGSCONF=/usr/share/gtags/gtags.conf
 fi
+
+# .net in linux; we need to chage TERM env. variable
+
+for cmd in csharp dotnet
+do
+    alias "${cmd}"="TERM=xterm ${cmd}"
+done

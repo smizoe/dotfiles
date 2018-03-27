@@ -86,6 +86,7 @@ sys_pkg__arch_with_yaourt:
     - dasht
     - dfu-programmer
     - dfu-util
+    - dotnet-sdk
     - elinks
     - emojione-color-font
     - flashplugin
@@ -97,6 +98,7 @@ sys_pkg__arch_with_yaourt:
     - jdk
     - lightdm
     - lightdm-gtk-greeter
+    - mono
     - otf-fira-code
     - rustup
     - sshrc
