@@ -7,17 +7,6 @@ function initialize() {
         ## stop using ctrl-s/ctrl-q as a control flow key so that we can use 'bind -x "\C-s": some command'
         stty -ixon -ixoff
 
-        ## make terminal sane after a command
-        SAVE_TERM="$(stty -g)"
-        trap 'timer_start' DEBUG
-        PROMPT_COMMAND="log_bash_cmd \"${HOME}/logs/bash/$(hostname)_\$(date -u +'%Y-%m-%d').log\"
-        stty ${SAVE_TERM}
-        $PROMPT_COMMAND
-        history -a
-        history -c
-        history -r
-        "
-
         # Tell the terminal about the working directory at each prompt.
         if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
             update_terminal_cwd() {
@@ -47,7 +36,21 @@ function initialize() {
         ####################
         ## show git branch
         GIT_PS1_SHOWDIRTYSTATE=1
-        PS1="\[\$(color_from_status \$?)\]\u@\h\[${COLOR_NC}\] [\$(__git_ps1 \"(%s) \")\w]\\$ "
+        if [ -z "${INSIDE_EMACS}" ] ; then
+            PS1="\[\$(color_from_status \$?)\]\u@\h\[${COLOR_NC}\] [\$(__git_ps1 \"(%s) \")\w]\\$ "
+            ## make terminal sane after a command
+            SAVE_TERM="$(stty -g)"
+            trap 'timer_start' DEBUG
+            PROMPT_COMMAND="log_bash_cmd \"${HOME}/logs/bash/$(hostname)_\$(date -u +'%Y-%m-%d').log\"
+                            stty ${SAVE_TERM}
+                            $PROMPT_COMMAND
+                            history -a
+                            history -c
+                            history -r
+                            "
+        else
+            PS1="\u@\h [\$(__git_ps1 \"(%s) \")\w]\\$ "
+        fi
 
         __git_complete g __git_main
 
