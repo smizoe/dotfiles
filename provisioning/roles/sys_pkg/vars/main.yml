@@ -99,6 +99,7 @@ sys_pkg__arch_with_yaourt:
     - lightdm
     - lightdm-gtk-greeter
     - mono
+    - msbuild-stable
     - otf-fira-code
     - rustup
     - sshrc

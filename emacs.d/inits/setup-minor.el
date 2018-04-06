@@ -480,6 +480,34 @@
             )
  )
 
+
+;;;;;;;;;;;;;;;
+;; omnisharp ;;
+;;;;;;;;;;;;;;;
+
+(use-package omnisharp
+  :ensure t
+  ;;; since omnisharp calls `read-file-name' in starting a server,
+  ;;; note that we may need to edit the path (e.g., remove the last slash);
+  ;;; otherwise `read-file-name' will return the current buffer's filename
+  ;;; and `omnisharp-start-omnisharp-server' will terminate
+  ;;; if we are opening a .cs file in a project root.
+  ;;;
+  ;;; further you may need to create an sln and add projects to it by the following commands:
+  ;;; $ dotnet new sln -n $SLN_FILE_NAME
+  ;;; $ dotnet sln $SLN_FILE_NAME add ${PATH_TO_CPROJ}.cproj
+  :config
+  (progn
+    (add-hook 'csharp-mode-hook 'omnisharp-mode)
+    (eval-after-load
+        'company
+      '(add-to-list 'company-backends 'company-omnisharp)
+      )
+    (add-hook 'csharp-mode-hook #'company-mode)
+    (add-hook 'csharp-mode-hook #'flycheck-mode)
+    )
+  )
+
 ;;;;;;;;;;;;;;;;
 ;; projectile ;;
 ;;;;;;;;;;;;;;;;
