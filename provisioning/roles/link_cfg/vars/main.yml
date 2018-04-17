@@ -21,3 +21,4 @@ link_cfg__dotfiles:
   - src: peco
     dest: ".config/peco"
   - src: elinks
+  - src: globalrc

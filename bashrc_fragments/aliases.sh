@@ -26,7 +26,6 @@ if [ "${SYSTEM_NAME}" != "Darwin" ] ; then
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
   alias open="xdg-open"
-  export GTAGSCONF=/usr/share/gtags/gtags.conf
 fi
 
 # .net in linux; we need to chage TERM env. variable
