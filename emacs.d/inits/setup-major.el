@@ -441,6 +441,18 @@
   :pin melpa-stable
   )
 
+;;;;;;;;;;;;;;;;
+;; shell-mode ;;
+;;;;;;;;;;;;;;;;
+
+(when (string-equal system-type "windows-nt")
+  (setq explicit-shell-file-name "c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe")
+  ;; `shell-file-name' specifies the shell that run shell commands in evil-ex buffer
+  (setq shell-file-name "c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe")
+  ;; explicit-${shellname}-args is ("-i") by default
+  (setq explicit-powershell.exe-args nil)
+  )
+
 ;;;;;;;;;;;;;;;;;;;
 ;; synonyms mode ;;
 ;;;;;;;;;;;;;;;;;;;

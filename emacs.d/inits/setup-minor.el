@@ -180,11 +180,27 @@
         (define-key company-search-map [escape] 'company-search-abort)
         ))
     (custom-set-variables
-    '(company-selection-wrap-around t)
-    '(company-idle-dellay 0)
-    '(company-dabbrev-downcase nil)
-    '(company-dabbrev-ignore-case nil)
-    )
+     '(company-selection-wrap-around t)
+     '(company-idle-dellay 0)
+     '(company-dabbrev-downcase nil)
+     '(company-dabbrev-ignore-case nil)
+     )
+    (custom-set-faces
+       '(company-preview
+         ((t (:foreground "darkgray" :underline t))))
+       '(company-preview-common
+         ((t (:inherit company-preview))))
+       '(company-tooltip
+         ((t (:background "lightgray" :foreground "black"))))
+       '(company-tooltip-selection
+         ((t (:background "steelblue" :foreground "white"))))
+       '(company-tooltip-common
+         ((((type x)) (:inherit company-tooltip :weight bold))
+          (t (:inherit company-tooltip))))
+       '(company-tooltip-common-selection
+         ((((type x)) (:inherit company-tooltip-selection :weight bold))
+          (t (:inherit company-tooltip-selection))))
+       )
     (with-eval-after-load 'evil
       (progn
         (define-key evil-insert-state-map "\C-p" 'company-select-previous)
