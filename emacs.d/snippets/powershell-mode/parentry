@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: parentry
+# key: ent
+# --
+[Parameter(Mandatory=${1:$$(yas-choose-value '($true $false))})${2:,Position=${3:0}}${4:,ValueFromPipelineByPropertyName=${5:$$(yas-choose-value '($true $false))}}]
+${6:#${7:comment}}
+[${8:string}] \$${9:paramName}
+$0
