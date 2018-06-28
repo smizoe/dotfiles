@@ -1,5 +1,6 @@
 [core]
   ignorecase   = false
+	autocrlf = false
 [alias]
   graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
   b     = branch
@@ -16,6 +17,7 @@
   u     = pull --rebase --autostash
   ras   = rebase --autostash
   s     = status
+  sl    = stash list
   wt    = worktree
 [init]
   templatedir = ~/dotfiles/git_template
