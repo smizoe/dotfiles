@@ -7,7 +7,7 @@ set -eu
 
 ## currently we skip setup of config if .prev_config file exists in .git directory
 
-if [ "${GIT_DIR}" = "$(pwd)" ] ; then
+if [ "${GIT_DIR:-""}" = "$(pwd)" ] ; then
 ## bare repository
 ## see https://git-scm.com/docs/githooks/2.9.2
     GIT_CFG_PATH="$(pwd)/config"
