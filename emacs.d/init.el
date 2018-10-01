@@ -10,6 +10,7 @@
 
 (setq tramp-ssh-controlmaster-options
             "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+(prefer-coding-system 'utf-8)
 
 (defun load-user-file (file)
   (interactive "f")
