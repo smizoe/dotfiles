@@ -280,8 +280,17 @@ a nested alist which:
 ;; install aspell beforehand!
 
 
-(setq ispell-program-name "aspell")
-(setq ispell-list-command "list")
+(setq ispell-program-name
+      (if (string-equal system-type "windows-nt")
+          "hunspell.exe"
+        "aspell"
+       )
+      )
+(setq ispell-list-command
+      (if (string-equal system-type "windows-nt")
+          "-l"
+      "list")
+      )
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; book mark mode ;;
