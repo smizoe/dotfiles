@@ -77,8 +77,8 @@ vnoremap <leader>r. :normal!.<cr>
 nnoremap <leader>w :match Error /\v[^\s]\s+$/<cr>
 nnoremap <leader>W :match<cr>
 nnoremap <leader>nh :nohlsearch<cr>
-nnoremap <leader>cn :cnext<cr>
-nnoremap <leader>cp :cprevious<cr>
+nnoremap <leader>cn :lnext<cr>
+nnoremap <leader>cp :lprevious<cr>
 nnoremap <leader>P  :setlocal paste!<cr>
 nnoremap <leader>N  :setlocal number!<cr>
 
