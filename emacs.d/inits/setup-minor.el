@@ -431,9 +431,14 @@
     (add-to-list 'flycheck-checkers 'textlint)
     (add-to-list 'flycheck-checkers 'pmml-lint)
     (add-hook 'nxml-mode-hook (lambda ()
-                                (if (string-suffix-p ".pmml" (buffer-file-name))
-                                    (setq flycheck-checker 'pmml-lint)
-                                    )
+                                (cond (
+                                       (string-suffix-p ".pmml" (buffer-file-name))
+                                       (setq flycheck-checker 'pmml-lint)
+                                       )
+                                      (t
+                                       (setq flycheck-checker 'xml-xmlstarlet)
+                                       )
+                                      )
                                 )
               )
     (with-eval-after-load 'evil
