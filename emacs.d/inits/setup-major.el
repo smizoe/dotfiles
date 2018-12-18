@@ -388,6 +388,19 @@
     )
   )
 
+
+;;;;;;;;;;;;;;;;;;;
+;; proof-general ;;
+;;;;;;;;;;;;;;;;;;;
+
+(use-package proof-general
+  :ensure t
+  )
+
+(use-package company-coq
+  :ensure t
+  )
+
 ;;;;;;;;;;;;;;;;;
 ;; python-mode ;;
 ;;;;;;;;;;;;;;;;;
