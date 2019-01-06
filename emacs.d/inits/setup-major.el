@@ -395,6 +395,64 @@
 
 (use-package proof-general
   :ensure t
+  :init
+  (progn
+    (add-hook 'coq-mode-hook
+              (lambda ()
+                ;; replace snippets so as to avoid their expansion
+                ;; (SPC is used for triggering expansion currently,
+                ;;  so single-character expansions are not so useful)
+                (letf (
+                       (
+                        (symbol-function 'replace-abbrev)
+                        (lambda (abbrev-table old-mnemonic new-mnemonic)
+                          (let* ((expansion (abbrev-expansion old-mnemonic abbrev-table)))
+                            (when expansion
+                              (progn
+                                (define-abbrev abbrev-table old-mnemonic nil)
+                                (define-abbrev abbrev-table new-mnemonic expansion)
+                                (message "replaced value for key %s with key %s in table %s\n" old-mnemonic new-mnemonic abbrev-table)
+                                )
+                              )
+                            )
+                          )
+                        )
+                       )
+                  (message "preparation for proof-general")
+                  (cl-loop for old-new-pair in
+                           '(("as" "ass") ;; assumption
+                             ("simpl" "simple") ;; simpl beta ...
+                             ("s" "sim") ;; SIMPL
+                             ("p" "pr") ;; PRINT
+                             ("ex" "exam") ;; example
+                             ("l" "lem") ;; Lemma ... Proof
+                             ("e" "el") ;; elim
+                             ("hr" "hir") ;; Hint Resolve
+                             ("hc" "hic") ;; Hint Constructor ...
+                             ("m" "pm") ;; match ... with ... end
+                             ("r" "rew") ;; rewrite
+                             ("cons" "const") ;; constructor
+                             ("t" "tri") ;; trivial
+                             ("v" "var") ;; variable
+                             ("a" "au") ;; auto
+                             ("dec" "decmp") ;; decompose
+                             ("refl" "reflx") ;; reflexivity
+                             ("conj" "conje") ;; conjecture
+                             ("ind" "indu") ;; induction
+                             ("f" "fn") ;; fun
+                             ) do
+                           (replace-abbrev coq-mode-abbrev-table (car old-new-pair) (cadr old-new-pair))
+                           )
+                  )
+                ) t
+              )
+    (with-eval-after-load 'evil
+      (evil-define-key 'normal coq-mode-map
+        "\\n" 'proof-assert-next-command-interactive
+        "\\_" 'proof-goto-point
+        )
+      )
+    )
   )
 
 (use-package company-coq
