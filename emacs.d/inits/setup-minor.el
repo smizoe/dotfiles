@@ -43,6 +43,17 @@
 ;; evil
 (use-package evil
   :ensure  evil-leader
+  :init
+  (progn
+    ;; set any custom variables for major modes
+    (custom-set-variables
+        '(evil-shift-width 2)
+        '(evil-search-module 'evil-search)
+        '(evil-want-C-u-scroll t)
+        '(evil-ex-visual-char-range t)
+        '(evil-want-abbrev-expand-on-insert-exit nil)
+        )
+    )
   :config  (progn
     (evil-mode 1)
     ;; esc quits
@@ -67,20 +78,14 @@
     (define-key evil-normal-state-map "[b" 'next-buffer)
     (define-key evil-normal-state-map "]b" 'previous-buffer)
 
-    ;;;; remove RET and SPC from motion state keymap to use them for the other purpose
+    ;;;; remove RET, SPC, \ from motion state keymap to use them for the other purpose
     (define-key evil-motion-state-map (kbd "RET") nil)
     (define-key evil-motion-state-map (kbd "SPC") nil)
+    (define-key evil-motion-state-map "\\" nil)
 
     ;;;; skk
     (define-key evil-insert-state-map "\C-j" 'skk-mode)
 
-    ;; set any custom variables for major modes
-    (custom-set-variables
-        '(evil-shift-width 2)
-        '(evil-search-module 'evil-search)
-        '(evil-want-C-u-scroll t)
-        '(evil-ex-visual-char-range t)
-        )
 
     ;; add ex commands
     (evil-ex-define-cmd "h[elp]" 'help)
