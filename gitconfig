@@ -14,9 +14,10 @@
   ln    = log --name-status
   d     = diff
   dc    = diff --cached
-  dn     = diff --name-status
-  dcn    = diff --cached --name-status
+  dn    = diff --name-status
+  dcn   = diff --cached --name-status
   u     = pull --rebase --autostash
+  poh   = push origin HEAD
   ras   = rebase --autostash
   s     = status
   sl    = stash list
