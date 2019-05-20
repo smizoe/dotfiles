@@ -41,8 +41,7 @@ function initialize() {
             ## make terminal sane after a command
             SAVE_TERM="$(stty -g)"
             trap 'timer_start' DEBUG
-            PROMPT_COMMAND="log_bash_cmd \"${HOME}/logs/bash/$(hostname)_\$(date -u +'%Y-%m-%d').log\"
-                            stty ${SAVE_TERM}
+            PROMPT_COMMAND="stty ${SAVE_TERM}
                             $PROMPT_COMMAND
                             history -a
                             history -c
