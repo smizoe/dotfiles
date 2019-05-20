@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# the handler called on selection completion
+function rggs_handler(){
+    local selected="$1"
+    local file_name="$(echo "${selected}" | cut -d: -f1)"
+    git apply "${file_name}"
+}
+
+if [ $0 = "${BASH_SOURCE[0]}" ] ; then
+    rggs_handler "$@"
+fi

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+## run rgp against git stashes
+
+## we may have multiple repository with the same name; the full path to them should be unique
+FULLPATH_HASH="$(echo -n "$(git rev-parse --show-toplevel)"  | md5sum  | cut -d' ' -f1)"
+OUT_DIR="${TMPDIR:-/tmp}/git-stash/${FULLPATH_HASH}"
+git_stash_write_top_n 100 "${OUT_DIR}"
+echo "${OUT_DIR}"
+
+SELECTION_HANDLER="rggs_handler" rgp "$@" "${OUT_DIR}"

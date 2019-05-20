@@ -280,4 +280,28 @@ function ltsv2json() {
   cat "${@:-/dev/stdin}"| ruby -rjson -npe '$_ = JSON.generate($_.chomp.split("\t").map{|elem| elem.split(":",2) }.inject({}){|acc, pair| acc[pair[0]] = pair[1]; acc})'
 }
 
-export -f peco_glimpse_fn kill_pane_from_pane_file print_tmux_info
+function git_stash_write() {
+    local n="$1"
+    local out_dir="$2"
+
+    mkdir -p "${out_dir}"
+    local stash_name="stash@{${n}}"
+    local stash_hash=$(git rev-parse "${stash_name}")
+    local out_file="${out_dir}/${stash_hash}"
+    if [[ ! -f "${out_file}" || -z "$(cat "${out_file}")" ]] ; then
+        git stash show -p "${stash_name}" > "${out_file}"
+    fi
+}
+
+function git_stash_write_top_n() {
+    local n="$1"
+    local out_dir="$2"
+    local num_stash="$(git stash list | wc -l)"
+    local top_n=$((${n} > ${num_stash} ? ${num_stash} : ${n}))
+    for ((i=0 ; i< "${top_n}" ; i++ ))
+    do
+        git_stash_write "${i}" "${out_dir}"
+    done
+}
+
+export -f peco_glimpse_fn kill_pane_from_pane_file print_tmux_info git_stash_write git_stash_write_top_n
