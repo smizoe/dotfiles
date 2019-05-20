@@ -19,10 +19,8 @@ export LESSOPEN="| src-hilite-lesspipe.sh %s"
 #############################################
 if [ "${SYSTEM_NAME}" == "Darwin" ] ; then
   export GOROOT=`go env GOROOT`
-  export GOPATH=${HOME}/go
   export PATH=$PATH:$GOROOT/bin
 else
-  export GOPATH=${HOME}/go
   export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin
 fi
 
