@@ -67,10 +67,10 @@ function update_conf(){
     ## 1st argument: default config (something like ${worktree_dir}/.git/config)
     ## 2nd argument: additional config which override the default one
     cp "${1}" "$(dirname "${1}")/.prev_config"
-    DEFAULT_CFG="${1}" ADDITIONAL_CFG="${2}" python2 <<EOF
+    DEFAULT_CFG="${1}" ADDITIONAL_CFG="${2}" python3 <<EOF
 from __future__ import print_function
-from StringIO import StringIO
-from ConfigParser import ConfigParser
+from io import StringIO
+from configparser import ConfigParser
 import os
 
 cfg_file = os.environ['DEFAULT_CFG']
@@ -80,7 +80,7 @@ parser = ConfigParser()
 for filename in [cfg_file, override_file]:
   with open(filename, "r") as cfg_io:
     ini = ''.join(map(lambda line: line.lstrip(), cfg_io.readlines()))
-    parser.readfp(StringIO(ini))
+    parser.read_file(StringIO(ini))
 
 with open(cfg_file, "w") as f:
   for section_name in parser.sections():
