@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+function rgp_handler(){
+    local selected="$1"
+    local files="$(echo "${selected}" | awk -F ':' '{print "+" $2 ":" $3 " " $1}')"
+    $EDITOR $files
+}
+
+if [ $0 = "${BASH_SOURCE[0]}" ] ; then
+    rgp_handler "$@"
+fi

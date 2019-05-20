@@ -3,16 +3,15 @@
 export PANE_FILE="/tmp/peco-glimpse-$$.pane"
 
 EXIT_HANDLER="kill_pane_from_pane_file ${PANE_FILE}"
+SELECTION_HANDLER="${SELECTION_HANDLER:-rgp_handler}"
 trap "${EXIT_HANDLER}" EXIT
 
 SELECTED="$(</dev/null rg --vimgrep "${@}" | fzf --reverse --bind 'tab:execute(peco_glimpse {})')"
 if [[ $? -eq "0" && -n "${SELECTED}" ]] ; then
     ${EXIT_HANDLER}
-    FILES="$(echo "${SELECTED}" | awk -F ':' '{print "+" $2 ":" $3 " " $1}')"
-    CMD="${EDITOR} ${FILES}"
     HISTFILE="${HISTFILE:-"${HOME}/.bash_history"}"
     set -o history
-    builtin history -s "${CMD}"
+    builtin history -s "${SELECTION_HANDLER} ${SELECTED}"
     builtin history -a
-    exec ${CMD}
+    exec ${SELECTION_HANDLER} ${SELECTED}
 fi
