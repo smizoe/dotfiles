@@ -334,7 +334,7 @@
       (cl-loop for hook-name in '(ruby-mode-hook sh-mode-hook python-mode-hook) do
         (add-hook hook-name (lambda ()
                               (progn
-                                (make-local-variable 'yas-key-sytaxes)
+                                (make-local-variable 'yas-key-syntaxes)
                                 (add-to-list 'yas-key-syntaxes "<_")
                                 (add-to-list 'yas-key-syntaxes "<.")
                                 )
