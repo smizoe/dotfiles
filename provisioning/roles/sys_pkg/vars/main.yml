@@ -19,7 +19,6 @@ sys_pkg__common:
     - emacs
     - jq
     - ripgrep
-    - the_silver_searcher
     - w3m
     - ngrep
     - unp

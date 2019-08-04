@@ -1,12 +1,9 @@
 ---
 
 - name: install packages on Archlinux
-  pacman: name={{item}} state=present
+  pacman: name="{{query('flattened', ['{{sys_pkg__common}}', '{{sys_pkg__arch}}'])}}" state=present
   become: yes
   when: ansible_os_family == 'Archlinux'
-  with_flattened:
-    - '{{sys_pkg__common}}'
-    - '{{sys_pkg__arch}}'
 
 - name: tap required repositories
   homebrew_tap: tap={{item}} state=present
@@ -25,7 +22,7 @@
   when: ansible_os_family == 'Darwin'
   with_items: '{{sys_pkg__mach_with_cask}}'
 
-- name: install packages on arch linux with yaourt
-  shell: "yaourt -Qi {{item}} || yaourt --noconfirm -S {{item}}"
+- name: install packages on arch linux with yay
+  shell: "yay -Qi {{item}} || yay --noconfirm -S {{item}}"
   with_items: '{{sys_pkg__arch_with_yaourt}}'
   when: ansible_os_family == 'Archlinux'
