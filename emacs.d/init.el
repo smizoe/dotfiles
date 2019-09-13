@@ -29,11 +29,11 @@ KEY must be given in `kbd' notation."
   (progn
          (require 'package)
          ;; required by use-package; repository specified by :pin must be present
-         (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                                  ("marmalade" . "http://marmalade-repo.org/packages/")
+         (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                                  ("marmalade" . "https://marmalade-repo.org/packages/")
                                   ("melpa-stable" . "https://stable.melpa.org/packages/")
                                   ("melpa" . "https://melpa.org/packages/")
-                                  ("org" . "http://orgmode.org/elpa/")))
+                                  ("org" . "https://orgmode.org/elpa/")))
          (package-initialize)
          (add-to-list 'load-path "~/.emacs.d/auto-install/")
          )
