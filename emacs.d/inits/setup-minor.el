@@ -488,6 +488,26 @@
     )
   )
 
+(use-package lsp-mode
+  :hook (typescript-mode . lsp)
+  :commands lsp
+  :ensure t
+  :pin melpa-stable
+  )
+
+(use-package lsp-ui
+  :commands lsp-ui
+  :ensure t
+  :pin melpa-stable
+  )
+
+(use-package company-lsp
+  :commands company-lsp
+  :ensure t
+  :pin melpa-stable
+  )
+
+
 ;;;;;;;;;;;;;;;
 ;; meghanada ;;
 ;;;;;;;;;;;;;;;

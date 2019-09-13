@@ -561,6 +561,12 @@
 ;; nxml-mode
 (add-to-list 'auto-mode-alist '("\\.pmml" . nxml-mode))
 
+;; typescript-mode
+(use-package typescript-mode
+  :ensure t
+  :pin melpa-stable
+  )
+
 ;; yaml-mode
 (use-package yaml-mode
   :ensure t

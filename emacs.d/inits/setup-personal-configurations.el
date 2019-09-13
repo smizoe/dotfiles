@@ -49,6 +49,13 @@
       (pop . pop-tag-mark)
       (doc . racer-describe)
       )
+    (lsp-mode
+     (def . lsp-find-definition)
+     (ref . lsp-find-references)
+     (pop . pop-tag-mark)
+     (doc . lsp-describe-thing-at-point)
+     (impl . lsp-find-implementation)
+     )
     (ensime-mode
       (def . ensime-edit-definition)
       (ref . ensime-show-uses-of-symbol-at-point)
@@ -75,16 +82,21 @@ a nested alist which:
 
 (defun code-jump-entry-fn (code-jump-type)
   "Perform a code jump of type CODE-JUMP-TYPE."
-  (defun code-jump-entry-fn/unimplemented ()
-    (interactive)
-    (message "doc jump is unimplemented for helm-gtags")
+  (defun code-jump-entry-fn/unimplemented (sym)
+    (lexical-let ((sym sym))
+      #'(lambda ()
+          (interactive)
+          (message "%s jump is unimplemented for helm-gtags" sym)
+          )
+      )
     )
   (defvar default-jump-fn-name
-    '(
+    `(
       (def . helm-gtags-find-tag)
       (ref . helm-gtags-find-rtag)
       (pop . helm-gtags-pop-stack)
-      (doc . code-jump-entry-fn/unimplemented)
+      (doc . ,(code-jump-entry-fn/unimplemented 'doc))
+      (impl . ,(code-jump-entry-fn/unimplemented 'impl))
       )
     "default code jump functions."
     )
@@ -123,12 +135,19 @@ a nested alist which:
   (code-jump-entry-fn 'doc)
   )
 
+(defun code-jump-impl ()
+  "Call CODE-JUMP-ENTRY-FN with symbol 'impl."
+  (interactive)
+  (code-jump-entry-fn 'impl)
+  )
+
 (with-eval-after-load 'evil-leader
   (evil-leader/set-key
     "gt" 'code-jump-to-def
     "gr" 'code-jump-to-ref
     "gp" 'code-jump-pop
     "gd" 'code-jump-doc
+    "gi" 'code-jump-impl
     )
   )
 
