@@ -420,7 +420,7 @@
                        )
                   (message "preparation for proof-general")
                   (cl-loop for old-new-pair in
-                           '(("as" "ass") ;; assumption
+                           '(("as" "assu") ;; assumption
                              ("simpl" "simple") ;; simpl beta ...
                              ("s" "sim") ;; SIMPL
                              ("p" "pr") ;; PRINT
@@ -440,6 +440,8 @@
                              ("conj" "conje") ;; conjecture
                              ("ind" "indu") ;; induction
                              ("f" "fn") ;; fun
+                             ("o" "om") ;; omega
+                             ("c" "cbn") ;; cbn
                              ) do
                            (replace-abbrev coq-mode-abbrev-table (car old-new-pair) (cadr old-new-pair))
                            )
