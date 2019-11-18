@@ -141,14 +141,17 @@ a nested alist which:
   (code-jump-entry-fn 'impl)
   )
 
-(with-eval-after-load 'evil-leader
-  (evil-leader/set-key
-    "gt" 'code-jump-to-def
-    "gr" 'code-jump-to-ref
-    "gp" 'code-jump-pop
-    "gd" 'code-jump-doc
-    "gi" 'code-jump-impl
-    )
+(with-eval-after-load 'evil
+  (cl-loop for pair in `(
+                         ("gd" . ,#'code-jump-to-def)
+                         ("gr" . ,#'code-jump-to-ref)
+                         ("gp" . ,#'code-jump-pop)
+                         ("gl" . ,#'code-jump-doc)
+                         ("gi" . ,#'code-jump-impl)
+                         )
+           do
+           (define-key evil-normal-state-map (car pair) (cdr pair))
+           )
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
