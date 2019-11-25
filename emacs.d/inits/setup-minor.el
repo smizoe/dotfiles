@@ -131,44 +131,6 @@
 
 
 ;;;;;;;;;;;;;;;;;
-;; artist-mode ;;
-;;;;;;;;;;;;;;;;;
-(require 'artist)
-
-(add-to-list 'auto-mode-alist '("\\.art$" . artist-mode))
-(define-key artist-mode-map [return] nil)
-(with-eval-after-load 'evil
-  (progn
-    (evil-define-key 'motion artist-mode-map
-      "h" 'artist-backward-char
-      "j" 'artist-next-line
-      "k" 'artist-previous-line
-      "l" 'artist-forward-char
-      "\\\r" (lambda () (interactive) (artist-key-set-point t)) ;; draw
-      (kbd "RET") 'artist-key-set-point
-      "\\r" 'artist-select-op-rectangle
-      "\\c" 'artist-select-op-circle
-      "\\e" 'artist-select-op-ellipse
-      "\\s" 'artist-select-op-square
-      "\\p" 'artist-select-op-poly-line
-      "\\l" 'artist-select-op-line
-      )
-    (evil-define-key 'insert artist-mode-map
-      (kbd "DEL") (lambda () (interactive) (picture-backward-clear-column 1))
-      )
-    (evil-define-key 'normal artist-mode-map
-      "x" 'picture-clear-column
-      )
-    )
-  )
-(add-hook 'artist-mode-hook
-  (lambda ()
-    (setq-local evil-move-cursor-back nil)
-    )
-  )
-
-
-;;;;;;;;;;;;;;;;;
 ;; company-mode;;
 ;;;;;;;;;;;;;;;;;
 
@@ -261,29 +223,29 @@
 
 (use-package irony
   :init
-    (progn
-      (add-hook 'c++-mode-hook 'irony-mode)
-      (add-hook 'c-mode-hook 'irony-mode)
-      (add-hook 'objc-mode-hook 'irony-mode)
+  (progn
+    (add-hook 'c++-mode-hook 'irony-mode)
+    (add-hook 'c-mode-hook 'irony-mode)
+    (add-hook 'objc-mode-hook 'irony-mode)
 
-      (defun my-irony-mode-hook ()
-        (define-key irony-mode-map [remap completion-at-point]
-          'irony-completion-at-point-async)
-        (define-key irony-mode-map [remap complete-symbol]
-          'irony-completion-at-point-async))
-      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+    (defun my-irony-mode-hook ()
+      (define-key irony-mode-map [remap completion-at-point]
+        'irony-completion-at-point-async)
+      (define-key irony-mode-map [remap complete-symbol]
+        'irony-completion-at-point-async))
+    (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-      (if (string= system-type "darwin")
-        (custom-set-variables
-        '(irony-additional-clang-options
-          '(
-            "-I/Library/Developer/CommandLineTools/usr/include/c++/v1"
-            "-std=c++11"
-            )))
-        ()
-        )
-      )
+    (cond ((string= system-type "darwin")
+           (custom-set-variables
+            '(irony-additional-clang-options
+              '(
+                "-I/Library/Developer/CommandLineTools/usr/include/c++/v1"
+                "-std=c++11"
+                )))
+           )
+          )
+    )
   )
 
 (use-package company-irony
@@ -292,22 +254,22 @@
 (use-package company-irony-c-headers
   :ensure t
   :init
-    (with-eval-after-load 'company
-      (cl-loop for hook-name in '(c-mode-hook c++-mode-hook objc-mode-hook) do
-        (add-hook hook-name
-                  (lambda ()
-                    (set (make-local-variable 'company-backends) (cons '(company-irony-c-headers company-irony :with company-dabbrev) company-backends))
-                    )
-                  )
-        )
-      )
+  (with-eval-after-load 'company
+    (cl-loop for hook-name in '(c-mode-hook c++-mode-hook objc-mode-hook) do
+             (add-hook hook-name
+                       (lambda ()
+                         (set (make-local-variable 'company-backends) (cons '(company-irony-c-headers company-irony :with company-dabbrev) company-backends))
+                         )
+                       )
+             )
+    )
   )
 
 (use-package flycheck-irony
   :ensure t
   :init
-    (with-eval-after-load 'flycheck
-      (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
   )
 
 ;;;;;;;;;;;;;;;;;;;
@@ -325,44 +287,44 @@
 (use-package yasnippet
   :ensure t
   :init
-    (add-hook 'yas-minor-mode-hook
-      (lambda ()
-        (yas-activate-extra-mode 'fundamental-mode)))
+  (add-hook 'yas-minor-mode-hook
+            (lambda ()
+              (yas-activate-extra-mode 'fundamental-mode)))
   :config
-    (progn
-      (yas-global-mode 1)
-      (cl-loop for hook-name in '(ruby-mode-hook sh-mode-hook python-mode-hook) do
-        (add-hook hook-name (lambda ()
-                              (progn
-                                (make-local-variable 'yas-key-syntaxes)
-                                (add-to-list 'yas-key-syntaxes "<_")
-                                (add-to-list 'yas-key-syntaxes "<.")
-                                )
-                              )
-          )
-        )
-      (define-key yas-minor-mode-map (kbd "<tab>") nil)
-      (define-key yas-minor-mode-map (kbd "TAB") nil)
-      ;; yas-expand doesn't expand '#!' snippet somehow. use yas/expand
-      (define-key yas-minor-mode-map (kbd "\C-k") 'yas/expand)
+  (progn
+    (yas-global-mode 1)
+    (cl-loop for hook-name in '(ruby-mode-hook sh-mode-hook python-mode-hook) do
+             (add-hook hook-name (lambda ()
+                                   (progn
+                                     (make-local-variable 'yas-key-syntaxes)
+                                     (add-to-list 'yas-key-syntaxes "<_")
+                                     (add-to-list 'yas-key-syntaxes "<.")
+                                     )
+                                   )
+                       )
+             )
+    (define-key yas-minor-mode-map (kbd "<tab>") nil)
+    (define-key yas-minor-mode-map (kbd "TAB") nil)
+    ;; yas-expand doesn't expand '#!' snippet somehow. use yas/expand
+    (define-key yas-minor-mode-map (kbd "\C-k") 'yas/expand)
 
-      (define-key yas-keymap [(tab)]       nil)
-      (define-key yas-keymap (kbd "TAB")   nil)
-      (define-key yas-keymap [(shift tab)] nil)
-      (define-key yas-keymap [backtab]     nil)
-      (define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
-      (define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
-      (with-eval-after-load 'evil
-        (progn
-          (evil-leader/set-key
-            "os" 'yas-oneshot-snippet ;; register
-            "oe" 'yas-oneshot-snippet ;; expand
-            )
-          (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
-          (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
+    (define-key yas-keymap [(tab)]       nil)
+    (define-key yas-keymap (kbd "TAB")   nil)
+    (define-key yas-keymap [(shift tab)] nil)
+    (define-key yas-keymap [backtab]     nil)
+    (define-key yas-keymap (kbd "\C-k") 'yas-next-field-or-maybe-expand)
+    (define-key yas-keymap (kbd "\C-m") 'yas-prev-field)
+    (with-eval-after-load 'evil
+      (progn
+        (evil-leader/set-key
+          "os" 'yas-oneshot-snippet ;; register
+          "oe" 'yas-oneshot-snippet ;; expand
           )
+        (define-key evil-insert-state-map "\C-k" nil) ;; remove keymap; used in yas-minor-mode-map
+        (add-hook 'yas-before-expand-snippet-hook (lambda () (evil-insert-state)))
         )
       )
+    )
   )
 
 (use-package yasnippet-snippets
@@ -424,7 +386,7 @@
                          )
                 line-end))
       :modes (text-mode adoc-mode markdown-mode)
-     )
+      )
     (flycheck-define-checker pmml-lint
       "A linter for pmml v4.3"
       :command ("xmllint" "--schema" "http://dmg.org/pmml/v4-3/pmml-4-3.xsd" "--noout" "-")
@@ -466,30 +428,6 @@
   :pin melpa
   )
 
-;;;;;;;;;;;;
-;; ensime ;;
-;;;;;;;;;;;;
-
-(use-package ensime
-  :ensure t
-  :pin melpa-stable
-  :config
-  (progn
-    (cl-loop for hook-name in '(scala-mode-hook) do
-             (add-hook hook-name
-                       (lambda ()
-                         (progn
-                           (if (ensime-config-find-file buffer-file-name)
-                               (ensime)
-                             (message "ensime did not start since we can't find .ensime file for this file.")
-                             )
-                           )
-                         )
-                       )
-      )
-    )
-  )
-
 (use-package lsp-mode
   :hook (typescript-mode . lsp)
   :commands lsp
@@ -510,51 +448,6 @@
   )
 
 
-;;;;;;;;;;;;;;;
-;; meghanada ;;
-;;;;;;;;;;;;;;;
-
-(use-package meghanada
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'java-mode-hook
-            (lambda ()
-              ;; meghanada-mode on
-              (meghanada-mode t)
-              ;; use code format
-              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)
-              )
-            )
- )
-
-
-;;;;;;;;;;;;;;;
-;; omnisharp ;;
-;;;;;;;;;;;;;;;
-
-(use-package omnisharp
-  :ensure t
-  ;;; since omnisharp calls `read-file-name' in starting a server,
-  ;;; note that we may need to edit the path (e.g., remove the last slash);
-  ;;; otherwise `read-file-name' will return the current buffer's filename
-  ;;; and `omnisharp-start-omnisharp-server' will terminate
-  ;;; if we are opening a .cs file in a project root.
-  ;;;
-  ;;; further you may need to create an sln and add projects to it by the following commands:
-  ;;; $ dotnet new sln -n $SLN_FILE_NAME
-  ;;; $ dotnet sln $SLN_FILE_NAME add ${PATH_TO_CPROJ}.cproj
-  :config
-  (progn
-    (add-hook 'csharp-mode-hook 'omnisharp-mode)
-    (eval-after-load
-        'company
-      '(add-to-list 'company-backends 'company-omnisharp)
-      )
-    (add-hook 'csharp-mode-hook #'company-mode)
-    (add-hook 'csharp-mode-hook #'flycheck-mode)
-    )
-  )
 
 ;;;;;;;;;;;;;;;;
 ;; projectile ;;

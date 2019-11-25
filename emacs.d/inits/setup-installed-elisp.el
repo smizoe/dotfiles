@@ -1,32 +1,3 @@
-;;;;;;;;;;;
-;; bm.el ;;
-;;;;;;;;;;;
-
-;; (install-elisp "http://cvs.savannah.gnu.org/viewvc/*checkout*/bm/bm/bm.el")
-(use-package bm
-  :ensure t
-  :init
-  (progn
-    (setq-default bm-buffer-persistence nil)
-    (setq bm-restore-repository-on-load t)
-    )
-  :config
-  (progn
-    (add-hook 'find-file-hooks 'bm-buffer-restore)
-    (add-hook 'kill-buffer-hook 'bm-buffer-save)
-    (add-hook 'after-save-hook 'bm-buffer-save)
-    (add-hook 'after-revert-hook 'bm-buffer-restore)
-    (with-eval-after-load 'evil
-      (progn
-        (evil-leader/set-key
-          "mm" 'bm-toggle
-          "mn" 'bm-next
-          "mp" 'bm-previous
-          )
-        )
-      )
-    )
-  )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; use emacs in server mode ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -39,22 +10,6 @@
  :ensure t
  :init (setq open-junk-file-format "~/junk/%Y-%m/%Y-%m-%d_%H-%M-%S_")
  )
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; point-undo (move back and forth to the previous or next position that the cursor existed) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; skk
-(use-package ddskk
-  :ensure t
-  )
-
-;; enable edit server for chrome extension
-(use-package edit-server
-  :ensure t
-  :config (edit-server-start)
-  )
 
 
 ;;;;;;;;;;;;;;;;;;
