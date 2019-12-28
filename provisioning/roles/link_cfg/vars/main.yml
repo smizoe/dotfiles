@@ -22,3 +22,7 @@ link_cfg__dotfiles:
     dest: ".config/peco"
   - src: elinks
   - src: globalrc
+  - src: vscode-user/settings.json
+    dest: ".config/Code/User/settings.json"
+  - src: vscode-user/keybindings.json
+    dest: ".config/Code/User/keybindings.json"

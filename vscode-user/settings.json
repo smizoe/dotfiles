@@ -1,0 +1,52 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "vim.leader": ",",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["g", "i"],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": ["g", "r"],
+            "commands": [
+                "references-view.find"
+            ]
+        },
+        {
+            "before": ["g", "p"],
+            "commands": [
+                "workbench.action.navigateBack"
+            ]
+        },
+        {
+            "before": ["<leader>", "e", "n"],
+            "commands": [
+                "editor.action.marker.nextInFiles"
+            ]
+        },
+        {
+            "before": ["<leader>", "e", "p"],
+            "commands": [
+                "editor.action.marker.prevInFiles"
+            ]
+        },
+        {
+            "before": ["<leader>", "r", "f"],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": ["<leader>", "s", "r"],
+            "commands": [
+                "workbench.action.findInFiles"
+            ]
+        }
+    ],
+    "debug.allowBreakpointsEverywhere": true
+}
