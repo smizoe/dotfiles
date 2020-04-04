@@ -51,5 +51,6 @@
     "debug.allowBreakpointsEverywhere": true,
     "terminal.integrated.allowChords": false,
     "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "explorer.confirmDelete": false
 }
