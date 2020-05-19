@@ -40,5 +40,10 @@
     )
   )
 
+(use-package yasnippet-snippets
+  :ensure t
+  :requires yasnippet
+  )
+
 (provide 'config-yasnippet)
 ;;; config-yasnippet.el ends here
