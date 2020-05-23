@@ -55,7 +55,7 @@
   (with-eval-after-load 'evil
     (progn
       (global-evil-leader-mode)
-      (evil-leader/set-leader ",")
+      (evil-leader/set-leader "<SPC>")
       (evil-leader/set-key
         "mx" 'helm-M-x
         "r." (concat ":normal." (kbd "RET"))
