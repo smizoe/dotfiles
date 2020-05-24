@@ -90,19 +90,16 @@
 
 (use-package helm-projectile
   :ensure t
+  :after (helm projectile evil-leader)
   :config
   (progn
-    (with-eval-after-load 'projectile
-      (helm-projectile-on)
-      )
-    (with-eval-after-load 'evil-leader
-      (evil-leader/set-key
-        "ps" 'helm-projectile-switch-project
-        "pe" 'helm-projectile-find-file
-        "pf" 'helm-projectile-find-file-in-known-projects
-        "pxf" 'helm-projectile-recentf
-        "pd" 'helm-projectile-find-dir
-        )
+    (helm-projectile-on)
+    (evil-leader/set-key
+      "ps" 'helm-projectile-switch-project
+      "pe" 'helm-projectile-find-file
+      "pf" 'helm-projectile-find-file-in-known-projects
+      "pxf" 'helm-projectile-recentf
+      "pd" 'helm-projectile-find-dir
       )
     )
   :pin melpa-stable
