@@ -64,10 +64,9 @@ KEY must be given in `kbd' notation."
 ;; jump functions for source code reading
 (defcustom mode-to-code-jump-function-name-alist
   '(
-    (racer-mode
-      (def . racer-find-definition)
+    (elisp-mode
+      (def . xref-find-definitions)
       (pop . pop-tag-mark)
-      (doc . racer-describe)
       )
     (lsp-mode
      (def . lsp-find-definition)
@@ -105,6 +104,7 @@ a nested alist which:
       (pop . helm-gtags-pop-stack)
       (doc . ,(code-jump-entry-fn/unimplemented 'doc))
       (impl . ,(code-jump-entry-fn/unimplemented 'impl))
+      (sym . xref-find-apropos)
       )
     "default code jump functions."
     )
@@ -148,6 +148,11 @@ a nested alist which:
   (interactive)
   (code-jump-entry-fn 'impl)
   )
+(defun code-search-symbol ()
+  "Call CODE-JUMP-ENTRY-FN with symbol 'sym."
+  (interactive)
+  (code-jump-entry-fn 'sym)
+  )
 
 (with-eval-after-load 'evil
   (cl-loop for pair in `(
@@ -156,6 +161,7 @@ a nested alist which:
                          ("gp" . ,#'code-jump-pop)
                          ("gl" . ,#'code-jump-doc)
                          ("gi" . ,#'code-jump-impl)
+                         ("gs" . ,#'code-search-symbol)
                          )
            do
            (define-key evil-normal-state-map (car pair) (cdr pair))
