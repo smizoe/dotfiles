@@ -65,7 +65,6 @@ KEY must be given in `kbd' notation."
 (defcustom mode-to-code-jump-function-name-alist
   '(
     (emacs-lisp-mode
-      (def . xref-find-definitions)
       (pop . pop-tag-mark)
       )
     (lsp-mode
