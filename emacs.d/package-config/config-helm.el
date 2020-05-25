@@ -16,6 +16,7 @@
 
 (use-package helm-ag
   :ensure t
+  :after (evil-leader)
   :init
   (custom-set-variables
     '(helm-ag-base-command "rg --vimgrep --color never --no-heading")
