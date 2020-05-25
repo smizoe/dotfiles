@@ -64,7 +64,7 @@ KEY must be given in `kbd' notation."
 ;; jump functions for source code reading
 (defcustom mode-to-code-jump-function-name-alist
   '(
-    (elisp-mode
+    (emacs-lisp-mode
       (def . xref-find-definitions)
       (pop . pop-tag-mark)
       )
