@@ -54,10 +54,6 @@
 ;;;;;;;;;;;;;;;;;;
 ;;; colour current line
 (global-hl-line-mode 1)
-;;; the colour for the current line
-;;(set-face-background 'hl-line "darkolivegreen")
-(set-face-background 'hl-line "green4")
-
 
 ;;; save the cursor position in each file
 (setq-default save-place t)
