@@ -38,8 +38,8 @@ sys_pkg__arch:
     - ibus-skk
     - intellij-idea-ce
     - make
-      # TODO enable AUR and use yaourt to install the following
-    - yaourt
+      # TODO enable AUR and use yay to install the following
+    - yay
     - haskell-hunit
     - python2-pip
     - python2-virtualenv
