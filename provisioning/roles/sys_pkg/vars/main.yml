@@ -112,8 +112,10 @@ sys_pkg__arch_with_yaourt:
     - visual-studio-code-bin
     - virtualbox
     - virtualbox-host-modules-arch
+    - xmobar
     - xmonad
     - xmonad-contrib
+    - xsecurelock
     - yarn
     - zeal
 
