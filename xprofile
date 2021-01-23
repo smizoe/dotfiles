@@ -10,5 +10,5 @@ ibus-daemon -drx
 #export XMODIFIERS=@im=uim
 #uim-xim &
 #uim-toolbar-gtk3-systray &
-mons -d &> /dev/null
+mons -S 6,3:R --primary DP2-1
 xmodmap ~/.Xmodmap
