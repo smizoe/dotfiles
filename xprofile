@@ -10,6 +10,6 @@ ibus-daemon -drx
 #export XMODIFIERS=@im=uim
 #uim-xim &
 #uim-toolbar-gtk3-systray &
-mons -S 6,3:R --primary DP2-1
+mons -S 3,6:R --primary HDMI1
 xmodmap ~/.Xmodmap
 xmobar &
