@@ -12,3 +12,4 @@ ibus-daemon -drx
 #uim-toolbar-gtk3-systray &
 mons -S 6,3:R --primary DP2-1
 xmodmap ~/.Xmodmap
+xmobar &
