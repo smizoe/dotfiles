@@ -12,4 +12,3 @@ ibus-daemon -drx
 #uim-toolbar-gtk3-systray &
 mons -S 3,6:R --primary HDMI1
 xmodmap ~/.Xmodmap
-xmobar &

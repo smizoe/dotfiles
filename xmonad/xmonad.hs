@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Config.Desktop
+import XMonad.Hooks.DynamicLog
 import XMonad.Actions.CycleWS
 import XMonad.Actions.SwapWorkspaces(swapTo)
 import XMonad.Util.EZConfig(additionalKeys)
@@ -8,7 +9,7 @@ import XMonad.Hooks.SetWMName
 
 baseConfig = desktopConfig
 
-main = xmonad $ baseConfig
+main = (xmonad =<<) $ xmobar $ baseConfig
   { terminal = "yakuake"
     , modMask = mod4Mask
     , startupHook = setWMName "LG3D"
