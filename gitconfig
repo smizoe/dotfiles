@@ -1,6 +1,6 @@
 [core]
   ignorecase   = false
-	autocrlf = false
+  autocrlf = false
 [alias]
   graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
   b     = branch
@@ -24,6 +24,7 @@
   wt    = worktree
 [init]
   templatedir = ~/dotfiles/git_template
+  defaultBranch = main
 [multiuser]
   confdir = ~/dotfiles/git_user_configs
 [user]
