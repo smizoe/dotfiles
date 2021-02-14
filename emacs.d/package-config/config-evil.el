@@ -12,6 +12,7 @@
         '(evil-want-C-u-scroll t)
         '(evil-ex-visual-char-range t)
         '(evil-want-abbrev-expand-on-insert-exit nil)
+        '(evil-want-keybinding nil)
         )
     )
   :config
@@ -82,8 +83,12 @@
     )
   )
 
-(use-package evil-magit
+(use-package evil-collection
   :ensure t
+  :config
+  (progn
+    (evil-collection-magit-setup)
+    )
   )
 
 (use-package evil-matchit
