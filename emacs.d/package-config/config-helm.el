@@ -37,12 +37,6 @@
   (custom-set-variables
     '(helm-gtags-suggested-key-mapping t)
     )
-  :config
-  (progn
-    (cl-loop for tgt-mode in '(emacs-lisp-mode-hook c++-mode-hook js2-mode-hook java-mode-hook) do
-      (add-hook tgt-mode 'helm-gtags-mode)
-      )
-    )
   )
 
 (defun gtags-root-dir ()
