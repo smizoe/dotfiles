@@ -172,5 +172,16 @@ a nested alist which:
            )
   )
 
+(with-eval-after-load 'evil
+  (cl-loop for pair in `(
+                         ("rb" . ,#'projectile-compile-project)
+                         ("rt" . ,#'projectile-test-project)
+                         ("rr" . ,#'projectile-run-project)
+                         )
+           do
+           (evil-leader/set-key (car pair) (cdr pair))
+           )
+  )
+
 (provide 'personal-functions)
 ;;; personal-functions.el ends here
