@@ -33,10 +33,10 @@
                    (member 'loopback (nth 4 (network-interface-info i)))))
                           (mapcar 'car (network-interface-list)))
 ;; network connection exists. install use-package
+  (message "%s" "refreshing package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
   (when (not (package-installed-p 'use-package))
-    (message "%s" "refreshing package database...")
-    (package-refresh-contents)
-    (message "%s" " done.")
     (package-install 'use-package)
     )
   )
