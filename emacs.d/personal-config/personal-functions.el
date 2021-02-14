@@ -74,6 +74,11 @@ KEY must be given in `kbd' notation."
      (doc . lsp-describe-thing-at-point)
      (impl . lsp-find-implementation)
      )
+    (helm-gtags-mode
+      (def . helm-gtags-find-tag)
+      (ref . helm-gtags-find-rtag)
+      (pop . helm-gtags-pop-stack)
+     )
     )
   "
 a nested alist which:
