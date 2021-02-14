@@ -3,7 +3,20 @@
 ;;; Code:
 (use-package projectile
   :ensure t
-  :config (projectile-mode)
+  :config
+  (progn
+    (projectile-mode)
+    (with-eval-after-load 'evil
+      (cl-loop for pair in `(
+                             ("rb" . ,#'projectile-compile-project)
+                             ("rt" . ,#'projectile-test-project)
+                             ("rr" . ,#'projectile-run-project)
+                             )
+               do
+               (evil-leader/set-key (car pair) (cdr pair))
+               )
+      )
+    )
   :pin melpa-stable
   )
 
