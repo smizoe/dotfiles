@@ -5,6 +5,7 @@
          (typescript-mode . lsp-deferred)
          (rust-mode . lsp-deferred)
          (powershell-mode . lsp-deferred)
+         (c++-mode . lsp-deferred)
          )
   :commands lsp
   :ensure t
