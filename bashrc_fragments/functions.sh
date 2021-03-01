@@ -141,7 +141,7 @@ EOF
 ## this is intended to be used with 'bind -x' bash builtin.
 function peco_select_history () {
     builtin history -n
-    local selected="$(builtin fc -nl | fzf +s --reverse --tac --query "${1}" | sed -e 's/^[[:space:]]*//')"
+    local selected="$(builtin fc -nl -500 | fzf +s --reverse --tac --query "${1}" | sed -e 's/^[[:space:]]*//')"
     if [ -n "${selected}" ] ; then
         READLINE_LINE="${selected}"
     fi
