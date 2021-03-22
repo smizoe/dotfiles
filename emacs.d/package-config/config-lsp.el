@@ -6,6 +6,12 @@
          (rust-mode . lsp-deferred)
          (powershell-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
+         (go-mode . (lambda ()
+                      (add-hook 'before-save-hook #'lsp-format-buffer t t)
+                      (add-hook 'before-save-hook #'lsp-organize-imports t t)
+                      (lsp-deferred)
+                      )
+                  )
          )
   :commands lsp
   :ensure t
