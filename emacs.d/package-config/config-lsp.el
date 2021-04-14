@@ -1,5 +1,8 @@
 ;;; config-lsp.el ---                                -*- lexical-binding: t; -*-
 ;;; Code:
+(custom-set-variables
+ '(lsp-rust-analyzer-proc-macro-enable t)
+ )
 (use-package lsp-mode
   :hook (
          (typescript-mode . lsp-deferred)
