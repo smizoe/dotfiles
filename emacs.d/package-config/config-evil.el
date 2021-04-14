@@ -88,6 +88,9 @@
   :config
   (progn
     (evil-collection-magit-setup)
+    (evil-collection-dired-setup)
+    (evil-collection-wdired-setup)
+    (evil-collection-ediff-setup)
     )
   )
 
