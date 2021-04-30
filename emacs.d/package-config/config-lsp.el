@@ -15,6 +15,7 @@
                       (lsp-deferred)
                       )
                   )
+         (scala-mode . lsp-deferred)
          )
   :commands lsp
   :ensure t
@@ -32,6 +33,11 @@
   :hook (python-mode . (lambda ()
                          (require 'lsp-python-ms)
                          (lsp-deferred)))
+  )
+
+(use-package lsp-metals
+  :config (setq lsp-metals-treeview-show-when-views-received t)
+  :ensure t
   )
 
 (use-package helm-lsp
