@@ -6,7 +6,7 @@
   :pin melpa
   :init
   (progn
-    (load-theme 'dracula t)
+    (load-theme 'dracula t t)
     )
   )
 
