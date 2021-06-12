@@ -12,7 +12,9 @@ export PGDATA=/usr/local/var/postgres
 
 export LESS=-iR
 export LESSGLOBALTAGS=global
-export LESSOPEN="| src-hilite-lesspipe.sh %s"
+## it does not seem possible to pass options to pygmentize through LESSCOLORIZER
+## use pygmentize directly instead
+export LESSOPEN='| file=%s; if [[ $(pygmentize -N "$file") = "text" ]] ; then lesspipe.sh "$file" ; else pygmentize -g -O style=friendly "$file"; fi'
 
 #############################################
 ## settings for go installed with homebrew ##
