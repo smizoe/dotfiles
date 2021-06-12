@@ -27,3 +27,5 @@ link_cfg__dotfiles:
     dest: ".config/Code/User/settings.json"
   - src: vscode-user/keybindings.json
     dest: ".config/Code/User/keybindings.json"
+  - src: mimeapps.list
+    dest: ".config/mimeapps.list"
