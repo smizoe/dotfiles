@@ -14,7 +14,7 @@ export LESS=-iR
 export LESSGLOBALTAGS=global
 ## it does not seem possible to pass options to pygmentize through LESSCOLORIZER
 ## use pygmentize directly instead
-export LESSOPEN='| file=%s; if [[ $(pygmentize -N "$file") = "text" ]] ; then lesspipe.sh "$file" ; else pygmentize -g -O style=friendly "$file"; fi'
+export LESSOPEN='| file=%s; if [[ -e "${file}" && $(pygmentize -N "$file") = "text" ]] ; then lesspipe.sh "$file" ; else pygmentize -g -O style=emacs "$file"; fi'
 
 #############################################
 ## settings for go installed with homebrew ##
