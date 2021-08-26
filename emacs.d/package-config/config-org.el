@@ -31,15 +31,15 @@
     (with-eval-after-load 'evil
       (evil-define-key 'normal org-mode-map
         (kbd "TAB") 'org-cycle
-        "\\cb" #'org-babel-execute-buffer
-        "\\cB" (lambda ()
+        "\\ce" #'org-babel-execute-buffer
+        "\\cE" (lambda ()
                  (interactive)
                  (let ((org-confirm-babel-evaluate nil))
                    (org-babel-execute-buffer)
                    )
                  )
-        "\\ce" #'org-export-dispatch
-        "\\cE" (lambda ()
+        "\\cx" #'org-export-dispatch
+        "\\cX" (lambda ()
                  (interactive)
                  (let ((org-confirm-babel-evaluate nil))
                    (org-export-dispatch)
