@@ -3,7 +3,7 @@
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
-    "vim.leader": ",",
+    "vim.leader": " ",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["g", "i"],
@@ -14,7 +14,7 @@
         {
             "before": ["g", "r"],
             "commands": [
-                "references-view.find"
+                "editor.action.goToReferences"
             ]
         },
         {
@@ -24,13 +24,19 @@
             ]
         },
         {
-            "before": ["<leader>", "e", "n"],
+            "before": ["g", "d"],
+            "commands": [
+                "editor.action.revealDefinition"
+            ]
+        },
+        {
+            "before": ["<leader>", "c", "n"],
             "commands": [
                 "editor.action.marker.nextInFiles"
             ]
         },
         {
-            "before": ["<leader>", "e", "p"],
+            "before": ["<leader>", "c", "p"],
             "commands": [
                 "editor.action.marker.prevInFiles"
             ]
@@ -46,11 +52,24 @@
             "commands": [
                 "workbench.action.findInFiles"
             ]
+        },
+        {
+            "before": ["<leader>", "f", "b"],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "before": ["<leader>", "e", "a"],
+            "commands": [
+                "editor.action.codeAction"
+            ]
         }
     ],
     "debug.allowBreakpointsEverywhere": true,
     "terminal.integrated.allowChords": false,
     "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
     "window.zoomLevel": 0,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.formatOnType": true
 }
