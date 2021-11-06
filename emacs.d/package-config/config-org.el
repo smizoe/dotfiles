@@ -17,17 +17,20 @@
              (add-to-list 'org-export-backends type)
              )
     (require 'ox-md)
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '(
-       (C . t)
-       (R . t)
-       (python . t)
-       (ruby . t)
-       (shell . t)
-       (sql . t)
+    (with-eval-after-load 'ein
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '(
+         (ein . t)
+         (C . t)
+         (R . t)
+         (python . t)
+         (ruby . t)
+         (shell . t)
+         (sql . t)
+         )
        )
-     )
+      )
     (with-eval-after-load 'evil
       (evil-define-key 'normal org-mode-map
         (kbd "TAB") 'org-cycle
@@ -53,8 +56,6 @@
       )
     )
   )
-
-
 
 
 (provide 'config-org)
