@@ -64,6 +64,12 @@
             "commands": [
                 "editor.action.codeAction"
             ]
+        },
+        {
+            "before": ["<leader>", "m", "x"],
+            "commands": [
+                "workbench.action.showCommands"
+            ]
         }
     ],
     "debug.allowBreakpointsEverywhere": true,
