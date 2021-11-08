@@ -21,6 +21,34 @@
 
 (use-package ein
   :ensure t
+  :init
+  (progn
+    (add-hook 'ein:notebook-mode-hook (lambda () (setq-local before-save-hook nil)))
+    (with-eval-after-load 'evil
+      (evil-define-key 'normal ein:notebook-mode-map
+        "\\j" 'ein:worksheet-goto-next-input-km
+        "\\k" 'ein:worksheet-goto-prev-input-km
+        "\\w" 'ein:notebook-save-notebook-command-km
+        "\\b" 'ein:worksheet-insert-cell-below-km
+        "\\B" (lambda ()
+                (interactive)
+                (setq current-prefix-arg t)
+                (call-interactively 'ein:worksheet-insert-cell-below-km)
+                )
+        "\\a" 'ein:worksheet-insert-cell-above
+        "\\A" (lambda ()
+                (interactive)
+                (setq current-prefix-arg t)
+                (call-interactively 'ein:worksheet-insert-cell-above-km)
+                )
+        "\\d" 'ein:worksheet-delete-cell
+        "\\c" 'ein:worksheet-clear-output-km
+        "\\z" 'ein:notebook-kernel-interrupt-command-km
+        (kbd "RET" ) 'ein:worksheet-execute-cell-km
+        (kbd "<M-return>") 'ein:worksheet-execute-cell-and-goto-next-km
+        )
+      )
+    )
   )
 
 (provide 'config-ein)
