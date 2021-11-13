@@ -2,28 +2,28 @@
 ;;; Code:
 
 (defun simulate-key-press (key)
-    "Return a command that pretends KEY was presssed.
+  "Return a command that pretends KEY was presssed.
 KEY must be given in `kbd' notation."
-    `(lambda () (interactive)
-       (setq prefix-arg current-prefix-arg)
-            (setq unread-command-events (listify-key-sequence (read-kbd-macro ,key)))))
+  `(lambda () (interactive)
+     (setq prefix-arg current-prefix-arg)
+     (setq unread-command-events (listify-key-sequence (read-kbd-macro ,key)))))
 
 ;; function that is required to run emacs when no network is available
 (defun package-required-setup ()
   (progn
-         (require 'package)
-         ;; required by use-package; repository specified by :pin must be present
-         (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                                  ("melpa-stable" . "https://stable.melpa.org/packages/")
-                                  ("melpa" . "https://melpa.org/packages/")
-                                  ("org" . "https://orgmode.org/elpa/")))
-         (package-initialize)
-         )
+    (require 'package)
+    ;; required by use-package; repository specified by :pin must be present
+    (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                             ("melpa-stable" . "https://stable.melpa.org/packages/")
+                             ("melpa" . "https://melpa.org/packages/")
+                             ("org" . "https://orgmode.org/elpa/")))
+    (package-initialize)
+    )
   )
 
 
 (defun get-active-minor-modes (&optional buffer-or-string)
-  "Return a list of minor mode names active in BUFFER-OR-STRING"
+  "Return a list of minor mode names active in BUFFER-OR-STRING."
   (interactive)
   (progn
     (if (not buffer-or-string)
@@ -34,7 +34,7 @@ KEY must be given in `kbd' notation."
            (lambda (mode)
              (let ((fmode (or (get mode :minor-mode-function) mode)))
                (and (boundp mode) (symbol-value mode) (fboundp fmode))
-              )
+               )
              )))
       (with-current-buffer buffer-or-string
         (remove-if-not mode-is-active-fn minor-mode-list))
@@ -44,20 +44,21 @@ KEY must be given in `kbd' notation."
 
 ;; functions used in global snippet
 (defun get-shebang-executable ()
+  "Generate the recommended shebang string based on the file extension."
   (let ((env-cmd "#!/usr/bin/env"))
     (cond
-      ((stringp (buffer-file-name))
-        (let ((file-ext (file-name-extension (buffer-file-name))))
-          (cond
-            ((string= file-ext "py") (concatenate 'string env-cmd " python"))
-            ((string= file-ext "rb") (concatenate 'string env-cmd " ruby"))
-            ((string= file-ext "sh") (concatenate 'string env-cmd " bash"))
-            (t env-cmd)
-            )
-          )
+     ((stringp (buffer-file-name))
+      (let ((file-ext (file-name-extension (buffer-file-name))))
+        (cond
+         ((string= file-ext "py") (concatenate 'string env-cmd " python"))
+         ((string= file-ext "rb") (concatenate 'string env-cmd " ruby"))
+         ((string= file-ext "sh") (concatenate 'string env-cmd " bash"))
+         (t env-cmd)
+         )
         )
-      (t env-cmd)
       )
+     (t env-cmd)
+     )
     )
   )
 
@@ -71,8 +72,8 @@ KEY must be given in `kbd' notation."
 (defcustom mode-to-code-jump-function-name-alist
   '(
     (emacs-lisp-mode
-      (pop . pop-tag-mark)
-      )
+     (pop . pop-tag-mark)
+     )
     (lsp-mode
      (def . lsp-find-definition)
      (ref . lsp-find-references)
@@ -82,9 +83,9 @@ KEY must be given in `kbd' notation."
      (fmt . lsp-format-buffer)
      )
     (helm-gtags-mode
-      (def . helm-gtags-find-tag)
-      (ref . helm-gtags-find-rtag)
-      (pop . helm-gtags-pop-stack)
+     (def . helm-gtags-find-tag)
+     (ref . helm-gtags-find-rtag)
+     (pop . helm-gtags-pop-stack)
      )
     )
   "
@@ -135,19 +136,19 @@ a nested alist which:
   "Call CODE-JUMP-ENTRY-FN with symbol 'def."
   (interactive)
   (code-jump-entry-fn 'def)
- )
+  )
 
 (defun code-jump-to-ref ()
   "Call CODE-JUMP-ENTRY-FN with symbol 'ref."
   (interactive)
   (code-jump-entry-fn 'ref)
- )
+  )
 
 (defun code-jump-pop ()
   "Call CODE-JUMP-ENTRY-FN with symbol 'pop."
   (interactive)
   (code-jump-entry-fn 'pop)
- )
+  )
 
 (defun code-jump-doc ()
   "Call CODE-JUMP-ENTRY-FN with symbol 'doc."
