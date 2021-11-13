@@ -61,6 +61,12 @@ KEY must be given in `kbd' notation."
     )
   )
 
+(defun indent-buffer ()
+  "Indent the whole buffer."
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+
 ;; jump functions for source code reading
 (defcustom mode-to-code-jump-function-name-alist
   '(
@@ -73,6 +79,7 @@ KEY must be given in `kbd' notation."
      (pop . pop-tag-mark)
      (doc . lsp-describe-thing-at-point)
      (impl . lsp-find-implementation)
+     (fmt . lsp-format-buffer)
      )
     (helm-gtags-mode
       (def . helm-gtags-find-tag)
@@ -109,16 +116,17 @@ a nested alist which:
       (doc . ,(code-jump-entry-fn/unimplemented 'doc))
       (impl . ,(code-jump-entry-fn/unimplemented 'impl))
       (sym . xref-find-apropos)
+      (fmt . indent-buffer)
       )
     "default code jump functions."
     )
   (let* ((target-mode (find-if (lambda (mode) (assq mode mode-to-code-jump-function-name-alist)) (get-active-minor-modes)))
          (jump-fn-alist (cdr (assoc target-mode mode-to-code-jump-function-name-alist)))
          (jump-fn-name (cdr (assoc code-jump-type jump-fn-alist)))
-        )
+         )
     (if (not jump-fn-name)
         (setq jump-fn-name (cdr (assoc code-jump-type default-jump-fn-name)))
-        )
+      )
     (call-interactively jump-fn-name)
     )
   )
@@ -158,6 +166,12 @@ a nested alist which:
   (code-jump-entry-fn 'sym)
   )
 
+(defun code-fmt ()
+  "Call CODE-JUMP-ENTRY-FN with symbol 'fmt."
+  (interactive)
+  (code-jump-entry-fn 'fmt)
+  )
+
 (with-eval-after-load 'evil
   (cl-loop for pair in `(
                          ("gd" . ,#'code-jump-to-def)
@@ -170,6 +184,11 @@ a nested alist which:
            do
            (define-key evil-normal-state-map (car pair) (cdr pair))
            )
+  )
+(with-eval-after-load 'evil-leader
+  (evil-leader/set-key
+    "fb" 'code-fmt
+    )
   )
 (provide 'personal-functions)
 ;;; personal-functions.el ends here
