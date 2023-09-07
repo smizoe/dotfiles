@@ -2,7 +2,6 @@
 sys_pkg__common:
     - ffmpeg
     - ctags
-    - scala
     - sbt
     - ghc
     - bash-completion
@@ -29,49 +28,17 @@ sys_pkg__common:
 sys_pkg__arch:
     - aspell
     - aspell-en
-    - avr-binutils
-    - avr-gcc
-    - avr-libc
     - bash ## /bin/bash is too old; don't forget to add /usr/local/bin/bash to /etc/shells and run 'chsh -s /usr/local/bin/bash'
-    - docker
     - ibus
     - ibus-skk
-    - intellij-idea-ce
     - make
-      # TODO enable AUR and use yay to install the following
-    - yay
-    - haskell-hunit
-    - python2-pip
-    - python2-virtualenv
-    - python-pygments
-    - gvim
     - gcc-fortran
+    - inetutils
     - lesspipe
     - mupdf
     - nodejs
     - npm
     - ruby # since there is no system ruby
-    - skk-jisyo
-    - texlive-most
-    - texlive-langjapanese
-    - yakuake
-    ## required after installation of OS
-    - synaptics
-    - nvidia
-    - nvidia-utils
-    - bumblebee
-    - xf86-video-intel
-    - mesa
-    - xorg-server
-    - xorg-server-utils
-    - xorg-xinit
-    - xorg-twm
-    - xorg-xclock
-    - xterm
-    - ttf-symbola
-    - netctl
-    - wpa_supplicant
-    - dialog
     - openssh
 
 sys_pkg__arch_with_yaourt:
@@ -79,7 +46,6 @@ sys_pkg__arch_with_yaourt:
     - arm-none-eabi-newlib
     - atool
     - cmigemo-git
-    - coursera-dl
     - dasht
     - dfu-programmer
     - dfu-util
@@ -92,30 +58,24 @@ sys_pkg__arch_with_yaourt:
     - global
     - gradle
     - hub
+    - intellij-idea-ce
     - jdk
     - lightdm
     - lightdm-gtk-greeter
     - mono
     - msbuild-stable
-    - otf-fira-code
     - rustup
+    - scala
     - sshrc
-    - cargo
     - rbenv
     - pepper-flash
     - pv
-    - q
-     # snapd is for installing the brave browser
-     # see https://snapcraft.io/ for how to install/enable it
-    - snapd
+    - texlive
+    - texlive-langjapanese
+    - ttf-fira-code
     - ttf-ricty
+    - ttf-symbola
     - visual-studio-code-bin
-    - virtualbox
-    - virtualbox-host-modules-arch
-    - xmobar
-    - xmonad
-    - xmonad-contrib
-    - xsecurelock
     - yarn
     - zeal
 
@@ -179,3 +139,4 @@ sys_pkg__brew_tap:
     - aereal/aereal_casks # aquaskk
     - discoteq/discoteq # flock
     - caskroom/fonts # fira code
+    - ttf-fira-code

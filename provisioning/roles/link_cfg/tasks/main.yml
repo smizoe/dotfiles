@@ -5,6 +5,7 @@
   with_items:
     - git
     - pulse
+    - Code/User
 
 - name: make symlinks to config files
   file: src={{home}}/dotfiles/{{item.src}} dest={{home}}/{{item.dest | default("." + item.src)}} state=link
