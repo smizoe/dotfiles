@@ -41,8 +41,7 @@ function initialize() {
             ## make terminal sane after a command
             SAVE_TERM="$(stty -g)"
             trap 'timer_start' DEBUG
-            PROMPT_COMMAND="log_bash_cmd \"${HOME}/logs/bash/$(hostname)_\$(date -u +'%Y-%m-%d').log\"
-                            stty ${SAVE_TERM}
+            PROMPT_COMMAND="stty ${SAVE_TERM}
                             $PROMPT_COMMAND
                             history -a
                             history -c
@@ -259,21 +258,6 @@ function timer_start() {
 function timer_stop() {
   timer_show=$(($SECONDS - $_timer))
   unset timer
-}
-
-function log_bash_cmd() {
-    local pipe_status="${PIPESTATUS[*]}"
-    local last_cmd="$(builtin history 1 | awk '{$1=""; print $0}')"
-    timer_stop
-    echo -n "unix_timestamp:$(date +%s)
-PWD:${PWD}
-OLDPWD:${OLDPWD}
-PIPESTATUS:${pipe_status}
-$(print_tmux_info)
-tmux_socket:${TMUX}
-last_command_elapsed_time:${timer_show}
-CMD:${last_cmd}" | tr "\n" "\t" | ltsv2json >> "$1"
-    echo >> "$1"
 }
 
 function ltsv2json() {
