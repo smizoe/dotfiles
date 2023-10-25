@@ -28,12 +28,11 @@
   :pin melpa-stable
   )
 
-(use-package lsp-python-ms
+(use-package lsp-pyright
   :ensure t
   :hook (python-mode . (lambda ()
-                         (require 'lsp-python-ms)
-                         (lsp-deferred)))
-  )
+                         (require 'lsp-pyright)
+                         (lsp-deferred))))
 
 (use-package lsp-metals
   :config (setq lsp-metals-treeview-show-when-views-received t)

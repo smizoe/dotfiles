@@ -15,8 +15,8 @@ main = (xmonad =<<) $ xmobar $ baseConfig
     , startupHook = setWMName "LG3D"
   } `additionalKeys`
   [
-    ((mod4Mask, xK_bracketleft), moveTo Prev NonEmptyWS)
-  , ((mod4Mask, xK_bracketright), moveTo Next NonEmptyWS)
+    ((mod4Mask, xK_bracketleft), moveTo Prev $ Not emptyWS)
+  , ((mod4Mask, xK_bracketright), moveTo Next $ Not emptyWS)
   , ((mod4Mask .|. shiftMask, xK_bracketleft),  swapTo Prev)
   , ((mod4Mask .|. shiftMask, xK_bracketright), swapTo Next)
   , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 2%-")
