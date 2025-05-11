@@ -8,6 +8,7 @@
   (progn
     (setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
     (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+    (setq tex-command "lualatex")
     )
   :config
   (progn
