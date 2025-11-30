@@ -45,7 +45,6 @@ sys_pkg__arch_with_yaourt:
     - arm-none-eabi-gcc
     - arm-none-eabi-newlib
     - atool
-    - cmigemo-git
     - dasht
     - dfu-programmer
     - dfu-util
