@@ -1,5 +1,11 @@
 #:schema https://docs.jj-vcs.dev/latest/config-schema.json
 
+[[--scope]]
+--when.repositories = ["~/dotfiles"]
+[--scope.user]
+name = "Sho Mizoe"
+email = "sho.mizoe@gmail.com"
+
 [ui]
 diff-editor = "meld-3"
 merge-editor = "vscode"
