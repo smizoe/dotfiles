@@ -1,0 +1,12 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[ui]
+diff-editor = "meld-3"
+merge-editor = "vscode"
+
+[aliases]
+bm = ["bookmark"]
+bml = ["bookmark", "list"]
+d = ["diff"]
+fetch = ["git", "fetch"]
+l = ["log"]
