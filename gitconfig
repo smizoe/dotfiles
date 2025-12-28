@@ -28,5 +28,5 @@
 [multiuser]
   confdir = ~/dotfiles/git_user_configs
 [user]
-  name = 'Sho Mizoe'
-  email = 'sho.mizoe@gmail.com'
+  name = Sho Mizoe
+  email = sho.mizoe@gmail.com
