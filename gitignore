@@ -1,0 +1,70 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# build output #
+################
+
+# rust
+**/target
+# java (gradle)
+**/build
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+# *.sql
+# *.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# Other files        #
+######################
+*~
+*.pyc
+emacs.d/elpa
+GPATH
+GTAGS
+GRTAGS
+.python-version
+emacs.d/.cache
+emacs.d/abbrev_defs
+emacs.d/eln-cache
+emacs.d/history
+emacs.d/projectile-bookmarks.eld
+emacs.d/recentf
+emacs.d/transient
+
+# generated from vault
+########
+proxy.pac
+emacs.d/inits/setup-jabber.el
+emacs.d/templates/html/default.html
+Rprofile
