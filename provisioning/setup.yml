@@ -25,11 +25,15 @@
     - { role: r_pkg,       tags : ['r_pkg'] }
     - { role: node_pkg,    tags : ['node_pkg'] }
     - { role: local_pkg,   tags : ['local_pkg'] }
-    - { role: python_pkg,  tags : ['python_pkg'] }
-    - { role: supervisord, tags : ['supervisord'] }
-    - role: chrome_ext
-      become: "{{ansible_os_family != 'Darwin'}}"
-      tags: [ 'chrome_ext' ]
+    # These are no longer needed since:
+    # * rather than python DS packages locally, it is easier to use a docker image
+    # * there is nothing to manage/watch with supervisord
+    # * Archlinux WSL is used, and web-browsing occurs in the host.
+    # - { role: python_pkg,  tags : ['python_pkg'] }
+    # - { role: supervisord, tags : ['supervisord'] }
+    # - role: chrome_ext
+    #   become: "{{ansible_os_family != 'Darwin'}}"
+    #   tags: [ 'chrome_ext' ]
     - role: post_install/Darwin
       become: yes
       tags: [ 'post_install' ]

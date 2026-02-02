@@ -6,4 +6,4 @@
   template: src=emacs.service.j2 dest="{{home}}/.config/systemd/user/emacs.service"
 
 - name: enable emacs server on startup
-  systemd: name=emacs user=yes enabled=yes state=started
+  systemd: name=emacs scope=user enabled=yes state=started

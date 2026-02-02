@@ -14,7 +14,6 @@ sys_pkg__common:
     - protobuf
     - antlr
     - binutils
-    - gauche
     - emacs
     - jq
     - ripgrep
@@ -29,54 +28,36 @@ sys_pkg__arch:
     - aspell
     - aspell-en
     - bash ## /bin/bash is too old; don't forget to add /usr/local/bin/bash to /etc/shells and run 'chsh -s /usr/local/bin/bash'
+    - gcc-fortran
+    - helm
     - ibus
     - ibus-skk
-    - make
-    - gcc-fortran
     - inetutils
+    - kubectl
+    - kubeseal
     - lesspipe
+    - make
     - mupdf
     - nodejs
     - npm
     - ruby # since there is no system ruby
     - openssh
+    - python-pipenv
+    - python-pygments
+    - terraform
 
 sys_pkg__arch_with_yaourt:
-    - arm-none-eabi-gcc
-    - arm-none-eabi-newlib
-    - atool
-    - dasht
-    - dfu-programmer
-    - dfu-util
-    - dotnet-sdk
-    - elinks
-    - emojione-color-font
-    - flashplugin
     - fzf
-    - gcc-multilib
-    - global
-    - gradle
-    - hub
-    - intellij-idea-ce
+    - gauche
     - jdk
-    - lightdm
-    - lightdm-gtk-greeter
     - mono
-    - msbuild-stable
     - rustup
-    - scala
     - sshrc
     - rbenv
-    - pepper-flash
     - pv
     - texlive
     - texlive-langjapanese
     - ttf-fira-code
-    - ttf-ricty
-    - ttf-symbola
-    - visual-studio-code-bin
-    - yarn
-    - zeal
 
 sys_pkg__mach:
     - atool
