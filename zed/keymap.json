@@ -1,0 +1,18 @@
+[
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "g i": "editor::GoToImplementation",
+      "g r": "editor::FindAllReferences",
+      "g p": "pane::GoBack",
+      "g d": "editor::GoToDefinition",
+      "space c n": "editor::GoToDiagnostic",
+      "space c p": "editor::GoToPreviousDiagnostic",
+      "space r f": "file_finder::Toggle",
+      "space s r": "pane::DeploySearch",
+      "space f b": "editor::Format",
+      "space e a": "editor::ToggleCodeActions",
+      "space m x": "command_palette::Toggle"
+    }
+  }
+]

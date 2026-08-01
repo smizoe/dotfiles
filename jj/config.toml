@@ -16,7 +16,6 @@ bml = ["bookmark", "list"]
 d = ["diff"]
 fetch = ["git", "fetch"]
 l = ["log"]
-#:schema https://docs.jj-vcs.dev/latest/config-schema.json
 
 [user]
 name = "Sho Mizoe"
