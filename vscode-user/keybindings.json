@@ -43,7 +43,7 @@
         "command": "-workbench.action.quickOpen"
     },
     {
-        "key": "ctrl+e",
+        "key": "ctrl+k",
         "command": "editor.emmet.action.expandAbbreviation",
         "when": "config.emmet.triggerExpansionOnTab && editorTextFocus && !editorReadonly && !editorTabMovesFocus"
     },
@@ -55,7 +55,7 @@
     {
         "key": "ctrl+k",
         "command": "jumpToNextSnippetPlaceholder",
-        "when": "editorTextFocus && hasNextTabstop && inSnippetMode"
+        "when": "editorTextFocus && hasNextTabstop && inSnippetMode && !terminalFocus"
     },
     {
         "key": "tab",

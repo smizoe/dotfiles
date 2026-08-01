@@ -6,67 +6,107 @@
     "vim.leader": " ",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["g", "i"],
+            "before": [
+                "g",
+                "i"
+            ],
             "commands": [
                 "editor.action.goToImplementation"
             ]
         },
         {
-            "before": ["g", "r"],
+            "before": [
+                "g",
+                "r"
+            ],
             "commands": [
                 "editor.action.goToReferences"
             ]
         },
         {
-            "before": ["g", "p"],
+            "before": [
+                "g",
+                "p"
+            ],
             "commands": [
                 "workbench.action.navigateBack"
             ]
         },
         {
-            "before": ["g", "d"],
+            "before": [
+                "g",
+                "d"
+            ],
             "commands": [
                 "editor.action.revealDefinition"
             ]
         },
         {
-            "before": ["<leader>", "c", "n"],
+            "before": [
+                "<leader>",
+                "c",
+                "n"
+            ],
             "commands": [
                 "editor.action.marker.nextInFiles"
             ]
         },
         {
-            "before": ["<leader>", "c", "p"],
+            "before": [
+                "<leader>",
+                "c",
+                "p"
+            ],
             "commands": [
                 "editor.action.marker.prevInFiles"
             ]
         },
         {
-            "before": ["<leader>", "r", "f"],
+            "before": [
+                "<leader>",
+                "r",
+                "f"
+            ],
             "commands": [
                 "workbench.action.quickOpen"
             ]
         },
         {
-            "before": ["<leader>", "s", "r"],
+            "before": [
+                "<leader>",
+                "s",
+                "r"
+            ],
             "commands": [
                 "workbench.action.findInFiles"
             ]
         },
         {
-            "before": ["<leader>", "f", "b"],
+            "before": [
+                "<leader>",
+                "f",
+                "b"
+            ],
             "commands": [
                 "editor.action.formatDocument"
             ]
         },
         {
-            "before": ["<leader>", "e", "a"],
+            "before": [
+                "<leader>",
+                "e",
+                "a"
+            ],
             "commands": [
                 "editor.action.codeAction"
             ]
         },
         {
-            "before": ["<leader>", "m", "x"],
+            "before": [
+                "<leader>",
+                "m",
+                "x"
+            ],
             "commands": [
                 "workbench.action.showCommands"
             ]
@@ -78,5 +118,12 @@
     "window.zoomLevel": 0,
     "explorer.confirmDelete": false,
     "editor.formatOnType": true,
-    "workbench.editor.empty.hint": "hidden"
+    "workbench.editor.empty.hint": "hidden",
+    "antigravity.marketplaceGalleryItemURL": "",
+    "antigravity.marketplaceExtensionGalleryServiceURL": "",
+    "remote.autoForwardPortsSource": "hybrid",
+    "plantuml.server": "https://plantuml.taild2b5b4.ts.net/",
+    "plantuml.render": "PlantUMLServer",
+    "python.languageServer": "Default",
+    "update.mode": "manual"
 }
