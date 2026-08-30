@@ -1,7 +1,5 @@
-export PATH="${PATH}:/usr/local/bin:/usr/local/sbin:$(python3 -c "import site; print(site.USER_BASE)")/bin:${HOME}/dotfiles/local/bin:${HOME}/.cabal/bin:${HOME}/APUE/bin:${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/.npm-packages/bin"
+export PATH="${PATH}:/usr/local/bin:/usr/local/sbin:$(python3 -c "import site; print(site.USER_BASE)")/bin:${HOME}/dotfiles/local/bin:${HOME}/.cabal/bin:${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/.npm-packages/bin"
 
-export CPATH=${CPATH}:~/APUE/include
-export LIBRARY_PATH=${LIBRARY_PATH}:~/APUE/lib
 ########################
 ## postgresql
 
@@ -23,12 +21,13 @@ if [ "${SYSTEM_NAME}" == "Darwin" ] ; then
   export GOROOT=`go env GOROOT`
   export PATH=$PATH:$GOROOT/bin
 else
-  export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin
+  export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 fi
 
 
 export EDITOR="em -nw"
 export VISUAL="em -a emacs"
 
-## dasht
-export DASHT_DOCSETS_DIR=~/.local/share/Zeal/Zeal/docsets
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

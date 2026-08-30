@@ -25,7 +25,7 @@ function initialize() {
         ## the followings are user-defined.
 
 
-        BASH_COMPLETION_FILES=(/usr/local/etc/bash_completion /usr/share/git/completion/git-prompt.sh /usr/share/git/completion/git-completion.bash)
+        BASH_COMPLETION_FILES=(/usr/local/etc/bash_completion /usr/share/git/completion/git-prompt.sh /usr/share/git/completion/git-completion.bash /usr/lib/git-core/git-sh-prompt /usr/share/bash-completion/completions/git)
         for file in ${BASH_COMPLETION_FILES[@]}
         do
             if [ -f "${file}" ]; then

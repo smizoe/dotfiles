@@ -3,10 +3,15 @@ if [ -z "$PS1" ]; then
    return
 fi
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 BASHRC_REALPATH="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" && pwd)"
+
+. "${BASHRC_REALPATH}/bashrc_fragments/environments.sh"
+
+# If not running interactively, don't do anything other than setting up env. vars
+[[ $- != *i* ]] && return
+# return when the current shell is for a Zed task
+# https://github.com/zed-industries/zed/issues/59542
+[[ -n "$IS_ZED_TASK" ]] && return
 
 . "${BASHRC_REALPATH}/bashrc_fragments/constants.sh"
 . "${BASHRC_REALPATH}/bashrc_fragments/functions.sh"
@@ -25,7 +30,7 @@ fi
 
 initialize
 
-for fname in environments aliases keybinds
+for fname in aliases keybinds
 do
     . "${BASHRC_REALPATH}/bashrc_fragments/${fname}.sh"
 done
